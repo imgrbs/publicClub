@@ -1,11 +1,7 @@
 package club.view;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import java.awt.*;
+import javax.swing.*;
 // import button,frame,label
 
 
@@ -29,8 +25,12 @@ public class EventFeed extends JFrame {
         JButton btnJoin = new JButton("Join");
         JButton btnDetail = new JButton("Detail");
         
+        // Grid
+//        GridLayout grid = new GridLayout(3,3,10,50);
+        
         // Layout
-        setLayout(new FlowLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        setLayout(new GridBagLayout());
         
         // add label
         add(lb);
