@@ -419,7 +419,7 @@ public class FormEvaluations extends JFrame {
         );
         Question1Layout.setVerticalGroup(
             Question1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Ques1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Ques1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, Short.MAX_VALUE)
             .addGroup(Question1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -499,7 +499,7 @@ public class FormEvaluations extends JFrame {
                 .addComponent(q9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(q10)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jRadioButton45.setBackground(new java.awt.Color(255, 255, 255));
@@ -807,11 +807,6 @@ public class FormEvaluations extends JFrame {
                                 .addGap(22, 22, 22)
                                 .addComponent(jLabel5))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-<<<<<<< HEAD
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel3)))
-                        .addContainerGap(900, Short.MAX_VALUE))))
-=======
                                 .addGap(20, 20, 20)
                                 .addComponent(jLabel4))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -821,7 +816,6 @@ public class FormEvaluations extends JFrame {
                         .addComponent(jLabel1)
                         .addGap(10, 10, 10)))
                 .addGap(50, 50, 50))
->>>>>>> 53e806ce40ad0f7833da68f4dc05b4f3c2d09455
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
