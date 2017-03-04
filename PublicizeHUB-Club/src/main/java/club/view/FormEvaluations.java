@@ -1,4 +1,4 @@
-﻿package club.view;
+package club.view;
 
 import javax.swing.*;
 
