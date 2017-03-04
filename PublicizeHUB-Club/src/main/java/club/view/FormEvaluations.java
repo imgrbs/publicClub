@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package publicizehub.GUI;
+package club.view;
 
 /**
  *
@@ -378,7 +378,7 @@ public class FormEvaluations extends javax.swing.JFrame {
         );
         Question1Layout.setVerticalGroup(
             Question1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Ques1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(Ques1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, Short.MAX_VALUE)
             .addGroup(Question1Layout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -744,7 +744,7 @@ public class FormEvaluations extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(17, 17, 17)
                                 .addComponent(jLabel3)))
-                        .addContainerGap(859, Short.MAX_VALUE))))
+                        .addContainerGap(880, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

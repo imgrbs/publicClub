@@ -1,5 +1,5 @@
 
-package publicizehub.GUI;
+package club.view;
 
 /**
  *
