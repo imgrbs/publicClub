@@ -153,12 +153,12 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&#xe02;&#xe48;&#xe32;&#xe27;&#xe08;&#xe32;&#xe01;&#xe0a;&#xe21;&#xe23;&#xe21; +++"/>
+                <Property name="text" type="java.lang.String" value="&#xe04;&#xe33;&#xe2d;&#xe18;&#xe34;&#xe1a;&#xe32;&#xe22; : &#xe0a;&#xe21;&#xe23;&#xe21;&#xe19;&#xe35;&#xe49;&#xe44;&#xe21;&#xe48;&#xe21;&#xe35;&#xe2d;&#xe30;&#xe44;&#xe23; &#xe01;&#xe25;&#xe31;&#xe1a;&#xe1a;&#xe49;&#xe32;&#xe19;&#xe44;&#xe1b;"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&#xe23;&#xe32;&#xe22;&#xe25;&#xe30;&#xe40;&#xe2d;&#xe35;&#xe22;&#xe14; : asdasdsadsadsdsadasdsadsa"/>
+                <Property name="text" type="java.lang.String" value="&#xe23;&#xe32;&#xe22;&#xe25;&#xe30;&#xe40;&#xe2d;&#xe35;&#xe22;&#xe14; : &#xe27;&#xe31;&#xe19;&#xe40;&#xe27;&#xe25;&#xe32;&#xe2a;&#xe16;&#xe32;&#xe19;&#xe17;&#xe35;&#xe48;"/>
               </Properties>
             </Component>
           </SubComponents>
