@@ -60,9 +60,9 @@ public class Detail extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 204));
 
-        jLabel2.setText("ข่าวจากชมรม +++");
+        jLabel2.setText("คำอธิบาย : ชมรมนี้ไม่มีอะไร กลับบ้านไป");
 
-        jLabel3.setText("รายละเอียด : asdasdsadsadsdsadasdsadsa");
+        jLabel3.setText("รายละเอียด : วันเวลาสถานที่");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
