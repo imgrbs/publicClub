@@ -416,10 +416,12 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        new FormSumActivity().setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        new FormSumActivity().setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton15ActionPerformed
 
