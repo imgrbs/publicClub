@@ -433,6 +433,7 @@ public class Profile extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        new JoinClub().setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -445,6 +446,7 @@ public class Profile extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        new JoinClub().setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
 
@@ -453,6 +455,7 @@ public class Profile extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        new JoinClub().setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
 
