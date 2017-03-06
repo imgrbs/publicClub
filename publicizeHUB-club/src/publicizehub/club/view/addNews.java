@@ -50,6 +50,10 @@ public class addNews extends javax.swing.JFrame {
         }
 
     }
+    
+    public void deleteNews(){
+        JOptionPane.showMessageDialog(null, "Test Delete Button");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,8 +64,8 @@ public class addNews extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btn_insert = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        insertNews = new javax.swing.JButton();
+        deleteNews = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         content = new javax.swing.JTextArea();
@@ -70,17 +74,17 @@ public class addNews extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btn_insert.setText("เพิ่มข่าว");
-        btn_insert.addActionListener(new java.awt.event.ActionListener() {
+        insertNews.setText("เพิ่มข่าว");
+        insertNews.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_insertActionPerformed(evt);
+                insertNewsActionPerformed(evt);
             }
         });
 
-        jButton2.setText("ลบข่าว");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        deleteNews.setText("ลบข่าว");
+        deleteNews.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                deleteNewsActionPerformed(evt);
             }
         });
 
@@ -117,9 +121,9 @@ public class addNews extends javax.swing.JFrame {
                                 .addComponent(newsId, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(132, 132, 132)
-                        .addComponent(btn_insert, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(insertNews, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(deleteNews, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -135,21 +139,21 @@ public class addNews extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_insert, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(insertNews, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(deleteNews, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_insertActionPerformed
+    private void insertNewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertNewsActionPerformed
         insertNews();
-    }//GEN-LAST:event_btn_insertActionPerformed
+    }//GEN-LAST:event_insertNewsActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void deleteNewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteNewsActionPerformed
+        deleteNews();
+    }//GEN-LAST:event_deleteNewsActionPerformed
 
     private void newsIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newsIdActionPerformed
         // TODO add your handling code here:
@@ -191,9 +195,9 @@ public class addNews extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_insert;
     private javax.swing.JTextArea content;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton deleteNews;
+    private javax.swing.JButton insertNews;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
