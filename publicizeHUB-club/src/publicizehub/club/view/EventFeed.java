@@ -9,7 +9,6 @@ package publicizehub.club.view;
  *
  * @author Imagine
  */
-import club.model.*;
 public class EventFeed extends javax.swing.JFrame {
 
     /**
