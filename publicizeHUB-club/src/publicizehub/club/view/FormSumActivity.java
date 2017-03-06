@@ -1,5 +1,4 @@
-
-package club.view;
+package publicizehub.club.view;
 
 /**
  *
