@@ -38,17 +38,9 @@ public class EventFeed extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        news2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        news5 = new javax.swing.JLabel();
-        news4 = new javax.swing.JLabel();
-        news3 = new javax.swing.JLabel();
-        news1 = new javax.swing.JLabel();
-        news6 = new javax.swing.JLabel();
-        news7 = new javax.swing.JLabel();
-        news10 = new javax.swing.JLabel();
-        news9 = new javax.swing.JLabel();
-        news8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
         jButton17 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
@@ -167,38 +159,15 @@ public class EventFeed extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 153));
 
-        news2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        news2.setText("- ข่าว");
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("กิจกรรมใหม่");
 
-        news5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        news5.setText("- ข่าว");
-
-        news4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        news4.setText("- ข่าว");
-
-        news3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        news3.setText("- ข่าว");
-
-        news1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        news1.setText("- ข่าว");
-
-        news6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        news6.setText("- ข่าว");
-
-        news7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        news7.setText("- ข่าว");
-
-        news10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        news10.setText("- ข่าว");
-
-        news9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        news9.setText("- ข่าว");
-
-        news8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        news8.setText("- ข่าว");
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -206,19 +175,10 @@ public class EventFeed extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5)
-                    .addComponent(news1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
-                    .addComponent(news2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(news3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(news4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(news5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(news6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(news7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(news8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(news9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(news10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,26 +186,8 @@ public class EventFeed extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(news1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(news2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(news3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(news4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(news5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(news6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(news7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(news8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(news9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(news10)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 153));
@@ -732,6 +674,7 @@ public class EventFeed extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -743,17 +686,8 @@ public class EventFeed extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel news1;
-    private javax.swing.JLabel news10;
-    private javax.swing.JLabel news2;
-    private javax.swing.JLabel news3;
-    private javax.swing.JLabel news4;
-    private javax.swing.JLabel news5;
-    private javax.swing.JLabel news6;
-    private javax.swing.JLabel news7;
-    private javax.swing.JLabel news8;
-    private javax.swing.JLabel news9;
     // End of variables declaration//GEN-END:variables
 }
