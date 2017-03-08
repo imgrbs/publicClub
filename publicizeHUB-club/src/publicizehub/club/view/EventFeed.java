@@ -21,6 +21,8 @@ public class EventFeed extends javax.swing.JFrame {
      */
     public EventFeed() {
         initComponents();
+        addNewsToList();
+        
     }
 
     public void addNewsToList() {
@@ -36,8 +38,6 @@ public class EventFeed extends javax.swing.JFrame {
             while (result.next()) {
                 String temp = result.getString("content");
                 myArrList.add(temp);
-                System.out.println(myArrList);
-//                temp.addElement(newsList);
             }
                 System.out.println(myArrList.get(0));
         } catch (Exception e) {
@@ -55,6 +55,12 @@ public class EventFeed extends javax.swing.JFrame {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
+        
+        String[] temp = new String[myArrList.size()];
+        for (int i = 0; i < myArrList.size(); i++) {
+            temp[i]=myArrList.get(i);
+        }
+        newsList.setListData(temp);
     }
 
     /**
@@ -83,7 +89,7 @@ public class EventFeed extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        newsList = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
         jButton17 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
@@ -195,10 +201,8 @@ public class EventFeed extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("กิจกรรมใหม่");
 
-        org.jdesktop.swingbinding.JListBinding jListBinding = org.jdesktop.swingbinding.SwingBindings.createJListBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tbNewsList, jList1);
+        org.jdesktop.swingbinding.JListBinding jListBinding = org.jdesktop.swingbinding.SwingBindings.createJListBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tbNewsList, newsList, "newsId");
         bindingGroup.addBinding(jListBinding);
-
-        jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -558,7 +562,6 @@ public class EventFeed extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -571,6 +574,7 @@ public class EventFeed extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JList<String> newsList;
     private java.util.List<publicizehub.club.view.TbNews> tbNewsList;
     private javax.persistence.Query tbNewsQuery;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
