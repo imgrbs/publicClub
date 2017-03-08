@@ -14,7 +14,7 @@ import javax.swing.UIManager.*;
  *
  * @author JIL
  */
-public class AdminGUI extends JFrame {
+public class ProfileGUI extends JFrame {
     
     
     public void Run() {
@@ -41,7 +41,7 @@ public class AdminGUI extends JFrame {
         JPanel close = new JPanel();
         close.setOpaque(true);
         close.setBounds(1, 1, 257, 171);
-        close.setBackground(new java.awt.Color(204,153,0));
+        close.setBackground(new java.awt.Color(255,204,0));
         getContentPane().add(close);
         close.setLayout(null);
         
@@ -109,24 +109,19 @@ public class AdminGUI extends JFrame {
         
         //lebel กิจกรรม
         JLabel activity = new JLabel();
-        activity.setText("กิจกรรม");
+        activity.setText("กิจกรรมที่จอง");
         activity.setFont(new java.awt.Font("Tahoma", 1, 24));
         activity.setBounds(20,180, 250, 50);
         pMain.add(activity);
         
         //label กจก.ที่เสร็จสิ้น
         JLabel finActivity = new JLabel();
-        finActivity.setText("กิจกรรมที่เสร็จสิ้นแล้ว");
+        finActivity.setText("กิจกรรมที่เข้าร่วม");
         finActivity.setFont(new java.awt.Font("Tahoma", 1, 24));
         finActivity.setBounds(20,435, 250, 50);
         pMain.add(finActivity);
         
-        //ปุ่ม CrateEvent
-        JButton btnCrateEv = new JButton();
-        btnCrateEv.setText("เพิ่มกิจกรรม");
-        btnCrateEv.setFont(new java.awt.Font("Tahoma", 1, 17));
-        btnCrateEv.setBounds(750,180, 140, 40);
-        pMain.add(btnCrateEv);
+        
         
         
     }
@@ -147,28 +142,20 @@ public class AdminGUI extends JFrame {
         lbEvName.setBounds(10,5, 250, 50);
         act.add(lbEvName);
         
-        //ปุ่ม check in
-        JButton btnCheckIn = new JButton();
-        btnCheckIn.setText("เช็คอิน");
-        btnCheckIn.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnCheckIn.setBackground(new java.awt.Color(153,153,153));
-        btnCheckIn.setBounds(500,45, 80, 30);
-        act.add(btnCheckIn);
-        
-        //ปุม detail
+        //ปุม ดูรหัส
         JButton btnDetail = new JButton();
-        btnDetail.setText("รายละเอียด");
+        btnDetail.setText("ดูรหัส");
         btnDetail.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnDetail.setBackground(new java.awt.Color(153,153,153));
-        btnDetail.setBounds(590,45, 120, 30);
+        btnDetail.setBounds(600,45, 90, 30);
         act.add(btnDetail);
         
-        //ปุ่ม ลบ
+        //ปุ่ม ยกเลิก
         JButton btnDelete = new JButton();
-        btnDelete.setText("ลบ");
+        btnDelete.setText("ยกเลิก");
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnDelete.setBackground(new java.awt.Color(255,102,51));
-        btnDelete.setBounds(720,45, 70, 30);
+        btnDelete.setBounds(710,45, 80, 30);
         act.add(btnDelete);
     }
     
@@ -187,28 +174,20 @@ public class AdminGUI extends JFrame {
         lbEvName.setBounds(10,5, 250, 50);
         act.add(lbEvName);
         
-        //ปุ่ม check in
-        JButton btnCheckIn = new JButton();
-        btnCheckIn.setText("เช็คอิน");
-        btnCheckIn.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnCheckIn.setBackground(new java.awt.Color(153,153,153));
-        btnCheckIn.setBounds(500,45, 80, 30);
-        act.add(btnCheckIn);
-        
-        //ปุม detail
+        //ปุม ดูรหัส
         JButton btnDetail = new JButton();
-        btnDetail.setText("รายละเอียด");
+        btnDetail.setText("ดูรหัส");
         btnDetail.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnDetail.setBackground(new java.awt.Color(153,153,153));
-        btnDetail.setBounds(590,45, 120, 30);
+        btnDetail.setBounds(600,45, 90, 30);
         act.add(btnDetail);
         
-        //ปุ่ม ลบ
+        //ปุ่ม ยกเลิก
         JButton btnDelete = new JButton();
-        btnDelete.setText("ลบ");
+        btnDelete.setText("ยกเลิก");
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnDelete.setBackground(new java.awt.Color(255,102,51));
-        btnDelete.setBounds(720,45, 70, 30);
+        btnDelete.setBounds(710,45, 80, 30);
         act.add(btnDelete);
     }
     
@@ -229,7 +208,7 @@ public class AdminGUI extends JFrame {
         
         //ปุ่ม feedback
         JButton btnFeedBack = new JButton();
-        btnFeedBack.setText("ผลตอบรับ");
+        btnFeedBack.setText("ประเมิณ");
         btnFeedBack.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnFeedBack.setBackground(new java.awt.Color(153,153,153));
         btnFeedBack.setBounds(670,15, 120, 30);
@@ -255,7 +234,7 @@ public class AdminGUI extends JFrame {
         
         //ปุ่ม feedback
         JButton btnFeedBack = new JButton();
-        btnFeedBack.setText("ผลตอบรับ");
+        btnFeedBack.setText("ประเมิณ");
         btnFeedBack.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnFeedBack.setBackground(new java.awt.Color(153,153,153));
         btnFeedBack.setBounds(670,15, 120, 30);
@@ -265,7 +244,7 @@ public class AdminGUI extends JFrame {
     }
     
     public static void main(String[] args) {
-        AdminGUI sg = new AdminGUI();
+        ProfileGUI sg = new ProfileGUI();
         //sg.setTheme();
         sg.Run();
         sg.setVisible(true);
