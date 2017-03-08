@@ -163,7 +163,7 @@ public class FeedGUI extends JFrame {
         newsBox.setBackground(new java.awt.Color(255, 204, 153));
         getContentPane().add(newsBox);
         newsBox.setLayout(null);
-
+        
         // Label News
         JLabel newsEvText = new JLabel();
         newsEvText.setText("ข่าวใหม่");
@@ -172,21 +172,27 @@ public class FeedGUI extends JFrame {
         newsBox.add(newsEvText);
 
         // List
-        JScrollPane scrollPane = new JScrollPane();
         JList newsList = new JList();
-        scrollPane.setViewportView(newsList);
+        newsList.setBounds(0, 0, 655, 150);
         newsList.setBackground(new java.awt.Color(255, 255, 255));
-        newsList.setBounds(30, 40, 655, 150);
-        newsBox.add(newsList);
         
+        // ScrollPane
+        JScrollPane scrollPane = new JScrollPane(newsList);
+        scrollPane.setLayout(null);
+        scrollPane.setBounds(30, 40, 655,150);
+        scrollPane.setBackground(new java.awt.Color(255, 255, 255));
+        
+        newsBox.add(scrollPane);
+        scrollPane.add(newsList);
         addNewsToList(newsList);
+        
     }
 
     public void eventRec() {
         JLabel evRecText = new JLabel();
         evRecText.setText("กิจกรรมแนะนำ");
         evRecText.setFont(new java.awt.Font("Tahoma", 1, 18));
-        evRecText.setBounds(300, 310, 240, 30);
+        evRecText.setBounds(300, 315, 240, 30);
         getContentPane().add(evRecText);
 
         JPanel evBox1 = new JPanel();
@@ -196,21 +202,21 @@ public class FeedGUI extends JFrame {
         getContentPane().add(evBox1);
         
         JLabel recEvent1 = new JLabel();
-        recEvent1.setText("Event Name : "+"IT 3K"); // รอ get จาก Database
-        recEvent1.setFont(new java.awt.Font("Tahoma", 1, 18));
+        recEvent1.setText("ชื่อกิจกรรม : "+"IT 3K"); // รอ get จาก Database
+        recEvent1.setFont(new java.awt.Font("Tahoma", 1, 22));
         recEvent1.setBounds(20, 10, 240,30);
         evBox1.add(recEvent1);
         
         JLabel dateEvent1 = new JLabel();
-        dateEvent1.setText("Detail : "+"IT 3K"); // รอ get จาก Database
+        dateEvent1.setText("วัน/เวลา/สถานที่ : "+""); // รอ get จาก Database
         dateEvent1.setFont(new java.awt.Font("Tahoma", 1, 12));
         dateEvent1.setBounds(20, 40, 240,30);
         evBox1.add(dateEvent1);       
         
         JLabel detailEvent1 = new JLabel();
-        detailEvent1.setText("Detail : "+"IT 3K"); // รอ get จาก Database
+        detailEvent1.setText("รายละเอียด : "+"IT 3K"); // รอ get จาก Database
         detailEvent1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        detailEvent1.setBounds(20, 40, 240,30);
+        detailEvent1.setBounds(20, 65, 240,30);
         evBox1.add(detailEvent1);        
         
         JPanel evBox2 = new JPanel();
