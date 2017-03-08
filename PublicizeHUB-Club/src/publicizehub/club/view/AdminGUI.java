@@ -27,9 +27,12 @@ public class AdminGUI extends JFrame {
 
         panelActivity1();
         panelActivity2();
+        finAct1();
+        finAct2();
         panelClose();
         panelProfile();
         panelMain();
+        
         
     }
     
@@ -111,6 +114,15 @@ public class AdminGUI extends JFrame {
         activity.setBounds(20,180, 250, 50);
         pMain.add(activity);
         
+        //label กจก.ที่เสร็จสิ้น
+        JLabel finActivity = new JLabel();
+        finActivity.setText("กิจกรรมที่เสร็จสิ้นแล้ว");
+        finActivity.setFont(new java.awt.Font("Tahoma", 1, 24));
+        finActivity.setBounds(20,435, 250, 50);
+        pMain.add(finActivity);
+        
+        
+        
         
     }
     
@@ -122,6 +134,37 @@ public class AdminGUI extends JFrame {
         act.setBackground(new java.awt.Color(240,240,240));
         getContentPane().add(act);
         act.setLayout(null);
+        
+        //event name
+        JLabel lbEvName = new JLabel();
+        lbEvName.setText("ชื่อกิจกรรม");
+        lbEvName.setFont(new java.awt.Font("Tahoma", 1, 17));
+        lbEvName.setBounds(10,5, 250, 50);
+        act.add(lbEvName);
+        
+        //ปุ่ม check in
+        JButton btnCheckIn = new JButton();
+        btnCheckIn.setText("เช็คอิน");
+        btnCheckIn.setFont(new java.awt.Font("Tahoma", 1, 15));
+        btnCheckIn.setBackground(new java.awt.Color(153,153,153));
+        btnCheckIn.setBounds(500,45, 80, 30);
+        act.add(btnCheckIn);
+        
+        //ปุม detail
+        JButton btnDetail = new JButton();
+        btnDetail.setText("รายละเอียด");
+        btnDetail.setFont(new java.awt.Font("Tahoma", 1, 15));
+        btnDetail.setBackground(new java.awt.Color(153,153,153));
+        btnDetail.setBounds(590,45, 120, 30);
+        act.add(btnDetail);
+        
+        //ปุ่ม ลบ
+        JButton btnDelete = new JButton();
+        btnDelete.setText("ลบ");
+        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 15));
+        btnDelete.setBackground(new java.awt.Color(255,102,51));
+        btnDelete.setBounds(720,45, 70, 30);
+        act.add(btnDelete);
     }
     
     public void panelActivity2(){
@@ -131,6 +174,89 @@ public class AdminGUI extends JFrame {
         act.setBackground(new java.awt.Color(240,240,240));
         getContentPane().add(act);
         act.setLayout(null);
+        
+        //event name
+        JLabel lbEvName = new JLabel();
+        lbEvName.setText("ชื่อกิจกรรม");
+        lbEvName.setFont(new java.awt.Font("Tahoma", 1, 17));
+        lbEvName.setBounds(10,5, 250, 50);
+        act.add(lbEvName);
+        
+        //ปุ่ม check in
+        JButton btnCheckIn = new JButton();
+        btnCheckIn.setText("เช็คอิน");
+        btnCheckIn.setFont(new java.awt.Font("Tahoma", 1, 15));
+        btnCheckIn.setBackground(new java.awt.Color(153,153,153));
+        btnCheckIn.setBounds(500,45, 80, 30);
+        act.add(btnCheckIn);
+        
+        //ปุม detail
+        JButton btnDetail = new JButton();
+        btnDetail.setText("รายละเอียด");
+        btnDetail.setFont(new java.awt.Font("Tahoma", 1, 15));
+        btnDetail.setBackground(new java.awt.Color(153,153,153));
+        btnDetail.setBounds(590,45, 120, 30);
+        act.add(btnDetail);
+        
+        //ปุ่ม ลบ
+        JButton btnDelete = new JButton();
+        btnDelete.setText("ลบ");
+        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 15));
+        btnDelete.setBackground(new java.awt.Color(255,102,51));
+        btnDelete.setBounds(720,45, 70, 30);
+        act.add(btnDelete);
+    }
+    
+    public void finAct1(){
+        JPanel act = new JPanel();
+        act.setOpaque(true);
+        act.setBounds(100, 500, 800, 70);
+        act.setBackground(new java.awt.Color(240,240,240));
+        getContentPane().add(act);
+        act.setLayout(null);
+        
+        //event name
+        JLabel lbEvName = new JLabel();
+        lbEvName.setText("ชื่อกิจกรรม");
+        lbEvName.setFont(new java.awt.Font("Tahoma", 1, 17));
+        lbEvName.setBounds(10,5, 250, 50);
+        act.add(lbEvName);
+        
+        //ปุ่ม feedback
+        JButton btnFeedBack = new JButton();
+        btnFeedBack.setText("ผลตอบรับ");
+        btnFeedBack.setFont(new java.awt.Font("Tahoma", 1, 15));
+        btnFeedBack.setBackground(new java.awt.Color(153,153,153));
+        btnFeedBack.setBounds(670,15, 120, 30);
+        act.add(btnFeedBack);
+        
+        
+    }
+    
+     public void finAct2(){
+        JPanel act = new JPanel();
+        act.setOpaque(true);
+        act.setBounds(100, 580, 800, 70);
+        act.setBackground(new java.awt.Color(240,240,240));
+        getContentPane().add(act);
+        act.setLayout(null);
+        
+        //event name
+        JLabel lbEvName = new JLabel();
+        lbEvName.setText("ชื่อกิจกรรม");
+        lbEvName.setFont(new java.awt.Font("Tahoma", 1, 17));
+        lbEvName.setBounds(10,5, 250, 50);
+        act.add(lbEvName);
+        
+        //ปุ่ม feedback
+        JButton btnFeedBack = new JButton();
+        btnFeedBack.setText("ผลตอบรับ");
+        btnFeedBack.setFont(new java.awt.Font("Tahoma", 1, 15));
+        btnFeedBack.setBackground(new java.awt.Color(153,153,153));
+        btnFeedBack.setBounds(670,15, 120, 30);
+        act.add(btnFeedBack);
+        
+        
     }
     
     public static void main(String[] args) {
