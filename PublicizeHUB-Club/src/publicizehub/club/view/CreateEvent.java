@@ -26,7 +26,7 @@ public class CreateEvent extends javax.swing.JFrame {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connect = DriverManager.getConnection("" + "jdbc:mysql://localhost:3306/db_event" + "?user=root&password=root");
+            connect = DriverManager.getConnection("" + "jdbc:mysql://localhost:3306/db_event" + "?user=root&password=root&characterEncoding=UTF-8");
             s = connect.createStatement();
             // SQL Insert
             String sql = "INSERT INTO tb_event"
