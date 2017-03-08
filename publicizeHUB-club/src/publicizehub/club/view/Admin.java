@@ -172,6 +172,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(153, 153, 153));
         jButton5.setText("เช็คอิน");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
