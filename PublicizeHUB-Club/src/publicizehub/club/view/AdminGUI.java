@@ -5,6 +5,8 @@
  */
 package publicizehub.club.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,9 +16,13 @@ import javax.swing.UIManager.*;
  *
  * @author JIL
  */
-public class AdminGUI extends JFrame {
-    
-    
+public class AdminGUI extends JFrame implements ActionListener {
+    private JFrame frame;
+    public void actionPerformed(ActionEvent e) {
+		// remove the previous JFrame
+		this.frame.setVisible(false);
+		this.frame.dispose();
+	}
     public void Run() {
         setTitle("publicizeHUB");
         setResizable(false);
@@ -38,6 +44,9 @@ public class AdminGUI extends JFrame {
     
     public void panelClose(){
         
+        this.frame = new JFrame();
+	this.frame.setVisible(true);
+        
         JPanel close = new JPanel();
         close.setOpaque(true);
         close.setBounds(1, 1, 257, 171);
@@ -51,7 +60,14 @@ public class AdminGUI extends JFrame {
         btnClose.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnClose.setBackground(new java.awt.Color(255,0,0));
         btnClose.setBounds(5,5, 63, 37);
+        btnClose.addActionListener(this);
+        btnClose.addActionListener((new ActionListener() {
+                public void actionPerformed(ActionEvent e) {           
+                       setVisible(false);
+                }
+        }));
         close.add(btnClose);
+        
         
         //text ข้อมูลส่วนตัว
         JLabel txt = new JLabel();
@@ -61,6 +77,9 @@ public class AdminGUI extends JFrame {
         close.add(txt);    
         
     }
+    
+     
+     
     
     public void panelProfile(){
         JPanel profile = new JPanel();
@@ -126,10 +145,16 @@ public class AdminGUI extends JFrame {
         btnCrateEv.setText("เพิ่มกิจกรรม");
         btnCrateEv.setFont(new java.awt.Font("Tahoma", 1, 17));
         btnCrateEv.setBounds(750,180, 140, 40);
+        btnCrateEv.addActionListener((new ActionListener() {
+                public void actionPerformed(ActionEvent e) {           
+                       new CreateEvent().setVisible(true);
+                }
+        }));
         pMain.add(btnCrateEv);
         
         
     }
+    
     
     public void panelActivity1(){
     
@@ -153,6 +178,11 @@ public class AdminGUI extends JFrame {
         btnCheckIn.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnCheckIn.setBackground(new java.awt.Color(153,153,153));
         btnCheckIn.setBounds(500,45, 80, 30);
+        btnCheckIn.addActionListener((new ActionListener() {
+                public void actionPerformed(ActionEvent e) {           
+                       new CheckIn().setVisible(true);
+                }
+        }));
         act.add(btnCheckIn);
         
         //ปุม detail
@@ -161,6 +191,11 @@ public class AdminGUI extends JFrame {
         btnDetail.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnDetail.setBackground(new java.awt.Color(153,153,153));
         btnDetail.setBounds(590,45, 120, 30);
+        btnDetail.addActionListener((new ActionListener() {
+                public void actionPerformed(ActionEvent e) {           
+                       new Detail().setVisible(true);
+                }
+        }));
         act.add(btnDetail);
         
         //ปุ่ม ลบ
@@ -193,6 +228,11 @@ public class AdminGUI extends JFrame {
         btnCheckIn.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnCheckIn.setBackground(new java.awt.Color(153,153,153));
         btnCheckIn.setBounds(500,45, 80, 30);
+        btnCheckIn.addActionListener((new ActionListener() {
+                public void actionPerformed(ActionEvent e) {           
+                       new CheckIn().setVisible(true);
+                }
+        }));
         act.add(btnCheckIn);
         
         //ปุม detail
@@ -201,6 +241,11 @@ public class AdminGUI extends JFrame {
         btnDetail.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnDetail.setBackground(new java.awt.Color(153,153,153));
         btnDetail.setBounds(590,45, 120, 30);
+        btnDetail.addActionListener((new ActionListener() {
+                public void actionPerformed(ActionEvent e) {           
+                       new Detail().setVisible(true);
+                }
+        }));
         act.add(btnDetail);
         
         //ปุ่ม ลบ
@@ -233,6 +278,11 @@ public class AdminGUI extends JFrame {
         btnFeedBack.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnFeedBack.setBackground(new java.awt.Color(153,153,153));
         btnFeedBack.setBounds(670,15, 120, 30);
+        btnFeedBack.addActionListener((new ActionListener() {
+                public void actionPerformed(ActionEvent e) {           
+                       new FormSumActivity().setVisible(true);
+                }
+        }));
         act.add(btnFeedBack);
         
         
@@ -259,6 +309,11 @@ public class AdminGUI extends JFrame {
         btnFeedBack.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnFeedBack.setBackground(new java.awt.Color(153,153,153));
         btnFeedBack.setBounds(670,15, 120, 30);
+        btnFeedBack.addActionListener((new ActionListener() {
+                public void actionPerformed(ActionEvent e) {           
+                       new FormSumActivity().setVisible(true);
+                }
+        }));
         act.add(btnFeedBack);
         
         
