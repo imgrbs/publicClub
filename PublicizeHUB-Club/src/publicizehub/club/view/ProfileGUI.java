@@ -5,6 +5,8 @@
  */
 package publicizehub.club.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,9 +16,14 @@ import javax.swing.UIManager.*;
  *
  * @author JIL
  */
-public class ProfileGUI extends JFrame {
+public class ProfileGUI extends JFrame implements ActionListener {
     
-    
+    private JFrame frame;
+    public void actionPerformed(ActionEvent e) {
+		// remove the previous JFrame
+		this.frame.setVisible(false);
+		this.frame.dispose();
+	}
     public void Run() {
         setTitle("publicizeHUB");
         setResizable(false);
@@ -51,6 +58,11 @@ public class ProfileGUI extends JFrame {
         btnClose.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnClose.setBackground(new java.awt.Color(255,0,0));
         btnClose.setBounds(5,5, 63, 37);
+        btnClose.addActionListener((new ActionListener() {
+                public void actionPerformed(ActionEvent e) {           
+                       setVisible(false);
+                }
+        }));
         close.add(btnClose);
         
         //text ข้อมูลส่วนตัว
@@ -142,13 +154,18 @@ public class ProfileGUI extends JFrame {
         lbEvName.setBounds(10,5, 250, 50);
         act.add(lbEvName);
         
-        //ปุม ดูรหัส
-        JButton btnDetail = new JButton();
-        btnDetail.setText("ดูรหัส");
-        btnDetail.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnDetail.setBackground(new java.awt.Color(153,153,153));
-        btnDetail.setBounds(600,45, 90, 30);
-        act.add(btnDetail);
+        //ปุ่ม ดูรหัส
+        JButton btnCode = new JButton();
+        btnCode.setText("ดูรหัส");
+        btnCode.setFont(new java.awt.Font("Tahoma", 1, 15));
+        btnCode.setBackground(new java.awt.Color(153,153,153));
+        btnCode.setBounds(600,45, 90, 30);
+        btnCode.addActionListener((new ActionListener() {
+                public void actionPerformed(ActionEvent e) {           
+                       new JoinClub().setVisible(true);
+                }
+        }));
+        act.add(btnCode);
         
         //ปุ่ม ยกเลิก
         JButton btnDelete = new JButton();
@@ -175,12 +192,17 @@ public class ProfileGUI extends JFrame {
         act.add(lbEvName);
         
         //ปุม ดูรหัส
-        JButton btnDetail = new JButton();
-        btnDetail.setText("ดูรหัส");
-        btnDetail.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnDetail.setBackground(new java.awt.Color(153,153,153));
-        btnDetail.setBounds(600,45, 90, 30);
-        act.add(btnDetail);
+        JButton btnCode = new JButton();
+        btnCode.setText("ดูรหัส");
+        btnCode.setFont(new java.awt.Font("Tahoma", 1, 15));
+        btnCode.setBackground(new java.awt.Color(153,153,153));
+        btnCode.setBounds(600,45, 90, 30);
+        btnCode.addActionListener((new ActionListener() {
+                public void actionPerformed(ActionEvent e) {           
+                       new JoinClub().setVisible(true);
+                }
+        }));
+        act.add(btnCode);
         
         //ปุ่ม ยกเลิก
         JButton btnDelete = new JButton();
@@ -206,13 +228,18 @@ public class ProfileGUI extends JFrame {
         lbEvName.setBounds(10,5, 250, 50);
         act.add(lbEvName);
         
-        //ปุ่ม feedback
-        JButton btnFeedBack = new JButton();
-        btnFeedBack.setText("ประเมิณ");
-        btnFeedBack.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnFeedBack.setBackground(new java.awt.Color(153,153,153));
-        btnFeedBack.setBounds(670,15, 120, 30);
-        act.add(btnFeedBack);
+        //ปุ่ม ประเมิณ
+        JButton btnFormE = new JButton();
+        btnFormE.setText("ประเมิณ");
+        btnFormE.setFont(new java.awt.Font("Tahoma", 1, 15));
+        btnFormE.setBackground(new java.awt.Color(153,153,153));
+        btnFormE.setBounds(670,15, 120, 30);
+        btnFormE.addActionListener((new ActionListener() {
+                public void actionPerformed(ActionEvent e) {           
+                       new FormEvaluations().setVisible(true);
+                }
+        }));
+        act.add(btnFormE);
         
         
     }
@@ -232,13 +259,18 @@ public class ProfileGUI extends JFrame {
         lbEvName.setBounds(10,5, 250, 50);
         act.add(lbEvName);
         
-        //ปุ่ม feedback
-        JButton btnFeedBack = new JButton();
-        btnFeedBack.setText("ประเมิณ");
-        btnFeedBack.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnFeedBack.setBackground(new java.awt.Color(153,153,153));
-        btnFeedBack.setBounds(670,15, 120, 30);
-        act.add(btnFeedBack);
+        //ปุ่ม ประเมิณ
+        JButton btnFormE = new JButton();
+        btnFormE.setText("ประเมิณ");
+        btnFormE.setFont(new java.awt.Font("Tahoma", 1, 15));
+        btnFormE.setBackground(new java.awt.Color(153,153,153));
+        btnFormE.setBounds(670,15, 120, 30);
+        btnFormE.addActionListener((new ActionListener() {
+                public void actionPerformed(ActionEvent e) {           
+                       new FormEvaluations().setVisible(true);
+                }
+        }));
+        act.add(btnFormE);
         
         
     }
