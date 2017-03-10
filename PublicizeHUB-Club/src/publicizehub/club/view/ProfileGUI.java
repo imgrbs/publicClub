@@ -19,6 +19,7 @@ import javax.swing.UIManager.*;
 public class ProfileGUI extends JFrame implements ActionListener {
     
     private JFrame frame;
+    ArrayList<String> myArrList = new ArrayList<String>();
     public void actionPerformed(ActionEvent e) {
 		// remove the previous JFrame
 		this.frame.setVisible(false);
