@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.UIManager.*;
 /**
@@ -17,7 +19,19 @@ import javax.swing.UIManager.*;
  * @author JIL
  */
 public class AdminGUI extends JFrame implements ActionListener {
+    public int id ;
+    public String name;
+    public String descr;
+    public String date;              
+    public String place;               
+    public int numTick;               
+    public String time;               
+    public int numPer;
+    private static int runId=10000;
     private JFrame frame;
+    
+    ArrayList<String> myArrList = new ArrayList<String>();
+    
     public void actionPerformed(ActionEvent e) {
 		// remove the previous JFrame
 		this.frame.setVisible(false);
@@ -41,6 +55,20 @@ public class AdminGUI extends JFrame implements ActionListener {
         
         
     }
+    public void setTheme() {
+        try {
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR");
+        }
+    }
+    
+    
     
     public void panelClose(){
         
@@ -77,7 +105,7 @@ public class AdminGUI extends JFrame implements ActionListener {
         close.add(txt);    
         
     }
-    
+     
      
      
     
@@ -155,9 +183,9 @@ public class AdminGUI extends JFrame implements ActionListener {
         
     }
     
-    
+   
     public void panelActivity1(){
-    
+        
         JPanel act = new JPanel();
         act.setOpaque(true);
         act.setBounds(100, 250, 800, 90);
@@ -167,7 +195,7 @@ public class AdminGUI extends JFrame implements ActionListener {
         
         //event name
         JLabel lbEvName = new JLabel();
-        lbEvName.setText("ชื่อกิจกรรม");
+        lbEvName.setText("");
         lbEvName.setFont(new java.awt.Font("Tahoma", 1, 17));
         lbEvName.setBounds(10,5, 250, 50);
         act.add(lbEvName);

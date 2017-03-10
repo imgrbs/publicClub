@@ -12,7 +12,7 @@ import javax.swing.*;
  * @author JIL
  */
 public class CreateEvent extends javax.swing.JFrame {
-
+    public static int runId=10001;
     /**
      * Creates new form CreateEvent
      */
@@ -104,6 +104,10 @@ public class CreateEvent extends javax.swing.JFrame {
 
         jLabel3.setText("รหัสกิจกรรม :");
 
+        evId.setBackground(new java.awt.Color(240, 240, 240));
+        evId.setForeground(new java.awt.Color(240, 240, 240));
+        evId.setEnabled(false);
+
         jLabel4.setText("รายละเอียด :");
 
         evDescrip.setColumns(20);
@@ -141,6 +145,7 @@ public class CreateEvent extends javax.swing.JFrame {
         numOfPerson.setBackground(new java.awt.Color(240, 240, 240));
         numOfPerson.setForeground(new java.awt.Color(240, 240, 240));
         numOfPerson.setBorder(null);
+        numOfPerson.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,8 +244,9 @@ public class CreateEvent extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-      
+        evId.setText(""+(++runId));
         numOfPerson.setText(""+1);
+        
         newEvent();
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmActionPerformed
