@@ -154,7 +154,14 @@ public class AdminGUI extends JFrame implements ActionListener {
         getContentPane().add(pMain);
         pMain.setLayout(null);
         
-        //lebel กิจกรรม
+        /*JScrollPane scrollPane = new JScrollPane(pMain);
+        scrollPane.setLayout(null);
+        scrollPane.setBounds(30, 40, 655,150);
+        scrollPane.setBackground(new java.awt.Color(255, 255, 255));
+        
+        pMain.add(scrollPane);
+        scrollPane.add(pMain);*/
+        
         JLabel activity = new JLabel();
         activity.setText("กิจกรรม");
         activity.setFont(new java.awt.Font("Tahoma", 1, 24));
