@@ -5,6 +5,8 @@
  */
 package publicizehub.club.view;
 
+import javax.swing.*;
+import javax.swing.UIManager.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
@@ -12,8 +14,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.*;
-import javax.swing.UIManager.*;
+
 /**
  *
  * @author JIL
@@ -72,8 +73,7 @@ public class AdminGUI extends JFrame implements ActionListener {
     
     public void panelClose(){
         
-        this.frame = new JFrame();
-	this.frame.setVisible(true);
+        
         
         JPanel close = new JPanel();
         close.setOpaque(true);
@@ -81,14 +81,12 @@ public class AdminGUI extends JFrame implements ActionListener {
         close.setBackground(new java.awt.Color(204,153,0));
         getContentPane().add(close);
         close.setLayout(null);
-        
         //ปุ่มปิด
         JButton btnClose = new JButton();
         btnClose.setText("ปิด");
         btnClose.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnClose.setBackground(new java.awt.Color(255,0,0));
         btnClose.setBounds(5,5, 63, 37);
-        btnClose.addActionListener(this);
         btnClose.addActionListener((new ActionListener() {
                 public void actionPerformed(ActionEvent e) {           
                        setVisible(false);
@@ -154,9 +152,9 @@ public class AdminGUI extends JFrame implements ActionListener {
         getContentPane().add(pMain);
         pMain.setLayout(null);
         
-        /*JScrollPane scrollPane = new JScrollPane(pMain);
+        /*JScrollPane scrollPane = new JScrollPane();
         scrollPane.setLayout(null);
-        scrollPane.setBounds(30, 40, 655,150);
+        scrollPane.setBounds(1, 1, 1024,768);
         scrollPane.setBackground(new java.awt.Color(255, 255, 255));
         
         pMain.add(scrollPane);
