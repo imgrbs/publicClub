@@ -165,14 +165,14 @@ public class AdminGUI extends JFrame implements ActionListener {
         JLabel finActivity = new JLabel();
         finActivity.setText("กิจกรรมที่เสร็จสิ้นแล้ว");
         finActivity.setFont(new java.awt.Font("Tahoma", 1, 24));
-        finActivity.setBounds(20,435, 250, 50);
+        finActivity.setBounds(550,180, 250, 50);
         pMain.add(finActivity);
         
         //ปุ่ม CrateEvent
         JButton btnCrateEv = new JButton();
         btnCrateEv.setText("เพิ่มกิจกรรม");
         btnCrateEv.setFont(new java.awt.Font("Tahoma", 1, 17));
-        btnCrateEv.setBounds(750,180, 140, 40);
+        btnCrateEv.setBounds(325,180, 135, 40);
         btnCrateEv.addActionListener((new ActionListener() {
                 public void actionPerformed(ActionEvent e) {           
                        new CreateEvent().setVisible(true);
@@ -188,7 +188,7 @@ public class AdminGUI extends JFrame implements ActionListener {
         
         JPanel act = new JPanel();
         act.setOpaque(true);
-        act.setBounds(100, 250, 800, 90);
+        act.setBounds(60, 250, 400, 90);
         act.setBackground(new java.awt.Color(240,240,240));
         getContentPane().add(act);
         act.setLayout(null);
@@ -205,7 +205,7 @@ public class AdminGUI extends JFrame implements ActionListener {
         btnCheckIn.setText("เช็คอิน");
         btnCheckIn.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnCheckIn.setBackground(new java.awt.Color(153,153,153));
-        btnCheckIn.setBounds(500,45, 80, 30);
+        btnCheckIn.setBounds(100,45, 80, 30);
         btnCheckIn.addActionListener((new ActionListener() {
                 public void actionPerformed(ActionEvent e) {           
                        new CheckIn().setVisible(true);
@@ -218,7 +218,7 @@ public class AdminGUI extends JFrame implements ActionListener {
         btnDetail.setText("รายละเอียด");
         btnDetail.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnDetail.setBackground(new java.awt.Color(153,153,153));
-        btnDetail.setBounds(590,45, 120, 30);
+        btnDetail.setBounds(190,45, 120, 30);
         btnDetail.addActionListener((new ActionListener() {
                 public void actionPerformed(ActionEvent e) {           
                        new Detail().setVisible(true);
@@ -231,14 +231,14 @@ public class AdminGUI extends JFrame implements ActionListener {
         btnDelete.setText("ลบ");
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnDelete.setBackground(new java.awt.Color(255,102,51));
-        btnDelete.setBounds(720,45, 70, 30);
+        btnDelete.setBounds(320,45, 70, 30);
         act.add(btnDelete);
     }
     
     public void panelActivity2(){
         JPanel act = new JPanel();
         act.setOpaque(true);
-        act.setBounds(100, 350, 800, 90);
+        act.setBounds(60, 350, 400, 90);
         act.setBackground(new java.awt.Color(240,240,240));
         getContentPane().add(act);
         act.setLayout(null);
@@ -255,7 +255,7 @@ public class AdminGUI extends JFrame implements ActionListener {
         btnCheckIn.setText("เช็คอิน");
         btnCheckIn.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnCheckIn.setBackground(new java.awt.Color(153,153,153));
-        btnCheckIn.setBounds(500,45, 80, 30);
+        btnCheckIn.setBounds(100,45, 80, 30);
         btnCheckIn.addActionListener((new ActionListener() {
                 public void actionPerformed(ActionEvent e) {           
                        new CheckIn().setVisible(true);
@@ -268,7 +268,7 @@ public class AdminGUI extends JFrame implements ActionListener {
         btnDetail.setText("รายละเอียด");
         btnDetail.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnDetail.setBackground(new java.awt.Color(153,153,153));
-        btnDetail.setBounds(590,45, 120, 30);
+        btnDetail.setBounds(190,45, 120, 30);
         btnDetail.addActionListener((new ActionListener() {
                 public void actionPerformed(ActionEvent e) {           
                        new Detail().setVisible(true);
@@ -281,14 +281,14 @@ public class AdminGUI extends JFrame implements ActionListener {
         btnDelete.setText("ลบ");
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnDelete.setBackground(new java.awt.Color(255,102,51));
-        btnDelete.setBounds(720,45, 70, 30);
+        btnDelete.setBounds(320,45, 70, 30);
         act.add(btnDelete);
     }
     
     public void finAct1(){
         JPanel act = new JPanel();
         act.setOpaque(true);
-        act.setBounds(100, 500, 800, 70);
+        act.setBounds(550, 250, 400, 90);
         act.setBackground(new java.awt.Color(240,240,240));
         getContentPane().add(act);
         act.setLayout(null);
@@ -305,7 +305,7 @@ public class AdminGUI extends JFrame implements ActionListener {
         btnFeedBack.setText("ผลตอบรับ");
         btnFeedBack.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnFeedBack.setBackground(new java.awt.Color(153,153,153));
-        btnFeedBack.setBounds(670,15, 120, 30);
+        btnFeedBack.setBounds(270,40, 120, 30);
         btnFeedBack.addActionListener((new ActionListener() {
                 public void actionPerformed(ActionEvent e) {           
                        new FormSumActivity().setVisible(true);
@@ -319,7 +319,7 @@ public class AdminGUI extends JFrame implements ActionListener {
      public void finAct2(){
         JPanel act = new JPanel();
         act.setOpaque(true);
-        act.setBounds(100, 580, 800, 70);
+        act.setBounds(550, 350, 400, 90);
         act.setBackground(new java.awt.Color(240,240,240));
         getContentPane().add(act);
         act.setLayout(null);
@@ -336,7 +336,7 @@ public class AdminGUI extends JFrame implements ActionListener {
         btnFeedBack.setText("ผลตอบรับ");
         btnFeedBack.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnFeedBack.setBackground(new java.awt.Color(153,153,153));
-        btnFeedBack.setBounds(670,15, 120, 30);
+        btnFeedBack.setBounds(270,40, 120, 30);
         btnFeedBack.addActionListener((new ActionListener() {
                 public void actionPerformed(ActionEvent e) {           
                        new FormSumActivity().setVisible(true);
