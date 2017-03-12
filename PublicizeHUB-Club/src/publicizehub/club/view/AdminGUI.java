@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  * @author JIL
  */
 public class AdminGUI extends JFrame implements ActionListener {
-    public int id ;
+    
     public String name;
     public String descr;
     public String date;              
