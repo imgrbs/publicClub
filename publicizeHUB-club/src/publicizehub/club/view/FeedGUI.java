@@ -203,7 +203,7 @@ public class FeedGUI extends JFrame {
         
         JLabel recEvent1 = new JLabel();
         recEvent1.setText("ชื่อกิจกรรม : "+"IT 3K"); // รอ get จาก Database
-        recEvent1.setFont(new java.awt.Font("Tahoma", 1, 22));
+        recEvent1.setFont(new java.awt.Font("Tahoma", 1, 18));
         recEvent1.setBounds(20, 10, 240,30);
         evBox1.add(recEvent1);
         
@@ -217,13 +217,55 @@ public class FeedGUI extends JFrame {
         detailEvent1.setText("รายละเอียด : "+"IT 3K"); // รอ get จาก Database
         detailEvent1.setFont(new java.awt.Font("Tahoma", 1, 12));
         detailEvent1.setBounds(20, 65, 240,30);
-        evBox1.add(detailEvent1);        
+        evBox1.add(detailEvent1);      
+        
+        JButton joinEvRec1 = new JButton();
+        joinEvRec1.setText("เข้าร่วม");
+        joinEvRec1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        joinEvRec1.setBounds(150, 100, 90, 30);
+        evBox1.add(joinEvRec1);
+        
+        JButton detEvRec1 = new JButton();
+        detEvRec1.setText("รายละเอียด");
+        detEvRec1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        detEvRec1.setBounds(240, 100, 90, 30);
+        evBox1.add(detEvRec1);
         
         JPanel evBox2 = new JPanel();
         evBox2.setBounds(640, 350, 345, 150);
         evBox2.setBackground(new java.awt.Color(255, 255, 255));
         evBox2.setLayout(null);
         getContentPane().add(evBox2);
+        
+        JLabel recEvent2 = new JLabel();
+        recEvent2.setText("ชื่อกิจกรรม : "+"BrownBag"); // รอ get จาก Database
+        recEvent2.setFont(new java.awt.Font("Tahoma", 1, 18));
+        recEvent2.setBounds(20, 10, 240,30);
+        evBox2.add(recEvent2);
+        
+        JLabel dateEvent2 = new JLabel();
+        dateEvent2.setText("วัน/เวลา/สถานที่ : "+""); // รอ get จาก Database
+        dateEvent2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        dateEvent2.setBounds(20, 40, 240,30);
+        evBox2.add(dateEvent2);       
+        
+        JLabel detailEvent2 = new JLabel();
+        detailEvent2.setText("รายละเอียด : "+"BrownBag"); // รอ get จาก Database
+        detailEvent2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        detailEvent2.setBounds(20, 65, 240,30);
+        evBox2.add(detailEvent2);      
+        
+        JButton joinEvRec2 = new JButton();
+        joinEvRec2.setText("เข้าร่วม");
+        joinEvRec2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        joinEvRec2.setBounds(150, 100, 90, 30);
+        evBox2.add(joinEvRec2);
+        
+        JButton detEvRec2 = new JButton();
+        detEvRec2.setText("รายละเอียด");
+        detEvRec2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        detEvRec2.setBounds(240, 100, 90, 30);
+        evBox2.add(detEvRec2);
     }
 
     public void addNewsToList(JList newsList) {
