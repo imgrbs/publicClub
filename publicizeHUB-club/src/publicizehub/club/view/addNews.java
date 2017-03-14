@@ -25,8 +25,8 @@ public class addNews extends javax.swing.JFrame {
             s = connect.createStatement();
             // SQL Insert
             String sql = "INSERT INTO tb_news"
-                    + "(newsId,content) "
-                    + "VALUES ('" + newsId.getText() + "','"
+                    + "(content) "
+                    + "VALUES ('"
                     + content.getText() + "') ";
             s.executeUpdate(sql);
             newsId.setText("");
