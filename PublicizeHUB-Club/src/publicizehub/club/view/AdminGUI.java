@@ -53,8 +53,6 @@ public class AdminGUI extends JFrame implements ActionListener {
         panelClose();
         panelProfile();
         panelMain();
-        
-        
     }
     public void setTheme() {
         try {
