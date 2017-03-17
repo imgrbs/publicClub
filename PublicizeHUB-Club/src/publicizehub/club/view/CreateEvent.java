@@ -20,7 +20,7 @@ public class CreateEvent extends javax.swing.JFrame {
         initComponents();
     }
     
-    public void newEvent() {
+    public void newEvent() {    
         Connection connect = null;
         Statement s = null;
 
