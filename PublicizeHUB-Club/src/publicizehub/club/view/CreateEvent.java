@@ -21,13 +21,8 @@ public class CreateEvent extends javax.swing.JFrame {
         initComponents();
     }
     
-<<<<<<< HEAD
-    public void newEvent() {    
-        Connection connect = null;
-=======
     public void newEvent() {
         ConnectionBuilder cb = new ConnectionBuilder();
->>>>>>> origin/public-club
         Statement s = null;
         try {
             s = cb.getConnect().createStatement();
