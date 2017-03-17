@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package publicizehub.club.view;
 
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.*;
-
+import publicizehub.club.controller.ConnectionBuilder;
 /**
  *
  * @author ImagineRabbits
@@ -22,6 +17,7 @@ public class ListPerson extends javax.swing.JFrame {
     public ListPerson() {
         initComponents();
         addPerson();
+        setTextList();
     }
 
     /**
@@ -118,14 +114,12 @@ public class ListPerson extends javax.swing.JFrame {
 
     
     public void addPerson() {
-        Connection connect = null;
-        Statement s = null;
+        ConnectionBuilder cb = new ConnectionBuilder();
+        cb.connecting();
         PreparedStatement ps = null;
         ResultSet result;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_event" + "?user=root&password=root&characterEncoding=UTF-8");
-            ps = connect.prepareStatement("SELECT * FROM tb_personevent");
+            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_personevent");
             result = ps.executeQuery();
             while (result.next()) {
                 String temp = result.getString("stuName");
@@ -136,17 +130,10 @@ public class ListPerson extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-        try {
-            if (s != null) {
-                s.close();
-                connect.close();
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
-
+        cb.logout();
+    }
+    
+    public void setTextList(){
         String[] temp = new String[myArrList.size()];
         for (int i = 0; i < myArrList.size(); i++) {
             temp[i] = "- " + myArrList.get(i);
@@ -183,7 +170,9 @@ public class ListPerson extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListPerson().setVisible(true);
+                ListPerson lp = new ListPerson();
+                lp.setVisible(true);
+                lp.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             }
         });
     }
