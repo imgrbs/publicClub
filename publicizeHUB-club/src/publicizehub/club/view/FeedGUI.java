@@ -11,13 +11,15 @@ package publicizehub.club.view;
  */
 import java.sql.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.UIManager.*;
+import publicizehub.club.controller.ConnectionBuilder;
 
 public class FeedGUI extends JFrame {
 
-    private int userStatus = 0;
+    private int userStatus = 1;
     private String userName = "กีรติ";
     private String userSurname = "เจียรจินดารัตน์";
     private long stdId = 59130500007l;
@@ -86,8 +88,24 @@ public class FeedGUI extends JFrame {
         JButton btnProfiles = new JButton();
         if (userStatus == 1) {
             btnProfiles.setText("Admin");
+            btnProfiles.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    AdminGUI ag = new AdminGUI();
+                    ag.Run();
+                    ag.setVisible(true);
+                    ag.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                }
+            });
         } else {
             btnProfiles.setText("Profiles");
+            btnProfiles.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    ProfileGUI pg = new ProfileGUI();
+                    pg.Run();
+                    pg.setVisible(true);
+                    pg.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                }
+            });
         }
         btnProfiles.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnProfiles.setBackground(new java.awt.Color(255, 153, 0));
@@ -269,14 +287,13 @@ public class FeedGUI extends JFrame {
     }
 
     public void addNewsToList(JList newsList) {
-        Connection connect = null;
-        Statement s = null;
+        ConnectionBuilder cb = new ConnectionBuilder();
+        cb.connecting();
+        
         PreparedStatement ps = null;
         ResultSet result;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_event" + "?user=root&password=root&characterEncoding=UTF-8");
-            ps = connect.prepareStatement("SELECT * FROM tb_news");
+            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_news");
             result = ps.executeQuery();
             while (result.next()) {
                 String temp = result.getString("content");
@@ -287,16 +304,7 @@ public class FeedGUI extends JFrame {
             e.printStackTrace();
         }
 
-        try {
-            if (s != null) {
-                s.close();
-                connect.close();
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+        cb.logout();
 
         String[] temp = new String[myArrList.size()];
         for (int i = 0; i < myArrList.size(); i++) {

@@ -13,25 +13,54 @@ import java.sql.*;
  */
 public class ConnectionBuilder {
     /* SQL Class */
-    Connection connect = null;
-    Statement s = null;
-    PreparedStatement ps = null;
-    ResultSet result;
+    private Connection connect = null;
+    private Statement s = null;
+    private PreparedStatement ps = null;
+    private ResultSet result;
     
     /* Account and Host */
-    String host = "sql12.freemysqlhosting.net";
-    String dbName = "sql12164185";
-    String user = "sql12164185";
-    String password = "d38atiVHJj";
-    String account = "?user="+user+"&password="+password+"&characterEncoding=UTF-8";
-    String table = "";
+    private String host = "sql12.freemysqlhosting.net";
+    private String dbName = "sql12164185";
+    private String user = "sql12164185";
+    private String password = "d38atiVHJj";
+    private String account = "?user="+user+"&password="+password+"&characterEncoding=UTF-8";
+    private String table = "";
+    private String sql = "";
     
-    public void connectWithStatement(String command,int mode){
+    /** #howto
+     * How to Use Method
+     * 1.connect by choose method statement
+     * 2.logout at end program
+     */
+    
+    public void connecting(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             connect = DriverManager.getConnection("jdbc:mysql://"+host+":3306/"+ dbName + account);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public Connection getConnect() {
+        return connect;
+    }
+
+    public void setConnect(Connection connect) {
+        this.connect = connect;
+    }
+    
+    
+    
+    public void connectWithStatement(String command,int mode){
+        connecting();
+        try{
             s = connect.createStatement();
-            String sql = command;
+            sql = command;
             if(mode==1){
                 s.executeUpdate(sql);
             }
@@ -48,11 +77,10 @@ public class ConnectionBuilder {
         }
     }
     
-    public void connectWithPrepared(String command){
+    public void connectWithPrepared(String command,String table){
+        connecting();
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://"+host+":3306/"+ dbName + account);
-            s = connect.prepareStatement(command);
+            ps = connect.prepareStatement(command+" "+table);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch(Exception e){
@@ -64,9 +92,12 @@ public class ConnectionBuilder {
         try {
             if(s!=null){
                 s.close();
-                if(connect!=null){
-                    connect.close();  
-                }
+            }
+            if(ps!=null){
+                ps.close();
+            }
+            if(connect!=null){
+                connect.close();  
             }
             
         } catch (SQLException e) {
@@ -74,9 +105,6 @@ public class ConnectionBuilder {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-    }
-    public static void main(String[] args) {
         
     }
 }
