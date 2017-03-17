@@ -116,7 +116,6 @@ public class ListPerson extends javax.swing.JFrame {
     public void addPerson() {
         ConnectionBuilder cb = new ConnectionBuilder();
         cb.connecting();
-        
         PreparedStatement ps = null;
         ResultSet result;
         try {

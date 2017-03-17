@@ -7,6 +7,7 @@ package publicizehub.club.view;
 
 import java.sql.*;
 import javax.swing.*;
+import publicizehub.club.controller.ConnectionBuilder;
 /**
  *
  * @author JIL
@@ -21,13 +22,10 @@ public class CreateEvent extends javax.swing.JFrame {
     }
     
     public void newEvent() {
-        Connection connect = null;
+        ConnectionBuilder cb = new ConnectionBuilder();
         Statement s = null;
-
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connect = DriverManager.getConnection("" + "jdbc:mysql://localhost:3306/db_event" + "?user=root&password=root&characterEncoding=UTF-8");
-            s = connect.createStatement();
+            s = cb.getConnect().createStatement();
             // SQL Insert
             String sql = "INSERT INTO tb_event"
                     + "(evId,evName,evDescrip,evDate,evPlace,evTicket,evTime,numOfPerson) "
@@ -54,16 +52,7 @@ public class CreateEvent extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-        try {
-            if (s != null) {
-                s.close();
-                connect.close();
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+        cb.logout();
     }
     /**
      * This method is called from within the constructor to initialize the form.
