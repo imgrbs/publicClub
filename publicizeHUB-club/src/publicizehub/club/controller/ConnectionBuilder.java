@@ -61,15 +61,10 @@ public class ConnectionBuilder {
         try{
             s = connect.createStatement();
             sql = command;
-            if(mode==1){
-                s.executeUpdate(sql);
-            }
-            else if(mode==2){
-                s.executeUpdate(sql);
-            }
-            else {
-                s.executeUpdate(sql);
-            }
+            if(mode==2){
+                s.executeQuery(sql);
+            }   
+            else s.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch(Exception e){
