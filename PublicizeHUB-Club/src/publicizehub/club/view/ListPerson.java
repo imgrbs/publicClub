@@ -8,6 +8,7 @@ package publicizehub.club.view;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import publicizehub.club.controller.ConnectionBuilder;
 
 /**
  *
@@ -119,15 +120,13 @@ public class ListPerson extends javax.swing.JFrame {
 
     
     public void addPerson() {
-        Connection connect = null;
-        Statement s = null;
         PreparedStatement ps = null;
         ResultSet result;
         String evId = "";
+        ConnectionBuilder cb = new ConnectionBuilder();
+        cb.connecting();
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_event" + "?user=root&password=root&characterEncoding=UTF-8");
-            ps = connect.prepareStatement("SELECT * FROM tb_personevent where evId = ?");
+            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_personevent where evId = ?");
             ps.setString(1, "200");  //ให้แสดงชื่อตาม id 
             result = ps.executeQuery();
             while (result.next()) {
@@ -139,16 +138,7 @@ public class ListPerson extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-        try {
-            if (s != null) {
-                s.close();
-                connect.close();
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+        cb.logout();
         
         
             String[] temp = new String[myArrList.size()];
