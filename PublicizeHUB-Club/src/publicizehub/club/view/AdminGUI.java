@@ -51,12 +51,9 @@ public class AdminGUI extends JFrame implements ActionListener {
             System.out.println("Done");
             ps = cb.getConnect().prepareStatement("SELECT * FROM tb_event" );
             result = ps.executeQuery();
-            int j=1;
+            
             while (result.next()) {
-                panelActivity1();
-                
-                System.out.println(j++);
-               
+                panelActivity1();           
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
