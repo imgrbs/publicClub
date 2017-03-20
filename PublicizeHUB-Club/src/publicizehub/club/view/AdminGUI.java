@@ -10,6 +10,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import publicizehub.club.controller.ConnectionBuilder;
 
 /**
  *
@@ -41,9 +42,31 @@ public class AdminGUI extends JFrame implements ActionListener {
         getContentPane().setBackground(new java.awt.Color(255,255,255));
         setBounds(100, 100, 1024, 768);
         getContentPane().setLayout(null);
+        
+        PreparedStatement ps = null;
+        ResultSet result;
+        ConnectionBuilder cb = new ConnectionBuilder();
+        cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
+        try {
+            System.out.println("Done");
+            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_event" );
+            result = ps.executeQuery();
+            int j=1;
+            while (result.next()) {
+                panelActivity1();
+                
+                System.out.println(j++);
+               
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            e.printStackTrace();
+        }
 
-        panelActivity1();
-        panelActivity2();
+        cb.logout();
+        
+        
+        //panelActivity2();
         finAct1();
         finAct2();
         panelClose();
@@ -184,105 +207,75 @@ public class AdminGUI extends JFrame implements ActionListener {
     
    
     public void panelActivity1(){
-        
-        JPanel act = new JPanel();
-        act.setOpaque(true);
-        act.setBounds(60, 250, 400, 90);
-        act.setBackground(new java.awt.Color(240,240,240));
-        getContentPane().add(act);
-        act.setLayout(null);
-        
-        //event name
-        JLabel lbEvName = new JLabel();
-        lbEvName.setText("");
-        lbEvName.setFont(new java.awt.Font("Tahoma", 1, 17));
-        lbEvName.setBounds(10,5, 250, 50);
-        act.add(lbEvName);
-        
-        //ปุ่ม check in
-        JButton btnCheckIn = new JButton();
-        btnCheckIn.setText("เช็คอิน");
-        btnCheckIn.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnCheckIn.setBackground(new java.awt.Color(153,153,153));
-        btnCheckIn.setBounds(100,45, 80, 30);
-        btnCheckIn.addActionListener((new ActionListener() {
-                public void actionPerformed(ActionEvent e) {           
-                       new CheckIn().setVisible(true);
-                }
-        }));
-        act.add(btnCheckIn);
-        
-        //ปุม detail
-        JButton btnDetail = new JButton();
-        btnDetail.setText("รายละเอียด");
-        btnDetail.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnDetail.setBackground(new java.awt.Color(153,153,153));
-        btnDetail.setBounds(190,45, 120, 30);
-        btnDetail.addActionListener((new ActionListener() {
-                public void actionPerformed(ActionEvent e) {           
-                       new Detail().setVisible(true);
-                }
-        }));
-        act.add(btnDetail);
-        
-        //ปุ่ม ลบ
-        JButton btnDelete = new JButton();
-        btnDelete.setText("ลบ");
-        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnDelete.setBackground(new java.awt.Color(255,102,51));
-        btnDelete.setBounds(320,45, 70, 30);
-        act.add(btnDelete);
+        PreparedStatement ps = null;
+        ResultSet result;
+        ConnectionBuilder cb = new ConnectionBuilder();
+        cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
+        try {
+            System.out.println("Done");
+            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_event" );
+            result = ps.executeQuery();
+            int yValue=100;
+            
+            while(result.next()){
+                JPanel act = new JPanel();
+                act.setOpaque(true);
+                act.setBounds(60, 150+yValue, 400, 90);
+                act.setBackground(new java.awt.Color(240,240,240));
+                getContentPane().add(act);
+                act.setLayout(null);
+
+                //event name
+                JLabel lbEvName = new JLabel();
+                lbEvName.setText(result.getString("evName"));
+                lbEvName.setFont(new java.awt.Font("Tahoma", 1, 17));
+                lbEvName.setBounds(10,5, 250, 50);
+                act.add(lbEvName);
+
+                //ปุ่ม check in
+                JButton btnCheckIn = new JButton();
+                btnCheckIn.setText("เช็คอิน");
+                btnCheckIn.setFont(new java.awt.Font("Tahoma", 1, 15));
+                btnCheckIn.setBackground(new java.awt.Color(153,153,153));
+                btnCheckIn.setBounds(100,45, 80, 30);
+                btnCheckIn.addActionListener((new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {           
+                               new CheckIn().setVisible(true);
+                        }
+                }));
+                act.add(btnCheckIn);
+
+                //ปุม detail
+                JButton btnDetail = new JButton();
+                btnDetail.setText("รายละเอียด");
+                btnDetail.setFont(new java.awt.Font("Tahoma", 1, 15));
+                btnDetail.setBackground(new java.awt.Color(153,153,153));
+                btnDetail.setBounds(190,45, 120, 30);
+                btnDetail.addActionListener((new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {           
+                               new Detail().setVisible(true);
+                        }
+                }));
+                act.add(btnDetail);
+
+                //ปุ่ม ลบ
+                JButton btnDelete = new JButton();
+                btnDelete.setText("ลบ");
+                btnDelete.setFont(new java.awt.Font("Tahoma", 1, 15));
+                btnDelete.setBackground(new java.awt.Color(255,102,51));
+                btnDelete.setBounds(320,45, 70, 30);
+                act.add(btnDelete);
+                
+                yValue+=100;
+            }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            e.printStackTrace();
+        }
+
+        cb.logout();
     }
     
-    public void panelActivity2(){
-        JPanel act = new JPanel();
-        act.setOpaque(true);
-        act.setBounds(60, 350, 400, 90);
-        act.setBackground(new java.awt.Color(240,240,240));
-        getContentPane().add(act);
-        act.setLayout(null);
-        
-        //event name
-        JLabel lbEvName = new JLabel();
-        lbEvName.setText("ชื่อกิจกรรม");
-        lbEvName.setFont(new java.awt.Font("Tahoma", 1, 17));
-        lbEvName.setBounds(10,5, 250, 50);
-        act.add(lbEvName);
-        
-        //ปุ่ม check in
-        JButton btnCheckIn = new JButton();
-        btnCheckIn.setText("เช็คอิน");
-        btnCheckIn.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnCheckIn.setBackground(new java.awt.Color(153,153,153));
-        btnCheckIn.setBounds(100,45, 80, 30);
-        btnCheckIn.addActionListener((new ActionListener() {
-                public void actionPerformed(ActionEvent e) {           
-                       new CheckIn().setVisible(true);
-                }
-        }));
-        act.add(btnCheckIn);
-        
-        //ปุม detail
-        JButton btnDetail = new JButton();
-        btnDetail.setText("รายละเอียด");
-        btnDetail.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnDetail.setBackground(new java.awt.Color(153,153,153));
-        btnDetail.setBounds(190,45, 120, 30);
-        btnDetail.addActionListener((new ActionListener() {
-                public void actionPerformed(ActionEvent e) {           
-                       new Detail().setVisible(true);
-                }
-        }));
-        act.add(btnDetail);
-        
-        //ปุ่ม ลบ
-        JButton btnDelete = new JButton();
-        btnDelete.setText("ลบ");
-        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnDelete.setBackground(new java.awt.Color(255,102,51));
-        btnDelete.setBounds(320,45, 70, 30);
-        act.add(btnDelete);
-    }
     
     public void finAct1(){
         JPanel act = new JPanel();
