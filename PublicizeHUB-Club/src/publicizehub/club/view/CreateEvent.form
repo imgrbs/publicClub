@@ -53,11 +53,14 @@
                       <Component id="evDate" alignment="0" max="32767" attributes="0"/>
                       <Component id="evPlace" alignment="0" max="32767" attributes="0"/>
                       <Component id="evTime" min="-2" pref="404" max="-2" attributes="0"/>
-                      <Component id="evTicket" min="-2" pref="202" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="evTicket" min="-2" pref="202" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="evType" min="-2" pref="93" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="numOfPerson" min="-2" pref="49" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                       <Component id="confirm" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="cancel" min="-2" max="-2" attributes="0"/>
@@ -114,12 +117,12 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="evTicket" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="evType" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="cancel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="confirm" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="numOfPerson" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -186,6 +189,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="evDate">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="evDateActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
@@ -227,19 +233,17 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="numOfPerson">
+    <Component class="javax.swing.JTextField" name="evType">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="f0" green="f0" red="f0" type="rgb"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="f0" green="f0" red="f0" type="rgb"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Camp"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="evTypeActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
