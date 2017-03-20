@@ -23,12 +23,13 @@ public class CreateEvent extends javax.swing.JFrame {
     
     public void newEvent() {
         ConnectionBuilder cb = new ConnectionBuilder();
+        cb.connecting();
         Statement s = null;
         try {
             s = cb.getConnect().createStatement();
             // SQL Insert
             String sql = "INSERT INTO tb_event"
-                    + "(evId,evName,evDescrip,evDate,evPlace,evTicket,evTime,numOfPerson) "
+                    + "(evId,evName,evDescrip,evDate,evPlace,evTicket,evTime,evType) "
                     + "VALUES ('" + evId.getText() + "','"
                     + evName.getText()+ "','"
                     + evDescrip.getText()+ "','"
@@ -36,7 +37,7 @@ public class CreateEvent extends javax.swing.JFrame {
                     + evPlace.getText()+ "','"
                     + evTicket.getText()+ "','"
                     + evTime.getText()+ "','" 
-                    + numOfPerson.getText()+ "') ";
+                    + evType.getText()+ "') ";
             s.executeUpdate(sql);
             evId.setText("");
             evName.setText("");
@@ -45,10 +46,15 @@ public class CreateEvent extends javax.swing.JFrame {
             evPlace.setText("");
             evTicket.setText("");
             evTime.setText("");
-            numOfPerson.setText("");
+            evType.setText("");
             JOptionPane.showMessageDialog(null, "Record Inserted Successfully");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+        } 
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            e.printStackTrace();
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
             e.printStackTrace();
         }
 
@@ -81,7 +87,7 @@ public class CreateEvent extends javax.swing.JFrame {
         evTicket = new javax.swing.JTextField();
         cancel = new javax.swing.JButton();
         confirm = new javax.swing.JButton();
-        numOfPerson = new javax.swing.JTextField();
+        evType = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -104,6 +110,12 @@ public class CreateEvent extends javax.swing.JFrame {
         jScrollPane1.setViewportView(evDescrip);
 
         jLabel5.setText("วันจัดกิจกรรม :");
+
+        evDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                evDateActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("เวลา :");
 
@@ -131,10 +143,14 @@ public class CreateEvent extends javax.swing.JFrame {
             }
         });
 
-        numOfPerson.setBackground(new java.awt.Color(240, 240, 240));
-        numOfPerson.setForeground(new java.awt.Color(240, 240, 240));
-        numOfPerson.setBorder(null);
-        numOfPerson.setEnabled(false);
+        evType.setText("Camp");
+        evType.setBorder(null);
+        evType.setEnabled(false);
+        evType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                evTypeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,10 +180,12 @@ public class CreateEvent extends javax.swing.JFrame {
                         .addComponent(evDate)
                         .addComponent(evPlace)
                         .addComponent(evTime, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(evTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(evTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(evType, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(numOfPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(55, 55, 55)
                         .addComponent(confirm)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cancel))
@@ -213,12 +231,12 @@ public class CreateEvent extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(evTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(evTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(evType, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cancel)
-                            .addComponent(confirm)
-                            .addComponent(numOfPerson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(confirm))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -235,7 +253,7 @@ public class CreateEvent extends javax.swing.JFrame {
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         evId.setText(""+(++runId));
-        numOfPerson.setText(""+1);
+        evType.setText(""+1);
         
         newEvent();
         // TODO add your handling code here:
@@ -244,6 +262,14 @@ public class CreateEvent extends javax.swing.JFrame {
     private void evPlaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evPlaceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_evPlaceActionPerformed
+
+    private void evDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_evDateActionPerformed
+
+    private void evTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_evTypeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,6 +316,7 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JTextField evPlace;
     private javax.swing.JTextField evTicket;
     private javax.swing.JTextField evTime;
+    private javax.swing.JTextField evType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -299,6 +326,5 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField numOfPerson;
     // End of variables declaration//GEN-END:variables
 }
