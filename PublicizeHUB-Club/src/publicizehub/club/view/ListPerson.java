@@ -124,13 +124,13 @@ public class ListPerson extends javax.swing.JFrame {
         ResultSet result;
         String evId = "";
         ConnectionBuilder cb = new ConnectionBuilder();
-        cb.connecting();
+        cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
         try {
             ps = cb.getConnect().prepareStatement("SELECT * FROM tb_personevent where evId = ?");
             ps.setString(1, "200");  //ให้แสดงชื่อตาม id 
             result = ps.executeQuery();
             while (result.next()) {
-                String temp = result.getString("stuName");
+                String temp = result.getLong("stdId")+"   "+result.getString("stuName") +"  "+result.getString("stdSurname");
                 myArrList.add(temp);
             }
         } catch (Exception e) {
