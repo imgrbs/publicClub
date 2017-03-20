@@ -166,7 +166,7 @@ public class AdminGUI extends JFrame implements ActionListener {
         finActivity.setFont(new java.awt.Font("Tahoma", 1, 24));
         finActivity.setBounds(550,180, 250, 50);
         pMain.add(finActivity);
-        
+         
         //ปุ่ม CrateEvent
         JButton btnCrateEv = new JButton();
         btnCrateEv.setText("เพิ่มกิจกรรม");
