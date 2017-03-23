@@ -8,15 +8,13 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import publicizehub.club.controller.ConnectionBuilder;
 
 /**
  *
  * @author JIL
  */
-public class AdminGUI extends JFrame implements ActionListener {
+public class ForTesting extends JFrame implements ActionListener {
     
     public String name;
     public String descr;
@@ -27,6 +25,7 @@ public class AdminGUI extends JFrame implements ActionListener {
     public int numPer;
     private static int runId=10000;
     private JFrame frame;
+    private final JScrollPane scroll= new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     
     ArrayList<String> myArrList = new ArrayList<String>();
     
@@ -36,13 +35,14 @@ public class AdminGUI extends JFrame implements ActionListener {
 		this.frame.dispose();
 	}
     public void Run() {
-        setTitle("publicizeHUB");
+        setTitle("publicizeHub");
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(new java.awt.Color(255,255,255));
         setBounds(100, 100, 1024, 768);
         getContentPane().setLayout(null);
-        
+        setLocationRelativeTo(null);
+        //ใช้วนสร้างpanel
         PreparedStatement ps = null;
         ResultSet result;
         ConnectionBuilder cb = new ConnectionBuilder();
@@ -62,10 +62,9 @@ public class AdminGUI extends JFrame implements ActionListener {
 
         cb.logout();
         
-        
-        //panelActivity2();
+       
         finAct1();
-        finAct2();
+        //finAct2();
         panelClose();
         panelProfile();
         panelMain();
@@ -200,9 +199,16 @@ public class AdminGUI extends JFrame implements ActionListener {
         
         
     }
+
     
-   
     public void panelActivity(){
+        
+        scroll.setBounds(20, 250, 470, 450);
+        scroll.setBackground(new java.awt.Color(255,255,255));
+        scroll.setOpaque(true);
+        scroll.setLayout(null);
+        getContentPane().add(scroll);
+        
         PreparedStatement ps = null;
         ResultSet result;
         ConnectionBuilder cb = new ConnectionBuilder();
@@ -211,12 +217,12 @@ public class AdminGUI extends JFrame implements ActionListener {
             System.out.println("Done");
             ps = cb.getConnect().prepareStatement("SELECT * FROM tb_event" );
             result = ps.executeQuery();
-            int yValue=100;
+            int yValue=20;
             
             while(result.next()){
                 JPanel act = new JPanel();
                 act.setOpaque(true);
-                act.setBounds(60, 150+yValue, 400, 90);
+                act.setBounds(15,(0)+yValue, 400, 90);
                 act.setBackground(new java.awt.Color(240,240,240));
                 getContentPane().add(act);
                 act.setLayout(null);
@@ -263,6 +269,7 @@ public class AdminGUI extends JFrame implements ActionListener {
                 act.add(btnDelete);
                 
                 yValue+=100;
+                scroll.add(act);
             }
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -274,9 +281,23 @@ public class AdminGUI extends JFrame implements ActionListener {
     
     
     public void finAct1(){
+        
+        JPanel temp = new JPanel();
+        temp.setBounds(700, 400, 450, 50);
+        temp.setBackground(new java.awt.Color(255,255,255));
+        getContentPane().add(BorderLayout.CENTER,temp);
+        JScrollPane jsp= new JScrollPane(temp,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jsp.setBounds(550, 250, 450, 50);
+        jsp.setBackground(new java.awt.Color(255,255,255));
+        jsp.setOpaque(true);
+        jsp.setLayout(null);        
+        getContentPane().add(jsp);
+        
+
         JPanel act = new JPanel();
         act.setOpaque(true);
-        act.setBounds(550, 250, 400, 90);
+        act.setBounds(10, 10, 400, 90);
         act.setBackground(new java.awt.Color(240,240,240));
         getContentPane().add(act);
         act.setLayout(null);
@@ -302,42 +323,42 @@ public class AdminGUI extends JFrame implements ActionListener {
         act.add(btnFeedBack);
         
         
-    }
+    //}
     
-     public void finAct2(){
-        JPanel act = new JPanel();
-        act.setOpaque(true);
-        act.setBounds(550, 350, 400, 90);
-        act.setBackground(new java.awt.Color(240,240,240));
-        getContentPane().add(act);
-        act.setLayout(null);
+    // public void finAct2(){
+        JPanel act2 = new JPanel();
+        act2.setOpaque(true);
+        act2.setBounds(10, 110, 400, 90);
+        act2.setBackground(new java.awt.Color(240,240,240));
+        getContentPane().add(act2);
+        act2.setLayout(null);
         
         //event name
-        JLabel lbEvName = new JLabel();
-        lbEvName.setText("ชื่อกิจกรรม");
-        lbEvName.setFont(new java.awt.Font("Tahoma", 1, 17));
-        lbEvName.setBounds(10,5, 250, 50);
-        act.add(lbEvName);
+        JLabel lbEvName2 = new JLabel();
+        lbEvName2.setText("ชื่อกิจกรรม");
+        lbEvName2.setFont(new java.awt.Font("Tahoma", 1, 17));
+        lbEvName2.setBounds(10,5, 250, 50);
+        act.add(lbEvName2);
         
         //ปุ่ม feedback
-        JButton btnFeedBack = new JButton();
-        btnFeedBack.setText("ผลตอบรับ");
-        btnFeedBack.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnFeedBack.setBackground(new java.awt.Color(153,153,153));
-        btnFeedBack.setBounds(270,40, 120, 30);
-        btnFeedBack.addActionListener((new ActionListener() {
+        JButton btnFeedBack2 = new JButton();
+        btnFeedBack2.setText("ผลตอบรับ");
+        btnFeedBack2.setFont(new java.awt.Font("Tahoma", 1, 15));
+        btnFeedBack2.setBackground(new java.awt.Color(153,153,153));
+        btnFeedBack2.setBounds(270,40, 120, 30);
+        btnFeedBack2.addActionListener((new ActionListener() {
                 public void actionPerformed(ActionEvent e) {           
                        new FormSumActivity().setVisible(true);
                 }
         }));
-        act.add(btnFeedBack);
-        
+        act.add(btnFeedBack2);
+        jsp.add(act);
+        jsp.add(act2);
         
     }
     
     public static void main(String[] args) {
-        AdminGUI sg = new AdminGUI();
-        //sg.setTheme();
+        ForTesting sg = new ForTesting();
         sg.Run();
         sg.setVisible(true);
     }
