@@ -16,7 +16,7 @@ import publicizehub.club.controller.ConnectionBuilder;
  *
  * @author JIL
  */
-public class AdminGUI extends JFrame implements ActionListener {
+public class AdminGUI extends JFrame {
 
     public String name;
     public String descr;
@@ -28,8 +28,8 @@ public class AdminGUI extends JFrame implements ActionListener {
     private static int runId = 10000;
     private JFrame frame;
 
-    private int yValueCurrent = 0;
-    private int yValueEnd = 0;
+    private int yValueCurrent = 10;
+    private int yValueEnd = 10;
     private int ySize=600;
     Date d = new Date();
     SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
@@ -256,11 +256,21 @@ public class AdminGUI extends JFrame implements ActionListener {
 
         //ปุ่ม ลบ
         JButton btnDelete = new JButton();
-        btnDelete.setText("ลบ");
+        btnDelete.setText("ลบ+");
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnDelete.setBackground(new java.awt.Color(255, 102, 51));
         btnDelete.setBounds(320, 45, 70, 30);
         act.add(btnDelete);
+        btnDelete.addActionListener((new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                jp.remove(act);
+                yValueCurrent-=100;
+                getContentPane().revalidate();
+                getContentPane().repaint();
+                System.out.println("ลบ");
+            }
+
+        }));
         
         jp.add(act);
         this.yValueCurrent += 100;
