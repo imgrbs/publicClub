@@ -19,10 +19,14 @@ public class ConnectionBuilder {
     private ResultSet result;
     
     /* Account and Host */
+//    private String host = "10.4.56.8";
     private String host = "sql12.freemysqlhosting.net";
-    private String dbName = "sql12164185";
-    private String user = "sql12164185";
-    private String password = "d38atiVHJj";
+//    private String dbName = "publicClub";
+    private String dbName = "sql12165289";
+//    private String user = "public-1";
+    private String user = "sql12165289";
+//    private String password = "public";
+    private String password = "7gERPRxZSP";
     private String account = "?user="+user+"&password="+password+"&characterEncoding=UTF-8";
     private String table = "";
     private String sql = "";
