@@ -5,10 +5,9 @@
  */
 package publicizehub.club.view;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.awt.HeadlessException;
+import java.util.Date;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,51 +18,54 @@ import publicizehub.club.controller.ConnectionBuilder;
  * @author JIL
  */
 public class EditEvent extends javax.swing.JFrame {
-
+    private int evId;
     /**
      * Creates new form EditEvent
      */
+    
+    
     public EditEvent() {
         initComponents();
     }
+
+    public EditEvent(int id, String name, String desc, Date startDate, Date endDate, 
+            String startTime,String endTime,String place, int ticket) {
+        initComponents();
+        this.evId=id;
+        evName.setText(""+name);
+        evDescrip.setText(""+desc);
+        evDate.setText(""+startDate);
+        evEndDate.setText(""+endDate);                 
+        evTime.setText(""+startTime);
+        evEndTime.setText(""+endTime); 
+        evPlace.setText(""+place);
+        evTicket.setText(""+ticket);
+    }
     public void editEvent(){
+        System.out.println(this.evId);
         ConnectionBuilder cb = new ConnectionBuilder();
         PreparedStatement ps = null;    
         cb.connecting();
         Statement s = null;
-       
+        String command;
         try {
+            command = "UPDATE tb_event set evName = '"+evName.getText()+"' , "
+                    + "evDescrip = '"+evDescrip.getText()+"' , evDate = '"+evDate.getText()+"' , "
+                    + "evEndDate = '"+evEndDate.getText()+"' , evTime = '"+evTime.getText()+"' , "
+                    + "evEndTime = '"+evEndTime.getText()+"' , evPlace = '"+evPlace.getText()+"' , "
+                    + "evTicket = '"+evTicket.getText()+"' where evId = '"+this.evId+"'";
+            ps = cb.getConnect().prepareStatement(command); 
+            System.out.println("Before Update");
+//            evDescrip.getText();
+//            evDate.getText();
+//            evEndDate.getText();
+//            evTime.getText();
+//            evEndTime.getText(); 
+//            evPlace.getText();
+//            evTicket.getText();
+            ps.executeUpdate();
+            System.out.println("Success Update");
             
-            ps = cb.getConnect().prepareStatement("SELECT evId FROM tb_event"); 
-            System.out.println("Before");
-            ResultSet result = ps.executeQuery();
-            System.out.println("After");
-            s = cb.getConnect().createStatement();
-            
-            //while(result.next()){
-            // SQL Update
-            String sql = "UPDATE tb_event SET"
-                    + "(evName,evDescrip,evDate,evEndDate,evTime,evEndTime,evPlace,evTicket) "
-                    + "VALUES ('" + evName.getText()+ "','"                   
-                    + evDescrip.getText()+ "','"
-                    + evDate.getText()+ "','"
-                    + evEndDate.getText()+ "','"                   
-                    + evTime.getText()+ "','"
-                    + evEndTime.getText()
-                    + evPlace.getText()+ "','"
-                    + evTicket.getText()+ "') WHERE evId='"+result.getInt("evId")+"'";
-                    //+ evType.getText()+ "','"
-                    //+ stuId.getText()+ "') ";
-            s.executeUpdate(sql);
-            
-            evName.setText("");
-            evDescrip.setText("");
-            evDate.setText("");
-            evEndDate.setText("");                 
-            evTime.setText("");
-            evEndTime.setText(""); 
-            evPlace.setText("");
-            evTicket.setText("");
             
             JOptionPane.showMessageDialog(null, "Record Inserted Successfully");
             //}
@@ -244,9 +246,8 @@ public class EditEvent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmUpdateActionPerformed
-
-            editEvent();
-            // TODO add your handling code here:
+        System.out.println(this.evId);
+        editEvent();
        
     }//GEN-LAST:event_confirmUpdateActionPerformed
 
