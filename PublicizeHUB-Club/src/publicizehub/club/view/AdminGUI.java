@@ -251,6 +251,33 @@ public class AdminGUI extends JFrame {
         mainPanel.repaint();
     }
     public void currentEvent(ResultSet result, JPanel jp) {
+        
+        int tempId=0;
+        Date tempStart = new Date();
+        Date tempEnd = new Date();
+        String tempName="";
+        String tempDesc="";
+        String tempTime="";
+        String tempEndTime="";
+        String tempPlace="";
+        int tempType=0;
+        try{
+            tempId = result.getInt("evId");
+            tempName = result.getString("evName");
+            tempDesc = result.getString("evDescrip");
+            tempTime = result.getString("evTime");
+            tempEndTime = result.getString("evEndTime");
+            tempPlace = result.getString("evPlace");
+            tempStart = result.getDate("evDate");
+            tempEnd = result.getDate("evEndDate");
+            tempType = result.getInt("evType");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        trackId ti= new trackId(tempId,tempName,tempDesc,tempStart,tempEnd,tempTime,tempEndTime,tempPlace,tempType);
+        
         System.out.println("Check");
         JPanel act = new JPanel();
         act.setOpaque(true);
@@ -277,7 +304,8 @@ public class AdminGUI extends JFrame {
         btnEdit.setBounds(320, 5, 70, 30);
         btnEdit.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new EditEvent().setVisible(true);
+                new EditEvent(ti.getId(),ti.getName(),ti.getDesc(),ti.getStDate()
+                        ,ti.getEdDate(),ti.getTime(),ti.getEdTime(),ti.getPlace(),ti.getTicket()).setVisible(true);
             }
         }));
         act.add(btnEdit);
@@ -317,15 +345,6 @@ public class AdminGUI extends JFrame {
         btnDelete.setBackground(new java.awt.Color(255, 102, 51));
         btnDelete.setBounds(320, 45, 70, 30);
         act.add(btnDelete);
-        int temp=0;
-        try{
-            temp = result.getInt("evId");
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        
-        trackId ti= new trackId(temp);
         
         ActionListener al;
         btnDelete.addActionListener((
