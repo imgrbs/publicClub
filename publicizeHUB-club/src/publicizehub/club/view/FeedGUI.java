@@ -174,6 +174,7 @@ public class FeedGUI extends JFrame {
     }
 
     public void panelNews() {
+        
         // Panel News
         JPanel newsBox = new JPanel();
         newsBox.setOpaque(true);
@@ -196,13 +197,13 @@ public class FeedGUI extends JFrame {
         
         // ScrollPane
         JScrollPane scrollPane = new JScrollPane(newsList);
-        scrollPane.setLayout(null);
         scrollPane.setBounds(30, 40, 655,150);
         scrollPane.setBackground(new java.awt.Color(255, 255, 255));
         
-        newsBox.add(scrollPane);
-        scrollPane.add(newsList);
         addNewsToList(newsList);
+        scrollPane.setViewportView(newsList);
+        newsBox.add(scrollPane);
+        
         
     }
 

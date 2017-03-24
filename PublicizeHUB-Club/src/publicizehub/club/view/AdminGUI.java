@@ -16,7 +16,7 @@ import publicizehub.club.controller.ConnectionBuilder;
  *
  * @author JIL
  */
-public class AdminGUI extends JFrame implements ActionListener {
+public class AdminGUI extends JFrame {
 
     public String name;
     public String descr;
@@ -28,13 +28,16 @@ public class AdminGUI extends JFrame implements ActionListener {
     private static int runId = 10000;
     private JFrame frame;
 
-    private int yValueCurrent = 250;
-    private int yValueEnd = 250;
+    private int yValueCurrent = 10;
+    private int yValueEnd = 10;
+    private int ySizeCurrent;
+    private int ySizeComplete;
     Date d = new Date();
     SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
     ArrayList<String> myArrList = new ArrayList<String>();
-
+    JPanel mainPanel;
+    JPanel mainPanel2;
     public void actionPerformed(ActionEvent e) {
         // remove the previous JFrame
         this.frame.setVisible(false);
@@ -46,9 +49,44 @@ public class AdminGUI extends JFrame implements ActionListener {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(new java.awt.Color(255, 255, 255));
-        setBounds(100, 100, 1024, 768);
+        setBounds(100, 100, 1024, 600);
         getContentPane().setLayout(null);
 
+        mainPanel = new JPanel();
+        mainPanel.setLayout(null);
+        mainPanel.setBounds(100, 100, 450, 600);
+        mainPanel.setPreferredSize(new java.awt.Dimension(400, ySizeCurrent));
+        mainPanel.setBackground(new java.awt.Color(220, 204, 153));
+
+        mainPanel2 = new JPanel();
+        mainPanel2.setLayout(null);
+        mainPanel2.setBounds(100, 100, 450, 600);
+        mainPanel2.setPreferredSize(new java.awt.Dimension(400, ySizeComplete));
+        mainPanel2.setBackground(new java.awt.Color(220, 204, 153));
+        
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
+        scrollPane.setBounds(20, 225, 450, 340);
+        scrollPane.setBackground(new java.awt.Color(220, 204, 153));
+
+        JScrollPane scrollPane2 = new JScrollPane(mainPanel2);
+        scrollPane2.setBounds(550, 225, 450, 340);
+        scrollPane2.setBackground(new java.awt.Color(220, 204, 153));
+
+        addEventToPanel();
+
+        scrollPane.setViewportView(mainPanel);
+        scrollPane.setWheelScrollingEnabled(true);
+        
+        scrollPane2.setViewportView(mainPanel2);
+        scrollPane2.setWheelScrollingEnabled(true);
+        getContentPane().add(scrollPane);
+        getContentPane().add(scrollPane2);
+        
+        panelClose();
+        panelProfile();
+        panelMain();
+    }
+    public void addEventToPanel(){
         PreparedStatement ps = null;
         ResultSet result;
         ConnectionBuilder cb = new ConnectionBuilder();
@@ -60,9 +98,13 @@ public class AdminGUI extends JFrame implements ActionListener {
 
             while (result.next()) {
                 if (d.compareTo(result.getDate("evEndDate")) <= 0) {
-                    currentEvent(result);
+                    ySizeCurrent +=110;      
+                    mainPanel.setPreferredSize(new java.awt.Dimension(400, ySizeCurrent));            
+                    currentEvent(result, mainPanel);
                 } else {
-                    completeEvent(result);
+                    ySizeComplete += 110;
+                    mainPanel2.setPreferredSize(new java.awt.Dimension(400, ySizeComplete));  
+                    completeEvent(result, mainPanel2);
                 }
             }
         } catch (Exception e) {
@@ -71,15 +113,7 @@ public class AdminGUI extends JFrame implements ActionListener {
         }
 
         cb.logout();
-
-        //panelActivity2();
-//        finAct1();
-//        finAct2();
-        panelClose();
-        panelProfile();
-        panelMain();
     }
-
     public void setTheme() {
         try {
             for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -163,18 +197,11 @@ public class AdminGUI extends JFrame implements ActionListener {
     public void panelMain() {
         JPanel pMain = new JPanel();
         pMain.setOpaque(true);
-        pMain.setBounds(1, 1, 1024, 768);
+        pMain.setBounds(0, 0, 1024, 768);
         pMain.setBackground(new java.awt.Color(255, 204, 153));
         getContentPane().add(pMain);
         pMain.setLayout(null);
 
-        /*JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setLayout(null);
-        scrollPane.setBounds(1, 1, 1024,768);
-        scrollPane.setBackground(new java.awt.Color(255, 255, 255));
-        
-        pMain.add(scrollPane);
-        scrollPane.add(pMain);*/
         JLabel activity = new JLabel();
         activity.setText("กิจกรรม");
         activity.setFont(new java.awt.Font("Tahoma", 1, 24));
@@ -199,33 +226,33 @@ public class AdminGUI extends JFrame implements ActionListener {
             }
         }));
         pMain.add(btnCrateEv);
-
+        
+        JButton btnRefresh = new JButton();
+        btnRefresh.setText("รีเฟรช");
+        btnRefresh.setFont(new java.awt.Font("Tahoma", 1, 17));
+        btnRefresh.setBounds(180, 180, 135, 40);
+        btnRefresh.addActionListener((new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Refresh");
+                mainPanel.removeAll();
+                mainPanel.validate();
+                mainPanel.repaint();
+                yValueCurrent = 10;
+                yValueEnd = 10;
+                addEventToPanel(); 
+                mainPanel.validate();
+                mainPanel.repaint();
+            }
+        }));
+        pMain.add(btnRefresh);
     }
 
-    public void panelActivity1() {
-        PreparedStatement ps = null;
-        ResultSet result;
-        ConnectionBuilder cb = new ConnectionBuilder();
-        cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
-        try {
-            System.out.println("Done");
-            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_event");
-            result = ps.executeQuery();
-            int yValue = 100;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            e.printStackTrace();
-        }
-
-        cb.logout();
-    }
-
-    public void currentEvent(ResultSet result) {
+    public void currentEvent(ResultSet result, JPanel jp) {
+        System.out.println("Check");
         JPanel act = new JPanel();
         act.setOpaque(true);
-        act.setBounds(60, this.yValueCurrent, 400, 90);
+        act.setBounds(10, this.yValueCurrent, 400, 90);
         act.setBackground(new java.awt.Color(240, 240, 240));
-        getContentPane().add(act);
         act.setLayout(null);
 
         //event name
@@ -236,7 +263,7 @@ public class AdminGUI extends JFrame implements ActionListener {
             e.printStackTrace();
         }
         lbEvName.setFont(new java.awt.Font("Tahoma", 1, 17));
-        lbEvName.setBounds(10, 5, 250, 50);
+        lbEvName.setBounds(30, 5, 250, 50);
         act.add(lbEvName);
 
         //ปุ่ม check in
@@ -272,22 +299,32 @@ public class AdminGUI extends JFrame implements ActionListener {
         btnDelete.setBackground(new java.awt.Color(255, 102, 51));
         btnDelete.setBounds(320, 45, 70, 30);
         act.add(btnDelete);
+        btnDelete.addActionListener((new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                jp.remove(act);
+                getContentPane().revalidate();
+                getContentPane().repaint();
+                System.out.println("ลบ");
+            }
 
+        }));
+        
+        jp.add(act);
         this.yValueCurrent += 100;
     }
 
-    public void completeEvent(ResultSet result) {
+    public void completeEvent(ResultSet result, JPanel jp) {
+        System.out.println("Check");
         JPanel act = new JPanel();
         act.setOpaque(true);
-        act.setBounds(550, this.yValueEnd, 400, 90);
+        act.setBounds(10, this.yValueEnd, 400, 90);
         act.setBackground(new java.awt.Color(240, 240, 240));
-        getContentPane().add(act);
         act.setLayout(null);
 
         //event name
         JLabel lbEvName = new JLabel();
         try {
-            lbEvName.setText("ชื่อกิจกรรม : " + result.getString("evName"));
+            lbEvName.setText(result.getString("evName"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -308,43 +345,16 @@ public class AdminGUI extends JFrame implements ActionListener {
         }));
         act.add(btnFeedBack);
 
+        jp.add(act);
         this.yValueEnd += 100;
-    }
-
-    public void finAct2() {
-        JPanel act = new JPanel();
-        act.setOpaque(true);
-        act.setBounds(550, 350, 400, 90);
-        act.setBackground(new java.awt.Color(240, 240, 240));
-        getContentPane().add(act);
-        act.setLayout(null);
-
-        //event name
-        JLabel lbEvName = new JLabel();
-        lbEvName.setText("ชื่อกิจกรรม");
-        lbEvName.setFont(new java.awt.Font("Tahoma", 1, 17));
-        lbEvName.setBounds(10, 5, 250, 50);
-        act.add(lbEvName);
-
-        //ปุ่ม feedback
-        JButton btnFeedBack = new JButton();
-        btnFeedBack.setText("ผลตอบรับ");
-        btnFeedBack.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnFeedBack.setBackground(new java.awt.Color(153, 153, 153));
-        btnFeedBack.setBounds(270, 40, 120, 30);
-        btnFeedBack.addActionListener((new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new FormSumActivity().setVisible(true);
-            }
-        }));
-        act.add(btnFeedBack);
-
     }
 
     public static void main(String[] args) {
         AdminGUI sg = new AdminGUI();
-        //sg.setTheme();
+        sg.setTheme();
+
         sg.Run();
         sg.setVisible(true);
+
     }
 }
