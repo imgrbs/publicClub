@@ -27,6 +27,7 @@ public class AdminGUI extends JFrame {
     public int numPer;
     private static int runId = 10000;
     private JFrame frame;
+    ConnectionBuilder cb = new ConnectionBuilder();
 
     private int yValueCurrent = 10;
     private int yValueEnd = 10;
@@ -89,7 +90,6 @@ public class AdminGUI extends JFrame {
     public void addEventToPanel(){
         PreparedStatement ps = null;
         ResultSet result;
-        ConnectionBuilder cb = new ConnectionBuilder();
         cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
         try {
             System.out.println("Done");
@@ -112,7 +112,7 @@ public class AdminGUI extends JFrame {
             e.printStackTrace();
         }
 
-        cb.logout();
+        
     }
     public void setTheme() {
         try {
@@ -247,6 +247,7 @@ public class AdminGUI extends JFrame {
         pMain.add(btnRefresh);
     }
 
+    int evId;
     public void currentEvent(ResultSet result, JPanel jp) {
         System.out.println("Check");
         JPanel act = new JPanel();
@@ -299,8 +300,17 @@ public class AdminGUI extends JFrame {
         btnDelete.setBackground(new java.awt.Color(255, 102, 51));
         btnDelete.setBounds(320, 45, 70, 30);
         act.add(btnDelete);
-        btnDelete.addActionListener((new ActionListener() {
+        try{
+            evId = result.getInt("evId");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        ActionListener al;
+        btnDelete.addActionListener((
+            al = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                deleteEvent(evId);
                 jp.remove(act);
                 getContentPane().revalidate();
                 getContentPane().repaint();
@@ -347,6 +357,35 @@ public class AdminGUI extends JFrame {
 
         jp.add(act);
         this.yValueEnd += 100;
+    }
+    
+    public void deleteEvent(int id){
+        System.out.println("Call deleteEv");
+        String command;
+        PreparedStatement s;
+        try{
+            command ="DELETE FROM tb_event WHERE evId = ?";
+            
+            System.out.println(id);
+            System.out.println(command);
+            s = cb.getConnect().prepareStatement(command);
+            System.out.println(s);
+            s.setInt(1,id);
+//            s.setInt(1, result.getInt("evId"));
+//            s.execute();
+            s.executeUpdate();
+            System.out.println("Delete Success");
+            
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            cb.logout();
+        }
     }
 
     public static void main(String[] args) {
