@@ -127,7 +127,7 @@ public class ListPerson extends javax.swing.JFrame {
         cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
         try {
             ps = cb.getConnect().prepareStatement("SELECT * FROM tb_personevent where evId = ?");
-            ps.setString(1, "200");  //ให้แสดงชื่อตาม id 
+            ps.setInt(1, 200);  //ให้แสดงชื่อตาม id 
             result = ps.executeQuery();
             while (result.next()) {
                 String temp = result.getLong("stdId")+"   "+result.getString("stuName") +"  "+result.getString("stdSurname");
