@@ -11,6 +11,7 @@ import java.text.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import publicizehub.club.controller.ConnectionBuilder;
+import publicizehub.club.model.trackId;
 
 /**
  *
@@ -233,21 +234,22 @@ public class AdminGUI extends JFrame {
         btnRefresh.setBounds(180, 180, 135, 40);
         btnRefresh.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Refresh");
-                mainPanel.removeAll();
-                mainPanel.validate();
-                mainPanel.repaint();
-                yValueCurrent = 10;
-                yValueEnd = 10;
-                addEventToPanel(); 
-                mainPanel.validate();
-                mainPanel.repaint();
+                refreshPanel();
             }
         }));
         pMain.add(btnRefresh);
     }
-
-    int evId;
+    public void refreshPanel(){
+        System.out.println("Refresh");
+        mainPanel.removeAll();
+        mainPanel.validate();
+        mainPanel.repaint();
+        yValueCurrent = 10;
+        yValueEnd = 10;
+        addEventToPanel(); 
+        mainPanel.validate();
+        mainPanel.repaint();
+    }
     public void currentEvent(ResultSet result, JPanel jp) {
         System.out.println("Check");
         JPanel act = new JPanel();
@@ -296,25 +298,32 @@ public class AdminGUI extends JFrame {
         //ปุ่ม ลบ
         JButton btnDelete = new JButton();
         btnDelete.setText("ลบ");
+        
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnDelete.setBackground(new java.awt.Color(255, 102, 51));
         btnDelete.setBounds(320, 45, 70, 30);
         act.add(btnDelete);
+        int temp=0;
         try{
-            evId = result.getInt("evId");
+            temp = result.getInt("evId");
         }
         catch(Exception e){
             e.printStackTrace();
         }
+        
+        trackId ti= new trackId(temp);
+        
         ActionListener al;
         btnDelete.addActionListener((
             al = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                deleteEvent(evId);
+                deleteEvent(ti.getId());
+                System.out.println(ti.getId());
                 jp.remove(act);
                 getContentPane().revalidate();
                 getContentPane().repaint();
                 System.out.println("ลบ");
+                refreshPanel();
             }
 
         }));
