@@ -265,7 +265,19 @@ public class AdminGUI extends JFrame {
         lbEvName.setFont(new java.awt.Font("Tahoma", 1, 17));
         lbEvName.setBounds(30, 5, 250, 50);
         act.add(lbEvName);
-
+        
+        //ปุม edit
+        JButton btnEdit = new JButton();
+        btnEdit.setText("แก้ไข");
+        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 15));
+        btnEdit.setBackground(new java.awt.Color(153, 153, 153));
+        btnEdit.setBounds(320, 5, 70, 30);
+        btnEdit.addActionListener((new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new EditEvent().setVisible(true);
+            }
+        }));
+        act.add(btnEdit);
         //ปุ่ม check in
         JButton btnCheckIn = new JButton();
         btnCheckIn.setText("เช็คอิน");
@@ -291,6 +303,8 @@ public class AdminGUI extends JFrame {
             }
         }));
         act.add(btnDetail);
+        
+        
 
         //ปุ่ม ลบ
         JButton btnDelete = new JButton();
