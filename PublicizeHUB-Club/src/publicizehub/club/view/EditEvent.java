@@ -248,7 +248,8 @@ public class EditEvent extends javax.swing.JFrame {
     private void confirmUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmUpdateActionPerformed
         System.out.println(this.evId);
         editEvent();
-       
+        AdminGUI ag = new AdminGUI();
+        ag.refreshPanel();
     }//GEN-LAST:event_confirmUpdateActionPerformed
 
     private void cancelUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelUpdateActionPerformed

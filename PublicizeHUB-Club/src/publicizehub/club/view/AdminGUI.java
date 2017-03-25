@@ -241,11 +241,11 @@ public class AdminGUI extends JFrame {
     }
     public void refreshPanel(){
         System.out.println("Refresh");
+        yValueCurrent = 10;
+        yValueEnd = 10;
         mainPanel.removeAll();
         mainPanel.validate();
         mainPanel.repaint();
-        yValueCurrent = 10;
-        yValueEnd = 10;
         addEventToPanel(); 
         mainPanel.validate();
         mainPanel.repaint();
