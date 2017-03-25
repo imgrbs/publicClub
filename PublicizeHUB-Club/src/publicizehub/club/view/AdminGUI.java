@@ -185,7 +185,29 @@ public class AdminGUI extends JFrame {
         headDp.setFont(new java.awt.Font("Tahoma", 1, 16));
         headDp.setBounds(300, 70, 130, 50);
         profile.add(headDp);
-
+        
+        //ปุ่ม CrateEvent
+        JButton btnCrateEv = new JButton();
+        btnCrateEv.setText("เพิ่มกิจกรรม");
+        btnCrateEv.setFont(new java.awt.Font("Tahoma", 1, 17));
+        btnCrateEv.setBounds(490, 120, 135, 40);
+        btnCrateEv.addActionListener((new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new CreateEvent().setVisible(true);
+            }
+        }));
+        profile.add(btnCrateEv);
+        //ปุ่ม addNews
+        JButton btnAddNews = new JButton();
+        btnAddNews.setText("เพิ่มข่าว");
+        btnAddNews.setFont(new java.awt.Font("Tahoma", 1, 17));
+        btnAddNews.setBounds(630, 120, 110, 40);
+        btnAddNews.addActionListener((new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new addNews().setVisible(true);
+            }
+        }));
+        profile.add(btnAddNews);
         //edit
         JLabel headEd = new JLabel();
         headEd.setText("ประสงค์แก้ไขข้อมูล โปรดแจ้ง");
@@ -214,23 +236,11 @@ public class AdminGUI extends JFrame {
         finActivity.setFont(new java.awt.Font("Tahoma", 1, 24));
         finActivity.setBounds(550, 180, 250, 50);
         pMain.add(finActivity);
-
-        //ปุ่ม CrateEvent
-        JButton btnCrateEv = new JButton();
-        btnCrateEv.setText("เพิ่มกิจกรรม");
-        btnCrateEv.setFont(new java.awt.Font("Tahoma", 1, 17));
-        btnCrateEv.setBounds(325, 180, 135, 40);
-        btnCrateEv.addActionListener((new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new CreateEvent().setVisible(true);
-            }
-        }));
-        pMain.add(btnCrateEv);
         
         JButton btnRefresh = new JButton();
         btnRefresh.setText("รีเฟรช");
         btnRefresh.setFont(new java.awt.Font("Tahoma", 1, 17));
-        btnRefresh.setBounds(180, 180, 135, 40);
+        btnRefresh.setBounds(325, 180, 135, 40);
         btnRefresh.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 refreshPanel();

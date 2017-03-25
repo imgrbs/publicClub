@@ -324,8 +324,7 @@ public class CreateEvent extends javax.swing.JFrame {
         }else if(other.isSelected()){
             this.eventType=2;
         }
-            
-        
+
         newEvent();
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmActionPerformed
