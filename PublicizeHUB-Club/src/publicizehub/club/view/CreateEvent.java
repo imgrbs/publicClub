@@ -15,6 +15,7 @@ import publicizehub.club.controller.ConnectionBuilder;
 public class CreateEvent extends javax.swing.JFrame {
     public static int runId=10001;
     private int eventType;
+    private long stdId=59130500007l;
     /**
      * Creates new form CreateEvent
      */
@@ -37,12 +38,12 @@ public class CreateEvent extends javax.swing.JFrame {
                     + evDescrip.getText()+ "','"
                     + evDate.getText()+ "','"
                     + evEndDate.getText()+ "','"
-                    + evPlace.getText()+ "','"
-                    + evTicket.getText()+ "','"
                     + evTime.getText()+ "','"
                     + evEndTime.getText()+ "','"
-                    + evType.getText()+ "','"
-                    + stuId.getText()+ "') ";
+                    + evPlace.getText()+ "','"
+                    + evTicket.getText()+ "','"
+                    + this.eventType + "','"
+                    + this.stdId + "') ";
             s.executeUpdate(sql);
             
             evName.setText("");
@@ -54,7 +55,6 @@ public class CreateEvent extends javax.swing.JFrame {
             evPlace.setText("");
             evTicket.setText("");
             evType.setText("");
-            stuId.setText("");
             JOptionPane.showMessageDialog(null, "Record Inserted Successfully");
         } 
         catch (SQLException e) {
@@ -174,9 +174,13 @@ public class CreateEvent extends javax.swing.JFrame {
         camp.setText("ค่าย");
         camp.setToolTipText("0");
         camp.setActionCommand("0");
+        camp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campActionPerformed(evt);
+            }
+        });
 
         evType.setEditable(false);
-        evType.setBackground(new java.awt.Color(240, 240, 240));
         evType.setForeground(new java.awt.Color(240, 240, 240));
         evType.setBorder(null);
 
@@ -314,11 +318,11 @@ public class CreateEvent extends javax.swing.JFrame {
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         
         if(camp.isSelected()){
-            evType.setText("0");
+            this.eventType=0;
         }else if(seminar.isSelected()){
-            evType.setText("1");
+            this.eventType=1;
         }else if(other.isSelected()){
-            evType.setText("2");
+            this.eventType=2;
         }
             
         
@@ -333,6 +337,10 @@ public class CreateEvent extends javax.swing.JFrame {
     private void evDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evDateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_evDateActionPerformed
+
+    private void campActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campActionPerformed
 
     /**
      * @param args the command line arguments

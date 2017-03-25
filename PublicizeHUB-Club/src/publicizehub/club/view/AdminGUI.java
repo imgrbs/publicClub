@@ -26,7 +26,6 @@ public class AdminGUI extends JFrame {
     public int numTick;
     public String time;
     public int numPer;
-    private static int runId = 10000;
     private JFrame frame;
     ConnectionBuilder cb = new ConnectionBuilder();
 

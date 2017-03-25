@@ -19,7 +19,7 @@ import publicizehub.club.controller.ConnectionBuilder;
 
 public class FeedGUI extends JFrame {
 
-    private int userStatus = 1;
+    private int userStatus = 0;
     private String userName = "กีรติ";
     private String userSurname = "เจียรจินดารัตน์";
     private long stdId = 59130500007l;
@@ -242,6 +242,21 @@ public class FeedGUI extends JFrame {
         joinEvRec1.setText("เข้าร่วม");
         joinEvRec1.setFont(new java.awt.Font("Tahoma", 1, 12));
         joinEvRec1.setBounds(150, 100, 90, 30);
+        joinEvRec1.addActionListener((new ActionListener() {
+            int checkClick=1;
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Click");
+                System.out.println(checkClick);
+                if(checkClick!=0){
+                    joinEvRec1.setText("ยกเลิก");
+                    checkClick=0;
+                }
+                else {
+                    joinEvRec1.setText("เข้าร่วม");
+                    checkClick=1;
+                }
+            }
+        }));
         evBox1.add(joinEvRec1);
         
         JButton detEvRec1 = new JButton();
@@ -278,6 +293,21 @@ public class FeedGUI extends JFrame {
         joinEvRec2.setText("เข้าร่วม");
         joinEvRec2.setFont(new java.awt.Font("Tahoma", 1, 12));
         joinEvRec2.setBounds(150, 100, 90, 30);
+        joinEvRec2.addActionListener((new ActionListener() {
+            int checkClick=1;
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Click");
+                System.out.println(checkClick);
+                if(checkClick!=0){
+                    joinEvRec2.setText("ยกเลิก");
+                    checkClick=0;
+                }
+                else {
+                    joinEvRec2.setText("เข้าร่วม");
+                    checkClick=1;
+                }
+            }
+        }));
         evBox2.add(joinEvRec2);
         
         JButton detEvRec2 = new JButton();
