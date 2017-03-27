@@ -250,11 +250,11 @@ public class AdminGUI extends JFrame {
     }
     public void refreshPanel(){
         System.out.println("Refresh");
-        mainPanel.removeAll();
-        mainPanel.validate();
-        mainPanel.repaint();
         yValueCurrent = 10;
         yValueEnd = 10;
+        mainPanel.removeAll();
+//        mainPanel.validate();
+//        mainPanel.repaint();
         addEventToPanel(); 
         mainPanel.validate();
         mainPanel.repaint();
@@ -326,7 +326,7 @@ public class AdminGUI extends JFrame {
         btnCheckIn.setBounds(100, 45, 80, 30);
         btnCheckIn.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new CheckIn().setVisible(true);
+                new CheckIn(ti.getId()).setVisible(true);
             }
         }));
         act.add(btnCheckIn);

@@ -5,19 +5,40 @@
  */
 package publicizehub.club.view;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import publicizehub.club.controller.ConnectionBuilder;
+
 /**
  *
  * @author JIL
  */
 public class CheckIn extends javax.swing.JFrame {
-
+    private int evId;
+    ArrayList<String> myArrList = new ArrayList<String>();
     /**
      * Creates new form CheckIn
      */
+    
+    public CheckIn(int evId) {
+        this.evId = evId;
+        initComponents();
+    }
+
     public CheckIn() {
         initComponents();
     }
 
+    public int getEvId() {
+        return evId;
+    }
+
+    public void setEvId(int evId) {
+        this.evId = evId;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,13 +50,13 @@ public class CheckIn extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        close = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        insertCode = new javax.swing.JTextField();
+        confirmInsert = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        showName = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -46,12 +67,12 @@ public class CheckIn extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 40)); // NOI18N
         jLabel1.setText("เช็คอิน");
 
-        jButton5.setBackground(new java.awt.Color(255, 0, 0));
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton5.setText("ปิด");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        close.setBackground(new java.awt.Color(255, 0, 0));
+        close.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        close.setText("ปิด");
+        close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                closeActionPerformed(evt);
             }
         });
 
@@ -61,7 +82,7 @@ public class CheckIn extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton5)
+                .addComponent(close)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(80, Short.MAX_VALUE)
@@ -72,7 +93,7 @@ public class CheckIn extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton5)
+                .addComponent(close)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -80,13 +101,13 @@ public class CheckIn extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
 
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("Insert code");
+        insertCode.setForeground(new java.awt.Color(204, 204, 204));
+        insertCode.setText("Insert code");
 
-        jButton1.setText("ตกลง");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        confirmInsert.setText("ตกลง");
+        confirmInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                confirmInsertActionPerformed(evt);
             }
         });
 
@@ -96,9 +117,9 @@ public class CheckIn extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(insertCode, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(jButton1)
+                .addComponent(confirmInsert)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -106,19 +127,14 @@ public class CheckIn extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(insertCode, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmInsert))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 153, 255));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "code 1", "code 2", "code 3", "code 4", "code 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(showName);
 
         jLabel2.setText("Event name");
 
@@ -169,15 +185,50 @@ public class CheckIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    public void checkCode(){
+        PreparedStatement ps = null;
+        ResultSet result;
+        
+        ConnectionBuilder cb = new ConnectionBuilder();
+        cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
+        try {
+            ps = cb.getConnect().prepareStatement("SELECT * FROM generateCode where evId = ?");
+            ps.setInt(1, evId);  //ให้แสดงชื่อตาม id 
+            
+            result = ps.executeQuery();
+            while (result.next()) {
+                if(insertCode.getText().equals(result.getString("evCode"))){
+                    String temp = result.getLong("stdId")+"";
+                    myArrList.add(temp);
+                }
+                
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            e.printStackTrace();
+        }
+
+        cb.logout();
+        
+        
+            String[] temp = new String[myArrList.size()];
+            for (int i = 0; i < myArrList.size(); i++) {
+                temp[i] = (i+1) + ". " + myArrList.get(i);
+            }
+            showName.setListData(temp);
+        
+    }
+    private void confirmInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmInsertActionPerformed
+        checkCode();
+
         // TODO add your handling code here:
         //insert code
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_confirmInsertActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
         setVisible(false);
         //back to admin
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_closeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,15 +266,15 @@ public class CheckIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton close;
+    private javax.swing.JButton confirmInsert;
+    private javax.swing.JTextField insertCode;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JList<String> showName;
     // End of variables declaration//GEN-END:variables
 }
