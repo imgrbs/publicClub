@@ -19,7 +19,7 @@ import publicizehub.club.controller.ConnectionBuilder;
 
 public class FeedGUI extends JFrame {
 
-    private int userStatus = 0;
+    private int userStatus = 1;
     private String userName = "กีรติ";
     private String userSurname = "เจียรจินดารัตน์";
     private long stdId = 59130500007l;

@@ -105,7 +105,6 @@ public class CreateEvent extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         evDescrip = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
