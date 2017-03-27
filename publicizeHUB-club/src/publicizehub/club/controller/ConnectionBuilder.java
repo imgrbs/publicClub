@@ -19,14 +19,15 @@ public class ConnectionBuilder {
     private ResultSet result;
     
     /* Account and Host */
-//    private String host = "10.4.56.8";
-    private String host = "sql12.freemysqlhosting.net";
-//    private String dbName = "publicClub";
-    private String dbName = "sql12165289";
-//    private String user = "public-1";
-    private String user = "sql12165289";
-//    private String password = "public";
-    private String password = "7gERPRxZSP";
+//    private String host = "sql12.freemysqlhosting.net";
+//    private String dbName = "sql12165289";
+//    private String user = "sql12165289";
+//    private String password = "7gERPRxZSP";
+    private String host = "10.4.56.8";
+//    private String host = "pureewat.me";
+    private String dbName = "publicClub";
+    private String user = "public-1";
+    private String password = "public";
     private String account = "?user="+user+"&password="+password+"&characterEncoding=UTF-8";
     private String table = "";
     private String sql = "";
@@ -40,7 +41,8 @@ public class ConnectionBuilder {
     public void connecting(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://"+host+":3306/"+ dbName + account);
+            connect = DriverManager.getConnection("jdbc:mysql://"+host+"/"+ dbName + account);
+//            connect = DriverManager.getConnection("jdbc:mysql://10.4.56.8/publicClub","public-1","public");
         }
         catch(SQLException e){
             e.printStackTrace();
