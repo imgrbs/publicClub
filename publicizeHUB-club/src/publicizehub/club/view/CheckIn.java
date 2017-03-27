@@ -187,21 +187,34 @@ public class CheckIn extends javax.swing.JFrame {
 
     public void checkCode(){
         PreparedStatement ps = null;
+        PreparedStatement ps1 = null;
         ResultSet result;
+        ResultSet result1;
         
         ConnectionBuilder cb = new ConnectionBuilder();
         cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
+        
         try {
             ps = cb.getConnect().prepareStatement("SELECT * FROM generateCode where evId = ?");
-            ps.setInt(1, evId);  //ให้แสดงชื่อตาม id 
-            
+            ps.setInt(1, evId);
+            //ps1 = cb.getConnect().prepareStatement("SELECT * FROM tb_profile where stuId = ?");  
+            long id=0;
             result = ps.executeQuery();
+            
             while (result.next()) {
-                if(insertCode.getText().equals(result.getString("evCode"))){
-                    String temp = result.getLong("stdId")+"";
-                    myArrList.add(temp);
+                if(insertCode.getText().equalsIgnoreCase(result.getString("evCode"))){
+                    id = result.getLong("stuId");
                 }
-                
+
+            }
+            ps1 = cb.getConnect().prepareStatement("SELECT * FROM tb_profile where stuId = ?");
+            ps1.setLong(1, id); 
+            result1 = ps1.executeQuery();
+            while (result1.next()){
+
+                String name = result1.getString("stuName")+" "+result1.getString("stuSurname");
+                String temp = id+"  "+name;
+                myArrList.add(temp);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
