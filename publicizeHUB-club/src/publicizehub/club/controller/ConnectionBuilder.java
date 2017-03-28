@@ -23,8 +23,8 @@ public class ConnectionBuilder {
 //    private String dbName = "sql12165289";
 //    private String user = "sql12165289";
 //    private String password = "7gERPRxZSP";
-    private String host = "10.4.56.8";
-//    private String host = "pureewat.me";
+    /* Account in KMUTT Host */
+    private String host = "10.4.56.11";
     private String dbName = "publicClub";
     private String user = "public-1";
     private String password = "public";
