@@ -8,7 +8,7 @@ import publicizehub.club.controller.ConnectionBuilder;
  *
  * @author ImagineRabbits
  */
-public class generateCode {
+public class GenerateCode {
     ConnectionBuilder cb = new ConnectionBuilder();
     private long rand;
     private String timestamp = "";
@@ -19,10 +19,10 @@ public class generateCode {
     private int evId = 10035;
     private String evCode ="";
 
-    public generateCode() {
+    public GenerateCode() {
     }
     
-    public generateCode(long stdId,int evId) {
+    public GenerateCode(long stdId,int evId) {
         this.stdId=stdId;
         this.evId=evId;
     }
