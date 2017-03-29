@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package publicizehub.club.view;
 
 import java.sql.PreparedStatement;
@@ -233,8 +228,6 @@ public class CheckIn extends javax.swing.JFrame {
     }
     private void confirmInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmInsertActionPerformed
         checkCode();
-
-        // TODO add your handling code here:
         //insert code
     }//GEN-LAST:event_confirmInsertActionPerformed
 
