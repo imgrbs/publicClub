@@ -6,4 +6,4 @@ Member
 # This Project For INT105
 - Computer Programming [JAVA] [INT105]
 # Java Application
-- About Club System
+- About Event System
