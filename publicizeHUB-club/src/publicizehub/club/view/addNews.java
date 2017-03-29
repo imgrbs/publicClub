@@ -6,6 +6,8 @@ package publicizehub.club.view;
  */
 import java.sql.*;
 import javax.swing.*;
+
+import publicizehub.club.controller.*;
 public class addNews extends javax.swing.JFrame {
 
     /**
@@ -16,38 +18,16 @@ public class addNews extends javax.swing.JFrame {
     }
 
     public void insertNews() {
-        Connection connect = null;
-        Statement s = null;
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connect = DriverManager.getConnection("" + "jdbc:mysql://localhost:3306/db_event" + "?user=root&password=root&characterEncoding=UTF-8");
-            s = connect.createStatement();
-            // SQL Insert
-            String sql = "INSERT INTO tb_news"
-                    + "(newsId,content) "
-                    + "VALUES ('" + newsId.getText() + "','"
-                    + content.getText() + "') ";
-            s.executeUpdate(sql);
-            newsId.setText("");
-            content.setText("");
-            JOptionPane.showMessageDialog(null, "Record Inserted Successfully");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            e.printStackTrace();
-        }
-
-        try {
-            if (s != null) {
-                s.close();
-                connect.close();
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
-
+        ConnectionBuilder cb = new ConnectionBuilder();
+        cb.connectWithStatement("INSERT INTO tb_news"
+                    + "(content) "
+                    + "VALUES ('"
+                    + content.getText() + "')",1);
+        newsId.setText("");
+        content.setText("");
+        JOptionPane.showMessageDialog(null, "Record Inserted Successfully");
+        
+        cb.logout();
     }
 
     public void editNews() {

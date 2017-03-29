@@ -11,13 +11,15 @@ package publicizehub.club.view;
  */
 import java.sql.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.UIManager.*;
+import publicizehub.club.controller.ConnectionBuilder;
 
 public class FeedGUI extends JFrame {
 
-    private int userStatus = 0;
+    private int userStatus = 1;
     private String userName = "กีรติ";
     private String userSurname = "เจียรจินดารัตน์";
     private long stdId = 59130500007l;
@@ -86,8 +88,24 @@ public class FeedGUI extends JFrame {
         JButton btnProfiles = new JButton();
         if (userStatus == 1) {
             btnProfiles.setText("Admin");
+            btnProfiles.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    AdminGUI ag = new AdminGUI();
+                    ag.Run();
+                    ag.setVisible(true);
+                    ag.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                }
+            });
         } else {
             btnProfiles.setText("Profiles");
+            btnProfiles.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    ProfileGUI pg = new ProfileGUI();
+                    pg.Run();
+                    pg.setVisible(true);
+                    pg.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+                }
+            });
         }
         btnProfiles.setFont(new java.awt.Font("Tahoma", 1, 15));
         btnProfiles.setBackground(new java.awt.Color(255, 153, 0));
@@ -156,6 +174,7 @@ public class FeedGUI extends JFrame {
     }
 
     public void panelNews() {
+        
         // Panel News
         JPanel newsBox = new JPanel();
         newsBox.setOpaque(true);
@@ -178,13 +197,13 @@ public class FeedGUI extends JFrame {
         
         // ScrollPane
         JScrollPane scrollPane = new JScrollPane(newsList);
-        scrollPane.setLayout(null);
         scrollPane.setBounds(30, 40, 655,150);
         scrollPane.setBackground(new java.awt.Color(255, 255, 255));
         
-        newsBox.add(scrollPane);
-        scrollPane.add(newsList);
         addNewsToList(newsList);
+        scrollPane.setViewportView(newsList);
+        newsBox.add(scrollPane);
+        
         
     }
 
@@ -203,7 +222,7 @@ public class FeedGUI extends JFrame {
         
         JLabel recEvent1 = new JLabel();
         recEvent1.setText("ชื่อกิจกรรม : "+"IT 3K"); // รอ get จาก Database
-        recEvent1.setFont(new java.awt.Font("Tahoma", 1, 22));
+        recEvent1.setFont(new java.awt.Font("Tahoma", 1, 18));
         recEvent1.setBounds(20, 10, 240,30);
         evBox1.add(recEvent1);
         
@@ -217,24 +236,95 @@ public class FeedGUI extends JFrame {
         detailEvent1.setText("รายละเอียด : "+"IT 3K"); // รอ get จาก Database
         detailEvent1.setFont(new java.awt.Font("Tahoma", 1, 12));
         detailEvent1.setBounds(20, 65, 240,30);
-        evBox1.add(detailEvent1);        
+        evBox1.add(detailEvent1);      
+        
+        JButton joinEvRec1 = new JButton();
+        joinEvRec1.setText("เข้าร่วม");
+        joinEvRec1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        joinEvRec1.setBounds(150, 100, 90, 30);
+        joinEvRec1.addActionListener((new ActionListener() {
+            int checkClick=1;
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Click");
+                System.out.println(checkClick);
+                if(checkClick!=0){
+                    joinEvRec1.setText("ยกเลิก");
+                    checkClick=0;
+                }
+                else {
+                    joinEvRec1.setText("เข้าร่วม");
+                    checkClick=1;
+                }
+            }
+        }));
+        evBox1.add(joinEvRec1);
+        
+        JButton detEvRec1 = new JButton();
+        detEvRec1.setText("รายละเอียด");
+        detEvRec1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        detEvRec1.setBounds(240, 100, 90, 30);
+        evBox1.add(detEvRec1);
         
         JPanel evBox2 = new JPanel();
         evBox2.setBounds(640, 350, 345, 150);
         evBox2.setBackground(new java.awt.Color(255, 255, 255));
         evBox2.setLayout(null);
         getContentPane().add(evBox2);
+        
+        JLabel recEvent2 = new JLabel();
+        recEvent2.setText("ชื่อกิจกรรม : "+"BrownBag"); // รอ get จาก Database
+        recEvent2.setFont(new java.awt.Font("Tahoma", 1, 18));
+        recEvent2.setBounds(20, 10, 240,30);
+        evBox2.add(recEvent2);
+        
+        JLabel dateEvent2 = new JLabel();
+        dateEvent2.setText("วัน/เวลา/สถานที่ : "+""); // รอ get จาก Database
+        dateEvent2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        dateEvent2.setBounds(20, 40, 240,30);
+        evBox2.add(dateEvent2);       
+        
+        JLabel detailEvent2 = new JLabel();
+        detailEvent2.setText("รายละเอียด : "+"BrownBag"); // รอ get จาก Database
+        detailEvent2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        detailEvent2.setBounds(20, 65, 240,30);
+        evBox2.add(detailEvent2);      
+        
+        JButton joinEvRec2 = new JButton();
+        joinEvRec2.setText("เข้าร่วม");
+        joinEvRec2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        joinEvRec2.setBounds(150, 100, 90, 30);
+        joinEvRec2.addActionListener((new ActionListener() {
+            int checkClick=1;
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Click");
+                System.out.println(checkClick);
+                if(checkClick!=0){
+                    joinEvRec2.setText("ยกเลิก");
+                    checkClick=0;
+                }
+                else {
+                    joinEvRec2.setText("เข้าร่วม");
+                    checkClick=1;
+                }
+            }
+        }));
+        evBox2.add(joinEvRec2);
+        
+        JButton detEvRec2 = new JButton();
+        detEvRec2.setText("รายละเอียด");
+        detEvRec2.setFont(new java.awt.Font("Tahoma", 1, 12));
+        detEvRec2.setBounds(240, 100, 90, 30);
+        evBox2.add(detEvRec2);
     }
 
     public void addNewsToList(JList newsList) {
-        Connection connect = null;
-        Statement s = null;
+        ConnectionBuilder cb = new ConnectionBuilder();
+        cb.connecting();
+        
         PreparedStatement ps = null;
         ResultSet result;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_event" + "?user=root&password=root&characterEncoding=UTF-8");
-            ps = connect.prepareStatement("SELECT * FROM tb_news");
+            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_news");
             result = ps.executeQuery();
             while (result.next()) {
                 String temp = result.getString("content");
@@ -245,16 +335,7 @@ public class FeedGUI extends JFrame {
             e.printStackTrace();
         }
 
-        try {
-            if (s != null) {
-                s.close();
-                connect.close();
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+        cb.logout();
 
         String[] temp = new String[myArrList.size()];
         for (int i = 0; i < myArrList.size(); i++) {

@@ -8,6 +8,7 @@ package publicizehub.club.view;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import publicizehub.club.controller.ConnectionBuilder;
 
 /**
  *
@@ -109,6 +110,7 @@ public class ListPerson extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -118,17 +120,17 @@ public class ListPerson extends javax.swing.JFrame {
 
     
     public void addPerson() {
-        Connection connect = null;
-        Statement s = null;
         PreparedStatement ps = null;
         ResultSet result;
+        String evId = "";
+        ConnectionBuilder cb = new ConnectionBuilder();
+        cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_event" + "?user=root&password=root&characterEncoding=UTF-8");
-            ps = connect.prepareStatement("SELECT * FROM tb_personevent");
+            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_personevent where evId = ?");
+            ps.setInt(1, 200);  //ให้แสดงชื่อตาม id 
             result = ps.executeQuery();
             while (result.next()) {
-                String temp = result.getString("stuName");
+                String temp = result.getLong("stdId")+"   "+result.getString("stuName") +"  "+result.getString("stdSurname");
                 myArrList.add(temp);
             }
         } catch (Exception e) {
@@ -136,22 +138,14 @@ public class ListPerson extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-        try {
-            if (s != null) {
-                s.close();
-                connect.close();
+        cb.logout();
+        
+        
+            String[] temp = new String[myArrList.size()];
+            for (int i = 0; i < myArrList.size(); i++) {
+                temp[i] = (i+1) + ". " + myArrList.get(i);
             }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
-
-        String[] temp = new String[myArrList.size()];
-        for (int i = 0; i < myArrList.size(); i++) {
-            temp[i] = "- " + myArrList.get(i);
-        }
-        listPerson1.setListData(temp);
+            listPerson1.setListData(temp);
     }
     /**
      * @param args the command line arguments
