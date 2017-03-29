@@ -1,7 +1,6 @@
 package publicizehub.club.view;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import publicizehub.club.controller.ConnectionBuilder;
@@ -12,6 +11,7 @@ import publicizehub.club.controller.ConnectionBuilder;
  */
 public class CheckIn extends javax.swing.JFrame {
     private int evId;
+    ConnectionBuilder cb = new ConnectionBuilder();
     ArrayList<String> myArrList = new ArrayList<String>();
     /**
      * Creates new form CheckIn
@@ -186,7 +186,6 @@ public class CheckIn extends javax.swing.JFrame {
         ResultSet result;
         ResultSet result1;
         
-        ConnectionBuilder cb = new ConnectionBuilder();
         cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
         
         try {
@@ -206,7 +205,6 @@ public class CheckIn extends javax.swing.JFrame {
             ps1.setLong(1, id); 
             result1 = ps1.executeQuery();
             while (result1.next()){
-
                 String name = result1.getString("stuName")+" "+result1.getString("stuSurname");
                 String temp = id+"  "+name;
                 myArrList.add(temp);
@@ -215,24 +213,41 @@ public class CheckIn extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
             e.printStackTrace();
         }
-
-        cb.logout();
         
-        
-            String[] temp = new String[myArrList.size()];
-            for (int i = 0; i < myArrList.size(); i++) {
-                temp[i] = (i+1) + ". " + myArrList.get(i);
-            }
-            showName.setListData(temp);
+        String[] temp = new String[myArrList.size()];
+        for (int i = 0; i < myArrList.size(); i++) {
+            temp[i] = (i+1) + ". " + myArrList.get(i);
+        }
+        showName.setListData(temp);
         
     }
     private void confirmInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmInsertActionPerformed
         checkCode();
+        deleteCode();
+        
         //insert code
     }//GEN-LAST:event_confirmInsertActionPerformed
 
+    public void deleteCode(){
+        PreparedStatement ps;
+        try{
+            ps = cb.getConnect().prepareStatement("DELETE FROM generateCode where evId = ?");
+            ps.setInt(1, this.evId);
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        cb.logout();
+    }
+    
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
         setVisible(false);
+        
         //back to admin
     }//GEN-LAST:event_closeActionPerformed
 
