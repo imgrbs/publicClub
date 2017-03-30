@@ -83,6 +83,7 @@ public class AdminGUI extends JFrame {
         getContentPane().add(scrollPane);
         getContentPane().add(scrollPane2);
         
+        System.out.println("Test");
         panelClose();
         panelProfile();
         panelMain();
