@@ -10,7 +10,7 @@ import java.util.Date;
 import java.text.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import publicizehub.club.controller.ConnectionBuilder;
+import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.trackId;
     
 /**

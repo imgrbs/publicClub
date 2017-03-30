@@ -3,7 +3,7 @@ package publicizehub.club.view;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import publicizehub.club.controller.ConnectionBuilder;
+import publicizehub.club.model.ConnectionBuilder;
 
 /**
  *

@@ -5,6 +5,8 @@
  */
 package publicizehub.club.controller;
 
+import publicizehub.club.model.ConnectionBuilder;
+
 /**
  *
  * @author ImagineRabbits

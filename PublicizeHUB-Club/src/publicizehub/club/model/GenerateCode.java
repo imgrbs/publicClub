@@ -2,7 +2,6 @@ package publicizehub.club.model;
 
 import static java.lang.Integer.parseInt;
 import java.sql.*;
-import publicizehub.club.controller.ConnectionBuilder;
 
 /**
  *

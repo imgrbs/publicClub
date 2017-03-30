@@ -15,7 +15,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.UIManager.*;
-import publicizehub.club.controller.ConnectionBuilder;
+import publicizehub.club.model.*;
 
 public class FeedGUI extends JFrame {
 
@@ -23,6 +23,7 @@ public class FeedGUI extends JFrame {
     private String userName = "กีรติ";
     private String userSurname = "เจียรจินดารัตน์";
     private long stdId = 59130500007l;
+    private News ns = new News();
     
     ArrayList<String> myArrList = new ArrayList<String>();
     
@@ -200,7 +201,7 @@ public class FeedGUI extends JFrame {
         scrollPane.setBounds(30, 40, 655,150);
         scrollPane.setBackground(new java.awt.Color(255, 255, 255));
         
-        addNewsToList(newsList);
+        ns.addNewsToList(newsList);
         scrollPane.setViewportView(newsList);
         newsBox.add(scrollPane);
         
@@ -315,33 +316,6 @@ public class FeedGUI extends JFrame {
         detEvRec2.setFont(new java.awt.Font("Tahoma", 1, 12));
         detEvRec2.setBounds(240, 100, 90, 30);
         evBox2.add(detEvRec2);
-    }
-
-    public void addNewsToList(JList newsList) {
-        ConnectionBuilder cb = new ConnectionBuilder();
-        cb.connecting();
-        
-        PreparedStatement ps = null;
-        ResultSet result;
-        try {
-            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_news");
-            result = ps.executeQuery();
-            while (result.next()) {
-                String temp = result.getString("content");
-                myArrList.add(temp);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            e.printStackTrace();
-        }
-
-        cb.logout();
-
-        String[] temp = new String[myArrList.size()];
-        for (int i = 0; i < myArrList.size(); i++) {
-            temp[i] = "- " + myArrList.get(i);
-        }
-        newsList.setListData(temp);
     }
 
     public static void main(String[] args) {

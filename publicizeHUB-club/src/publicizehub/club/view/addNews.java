@@ -4,12 +4,14 @@ package publicizehub.club.view;
  *
  * @author Imagine
  */
+import publicizehub.club.model.ConnectionBuilder;
 import java.sql.*;
 import javax.swing.*;
 
 import publicizehub.club.controller.*;
+import publicizehub.club.model.News;
 public class addNews extends javax.swing.JFrame {
-
+    private News nw = new News();
     /**
      * Creates new form addNews
      */
@@ -17,26 +19,16 @@ public class addNews extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void insertNews() {
-        ConnectionBuilder cb = new ConnectionBuilder();
-        cb.connectWithStatement("INSERT INTO tb_news"
-                    + "(content) "
-                    + "VALUES ('"
-                    + content.getText() + "')",1);
-        newsId.setText("");
-        content.setText("");
-        JOptionPane.showMessageDialog(null, "Record Inserted Successfully");
-        
-        cb.logout();
+    public JTextArea getContent() {
+        return content;
     }
 
-    public void editNews() {
-        JOptionPane.showMessageDialog(null, "Test Edit Button");
+    public JTextField getNewsId() {
+        return newsId;
     }
+    
 
-    public void deleteNews() {
-        JOptionPane.showMessageDialog(null, "Test Delete Button");
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -141,19 +133,19 @@ public class addNews extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void insertNewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertNewsActionPerformed
-        insertNews();
+        nw.insertNews(getNewsId(),getContent());
     }//GEN-LAST:event_insertNewsActionPerformed
 
     private void deleteNewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteNewsActionPerformed
-        deleteNews();
+        nw.deleteNews();
     }//GEN-LAST:event_deleteNewsActionPerformed
 
     private void newsIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newsIdActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_newsIdActionPerformed
 
     private void editNewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editNewsActionPerformed
-        editNews();
+        nw.editNews();
     }//GEN-LAST:event_editNewsActionPerformed
 
     /**

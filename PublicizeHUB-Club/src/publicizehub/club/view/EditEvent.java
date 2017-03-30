@@ -11,7 +11,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import publicizehub.club.controller.ConnectionBuilder;
+import publicizehub.club.model.ConnectionBuilder;
 
 /**
  *
