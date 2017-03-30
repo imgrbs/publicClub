@@ -178,6 +178,7 @@ public class CheckIn extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     public void checkCode(){
@@ -190,22 +191,21 @@ public class CheckIn extends javax.swing.JFrame {
         
         try {
             ps = cb.getConnect().prepareStatement("SELECT * FROM generateCode where evId = ?");
-            ps.setInt(1, evId);
-            //ps1 = cb.getConnect().prepareStatement("SELECT * FROM tb_profile where stuId = ?");  
+            ps.setInt(1, evId); 
             long id=0;
             result = ps.executeQuery();
             
             while (result.next()) {
                 if(insertCode.getText().equalsIgnoreCase(result.getString("evCode"))){
-                    id = result.getLong("stuId");
+                    id = result.getLong("stdId");
                 }
 
             }
-            ps1 = cb.getConnect().prepareStatement("SELECT * FROM tb_profile where stuId = ?");
+            ps1 = cb.getConnect().prepareStatement("SELECT * FROM tb_profile where stdId = ?");
             ps1.setLong(1, id); 
             result1 = ps1.executeQuery();
             while (result1.next()){
-                String name = result1.getString("stuName")+" "+result1.getString("stuSurname");
+                String name = result1.getString("stdName")+" "+result1.getString("stdSurname");
                 String temp = id+"  "+name;
                 myArrList.add(temp);
             }
