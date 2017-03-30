@@ -56,7 +56,6 @@ public class addNews extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         editNews = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         insertNews.setText("เพิ่มข่าว");

@@ -32,7 +32,7 @@ public class CreateEvent extends javax.swing.JFrame {
             s = cb.getConnect().createStatement();
             // SQL Insert
             String sql = "INSERT INTO tb_event"
-                    + "(evName,evDescrip,evDate,evEndDate,evTime,evEndTime,evPlace,evTicket,evType,stuId) "
+                    + "(evName,evDescrip,evDate,evEndDate,evTime,evEndTime,evPlace,evTicket,evType,stdId) "
                     + "VALUES ('" 
                     + evName.getText()+ "','"
                     + evDescrip.getText()+ "','"
@@ -154,6 +154,11 @@ public class CreateEvent extends javax.swing.JFrame {
 
         stuId.setBackground(new java.awt.Color(240, 240, 240));
         stuId.setBorder(null);
+        stuId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stuIdActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("ประเภทกิจกรรม :");
 
@@ -339,6 +344,10 @@ public class CreateEvent extends javax.swing.JFrame {
     private void campActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campActionPerformed
+
+    private void stuIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stuIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stuIdActionPerformed
 
     /**
      * @param args the command line arguments

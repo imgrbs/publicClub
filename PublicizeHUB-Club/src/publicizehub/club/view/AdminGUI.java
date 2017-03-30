@@ -48,7 +48,7 @@ public class AdminGUI extends JFrame {
     public void Run() {
         setTitle("publicizeHUB");
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         getContentPane().setBackground(new java.awt.Color(255, 255, 255));
         setBounds(100, 100, 1024, 600);
         getContentPane().setLayout(null);
@@ -171,8 +171,8 @@ public class AdminGUI extends JFrame {
         headName.setFont(new java.awt.Font("Tahoma", 1, 16));
         headName.setBounds(300, 10, 100, 50);
         profile.add(headName);
-
-        //stuId
+        
+        //stdId
         JLabel headId = new JLabel();
         headId.setText("รหัสนักศึกษา :");
         headId.setFont(new java.awt.Font("Tahoma", 1, 16));
@@ -190,29 +190,31 @@ public class AdminGUI extends JFrame {
         JButton btnCrateEv = new JButton();
         btnCrateEv.setText("เพิ่มกิจกรรม");
         btnCrateEv.setFont(new java.awt.Font("Tahoma", 1, 17));
-        btnCrateEv.setBounds(490, 120, 135, 40);
+        btnCrateEv.setBounds(850,5, 135, 40);
         btnCrateEv.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new CreateEvent().setVisible(true);
             }
         }));
         profile.add(btnCrateEv);
+        
         //ปุ่ม addNews
         JButton btnAddNews = new JButton();
         btnAddNews.setText("เพิ่มข่าว");
         btnAddNews.setFont(new java.awt.Font("Tahoma", 1, 17));
-        btnAddNews.setBounds(630, 120, 110, 40);
+        btnAddNews.setBounds(875, 65, 110, 40);
         btnAddNews.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new addNews().setVisible(true);
             }
         }));
         profile.add(btnAddNews);
+           
         //edit
         JLabel headEd = new JLabel();
         headEd.setText("ประสงค์แก้ไขข้อมูล โปรดแจ้ง");
         headEd.setFont(new java.awt.Font("Tahoma", 1, 16));
-        headEd.setBounds(780, 120, 250, 50);
+        headEd.setBounds(770, 110, 250, 50);
         profile.add(headEd);
     }
 
@@ -240,13 +242,14 @@ public class AdminGUI extends JFrame {
         JButton btnRefresh = new JButton();
         btnRefresh.setText("รีเฟรช");
         btnRefresh.setFont(new java.awt.Font("Tahoma", 1, 17));
-        btnRefresh.setBounds(325, 180, 135, 40);
+        btnRefresh.setBounds(330, 180, 135, 40);
         btnRefresh.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 refreshPanel();
             }
         }));
         pMain.add(btnRefresh);
+ 
     }
     public void refreshPanel(){
         System.out.println("Refresh");
