@@ -28,6 +28,24 @@ public class Event {
     
     PreparedStatement ps;
     ResultSet rs;
+
+    public Event() {
+    }
+
+    public Event(int evId, Date evDate, Date evEndDate, Time evTime, Time evEndTime, 
+            String evPlace, int evTicket, int eventType, long stdId) {
+        this.evId = evId;
+        this.evDate = evDate;
+        this.evEndDate = evEndDate;
+        this.evTime = evTime;
+        this.evEndTime = evEndTime;
+        this.evPlace = evPlace;
+        this.evTicket = evTicket;
+        this.eventType = eventType;
+        this.stdId = stdId;
+    }
+    
+    
     
     public void newEvent() {
         cb.connecting();
@@ -64,19 +82,19 @@ public class Event {
     }
     
     public void EditEvent(){
-    
+     // update
     }
     
-    public void DeleteEvent(){
+    public void DeleteEvent(int delId){
         System.out.println("Call deleteEv");
         String command;
         PreparedStatement s;
         try{
             command ="DELETE FROM tb_event WHERE evId = ?";
-            System.out.println(evId);
+            System.out.println("DelID"+delId);
             System.out.println(command);
             s = cb.getConnect().prepareStatement(command);
-            s.setInt(1,evId);
+            s.setInt(1,delId);
             s.executeUpdate();
             System.out.println("Delete Success");
         }
@@ -105,7 +123,6 @@ public class Event {
             e.printStackTrace();
             System.out.println("getEvent() Exception!");
         }
-        cb.logout();
         return rs;
     }
 

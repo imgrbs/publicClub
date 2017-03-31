@@ -4,16 +4,9 @@ import javax.swing.*;
 import javax.swing.UIManager.*;
 import java.awt.event.*;
 import java.sql.*;
-import java.awt.*;
 import java.util.*;
-import java.util.Date;
-import java.text.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import publicizehub.club.controller.*;
-import publicizehub.club.model.ConnectionBuilder;
-import publicizehub.club.model.TrackEvent;
-    
+import publicizehub.club.model.*;
 /**
  *
  * @author JIL

@@ -1,7 +1,7 @@
 package publicizehub.club.view;
 
 import java.awt.event.*;
-import java.sql.*;
+import publicizehub.club.controller.*;
 import javax.swing.*;
 
 /**
@@ -9,7 +9,7 @@ import javax.swing.*;
  * @author ImagineRabbits
  */
 public class PanelEventComponent {
-    
+    EventController ec = new EventController();
     private static int yValueCurrent = 10;
     private static int yValueComplete = 10;
     
@@ -23,6 +23,24 @@ public class PanelEventComponent {
     public static void setyValueCurrent(int yValueCurrent) {
         PanelEventComponent.yValueCurrent = yValueCurrent;
     }
+
+    public static int getyValueComplete() {
+        return yValueComplete;
+    }
+
+    public static void setyValueComplete(int yValueComplete) {
+        PanelEventComponent.yValueComplete = yValueComplete;
+    }
+
+    public int getEvId() {
+        return evId;
+    }
+
+    public void setEvId(int evId) {
+        this.evId = evId;
+    }
+    
+    
     
     public PanelEventComponent() {
     }
@@ -102,13 +120,12 @@ public class PanelEventComponent {
         
         btnDelete.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-//                deleteEvent(ti.getId());
-//                System.out.println(ti.getId());
-//                jp.remove(act);
-//                getContentPane().revalidate();
-//                getContentPane().repaint();
-//                System.out.println("ลบ");
-//                refreshPanel();
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog 
+                (null, "จะลบกิจกรรมใช่หรือไม่","Warning",dialogButton);
+                if(dialogResult == JOptionPane.YES_OPTION){
+                    ec.DeleteAlert();
+                }
             }
 
         }));
@@ -155,4 +172,5 @@ public class PanelEventComponent {
         
         return act;
     }
+    
 }

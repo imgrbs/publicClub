@@ -5,13 +5,10 @@
  */
 package publicizehub.club.view;
 
-import java.awt.HeadlessException;
 import java.util.Date;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import publicizehub.club.model.ConnectionBuilder;
+import javax.swing.*;
+import publicizehub.club.controller.*;
 
 /**
  *

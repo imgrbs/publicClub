@@ -14,6 +14,7 @@ public class EventController {
     private int evId;
     
     TrackEvent ti =  new TrackEvent(evId);
+    ConnectionBuilder cb = new ConnectionBuilder();
     Event ev = new Event();
     
     private static int yValueCurrent = 10;
@@ -72,6 +73,9 @@ public class EventController {
         try{
             while(rs.next()){
                 tempId = rs.getInt("evId");
+                System.out.println("tempId "+tempId);
+                evId = tempId;
+                System.out.println("tempId->evId"+evId);
                 tempName = rs.getString("evName");
                 tempDesc = rs.getString("evDescrip");
                 tempTime = rs.getString("evTime");
@@ -80,8 +84,12 @@ public class EventController {
                 tempStart = rs.getDate("evDate");
                 tempEnd = rs.getDate("evEndDate");
                 tempType = rs.getInt("evType");
+//                Event track= new Event(rs.getInt("evId"),rs.getDate("evDate"),rs.getDate("evEndDate")
+//                        ,rs.getTime("evTime"),rs.getTime("evEndTime"),rs.getString("evPlace")
+//                        ,rs.getInt("evTicket"),rs.getInt("evType"),rs.getInt("stdId"));
                 
                 pec = new PanelEventComponent(tempName,tempId);
+                System.out.println("pec id "+pec.getEvId());
                 if (d.compareTo(tempEnd) <= 0) {
                     this.ySizeCurrent +=110;      
                     jp.setPreferredSize(new java.awt.Dimension(400, this.ySizeCurrent));        
@@ -95,7 +103,14 @@ public class EventController {
                     jp2.add(pec.AddCompleteEvent());
                     System.out.println("ADD CP Event");
                 }
+                if(this.ySizeCurrent<300){
+                    this.ySizeCurrent=350;
+                }
+                else if(this.ySizeComplete<300){
+                    this.ySizeComplete=350;
+                }
             }
+            
             
         }
         catch(SQLException ex){
@@ -106,27 +121,34 @@ public class EventController {
         }
         
 //        TrackEvent ti= new TrackEvent(tempId,tempName,tempDesc,tempStart,tempEnd,tempTime,tempEndTime,tempPlace,tempType);
-        
+        cb.logout();
         System.out.println("Add Success");
     }
     
     public void refreshPanel(JPanel jp,JPanel jp2){
+        System.out.println("PEC ID REF"+pec.getEvId());
         System.out.println("Refresh");
         pec.setyValueCurrent(10);
+        pec.setyValueComplete(10);
         this.ySizeCurrent=0;
-        System.out.println(yValueCurrent);
-        System.out.println(ySizeCurrent);
-//        this.yValueEnd=10;
+        this.yValueEnd=0;
+//        System.out.println(yValueCurrent);
+//        System.out.println(ySizeCurrent);
         jp.removeAll();
-//        jp2.removeAll();
+        jp2.removeAll();
         jp.validate();
         jp.repaint();
         AddCurrentEvent(jp,jp2); 
-//        jp2.validate();
-//        jp2.repaint();
+        jp2.validate();
+        jp2.repaint();
         jp2.validate();
         jp2.repaint();
     }
-
+    
+    public void DeleteAlert(){
+        System.out.println("EC evId"+pec.getEvId());
+        ev.DeleteEvent(pec.getEvId());
+    }
+    
     
 }
