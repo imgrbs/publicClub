@@ -85,18 +85,24 @@ public class Event {
      // update
     }
     
-    public void DeleteEvent(int delId){
+    public void DeleteEvent(int deleteId){
         System.out.println("Call deleteEv");
         String command;
         PreparedStatement s;
+        cb.connecting();
         try{
             command ="DELETE FROM tb_event WHERE evId = ?";
-            System.out.println("DelID"+delId);
+            System.out.println("DelID "+deleteId);
             System.out.println(command);
             s = cb.getConnect().prepareStatement(command);
-            s.setInt(1,delId);
+            s.setInt(1,deleteId);
+            
             s.executeUpdate();
             System.out.println("Delete Success");
+        }
+        catch(NullPointerException e){
+            e.printStackTrace();
+            System.out.println("NullPointerException");
         }
         catch(SQLException e){
 //            e.printStackTrace();

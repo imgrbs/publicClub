@@ -29,6 +29,8 @@ public class AdminGUI extends JFrame {
     JPanel mainPanel2;
     
     EventController ec = new EventController();
+    JScrollPane scrollPane;
+    JScrollPane scrollPane2; 
     
     public void actionPerformed(ActionEvent e) {
         // remove the previous JFrame
@@ -56,11 +58,11 @@ public class AdminGUI extends JFrame {
         mainPanel2.setPreferredSize(new java.awt.Dimension(400, ec.getySizeComplete()));
         mainPanel2.setBackground(new java.awt.Color(220, 204, 153));
         
-        JScrollPane scrollPane = new JScrollPane(mainPanel);
+        scrollPane = new JScrollPane(mainPanel);
         scrollPane.setBounds(20, 225, 450, 340);
         scrollPane.setBackground(new java.awt.Color(220, 204, 153));
 
-        JScrollPane scrollPane2 = new JScrollPane(mainPanel2);
+        scrollPane2 = new JScrollPane(mainPanel2);
         scrollPane2.setBounds(550, 225, 450, 340);
         scrollPane2.setBackground(new java.awt.Color(220, 204, 153));
         
@@ -214,6 +216,10 @@ public class AdminGUI extends JFrame {
         btnRefresh.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ec.refreshPanel(mainPanel,mainPanel2);
+                scrollPane.validate();
+                scrollPane.repaint();
+                scrollPane2.validate();
+                scrollPane2.repaint();
             }
         }));
         pMain.add(btnRefresh);

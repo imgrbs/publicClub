@@ -20,7 +20,7 @@ public class EventController {
     private static int yValueCurrent = 10;
     private int yValueEnd = 10;
     private int ySizeCurrent =10;
-    private int ySizeComplete;
+    private int ySizeComplete =10;
     java.util.Date d = new java.util.Date();
     SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
     
@@ -57,7 +57,6 @@ public class EventController {
     public void setySizeComplete(int ySizeComplete) {
         this.ySizeComplete = ySizeComplete;
     }
-    
     public void AddCurrentEvent(JPanel jp,JPanel jp2) {
         ResultSet rs = ev.getEvent();
         int tempId=0;
@@ -93,22 +92,22 @@ public class EventController {
                 if (d.compareTo(tempEnd) <= 0) {
                     this.ySizeCurrent +=110;      
                     jp.setPreferredSize(new java.awt.Dimension(400, this.ySizeCurrent));        
-                    System.out.println(ySizeCurrent);
+//                    System.out.println(ySizeCurrent);
                     jp.add(pec.AddCurrentEvent());
-                    System.out.println(tempName);
-                    System.out.println("ADD CR Event");
+//                    System.out.println(tempName);
+//                    System.out.println("ADD CR Event");
                 } else {
                     this.ySizeComplete += 110;
                     jp2.setPreferredSize(new java.awt.Dimension(400, this.ySizeComplete));
                     jp2.add(pec.AddCompleteEvent());
-                    System.out.println("ADD CP Event");
+//                    System.out.println("ADD CP Event");
                 }
-                if(this.ySizeCurrent<300){
-                    this.ySizeCurrent=350;
-                }
-                else if(this.ySizeComplete<300){
-                    this.ySizeComplete=350;
-                }
+//                if(this.ySizeCurrent<300){
+//                    this.ySizeCurrent=150;
+//                }
+//                else if(this.ySizeComplete<300){
+//                    this.ySizeComplete=150;
+//                }
             }
             
             
@@ -120,20 +119,22 @@ public class EventController {
             ex.printStackTrace();
         }
         
-//        TrackEvent ti= new TrackEvent(tempId,tempName,tempDesc,tempStart,tempEnd,tempTime,tempEndTime,tempPlace,tempType);
+//        TrackEvent ti= new TrackEvent(tempId,tempName,tempDesc,tempStart
+//                      ,tempEnd,tempTime,tempEndTime,tempPlace,tempType);
         cb.logout();
         System.out.println("Add Success");
     }
     
+    JPanel jptemp , jptemp2;
     public void refreshPanel(JPanel jp,JPanel jp2){
+        jptemp = jp;
+        jptemp2 = jp2;
         System.out.println("PEC ID REF"+pec.getEvId());
         System.out.println("Refresh");
         pec.setyValueCurrent(10);
         pec.setyValueComplete(10);
         this.ySizeCurrent=0;
-        this.yValueEnd=0;
-//        System.out.println(yValueCurrent);
-//        System.out.println(ySizeCurrent);
+        this.ySizeComplete=0;
         jp.removeAll();
         jp2.removeAll();
         jp.validate();
@@ -146,9 +147,9 @@ public class EventController {
     }
     
     public void DeleteAlert(int delId){
-        System.out.println("EV ID*"+evId);
         System.out.println("DELID *"+delId);
         ev.DeleteEvent(delId);
+        JOptionPane.showMessageDialog(null,"Delete Success");
     }
     
     
