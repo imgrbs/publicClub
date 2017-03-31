@@ -124,7 +124,7 @@ public class PanelEventComponent {
                 int dialogResult = JOptionPane.showConfirmDialog 
                 (null, "จะลบกิจกรรมใช่หรือไม่","Warning",dialogButton);
                 if(dialogResult == JOptionPane.YES_OPTION){
-                    ec.DeleteAlert();
+                    ec.DeleteAlert(evId);
                 }
             }
 

@@ -8,7 +8,7 @@ package publicizehub.club.view;
 import java.util.Date;
 import java.sql.*;
 import javax.swing.*;
-import publicizehub.club.controller.*;
+import publicizehub.club.model.*;
 
 /**
  *
@@ -245,7 +245,7 @@ public class EditEvent extends javax.swing.JFrame {
         System.out.println(this.evId);
         editEvent();
         AdminGUI ag = new AdminGUI();
-        ag.refreshPanel();
+//        ag.refreshPanel();
     }//GEN-LAST:event_confirmUpdateActionPerformed
 
     private void cancelUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelUpdateActionPerformed

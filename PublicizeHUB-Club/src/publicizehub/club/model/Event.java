@@ -99,10 +99,12 @@ public class Event {
             System.out.println("Delete Success");
         }
         catch(SQLException e){
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println("SQLException! - event");
         }
         catch(Exception e){
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println("EXCEPTION - event");
         }
         finally{
             cb.logout();

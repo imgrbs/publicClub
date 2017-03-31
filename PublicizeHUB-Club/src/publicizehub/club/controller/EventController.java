@@ -145,9 +145,10 @@ public class EventController {
         jp2.repaint();
     }
     
-    public void DeleteAlert(){
-        System.out.println("EC evId"+pec.getEvId());
-        ev.DeleteEvent(pec.getEvId());
+    public void DeleteAlert(int delId){
+        System.out.println("EV ID*"+evId);
+        System.out.println("DELID *"+delId);
+        ev.DeleteEvent(delId);
     }
     
     
