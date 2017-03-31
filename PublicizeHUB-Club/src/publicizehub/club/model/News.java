@@ -7,6 +7,7 @@ package publicizehub.club.model;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -17,10 +18,12 @@ import javax.swing.*;
  * @author JIL
  */
 public class News {
-    private String cont;
     private ConnectionBuilder cb = new ConnectionBuilder();
+    private String cont;
+    PreparedStatement ps;
+    ResultSet rs;
     
-    ArrayList<String> myArrList = new ArrayList<String>();
+    //ArrayList<String> myArrList = new ArrayList<String>();
     
     public News() {
     }
@@ -32,32 +35,24 @@ public class News {
     public void setContent(String content) {
         this.cont = content;
     }
-    
-    public void addNewsToList(JList newsList){
+    public ResultSet getNews(){
         cb.connecting();
-
-        PreparedStatement ps = null;
-        ResultSet result;
+              
         try {
             ps = cb.getConnect().prepareStatement("SELECT * FROM tb_news");
-            result = ps.executeQuery();
-            while (result.next()) {
-                String temp = result.getString("content");
-                myArrList.add(temp);
-            }
+            rs = ps.executeQuery();
+            
+        } catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("SQL ผิดพลาด");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             e.printStackTrace();
         }
-
-        cb.logout();
-
-        String[] temp = new String[myArrList.size()];
-        for (int i = 0; i < myArrList.size(); i++) {
-            temp[i] = "- " + myArrList.get(i);
-        }
-        newsList.setListData(temp);
+        
+        return rs;
     }
+    
     
     public void insertNews(JTextField newsId,JTextArea content) {
         ConnectionBuilder cb = new ConnectionBuilder();
