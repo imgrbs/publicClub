@@ -105,8 +105,8 @@ public class Event {
             e.printStackTrace();
             System.out.println("getEvent() Exception!");
         }
+        cb.logout();
         return rs;
     }
 
-    
 }
