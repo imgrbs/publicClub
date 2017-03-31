@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import publicizehub.club.model.*;
 
 /**
@@ -39,6 +41,19 @@ public class NewsController {
             temp[i] = "- " + myArrList.get(i);
         }
         newsList.setListData(temp);
+        cb.logout();
+    }
+    
+    public void insertNews(JTextArea content){
+        String cont; 
+        try{
+            cont = content.getText();
+            nw.toInsertNews(cont);
+            JOptionPane.showMessageDialog(null, "Record Inserted Successfully");
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
         cb.logout();
     }
     

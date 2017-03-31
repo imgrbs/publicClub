@@ -53,8 +53,22 @@ public class News {
         return rs;
     }
     
-    
-    public void insertNews(JTextField newsId,JTextArea content) {
+    public void toInsertNews(String content){
+        cb.connecting();
+              
+        try {
+            ConnectionBuilder cb = new ConnectionBuilder();
+            cb.connectWithStatement("INSERT INTO tb_news"
+                    + "(content) "
+                    + "VALUES ('"
+                    + content + "')",1);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    /*public void insertNews(JTextField newsId,JTextArea content) {
         ConnectionBuilder cb = new ConnectionBuilder();
         cb.connectWithStatement("INSERT INTO tb_news"
                     + "(content) "
@@ -65,7 +79,7 @@ public class News {
         JOptionPane.showMessageDialog(null, "Record Inserted Successfully");
         
         cb.logout();
-    }
+    }*/
     
     public void editNews() {
         JOptionPane.showMessageDialog(null, "Test Edit Button");
