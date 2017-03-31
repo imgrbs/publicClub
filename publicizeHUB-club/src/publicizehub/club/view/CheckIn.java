@@ -96,9 +96,6 @@ public class CheckIn extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
 
-        insertCode.setForeground(new java.awt.Color(204, 204, 204));
-        insertCode.setText("Insert code");
-
         confirmInsert.setText("ตกลง");
         confirmInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
