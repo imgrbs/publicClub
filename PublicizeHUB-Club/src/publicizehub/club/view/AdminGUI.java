@@ -10,8 +10,9 @@ import java.util.Date;
 import java.text.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import publicizehub.club.controller.*;
 import publicizehub.club.model.ConnectionBuilder;
-import publicizehub.club.model.trackId;
+import publicizehub.club.model.TrackEvent;
     
 /**
  *
@@ -29,16 +30,13 @@ public class AdminGUI extends JFrame {
     private JFrame frame;
     ConnectionBuilder cb = new ConnectionBuilder();
 
-    private int yValueCurrent = 10;
-    private int yValueEnd = 10;
-    private int ySizeCurrent;
-    private int ySizeComplete;
-    Date d = new Date();
-    SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
     ArrayList<String> myArrList = new ArrayList<String>();
     JPanel mainPanel;
     JPanel mainPanel2;
+    
+    EventController ec = new EventController();
+    
     public void actionPerformed(ActionEvent e) {
         // remove the previous JFrame
         this.frame.setVisible(false);
@@ -56,13 +54,13 @@ public class AdminGUI extends JFrame {
         mainPanel = new JPanel();
         mainPanel.setLayout(null);
         mainPanel.setBounds(100, 100, 450, 600);
-        mainPanel.setPreferredSize(new java.awt.Dimension(400, ySizeCurrent));
+        mainPanel.setPreferredSize(new java.awt.Dimension(400, ec.getySizeCurrent()));
         mainPanel.setBackground(new java.awt.Color(220, 204, 153));
 
         mainPanel2 = new JPanel();
         mainPanel2.setLayout(null);
         mainPanel2.setBounds(100, 100, 450, 600);
-        mainPanel2.setPreferredSize(new java.awt.Dimension(400, ySizeComplete));
+        mainPanel2.setPreferredSize(new java.awt.Dimension(400, ec.getySizeComplete()));
         mainPanel2.setBackground(new java.awt.Color(220, 204, 153));
         
         JScrollPane scrollPane = new JScrollPane(mainPanel);
@@ -72,14 +70,17 @@ public class AdminGUI extends JFrame {
         JScrollPane scrollPane2 = new JScrollPane(mainPanel2);
         scrollPane2.setBounds(550, 225, 450, 340);
         scrollPane2.setBackground(new java.awt.Color(220, 204, 153));
-
-        addEventToPanel();
+        
+        System.out.println("LOADPANEL");
+        ec.AddCurrentEvent(mainPanel,mainPanel2);
+        System.out.println("LOADSUCCESS");
 
         scrollPane.setViewportView(mainPanel);
         scrollPane.setWheelScrollingEnabled(true);
         
         scrollPane2.setViewportView(mainPanel2);
         scrollPane2.setWheelScrollingEnabled(true);
+        
         getContentPane().add(scrollPane);
         getContentPane().add(scrollPane2);
         
@@ -87,33 +88,7 @@ public class AdminGUI extends JFrame {
         panelProfile();
         panelMain();
     }
-    public void addEventToPanel(){
-        PreparedStatement ps = null;
-        ResultSet result;
-        cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
-        try {
-            System.out.println("Done");
-            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_event");
-            result = ps.executeQuery();
-
-            while (result.next()) {
-                if (d.compareTo(result.getDate("evEndDate")) <= 0) {
-                    ySizeCurrent +=110;      
-                    mainPanel.setPreferredSize(new java.awt.Dimension(400, ySizeCurrent));            
-                    currentEvent(result, mainPanel);
-                } else {
-                    ySizeComplete += 110;
-                    mainPanel2.setPreferredSize(new java.awt.Dimension(400, ySizeComplete));  
-                    completeEvent(result, mainPanel2);
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            e.printStackTrace();
-        }
-
-        
-    }
+    
     public void setTheme() {
         try {
             for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -245,172 +220,11 @@ public class AdminGUI extends JFrame {
         btnRefresh.setBounds(330, 180, 135, 40);
         btnRefresh.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                refreshPanel();
+                ec.refreshPanel(mainPanel,mainPanel2);
             }
         }));
         pMain.add(btnRefresh);
  
-    }
-    public void refreshPanel(){
-        System.out.println("Refresh");
-        yValueCurrent = 10;
-        yValueEnd = 10;
-        mainPanel.removeAll();
-//        mainPanel.validate();
-//        mainPanel.repaint();
-        addEventToPanel(); 
-        mainPanel.validate();
-        mainPanel.repaint();
-    }
-    public void currentEvent(ResultSet result, JPanel jp) {
-        
-        int tempId=0;
-        Date tempStart = new Date();
-        Date tempEnd = new Date();
-        String tempName="";
-        String tempDesc="";
-        String tempTime="";
-        String tempEndTime="";
-        String tempPlace="";
-        int tempType=0;
-        try{
-            tempId = result.getInt("evId");
-            tempName = result.getString("evName");
-            tempDesc = result.getString("evDescrip");
-            tempTime = result.getString("evTime");
-            tempEndTime = result.getString("evEndTime");
-            tempPlace = result.getString("evPlace");
-            tempStart = result.getDate("evDate");
-            tempEnd = result.getDate("evEndDate");
-            tempType = result.getInt("evType");
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        
-        trackId ti= new trackId(tempId,tempName,tempDesc,tempStart,tempEnd,tempTime,tempEndTime,tempPlace,tempType);
-        
-        System.out.println("Check");
-        JPanel act = new JPanel();
-        act.setOpaque(true);
-        act.setBounds(10, this.yValueCurrent, 400, 90);
-        act.setBackground(new java.awt.Color(240, 240, 240));
-        act.setLayout(null);
-
-        //event name
-        JLabel lbEvName = new JLabel();
-        try {
-            lbEvName.setText(result.getString("evName"));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        lbEvName.setFont(new java.awt.Font("Tahoma", 1, 17));
-        lbEvName.setBounds(30, 5, 250, 50);
-        act.add(lbEvName);
-        
-        //ปุม edit
-        JButton btnEdit = new JButton();
-        btnEdit.setText("แก้ไข");
-        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnEdit.setBackground(new java.awt.Color(153, 153, 153));
-        btnEdit.setBounds(320, 5, 70, 30);
-        btnEdit.addActionListener((new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new EditEvent(ti.getId(),ti.getName(),ti.getDesc(),ti.getStDate()
-                        ,ti.getEdDate(),ti.getTime(),ti.getEdTime(),ti.getPlace(),ti.getTicket()).setVisible(true);
-            }
-        }));
-        act.add(btnEdit);
-        //ปุ่ม check in
-        JButton btnCheckIn = new JButton();
-        btnCheckIn.setText("เช็คอิน");
-        btnCheckIn.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnCheckIn.setBackground(new java.awt.Color(153, 153, 153));
-        btnCheckIn.setBounds(100, 45, 80, 30);
-        btnCheckIn.addActionListener((new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new CheckIn(ti.getId()).setVisible(true);
-            }
-        }));
-        act.add(btnCheckIn);
-
-        //ปุม detail
-        JButton btnDetail = new JButton();
-        btnDetail.setText("รายละเอียด");
-        btnDetail.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnDetail.setBackground(new java.awt.Color(153, 153, 153));
-        btnDetail.setBounds(190, 45, 120, 30);
-        btnDetail.addActionListener((new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new Detail().setVisible(true);
-            }
-        }));
-        act.add(btnDetail);
-        
-        
-
-        //ปุ่ม ลบ
-        JButton btnDelete = new JButton();
-        btnDelete.setText("ลบ");
-        
-        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnDelete.setBackground(new java.awt.Color(255, 102, 51));
-        btnDelete.setBounds(320, 45, 70, 30);
-        act.add(btnDelete);
-        
-        ActionListener al;
-        btnDelete.addActionListener((
-            al = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                deleteEvent(ti.getId());
-                System.out.println(ti.getId());
-                jp.remove(act);
-                getContentPane().revalidate();
-                getContentPane().repaint();
-                System.out.println("ลบ");
-                refreshPanel();
-            }
-
-        }));
-        
-        jp.add(act);
-        this.yValueCurrent += 100;
-    }
-
-    public void completeEvent(ResultSet result, JPanel jp) {
-        System.out.println("Check");
-        JPanel act = new JPanel();
-        act.setOpaque(true);
-        act.setBounds(10, this.yValueEnd, 400, 90);
-        act.setBackground(new java.awt.Color(240, 240, 240));
-        act.setLayout(null);
-
-        //event name
-        JLabel lbEvName = new JLabel();
-        try {
-            lbEvName.setText(result.getString("evName"));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        lbEvName.setFont(new java.awt.Font("Tahoma", 1, 17));
-        lbEvName.setBounds(10, 5, 250, 50);
-        act.add(lbEvName);
-
-        //ปุ่ม feedback
-        JButton btnFeedBack = new JButton();
-        btnFeedBack.setText("ผลตอบรับ");
-        btnFeedBack.setFont(new java.awt.Font("Tahoma", 1, 15));
-        btnFeedBack.setBackground(new java.awt.Color(153, 153, 153));
-        btnFeedBack.setBounds(270, 40, 120, 30);
-        btnFeedBack.addActionListener((new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new FormSumActivity().setVisible(true);
-            }
-        }));
-        act.add(btnFeedBack);
-
-        jp.add(act);
-        this.yValueEnd += 100;
     }
     
     public void deleteEvent(int id){

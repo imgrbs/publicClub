@@ -15,9 +15,5 @@ import publicizehub.club.view.*;
  */
 public class Action {    
     
-    private int evId;
-    
-    TrackId ti =  new TrackId(evId);
-    
     
 }

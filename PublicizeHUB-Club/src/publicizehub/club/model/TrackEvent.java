@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package publicizehub.club.model;
 
 //import java.sql.*;
@@ -14,7 +9,7 @@ import java.util.Date;
  *
  * @author ImagineRabbits
  */
-public class trackId {
+public class TrackEvent {
     private int id;
     
     private String name;
@@ -27,11 +22,11 @@ public class trackId {
     String place;
     int ticket;
     
-    public trackId(int id) {
+    public TrackEvent(int id) {
         this.id = id;
     }
 
-    public trackId(int id, String name, String desc, Date stDate, Date edDate, String time, String edTime, String place, int ticket) {
+    public TrackEvent(int id, String name, String desc, Date stDate, Date edDate, String time, String edTime, String place, int ticket) {
         this.id = id;
         this.name = name;
         this.desc = desc;
