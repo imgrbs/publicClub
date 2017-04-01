@@ -6,32 +6,32 @@ import java.awt.event.*;
 import java.sql.*;
 import java.util.*;
 import publicizehub.club.controller.*;
-import publicizehub.club.model.*;
+
 /**
  *
  * @author JIL
  */
 public class AdminGUI extends JFrame {
 
-    public String name;
-    public String descr;
-    public String date;
-    public String place;
-    public int numTick;
-    public String time;
-    public int numPer;
+    EventController ec = new EventController();
+    
+    private long stdId=59130500007l;
+    private String name;
+    private String descr;
+    private String date;
+    private String place;
+    private int numTick;
+    private String time;
+    private int numPer;
     private JFrame frame;
-    ConnectionBuilder cb = new ConnectionBuilder();
-
-
+    
     ArrayList<String> myArrList = new ArrayList<String>();
     JPanel mainPanel;
     JPanel mainPanel2;
-    
-    EventController ec = new EventController();
+
     JScrollPane scrollPane;
-    JScrollPane scrollPane2; 
-    
+    JScrollPane scrollPane2;
+
     public void actionPerformed(ActionEvent e) {
         // remove the previous JFrame
         this.frame.setVisible(false);
@@ -57,7 +57,7 @@ public class AdminGUI extends JFrame {
         mainPanel2.setBounds(100, 100, 450, 600);
         mainPanel2.setPreferredSize(new java.awt.Dimension(400, ec.getySizeComplete()));
         mainPanel2.setBackground(new java.awt.Color(220, 204, 153));
-        
+
         scrollPane = new JScrollPane(mainPanel);
         scrollPane.setBounds(20, 225, 450, 340);
         scrollPane.setBackground(new java.awt.Color(220, 204, 153));
@@ -65,25 +65,25 @@ public class AdminGUI extends JFrame {
         scrollPane2 = new JScrollPane(mainPanel2);
         scrollPane2.setBounds(550, 225, 450, 340);
         scrollPane2.setBackground(new java.awt.Color(220, 204, 153));
-        
+
         System.out.println("LOADPANEL");
-        ec.AddCurrentEvent(mainPanel,mainPanel2);
+        ec.AddCurrentEvent(mainPanel, mainPanel2);
         System.out.println("LOADSUCCESS");
 
         scrollPane.setViewportView(mainPanel);
         scrollPane.setWheelScrollingEnabled(true);
-        
+
         scrollPane2.setViewportView(mainPanel2);
         scrollPane2.setWheelScrollingEnabled(true);
-        
+
         getContentPane().add(scrollPane);
         getContentPane().add(scrollPane2);
-        
+
         panelClose();
         panelProfile();
         panelMain();
     }
-    
+
     public void setTheme() {
         try {
             for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -141,7 +141,7 @@ public class AdminGUI extends JFrame {
         headName.setFont(new java.awt.Font("Tahoma", 1, 16));
         headName.setBounds(300, 10, 100, 50);
         profile.add(headName);
-        
+
         //stdId
         JLabel headId = new JLabel();
         headId.setText("รหัสนักศึกษา :");
@@ -155,19 +155,19 @@ public class AdminGUI extends JFrame {
         headDp.setFont(new java.awt.Font("Tahoma", 1, 16));
         headDp.setBounds(300, 70, 130, 50);
         profile.add(headDp);
-        
+
         //ปุ่ม CrateEvent
         JButton btnCrateEv = new JButton();
         btnCrateEv.setText("เพิ่มกิจกรรม");
         btnCrateEv.setFont(new java.awt.Font("Tahoma", 1, 17));
-        btnCrateEv.setBounds(850,5, 135, 40);
+        btnCrateEv.setBounds(850, 5, 135, 40);
         btnCrateEv.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new CreateEvent().setVisible(true);
+                new CreateEvent(stdId,ec).setVisible(true);
             }
         }));
         profile.add(btnCrateEv);
-        
+
         //ปุ่ม addNews
         JButton btnAddNews = new JButton();
         btnAddNews.setText("เพิ่มข่าว");
@@ -179,7 +179,7 @@ public class AdminGUI extends JFrame {
             }
         }));
         profile.add(btnAddNews);
-           
+
         //edit
         JLabel headEd = new JLabel();
         headEd.setText("ประสงค์แก้ไขข้อมูล โปรดแจ้ง");
@@ -208,14 +208,14 @@ public class AdminGUI extends JFrame {
         finActivity.setFont(new java.awt.Font("Tahoma", 1, 24));
         finActivity.setBounds(550, 180, 250, 50);
         pMain.add(finActivity);
-        
+
         JButton btnRefresh = new JButton();
         btnRefresh.setText("รีเฟรช");
         btnRefresh.setFont(new java.awt.Font("Tahoma", 1, 17));
         btnRefresh.setBounds(330, 180, 135, 40);
         btnRefresh.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ec.refreshPanel(mainPanel,mainPanel2);
+                ec.refreshPanel(mainPanel, mainPanel2);
                 scrollPane.validate();
                 scrollPane.repaint();
                 scrollPane2.validate();
@@ -223,36 +223,7 @@ public class AdminGUI extends JFrame {
             }
         }));
         pMain.add(btnRefresh);
- 
-    }
-    
-    public void deleteEvent(int id){
-        System.out.println("Call deleteEv");
-        String command;
-        PreparedStatement s;
-        try{
-            command ="DELETE FROM tb_event WHERE evId = ?";
-            
-            System.out.println(id);
-            System.out.println(command);
-            s = cb.getConnect().prepareStatement(command);
-            System.out.println(s);
-            s.setInt(1,id);
-//            s.setInt(1, result.getInt("evId"));
-//            s.execute();
-            s.executeUpdate();
-            System.out.println("Delete Success");
-            
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        finally{
-            cb.logout();
-        }
+
     }
 
     public static void main(String[] args) {

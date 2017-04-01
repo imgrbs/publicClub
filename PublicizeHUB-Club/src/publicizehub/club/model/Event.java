@@ -1,6 +1,5 @@
 package publicizehub.club.model;
 
-import java.util.Date;
 import java.sql.*;
 import java.text.*;
 import javax.swing.*;
@@ -23,7 +22,7 @@ public class Event {
     private int eventType;
     private long stdId;
     
-    Date date = new Date();
+    Date date;
     SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
     
     PreparedStatement ps;
@@ -32,22 +31,24 @@ public class Event {
     public Event() {
     }
 
-    public Event(int evId, Date evDate, Date evEndDate, Time evTime, Time evEndTime, 
-            String evPlace, int evTicket, int eventType, long stdId) {
-        this.evId = evId;
-        this.evDate = evDate;
-        this.evEndDate = evEndDate;
-        this.evTime = evTime;
-        this.evEndTime = evEndTime;
-        this.evPlace = evPlace;
-        this.evTicket = evTicket;
-        this.eventType = eventType;
-        this.stdId = stdId;
-    }
+//    public Event(int evId, Date evDate, Date evEndDate, Time evTime, Time evEndTime, 
+//            String evPlace, int evTicket, int eventType, long stdId) {
+//        this.evId = evId;
+//        this.evDate = evDate;
+//        this.evEndDate = evEndDate;
+//        this.evTime = evTime;
+//        this.evEndTime = evEndTime;
+//        this.evPlace = evPlace;
+//        this.evTicket = evTicket;
+//        this.eventType = eventType;
+//        this.stdId = stdId;
+//    }
     
     
     
-    public void newEvent() {
+    public void createEvent(String name,String desc,Date date,Date endDate,
+                        Time time,Time endTime,String place,int ticket,
+                        int evType,long stdId) {
         cb.connecting();
         Statement s = null;
        
