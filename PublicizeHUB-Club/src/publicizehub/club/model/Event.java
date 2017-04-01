@@ -46,8 +46,8 @@ public class Event {
     
     
     
-    public void createEvent(String name,String desc,Date date,Date endDate,
-                        Time time,Time endTime,String place,int ticket,
+    public void createEvent(String name,String desc,String date,String endDate,
+                        String time,String endTime,String place,int ticket,
                         int evType,long stdId) {
         cb.connecting();
         Statement s = null;
@@ -56,17 +56,17 @@ public class Event {
             s = cb.getConnect().createStatement();
             // SQL Insert
             String sql = "INSERT INTO tb_event"
-                    + "(evName,evDescrip,evDate,evEndDate,evTime,evEndTime,evPlace,evTicket,evType,stuId) "
+                    + "(evName,evDescrip,evDate,evEndDate,evTime,evEndTime,evPlace,evTicket,evType,stdId) "
                     + "VALUES ('" 
-                    + evName + "','"
-                    + evDescrip + "','"
-                    + evDate + "','"
-                    + evEndDate + "','"
-                    + evTime + "','"
-                    + evEndTime + "','"
-                    + evPlace + "','"
-                    + evTicket + "','"
-                    + eventType + "','"
+                    + name + "','"
+                    + desc + "','"
+                    + date + "','"
+                    + endDate + "','"
+                    + time + "','"
+                    + endTime + "','"
+                    + place + "','"
+                    + ticket + "','"
+                    + evType + "','"
                     + stdId + "') ";
             s.executeUpdate(sql);
         } 
@@ -82,7 +82,7 @@ public class Event {
         cb.logout();
     }
     
-    public void EditEvent(){
+    public void UpdateEvent(){
      // update
     }
     
@@ -134,5 +134,5 @@ public class Event {
         }
         return rs;
     }
-
+    
 }

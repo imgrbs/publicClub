@@ -15,7 +15,7 @@ public class AdminGUI extends JFrame {
 
     EventController ec = new EventController();
     
-    private long stdId=59130500007l;
+    private long stdId=59130500007L;
     private String name;
     private String descr;
     private String date;

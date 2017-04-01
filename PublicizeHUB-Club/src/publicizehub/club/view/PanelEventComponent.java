@@ -77,8 +77,8 @@ public class PanelEventComponent {
         btnEdit.setBounds(320, 5, 70, 30);
         btnEdit.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-//                new EditEvent(ti.getId(),ti.getName(),ti.getDesc(),ti.getStDate()
-//                        ,ti.getEdDate(),ti.getTime(),ti.getEdTime(),ti.getPlace(),ti.getTicket()).setVisible(true);
+                new EditEvent(evId,evName,ti.getDesc(),ti.getStDate()
+                        ,ti.getEdDate(),ti.getTime(),ti.getEdTime(),ti.getPlace(),ti.getTicket()).setVisible(true);
             }
         }));
         act.add(btnEdit);

@@ -110,12 +110,6 @@ public class EventController {
                     jp2.setPreferredSize(new java.awt.Dimension(400, this.ySizeComplete));
                     jp2.add(pec.AddCompleteEvent());
                 }
-//                if(this.ySizeCurrent<300){
-//                    this.ySizeCurrent=150;
-//                }
-//                else if(this.ySizeComplete<300){
-//                    this.ySizeComplete=150;
-//                }
             }
 
         } catch (SQLException ex) {
@@ -155,21 +149,18 @@ public class EventController {
     public void CreateEventValue(String name, String desc, String date, String endDate,
                                 String time , String endTime, String place, String ticket,
                                 int evType,long stdId) {
-        Date tempDate;
-        Date tempEndDate;
-        Time tempTime;
-        Time tempEndTime;
+        java.util.Date tempDate=null;
+        java.util.Date tempEndDate=null;
         try{
             tempDate = ft.parse(date);
             tempEndDate = ft.parse(endDate);
-//            tempTime= timeFormat.parse(time);
         }
         catch(Exception e){
             e.printStackTrace();
             System.out.println("Date ERROR!");
         }
         int tempTicket = parseInt(ticket);
-//        ev.createEvent(name,desc,tempDate,tempEndDate,tempTime,tempEndTime,
-//                place,tempTicket,evType,stdId);
+        ev.createEvent(name,desc,date,endDate,time,endTime,
+                place,tempTicket,evType,stdId);
     }
 }

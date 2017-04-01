@@ -86,10 +86,10 @@ public class CreateEvent extends javax.swing.JFrame {
         evType = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         evDescrip = new javax.swing.JTextArea();
-        evDate = new javax.swing.JFormattedTextField();
-        evEndDate = new javax.swing.JFormattedTextField();
-        evTime = new javax.swing.JFormattedTextField();
-        evEndTime = new javax.swing.JFormattedTextField();
+        evDate = new javax.swing.JTextField();
+        evEndDate = new javax.swing.JTextField();
+        evTime = new javax.swing.JTextField();
+        evEndTime = new javax.swing.JTextField();
 
         setResizable(false);
 
@@ -173,50 +173,6 @@ public class CreateEvent extends javax.swing.JFrame {
         evDescrip.setRows(5);
         jScrollPane2.setViewportView(evDescrip);
 
-        evDate.setForeground(new java.awt.Color(204, 204, 204));
-        evDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
-        evDate.setText("ex.( Jan 15, 2016 )");
-        evDate.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                evDateFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                evDateFocusLost(evt);
-            }
-        });
-        evDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                evDateActionPerformed(evt);
-            }
-        });
-
-        evEndDate.setForeground(new java.awt.Color(204, 204, 204));
-        evEndDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
-        evEndDate.setText("ex.( Jan 16, 2016 )");
-        evEndDate.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                evEndDateFocusGained(evt);
-            }
-        });
-
-        evTime.setForeground(new java.awt.Color(204, 204, 204));
-        evTime.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("HH:mm"))));
-        evTime.setText("ex.( 15:00:00 PM )");
-        evTime.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                evTimeFocusGained(evt);
-            }
-        });
-
-        evEndTime.setForeground(new java.awt.Color(204, 204, 204));
-        evEndTime.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("HH:mm:ss"))));
-        evEndTime.setText("ex.( 16:00:00 PM )");
-        evEndTime.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                evEndTimeFocusGained(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -245,17 +201,18 @@ public class CreateEvent extends javax.swing.JFrame {
                     .addComponent(evPlace, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(evName)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(evTime, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(evDate))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(evDate, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(evTime, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(evEndDate)
-                            .addComponent(evEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(evEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(evEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6))
                     .addComponent(evTicket)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,12 +250,12 @@ public class CreateEvent extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
+                        .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(evDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
+                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(evEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -330,7 +287,7 @@ public class CreateEvent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel)
                     .addComponent(confirm))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pack();
@@ -367,31 +324,6 @@ public class CreateEvent extends javax.swing.JFrame {
     private void stuIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stuIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_stuIdActionPerformed
-
-    private void evDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_evDateFocusGained
-        evDate.setText("");
-    }//GEN-LAST:event_evDateFocusGained
-
-    private void evDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_evDateActionPerformed
-
-    private void evEndDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_evEndDateFocusGained
-        evEndDate.setText("");
-    }//GEN-LAST:event_evEndDateFocusGained
-
-    private void evTimeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_evTimeFocusGained
-        evTime.setText("");
-    }//GEN-LAST:event_evTimeFocusGained
-
-    private void evEndTimeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_evEndTimeFocusGained
-        evEndTime.setText("");
-    }//GEN-LAST:event_evEndTimeFocusGained
-
-    private void evDateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_evDateFocusLost
-        String temp = evDate.getText();
-        evDate.setText(temp);
-    }//GEN-LAST:event_evDateFocusLost
 
     /**
      * @param args the command line arguments
@@ -433,14 +365,14 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JRadioButton camp;
     private javax.swing.JButton cancel;
     private javax.swing.JButton confirm;
-    private javax.swing.JFormattedTextField evDate;
+    private javax.swing.JTextField evDate;
     private javax.swing.JTextArea evDescrip;
-    private javax.swing.JFormattedTextField evEndDate;
-    private javax.swing.JFormattedTextField evEndTime;
+    private javax.swing.JTextField evEndDate;
+    private javax.swing.JTextField evEndTime;
     private javax.swing.JTextField evName;
     private javax.swing.JTextField evPlace;
     private javax.swing.JTextField evTicket;
-    private javax.swing.JFormattedTextField evTime;
+    private javax.swing.JTextField evTime;
     private javax.swing.JTextField evType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
