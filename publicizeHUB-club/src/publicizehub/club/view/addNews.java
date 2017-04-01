@@ -12,6 +12,7 @@ import publicizehub.club.controller.*;
 import publicizehub.club.model.News;
 public class addNews extends javax.swing.JFrame {
     private News nw = new News();
+    NewsController nc = new NewsController();
     /**
      * Creates new form addNews
      */
@@ -23,9 +24,7 @@ public class addNews extends javax.swing.JFrame {
         return content;
     }
 
-    public JTextField getNewsId() {
-        return newsId;
-    }
+    
     
 
     
@@ -44,8 +43,6 @@ public class addNews extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         content = new javax.swing.JTextArea();
-        newsId = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         editNews = new javax.swing.JButton();
 
         setResizable(false);
@@ -71,15 +68,6 @@ public class addNews extends javax.swing.JFrame {
         content.setRows(5);
         jScrollPane1.setViewportView(content);
 
-        newsId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newsIdActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setText("รหัสข่าว");
-
         editNews.setText("แก้ไขข่าว");
         editNews.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,25 +90,17 @@ public class addNews extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(deleteNews, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(newsId, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(67, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newsId, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(deleteNews, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,16 +113,12 @@ public class addNews extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void insertNewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertNewsActionPerformed
-        nw.insertNews(getNewsId(),getContent());
+        nc.insertNews(getContent());
     }//GEN-LAST:event_insertNewsActionPerformed
 
     private void deleteNewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteNewsActionPerformed
         nw.deleteNews();
     }//GEN-LAST:event_deleteNewsActionPerformed
-
-    private void newsIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newsIdActionPerformed
-       
-    }//GEN-LAST:event_newsIdActionPerformed
 
     private void editNewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editNewsActionPerformed
         nw.editNews();
@@ -189,8 +165,6 @@ public class addNews extends javax.swing.JFrame {
     private javax.swing.JButton editNews;
     private javax.swing.JButton insertNews;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField newsId;
     // End of variables declaration//GEN-END:variables
 }

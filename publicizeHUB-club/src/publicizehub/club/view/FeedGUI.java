@@ -15,7 +15,8 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.UIManager.*;
-import publicizehub.club.model.*;
+import publicizehub.club.controller.*;
+
 
 public class FeedGUI extends JFrame {
 
@@ -23,7 +24,7 @@ public class FeedGUI extends JFrame {
     private String userName = "กีรติ";
     private String userSurname = "เจียรจินดารัตน์";
     private long stdId = 59130500007l;
-    private News ns = new News();
+    NewsController nc = new NewsController();
     
     ArrayList<String> myArrList = new ArrayList<String>();
     
@@ -201,7 +202,7 @@ public class FeedGUI extends JFrame {
         scrollPane.setBounds(30, 40, 655,150);
         scrollPane.setBackground(new java.awt.Color(255, 255, 255));
         
-        ns.addNewsToList(newsList);
+        nc.addNewsToList(newsList);
         scrollPane.setViewportView(newsList);
         newsBox.add(scrollPane);
         
