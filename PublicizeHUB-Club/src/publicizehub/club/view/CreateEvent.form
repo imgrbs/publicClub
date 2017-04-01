@@ -58,8 +58,8 @@
                   <Component id="evName" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="evTime" max="32767" attributes="0"/>
-                          <Component id="evDate" pref="163" max="32767" attributes="0"/>
+                          <Component id="evTime" pref="163" max="32767" attributes="0"/>
+                          <Component id="evDate" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -338,6 +338,7 @@
       </Properties>
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="evDateFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="evDateFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="evDateActionPerformed"/>
       </Events>
     </Component>
@@ -351,20 +352,37 @@
         </Property>
         <Property name="text" type="java.lang.String" value="ex.( Jan 16, 2016 )"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="evEndDateFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="evTime">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+        </Property>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
           <Format format="HH:mm" subtype="-1" type="2"/>
         </Property>
+        <Property name="text" type="java.lang.String" value="ex.( 15:00:00 PM )"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="evTimeFocusGained"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="evEndTime">
       <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="HH:mm" subtype="-1" type="2"/>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="cc" type="rgb"/>
         </Property>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="HH:mm:ss" subtype="-1" type="2"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="ex.( 16:00:00 PM )"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="evEndTimeFocusGained"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

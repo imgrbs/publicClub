@@ -180,6 +180,9 @@ public class CreateEvent extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 evDateFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                evDateFocusLost(evt);
+            }
         });
         evDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,10 +193,29 @@ public class CreateEvent extends javax.swing.JFrame {
         evEndDate.setForeground(new java.awt.Color(204, 204, 204));
         evEndDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
         evEndDate.setText("ex.( Jan 16, 2016 )");
+        evEndDate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                evEndDateFocusGained(evt);
+            }
+        });
 
+        evTime.setForeground(new java.awt.Color(204, 204, 204));
         evTime.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("HH:mm"))));
+        evTime.setText("ex.( 15:00:00 PM )");
+        evTime.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                evTimeFocusGained(evt);
+            }
+        });
 
-        evEndTime.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("HH:mm"))));
+        evEndTime.setForeground(new java.awt.Color(204, 204, 204));
+        evEndTime.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("HH:mm:ss"))));
+        evEndTime.setText("ex.( 16:00:00 PM )");
+        evEndTime.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                evEndTimeFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -224,8 +246,8 @@ public class CreateEvent extends javax.swing.JFrame {
                     .addComponent(evName)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(evTime)
-                            .addComponent(evDate, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
+                            .addComponent(evTime, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                            .addComponent(evDate))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -353,6 +375,23 @@ public class CreateEvent extends javax.swing.JFrame {
     private void evDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evDateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_evDateActionPerformed
+
+    private void evEndDateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_evEndDateFocusGained
+        evEndDate.setText("");
+    }//GEN-LAST:event_evEndDateFocusGained
+
+    private void evTimeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_evTimeFocusGained
+        evTime.setText("");
+    }//GEN-LAST:event_evTimeFocusGained
+
+    private void evEndTimeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_evEndTimeFocusGained
+        evEndTime.setText("");
+    }//GEN-LAST:event_evEndTimeFocusGained
+
+    private void evDateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_evDateFocusLost
+        String temp = evDate.getText();
+        evDate.setText(temp);
+    }//GEN-LAST:event_evDateFocusLost
 
     /**
      * @param args the command line arguments
