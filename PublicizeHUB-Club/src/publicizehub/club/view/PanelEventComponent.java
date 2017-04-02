@@ -77,8 +77,8 @@ public class PanelEventComponent {
         btnEdit.setBounds(320, 5, 70, 30);
         btnEdit.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new EditEvent(evId,evName,ti.getDesc(),ti.getStDate()
-                        ,ti.getEdDate(),ti.getTime(),ti.getEdTime(),ti.getPlace(),ti.getTicket()).setVisible(true);
+                EditEvent ee = new EditEvent(evId);
+                ee.setVisible(true);
             }
         }));
         act.add(btnEdit);
@@ -127,7 +127,6 @@ public class PanelEventComponent {
                     ec.DeleteAlert(evId);
                 }
             }
-
         }));
         
         this.yValueCurrent += 100; 

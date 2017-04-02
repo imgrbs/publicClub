@@ -149,6 +149,7 @@ public class EventController {
     public void CreateEventValue(String name, String desc, String date, String endDate,
                                 String time , String endTime, String place, String ticket,
                                 int evType,long stdId) {
+        
         java.util.Date tempDate=null;
         java.util.Date tempEndDate=null;
         try{
@@ -162,5 +163,49 @@ public class EventController {
         int tempTicket = parseInt(ticket);
         ev.createEvent(name,desc,date,endDate,time,endTime,
                 place,tempTicket,evType,stdId);
+    }
+    
+    public void setUpdate(String name,String desc,String date,
+                            String endDate,String time,String endTime,
+                            String place,String ticket,int evType,int evId){
+        
+        int tempTicket = parseInt(ticket);
+        ev.updateEvent(name,desc,date,endDate,time,
+                       endTime,place,tempTicket,evType,evId);
+    }
+    
+    public void getUpdate(int evId,JTextField evName,JTextArea evDescrip,
+                          JTextField evDate,JTextField evEndDate,JTextField evTime,
+                          JTextField evEndTime,JTextField evPlace,JTextField evTicket,
+                          JRadioButton camp,JRadioButton seminar,JRadioButton other){
+        ResultSet result = ev.getSelect(evId);
+        try{
+            if(result.next()){
+                evName.setText(result.getString("evName"));
+                evDescrip.setText(result.getString("evDescrip"));
+                evDate.setText(result.getString("evDate"));
+                evEndDate.setText(result.getString("evEndDate"));
+                evTime.setText(result.getString("evTime"));
+                evEndTime.setText(result.getString("evEndTime"));
+                evPlace.setText(result.getString("evPlace"));
+                evTicket.setText(""+result.getInt("evTicket"));
+                if(result.getInt("evType")==0){
+                    camp.setSelected(true);
+                }else if(result.getInt("evType")==1){
+                    seminar.setSelected(true);
+                }else {
+                    other.setSelected(true);
+                }
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("SQLException - getUpdate()");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Exception - getUpdate()");
+        }
+        cb.logout();
     }
 }

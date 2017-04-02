@@ -274,6 +274,9 @@
         <Property name="text" type="java.lang.String" value="&#xe2d;&#xe37;&#xe48;&#xe19;&#xe46;"/>
         <Property name="actionCommand" type="java.lang.String" value="0"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="otherActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="seminar">
       <Properties>

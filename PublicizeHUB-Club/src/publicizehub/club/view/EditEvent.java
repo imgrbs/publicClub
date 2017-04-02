@@ -1,16 +1,17 @@
 package publicizehub.club.view;
 
 import java.util.Date;
-import java.sql.*;
 import javax.swing.*;
-import publicizehub.club.model.*;
+import publicizehub.club.controller.EventController;
 
 /**
  *
  * @author JIL
  */
 public class EditEvent extends javax.swing.JFrame {
+    EventController ec = new EventController();
     private int evId;
+    private int eventType;
     /**
      * Creates new form EditEvent
      */
@@ -19,62 +20,25 @@ public class EditEvent extends javax.swing.JFrame {
     public EditEvent() {
         initComponents();
     }
-
-    public EditEvent(int id, String name, String desc, Date startDate, Date endDate, 
-            String startTime,String endTime,String place, int ticket) {
+    
+    public EditEvent(int evId) {
         initComponents();
-        this.evId=id;
-        evName.setText(""+name);
-        evDescrip.setText(""+desc);
-        evDate.setText(""+startDate);
-        evEndDate.setText(""+endDate);                 
-        evTime.setText(""+startTime);
-        evEndTime.setText(""+endTime); 
-        evPlace.setText(""+place);
-        evTicket.setText(""+ticket);
+        this.evId=evId;
+        setTextValue();
     }
-    public void editEvent(){
-        System.out.println(this.evId);
-        ConnectionBuilder cb = new ConnectionBuilder();
-        PreparedStatement ps = null;    
-        cb.connecting();
-        Statement s = null;
-        String command;
-        try {
-            command = "UPDATE tb_event set evName = '"+evName.getText()+"' , "
-                    + "evDescrip = '"+evDescrip.getText()+"' , evDate = '"+evDate.getText()+"' , "
-                    + "evEndDate = '"+evEndDate.getText()+"' , evTime = '"+evTime.getText()+"' , "
-                    + "evEndTime = '"+evEndTime.getText()+"' , evPlace = '"+evPlace.getText()+"' , "
-                    + "evTicket = '"+evTicket.getText()+"' where evId = '"+this.evId+"'";
-            ps = cb.getConnect().prepareStatement(command); 
-            System.out.println("Before Update");
-//            evDescrip.getText();
-//            evDate.getText();
-//            evEndDate.getText();
-//            evTime.getText();
-//            evEndTime.getText(); 
-//            evPlace.getText();
-//            evTicket.getText();
-            ps.executeUpdate();
-            System.out.println("Success Update");
-            
-            
-            JOptionPane.showMessageDialog(null, "Record Inserted Successfully");
-            //}
-        } 
-        catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-            e.printStackTrace();
-           
-        }
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-            e.printStackTrace();
-           
-        }
-
-        cb.logout();
+    
+    public void setTextValue(){
+        ec.getUpdate(evId, evName, evDescrip, evDate,
+                     evEndDate, evTime, evEndTime,
+                     evPlace, evTicket , camp , seminar, other);
     }
+    
+    public void getTextValue(){
+        ec.setUpdate(evName.getText(), evDescrip.getText(), evDate.getText(), 
+                evEndDate.getText(), evTime.getText(), evEndTime.getText(), 
+                evPlace.getText(), evTicket.getText(), eventType, evId);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,6 +49,7 @@ public class EditEvent extends javax.swing.JFrame {
     private void initComponents() {
 
         jRadioButton1 = new javax.swing.JRadioButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         evName = new javax.swing.JTextField();
@@ -105,6 +70,10 @@ public class EditEvent extends javax.swing.JFrame {
         evTicket = new javax.swing.JTextField();
         confirmUpdate = new javax.swing.JButton();
         cancelUpdate = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        other = new javax.swing.JRadioButton();
+        seminar = new javax.swing.JRadioButton();
+        camp = new javax.swing.JRadioButton();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -147,38 +116,88 @@ public class EditEvent extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setText("ประเภทกิจกรรม :");
+
+        buttonGroup1.add(other);
+        other.setMnemonic('2');
+        other.setText("อื่นๆ");
+        other.setActionCommand("0");
+        other.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                otherActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(seminar);
+        seminar.setMnemonic('1');
+        seminar.setText("สัมมนา");
+        seminar.setToolTipText("1");
+        seminar.setActionCommand("0");
+        seminar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                seminarFocusGained(evt);
+            }
+        });
+        seminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seminarActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(camp);
+        camp.setMnemonic('0');
+        camp.setText("ค่าย");
+        camp.setToolTipText("0");
+        camp.setActionCommand("0");
+        camp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1)
-                        .addComponent(evName)
-                        .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel8))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(evDate, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                                .addComponent(evTime))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel5))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(evEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(evEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(evPlace))
-                    .addComponent(evTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1)
+                                .addComponent(evName)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(evDate, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                                        .addComponent(evTime))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel5))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(evEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(evEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(evPlace))
+                            .addComponent(evTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(camp)
+                        .addGap(18, 18, 18)
+                        .addComponent(seminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(other)))
                 .addGap(63, 63, 63))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,11 +245,22 @@ public class EditEvent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(evTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelUpdate)
-                    .addComponent(confirmUpdate))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cancelUpdate)
+                            .addComponent(confirmUpdate))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(camp)
+                                .addComponent(seminar)
+                                .addComponent(other))
+                            .addComponent(jLabel10))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -238,15 +268,29 @@ public class EditEvent extends javax.swing.JFrame {
 
     private void confirmUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmUpdateActionPerformed
         System.out.println(this.evId);
-        editEvent();
-        AdminGUI ag = new AdminGUI();
-//        ag.refreshPanel();
+        getTextValue();
     }//GEN-LAST:event_confirmUpdateActionPerformed
 
     private void cancelUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelUpdateActionPerformed
         setVisible(false);
     }//GEN-LAST:event_cancelUpdateActionPerformed
 
+    private void campActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campActionPerformed
+
+    }//GEN-LAST:event_campActionPerformed
+
+    private void seminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seminarActionPerformed
+
+    }//GEN-LAST:event_seminarActionPerformed
+
+    private void otherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_otherActionPerformed
+
+    private void seminarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seminarFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_seminarFocusGained
+ 
     /**
      * @param args the command line arguments
      */
@@ -283,6 +327,8 @@ public class EditEvent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton camp;
     private javax.swing.JButton cancelUpdate;
     private javax.swing.JButton confirmUpdate;
     private javax.swing.JTextField evDate;
@@ -294,6 +340,7 @@ public class EditEvent extends javax.swing.JFrame {
     private javax.swing.JTextField evTicket;
     private javax.swing.JTextField evTime;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -304,5 +351,7 @@ public class EditEvent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton other;
+    private javax.swing.JRadioButton seminar;
     // End of variables declaration//GEN-END:variables
 }

@@ -82,8 +82,31 @@ public class Event {
         cb.logout();
     }
     
-    public void UpdateEvent(){
-     // update
+    public void updateEvent(String name,String desc,String date,
+                            String endDate,String time,String endTime,
+                            String place,int ticket,int evType,int evId){
+        // update
+        System.out.println(this.evId);
+        PreparedStatement ps = null;    
+        cb.connecting();
+        String command;
+        try {
+            command = "UPDATE tb_event set evName = '"+name+"' , "
+                    + "evDescrip = '"+desc+"' , evDate = '"+date+"' , "
+                    + "evEndDate = '"+endDate+"' , evTime = '"+time+"' , "
+                    + "evEndTime = '"+endTime+"' , evPlace = '"+place+"' , "
+                    + "evTicket = '"+ticket+"' , evType = '"+evType+"' "
+                    + "where evId = "+evId;
+            ps = cb.getConnect().prepareStatement(command); 
+            System.out.println("Before Update");
+            ps.executeUpdate();
+            System.out.println("Success Update");
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            System.out.println("SQL ERROR at updateEvent()");
+        }
+        cb.logout();
     }
     
     public void DeleteEvent(int deleteId){
@@ -106,11 +129,11 @@ public class Event {
             System.out.println("NullPointerException");
         }
         catch(SQLException e){
-//            e.printStackTrace();
+            e.printStackTrace();
             System.out.println("SQLException! - event");
         }
         catch(Exception e){
-//            e.printStackTrace();
+            e.printStackTrace();
             System.out.println("EXCEPTION - event");
         }
         finally{
@@ -135,4 +158,21 @@ public class Event {
         return rs;
     }
     
+    public ResultSet getSelect(int evId){
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_event where evId = ?");
+            ps.setInt(1,evId);
+            rs = ps.executeQuery();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("SQLException at getSelect()");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Exception at getSelect()");
+        }
+        return rs;
+    }
 }

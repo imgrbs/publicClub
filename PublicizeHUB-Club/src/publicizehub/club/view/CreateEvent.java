@@ -146,6 +146,11 @@ public class CreateEvent extends javax.swing.JFrame {
         other.setMnemonic('2');
         other.setText("อื่นๆ");
         other.setActionCommand("0");
+        other.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                otherActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(seminar);
         seminar.setMnemonic('1');
@@ -324,6 +329,10 @@ public class CreateEvent extends javax.swing.JFrame {
     private void stuIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stuIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_stuIdActionPerformed
+
+    private void otherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_otherActionPerformed
 
     /**
      * @param args the command line arguments

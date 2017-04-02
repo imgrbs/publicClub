@@ -3,7 +3,6 @@ package publicizehub.club.view;
 import javax.swing.*;
 import javax.swing.UIManager.*;
 import java.awt.event.*;
-import java.sql.*;
 import java.util.*;
 import publicizehub.club.controller.*;
 
