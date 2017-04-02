@@ -82,7 +82,6 @@ public class EventController {
         String tempEndTime = "";
         String tempPlace = "";
         int tempType = 0;
-
         try {
             while (rs.next()) {
                 tempId = rs.getInt("evId");
@@ -110,13 +109,11 @@ public class EventController {
                     jp2.add(pec.AddCompleteEvent());
                 }
             }
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
         cb.logout();
         System.out.println("Add Success");
     }
@@ -145,21 +142,15 @@ public class EventController {
         JOptionPane.showMessageDialog(null, "Delete Success");
     }
 
+    /* รับค่าผ่านมาจาก GUI และส่งค่าต่อไปยังคลาส Model 
+    เพือส่งข้อมูลไป Database */
     public void CreateEventValue(String name, String desc, String date, String endDate,
                                 String time , String endTime, String place, String ticket,
                                 int evType,long stdId) {
-        
-        java.util.Date tempDate=null;
-        java.util.Date tempEndDate=null;
-        try{
-            tempDate = ft.parse(date);
-            tempEndDate = ft.parse(endDate);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            System.out.println("Date ERROR!");
-        }
+        /* แปลง Ticket เป็น int เพื่อ ส่งค่า int ไป Controller */
         int tempTicket = parseInt(ticket);
+        
+        /* เรียกใช้ method ส่งข้อมูลไป Database ของ คลาส Model */
         ev.createEvent(name,desc,date,endDate,time,endTime,
                 place,tempTicket,evType,stdId);
     }

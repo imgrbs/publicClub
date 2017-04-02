@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package publicizehub.club.view;
 
 import javax.swing.*;
@@ -30,6 +25,9 @@ public class CreateEvent extends javax.swing.JFrame {
     
     
     public void newEvent() {
+        /* นำ String ที่ได้จาก input 
+        มาเก็บใส่ ตัวแปร เพื่อส่งค่าไปยัง method ใน
+        Controller */
         String name = evName.getText();
         String desc = evDescrip.getText();
         String date = evDate.getText();
@@ -39,8 +37,10 @@ public class CreateEvent extends javax.swing.JFrame {
         String place = evPlace.getText();
         String ticket = evTicket.getText();
         
+        /* นำค่า ส่งไปยัง Method ใน Controller */
         ec.CreateEventValue(name,desc,date,endDate,time,endTime,place,ticket,this.eventType,this.stdId);
         
+        /* Reset Text ใน input GUI */
         evName.setText("");
         evDescrip.setText("");
         evDate.setText("");
@@ -51,6 +51,7 @@ public class CreateEvent extends javax.swing.JFrame {
         evTicket.setText("");
         evType.setText("");
         
+        /* แสดง Alert ว่า ส่งข้อมูลสำเร็จ เมื่อสงข้อมูลไปยัง Database สำเร็จ */
         JOptionPane.showMessageDialog(null, "Record Inserted Successfully");
     }
     
@@ -301,7 +302,12 @@ public class CreateEvent extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
+        /* จะถูกใช้เมื่อกดปุ่มยืนยัน */
         
+        /* เมื่อกด Radio Button ต่างๆ จะแปลงค่าเป็น int
+        0 = Event Camp
+        1 = Event Seminar
+        2 = Other Event */
         if(camp.isSelected()){
             this.eventType=0;
         }else if(seminar.isSelected()){
@@ -309,7 +315,9 @@ public class CreateEvent extends javax.swing.JFrame {
         }else if(other.isSelected()){
             this.eventType=2;
         }
-
+        
+        /* Call New Event เพื่อเรียกใช้ Method
+        ดึงค่าจาก input ใน gui */
         newEvent();
     }//GEN-LAST:event_confirmActionPerformed
 

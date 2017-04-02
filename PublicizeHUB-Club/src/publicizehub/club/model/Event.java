@@ -45,22 +45,24 @@ public class Event {
 //    }
     
     
-    
+    /* รับค่าที่ประมวลผลแล้วจาก Controller เพื่อ ส่งไป Database
+    โดยใช้คำสั่ง SQL และ ประมวลผลคำสั่งโดย 
+    การสร้าง Statement และเรียกใช้ method */
     public void createEvent(String name,String desc,String date,String endDate,
                         String time,String endTime,String place,int ticket,
                         int evType,long stdId) {
-        cb.connecting();
-        Statement s = null;
-       
+        cb.connecting(); // Connect ไป Database ผ่าน Connection Builder
+        Statement s = null; // สร้างตัวแปร Statement
         try {
-            s = cb.getConnect().createStatement();
-            // SQL Insert
+            s = cb.getConnect().createStatement();  // สร้าง Statement
+            // SQL Insert (คำสัง SQL)
             String sql = "INSERT INTO tb_event"
                     + "(evName,evDescrip,evDate,evEndDate,evTime,evEndTime,evPlace,evTicket,evType,stdId) "
                     + "VALUES ('"  + name + "','" + desc + "','"+ date + "','"+ endDate + "','" + time + "','"
                     + endTime + "','" + place + "','" + ticket + "','" + evType + "','" + stdId + "') ";
-            s.executeUpdate(sql);
+            s.executeUpdate(sql); // ส่งข้อมูลไป Database
         } 
+        /* ดัก SQLException และ Exception ปกติ */
         catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
             e.printStackTrace();
@@ -69,8 +71,7 @@ public class Event {
             JOptionPane.showMessageDialog(null, e);
             e.printStackTrace();
         }
-
-        cb.logout();
+        cb.logout(); // ปิดการ connection กับ database
     }
     
     public void updateEvent(String name,String desc,String date,
