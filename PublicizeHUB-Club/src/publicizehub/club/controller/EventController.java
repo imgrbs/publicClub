@@ -18,7 +18,6 @@ public class EventController {
 
     private int evType;
 
-    TrackEvent ti = new TrackEvent(evId);
     ConnectionBuilder cb = new ConnectionBuilder();
     Event ev = new Event();
 

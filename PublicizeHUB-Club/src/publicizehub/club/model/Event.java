@@ -57,17 +57,8 @@ public class Event {
             // SQL Insert
             String sql = "INSERT INTO tb_event"
                     + "(evName,evDescrip,evDate,evEndDate,evTime,evEndTime,evPlace,evTicket,evType,stdId) "
-                    + "VALUES ('" 
-                    + name + "','"
-                    + desc + "','"
-                    + date + "','"
-                    + endDate + "','"
-                    + time + "','"
-                    + endTime + "','"
-                    + place + "','"
-                    + ticket + "','"
-                    + evType + "','"
-                    + stdId + "') ";
+                    + "VALUES ('"  + name + "','" + desc + "','"+ date + "','"+ endDate + "','" + time + "','"
+                    + endTime + "','" + place + "','" + ticket + "','" + evType + "','" + stdId + "') ";
             s.executeUpdate(sql);
         } 
         catch (SQLException e) {
