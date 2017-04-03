@@ -1,5 +1,7 @@
 package publicizehub.club.driver;
 
+import publicizehub.club.view.FeedGUI;
+
 /**
  *
  * @author ImagineRabbits
@@ -7,7 +9,10 @@ package publicizehub.club.driver;
 public class PublicizeHUB {
     
     public static void main(String[] args) {
-        
+        FeedGUI fg = new FeedGUI();
+        fg.setTheme();
+        fg.Run();
+        fg.setVisible(true);
     }
     
 }
