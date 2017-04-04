@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert.AlertType;
 
 import publicizehub.club.model.Search;
 import publicizehub.club.model.ConnectionBuilder;
@@ -31,6 +32,8 @@ public class SearchController implements Initializable {
     @FXML
     Label l;
     
+    Alert alert = new Alert(AlertType.WARNING);
+
     @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -56,19 +59,34 @@ public class SearchController implements Initializable {
         buttonBox.getChildren().add(p);
     }
     
+    
     @FXML
     public void checkSearch(){
-        buttonBox.getChildren().removeAll();
+        buttonBox.getChildren().clear();
         ResultSet result;
         String temp = search.getText();
-        if(temp.charAt(0)!=' '){
-            for (int i = 0; i < temp.length(); i++) {
-                if(temp.charAt(i)=='%'||temp.charAt(i)=='_'||temp.charAt(0)=='\''){
-                    temp = "nullEventThatNoMeaning";
+        search.setText("");
+        try{
+            if(temp.charAt(0)!=' '&&(temp.equals("")==false)&&(temp.equals(" ")==false)){
+                for (int i = 0; i < temp.length(); i++) {
+                    if(temp.charAt(i)=='%'||temp.charAt(i)=='_'||temp.charAt(0)=='\''){
+                        temp = "nullEventThatNoMeaning";
+                        search.setText("");
+                        alert.setTitle("คำเตือน");
+                        alert.setHeaderText("อย่ามาเล่น Injection ดิ ชิ้วๆ!");
+                        alert.setContentText("555555 อิอิอิอิอิอิอิอิ");
+                        alert.showAndWait();
+                    }
                 }
+            } else {
+                temp = "nullEventThatNoMeaning";
+                search.setText("");
+                alert.setTitle("คำเตือน");
+                alert.setHeaderText("กรุณาใส่ชื่อกิจกรรม!");
+//                alert.setContentText("");
+                alert.showAndWait();
             }
-        } else {
-            System.out.println("Alert");
+        } catch(Exception e){
             temp = "nullEventThatNoMeaning";
         }
         
@@ -77,6 +95,13 @@ public class SearchController implements Initializable {
         try{
             while(result.next()){
                 initialize(result.getString("evName"));
+            }
+            if(result.next()==false){
+                search.setText("");
+                alert.setTitle("คำเตือน");
+                alert.setHeaderText("ขออภัยไม่มีกิจกรรมที่คุณค้นหา!");
+                alert.setContentText("ขอโทษเนาะ");
+                alert.showAndWait();
             }
         }
         catch(SQLException e){
