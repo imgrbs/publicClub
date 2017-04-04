@@ -10,6 +10,7 @@ import javafx.scene.layout.*;
 import javafx.geometry.Insets;
 
 import publicizehub.club.model.Search;
+import publicizehub.club.model.ConnectionBuilder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -19,12 +20,16 @@ import java.sql.SQLException;
  */
 public class SearchController implements Initializable {
     Search s = new Search();
+    ConnectionBuilder cb = new ConnectionBuilder();
     
     @FXML
     private Label label;
-    private TextField searchField;
     @FXML
     VBox buttonBox = new VBox(8);
+    @FXML
+    TextField search;
+    @FXML
+    Label l;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -38,44 +43,50 @@ public class SearchController implements Initializable {
     }    
     
     @FXML
-    protected void initialize() {
+    protected void initialize(String eventName) {
         Pane p = new Pane();
-        Label l = new Label("Add");
+        l= new Label(eventName);
         p.getChildren().add(l);
-        buttonBox.setMargin(p,new Insets(30,30,0,30));
-        p.setStyle("-fx-background-color: #" + "AAA");
-        l.setStyle("-fx-padding: 30px 0px 0px 50px");
-        l.setStyle("-fx-font-size: 30px");
+        buttonBox.setMargin(p,new Insets(15,25,15,30));
+        p.setStyle("-fx-background-color: #" + "CD4D28");
+        l.setStyle("-fx-padding: 30px 0px 0px 50px;"+
+                   "-fx-font-size: 30px;"+
+                   "-fx-text-fill: #fff;");
         p.setPrefSize(480,150);
         buttonBox.getChildren().add(p);
     }
     
     @FXML
     public void checkSearch(){
-        ResultSet rs;
-        String temp = searchField.getText();
-        if(temp.charAt(0)==' '){
-            System.out.println("Alert");
-        } else {
+        buttonBox.getChildren().removeAll();
+        ResultSet result;
+        String temp = search.getText();
+        if(temp.charAt(0)!=' '){
             for (int i = 0; i < temp.length(); i++) {
                 if(temp.charAt(i)=='%'||temp.charAt(i)=='_'||temp.charAt(0)=='\''){
                     temp = "nullEventThatNoMeaning";
                 }
             }
+        } else {
+            System.out.println("Alert");
+            temp = "nullEventThatNoMeaning";
         }
         
+        System.out.println(temp);
+        result = s.resultSearch(temp);
         try{
-            while(s.resultSearch(temp).next()){
-                
+            while(result.next()){
+                initialize(result.getString("evName"));
             }
         }
         catch(SQLException e){
-            
-            
+            e.printStackTrace();
+            System.out.println("SQLException checkSearch After Add Name");
         }
         catch(Exception e){
-            
+            e.printStackTrace();
+            System.out.println("Exception checkSearch After Add Name");
         }
-        
+        cb.logout();
     }
 }

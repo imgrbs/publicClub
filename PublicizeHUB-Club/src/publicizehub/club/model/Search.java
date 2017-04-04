@@ -9,17 +9,18 @@ import java.sql.*;
 public class Search {
     
     ConnectionBuilder cb = new ConnectionBuilder();
-    PreparedStatement ps = null;
+    Statement ps = null;
     ResultSet rs = null;
     
     public Search() {
     }
     
     public ResultSet resultSearch(String wording){
-        String sql = "SELECT * FROM tb_event where = evName LIKE = %"+wording+"%";
+        cb.connecting();
+        String sql = "SELECT * FROM tb_event WHERE evName LIKE '%"+wording+"%'";
         try{
-            ps = cb.getConnect().prepareStatement(sql);
-            rs = ps.executeQuery();
+            ps = cb.getConnect().createStatement();
+            rs = ps.executeQuery(sql);
         }
         catch(SQLException e){
             e.printStackTrace();

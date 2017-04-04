@@ -21,7 +21,7 @@ public class ViewSearch extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../../../view/javafx/ViewSearch.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ViewSearch.fxml"));
         
         Scene scene = new Scene(root);
         
