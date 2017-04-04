@@ -10,12 +10,15 @@ import javafx.scene.layout.*;
 import javafx.geometry.Insets;
 
 import publicizehub.club.model.Search;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
  * @author Imagine
  */
 public class SearchController implements Initializable {
+    Search s = new Search();
     
     @FXML
     private Label label;
@@ -39,20 +42,39 @@ public class SearchController implements Initializable {
         Pane p = new Pane();
         Label l = new Label("Add");
         p.getChildren().add(l);
-        buttonBox.setMargin(p,new Insets(1,1,15,1));
+        buttonBox.setMargin(p,new Insets(30,30,0,30));
         p.setStyle("-fx-background-color: #" + "AAA");
-        l.setStyle("-fx-padding: 5px;");
-        p.setPrefSize(100,30);
+        l.setStyle("-fx-padding: 30px 0px 0px 50px");
+        l.setStyle("-fx-font-size: 30px");
+        p.setPrefSize(480,150);
         buttonBox.getChildren().add(p);
     }
     
     @FXML
     public void checkSearch(){
+        ResultSet rs;
         String temp = searchField.getText();
-        for (int i = 0; i < temp.length(); i++) {
-            if(temp.charAt(i)==' '||temp.charAt(i)=='%'||temp.charAt(i)=='_'||temp.charAt(0)=='\''){
-                temp = "nullEventThatNoMeaning";
+        if(temp.charAt(0)==' '){
+            System.out.println("Alert");
+        } else {
+            for (int i = 0; i < temp.length(); i++) {
+                if(temp.charAt(i)=='%'||temp.charAt(i)=='_'||temp.charAt(0)=='\''){
+                    temp = "nullEventThatNoMeaning";
+                }
             }
+        }
+        
+        try{
+            while(s.resultSearch(temp).next()){
+                
+            }
+        }
+        catch(SQLException e){
+            
+            
+        }
+        catch(Exception e){
+            
         }
         
     }
