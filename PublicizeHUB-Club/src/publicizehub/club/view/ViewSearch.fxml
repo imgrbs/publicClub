@@ -13,7 +13,7 @@
             <VBox fx:id="buttonBox" style="-fx-background-color: none;" />
          </content>
       </ScrollPane>
-      <TextField fx:id="search" layoutX="366.0" layoutY="22.0" />
+      <TextField fx:id="search" layoutX="366.0" layoutY="22.0" promptText="Search" />
       <Button layoutX="528.0" layoutY="22.0" mnemonicParsing="false" onAction="#checkSearch" text="Search" />
    </children>
 </AnchorPane>

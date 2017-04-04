@@ -26,7 +26,7 @@ public class SearchController implements Initializable {
     @FXML
     private Label label;
     @FXML
-    VBox buttonBox = new VBox(8);
+    VBox buttonBox = new VBox();
     @FXML
     TextField search;
     @FXML
@@ -78,40 +78,32 @@ public class SearchController implements Initializable {
                         alert.showAndWait();
                     }
                 }
-            } else {
-                temp = "nullEventThatNoMeaning";
-                search.setText("");
-                alert.setTitle("คำเตือน");
-                alert.setHeaderText("กรุณาใส่ชื่อกิจกรรม!");
-//                alert.setContentText("");
-                alert.showAndWait();
-            }
+            } else if(temp.charAt(0)==' '){
+                        temp = "nullEventThatNoMeaning";
+                        search.setText("");
+                        alert.setTitle("คำเตือน");
+                        alert.setHeaderText("กรุณาใส่ชื่อกิจกรรม!");
+                        alert.showAndWait();
+                    } else {
+                        result = s.resultSearch(temp);
+                        if(result.next()==false){
+                            search.setText("");
+                            alert.setTitle("คำเตือน");
+                            alert.setHeaderText("ขออภัยไม่มีกิจกรรมที่คุณค้นหา!");
+                            alert.setContentText("ขอโทษเนาะ");
+                            alert.showAndWait();
+                        } else {
+                            while(result.next()){
+                                initialize(result.getString("evName"));
+                            }
+                        }
+                    }
         } catch(Exception e){
             temp = "nullEventThatNoMeaning";
         }
         
         System.out.println(temp);
-        result = s.resultSearch(temp);
-        try{
-            while(result.next()){
-                initialize(result.getString("evName"));
-            }
-            if(result.next()==false){
-                search.setText("");
-                alert.setTitle("คำเตือน");
-                alert.setHeaderText("ขออภัยไม่มีกิจกรรมที่คุณค้นหา!");
-                alert.setContentText("ขอโทษเนาะ");
-                alert.showAndWait();
-            }
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-            System.out.println("SQLException checkSearch After Add Name");
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            System.out.println("Exception checkSearch After Add Name");
-        }
+
         cb.logout();
     }
 }
