@@ -25,11 +25,14 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1195, 604]"/>
+    </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -46,20 +49,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane3" alignment="0" pref="1188" max="32767" attributes="0"/>
+          <Component id="jScrollPane3" alignment="0" pref="1195" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane3" alignment="0" pref="897" max="32767" attributes="0"/>
+          <Component id="jScrollPane3" alignment="0" pref="1026" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JScrollPane" name="jScrollPane3">
       <Properties>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1158, 980]"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new java.awt.Dimension(1172, 980)" type="code"/>
         </Property>
       </Properties>
 
@@ -107,27 +110,19 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="50" max="32767" attributes="0"/>
-                              <Component id="jRadioButton41" min="-2" pref="56" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jRadioButton42" min="-2" pref="56" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jRadioButton43" min="-2" pref="56" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jRadioButton44" min="-2" pref="56" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jRadioButton45" min="-2" pref="56" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="801" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace min="26" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jPanel3" min="-2" pref="1178" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jPanel3" pref="1196" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -149,28 +144,13 @@
                       <Component id="Question1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="Question2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jPanel9" min="-2" pref="146" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="32767" attributes="0"/>
-                              <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="128" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jRadioButton41" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton44" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton42" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton43" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton45" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      <Component id="Question2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jPanel9" min="-2" pref="146" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" pref="37" max="32767" attributes="0"/>
+                      <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="244" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -208,15 +188,15 @@
                                       <Component id="jPanel7" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="jPanel8" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Component id="jRadioButton1" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N1_5" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton2" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N1_4" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton3" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N1_3" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton4" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N1_2" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton5" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N1_1" min="-2" pref="56" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -224,26 +204,26 @@
                                   <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="jRadioButton51" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N5_5" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton52" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N5_4" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton53" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N5_3" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton54" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N5_2" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton55" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N5_1" min="-2" pref="56" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Component id="jRadioButton16" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N4_5" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton17" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N4_4" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton18" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N4_3" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton19" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N4_2" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton20" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q1_N4_1" min="-2" pref="56" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -258,11 +238,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace pref="16" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N1_5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N1_2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N1_4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N1_3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N1_1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
@@ -270,19 +250,19 @@
                           <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jRadioButton16" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton19" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton17" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton18" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton20" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N4_5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N4_2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N4_4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N4_3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N4_1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jRadioButton51" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton54" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton52" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton53" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton55" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N5_5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N5_2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N5_4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N5_3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q1_N5_1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       </Group>
@@ -386,15 +366,15 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="96" max="32767" attributes="0"/>
-                              <Component id="jRadioButton6" min="-2" pref="56" max="-2" attributes="0"/>
+                              <Component id="Q1_N2_5" min="-2" pref="56" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jRadioButton7" min="-2" pref="56" max="-2" attributes="0"/>
+                              <Component id="Q1_N2_4" min="-2" pref="56" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jRadioButton8" min="-2" pref="56" max="-2" attributes="0"/>
+                              <Component id="Q1_N2_3" min="-2" pref="56" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jRadioButton9" min="-2" pref="56" max="-2" attributes="0"/>
+                              <Component id="Q1_N2_2" min="-2" pref="56" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jRadioButton10" min="-2" pref="56" max="-2" attributes="0"/>
+                              <Component id="Q1_N2_1" min="-2" pref="56" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -403,11 +383,11 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace pref="15" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jRadioButton6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Q1_N2_5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Q1_N2_2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Q1_N2_4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Q1_N2_3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Q1_N2_1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -415,7 +395,7 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JRadioButton" name="jRadioButton10">
+                    <Component class="javax.swing.JRadioButton" name="Q1_N2_1">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -426,7 +406,7 @@
                         <Property name="text" type="java.lang.String" value="1"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JRadioButton" name="jRadioButton9">
+                    <Component class="javax.swing.JRadioButton" name="Q1_N2_2">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -437,7 +417,7 @@
                         <Property name="text" type="java.lang.String" value="2"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JRadioButton" name="jRadioButton6">
+                    <Component class="javax.swing.JRadioButton" name="Q1_N2_5">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -448,10 +428,10 @@
                         <Property name="text" type="java.lang.String" value="5"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton6ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Q1_N2_5ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JRadioButton" name="jRadioButton8">
+                    <Component class="javax.swing.JRadioButton" name="Q1_N2_3">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -462,7 +442,7 @@
                         <Property name="text" type="java.lang.String" value="3"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JRadioButton" name="jRadioButton7">
+                    <Component class="javax.swing.JRadioButton" name="Q1_N2_4">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -487,15 +467,15 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
-                              <Component id="jRadioButton11" min="-2" pref="56" max="-2" attributes="0"/>
+                              <Component id="Q1_N3_5" min="-2" pref="56" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jRadioButton12" min="-2" pref="56" max="-2" attributes="0"/>
+                              <Component id="Q1_N3_4" min="-2" pref="56" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jRadioButton13" min="-2" pref="56" max="-2" attributes="0"/>
+                              <Component id="Q1_N3_3" min="-2" pref="56" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jRadioButton14" min="-2" pref="56" max="-2" attributes="0"/>
+                              <Component id="Q1_N3_2" min="-2" pref="56" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jRadioButton15" min="-2" pref="56" max="-2" attributes="0"/>
+                              <Component id="Q1_N3_1" min="-2" pref="56" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -503,11 +483,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jRadioButton11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton14" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Q1_N3_5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Q1_N3_2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Q1_N3_4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Q1_N3_3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Q1_N3_1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
                           </Group>
@@ -515,7 +495,7 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JRadioButton" name="jRadioButton11">
+                    <Component class="javax.swing.JRadioButton" name="Q1_N3_5">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -526,10 +506,10 @@
                         <Property name="text" type="java.lang.String" value="5"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton11ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Q1_N3_5ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JRadioButton" name="jRadioButton12">
+                    <Component class="javax.swing.JRadioButton" name="Q1_N3_4">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -540,7 +520,7 @@
                         <Property name="text" type="java.lang.String" value="4"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JRadioButton" name="jRadioButton13">
+                    <Component class="javax.swing.JRadioButton" name="Q1_N3_3">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -551,7 +531,7 @@
                         <Property name="text" type="java.lang.String" value="3"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JRadioButton" name="jRadioButton14">
+                    <Component class="javax.swing.JRadioButton" name="Q1_N3_2">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -562,7 +542,7 @@
                         <Property name="text" type="java.lang.String" value="2"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JRadioButton" name="jRadioButton15">
+                    <Component class="javax.swing.JRadioButton" name="Q1_N3_1">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -575,7 +555,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton16">
+                <Component class="javax.swing.JRadioButton" name="Q1_N4_5">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -586,10 +566,10 @@
                     <Property name="text" type="java.lang.String" value="5"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton16ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Q1_N4_5ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton17">
+                <Component class="javax.swing.JRadioButton" name="Q1_N4_4">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -600,7 +580,7 @@
                     <Property name="text" type="java.lang.String" value="4"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton18">
+                <Component class="javax.swing.JRadioButton" name="Q1_N4_3">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -611,7 +591,7 @@
                     <Property name="text" type="java.lang.String" value="3"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton19">
+                <Component class="javax.swing.JRadioButton" name="Q1_N4_2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -622,7 +602,7 @@
                     <Property name="text" type="java.lang.String" value="2"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton20">
+                <Component class="javax.swing.JRadioButton" name="Q1_N4_1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -633,7 +613,7 @@
                     <Property name="text" type="java.lang.String" value="1"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+                <Component class="javax.swing.JRadioButton" name="Q1_N1_5">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -644,10 +624,10 @@
                     <Property name="text" type="java.lang.String" value="5"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Q1_N1_5ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+                <Component class="javax.swing.JRadioButton" name="Q1_N1_4">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -658,7 +638,7 @@
                     <Property name="text" type="java.lang.String" value="4"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton3">
+                <Component class="javax.swing.JRadioButton" name="Q1_N1_3">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -669,7 +649,7 @@
                     <Property name="text" type="java.lang.String" value="3"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton4">
+                <Component class="javax.swing.JRadioButton" name="Q1_N1_2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -680,7 +660,7 @@
                     <Property name="text" type="java.lang.String" value="2"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton5">
+                <Component class="javax.swing.JRadioButton" name="Q1_N1_1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -691,7 +671,7 @@
                     <Property name="text" type="java.lang.String" value="1"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton51">
+                <Component class="javax.swing.JRadioButton" name="Q1_N5_5">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -702,10 +682,10 @@
                     <Property name="text" type="java.lang.String" value="5"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton51ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Q1_N5_5ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton52">
+                <Component class="javax.swing.JRadioButton" name="Q1_N5_4">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -716,7 +696,7 @@
                     <Property name="text" type="java.lang.String" value="4"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton53">
+                <Component class="javax.swing.JRadioButton" name="Q1_N5_3">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -727,7 +707,7 @@
                     <Property name="text" type="java.lang.String" value="3"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton54">
+                <Component class="javax.swing.JRadioButton" name="Q1_N5_2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -738,7 +718,7 @@
                     <Property name="text" type="java.lang.String" value="2"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton55">
+                <Component class="javax.swing.JRadioButton" name="Q1_N5_1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -783,63 +763,63 @@
                           <EmptySpace pref="43" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jRadioButton36" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="Q2_N4_5" min="-2" pref="56" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton37" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="Q2_N4_4" min="-2" pref="56" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton38" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="Q2_N4_3" min="-2" pref="56" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jRadioButton39" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="Q2_N4_2" min="-2" pref="56" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jRadioButton40" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="Q2_N4_1" min="-2" pref="56" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jRadioButton31" min="-2" pref="56" max="-2" attributes="0"/>
+                                      <Component id="Q2_N3_5" min="-2" pref="56" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton32" min="-2" pref="56" max="-2" attributes="0"/>
+                                      <Component id="Q2_N3_4" min="-2" pref="56" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton33" min="-2" pref="56" max="-2" attributes="0"/>
+                                      <Component id="Q2_N3_3" min="-2" pref="56" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jRadioButton34" min="-2" pref="56" max="-2" attributes="0"/>
+                                      <Component id="Q2_N3_2" min="-2" pref="56" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jRadioButton35" min="-2" pref="56" max="-2" attributes="0"/>
+                                      <Component id="Q2_N3_1" min="-2" pref="56" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jRadioButton26" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q2_N2_5" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton27" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q2_N2_4" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton28" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q2_N2_3" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton29" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q2_N2_2" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton30" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q2_N2_1" min="-2" pref="56" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jRadioButton21" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q2_N1_5" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton22" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q2_N1_4" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton23" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q2_N1_3" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton24" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q2_N1_2" min="-2" pref="56" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton25" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="Q2_N1_1" min="-2" pref="56" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jRadioButton46" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="Q2_N5_5" min="-2" pref="56" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton47" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="Q2_N5_4" min="-2" pref="56" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton48" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="Q2_N5_3" min="-2" pref="56" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jRadioButton49" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="Q2_N5_2" min="-2" pref="56" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jRadioButton50" min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Component id="Q2_N5_1" min="-2" pref="56" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
@@ -852,45 +832,45 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jRadioButton21" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton24" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton22" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton23" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton25" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N1_5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N1_2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N1_4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N1_3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N1_1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jRadioButton26" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="Q2_N2_5" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jRadioButton29" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton27" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton28" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton30" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Q2_N2_2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Q2_N2_4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Q2_N2_3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Q2_N2_1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jRadioButton31" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton34" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton32" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton33" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton35" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N3_5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N3_2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N3_4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N3_3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N3_1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jRadioButton36" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton39" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton37" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton38" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton40" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N4_5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N4_2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N4_4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N4_3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N4_1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jRadioButton46" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton49" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton47" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton48" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton50" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N5_5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N5_2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N5_4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N5_3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Q2_N5_1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -982,7 +962,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton21">
+                <Component class="javax.swing.JRadioButton" name="Q2_N1_5">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -993,10 +973,10 @@
                     <Property name="text" type="java.lang.String" value="5"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton21ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Q2_N1_5ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton22">
+                <Component class="javax.swing.JRadioButton" name="Q2_N1_4">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1007,7 +987,7 @@
                     <Property name="text" type="java.lang.String" value="4"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton23">
+                <Component class="javax.swing.JRadioButton" name="Q2_N1_3">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1018,7 +998,7 @@
                     <Property name="text" type="java.lang.String" value="3"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton24">
+                <Component class="javax.swing.JRadioButton" name="Q2_N1_2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1029,7 +1009,7 @@
                     <Property name="text" type="java.lang.String" value="2"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton25">
+                <Component class="javax.swing.JRadioButton" name="Q2_N1_1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1040,7 +1020,7 @@
                     <Property name="text" type="java.lang.String" value="1"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton30">
+                <Component class="javax.swing.JRadioButton" name="Q2_N2_1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1051,7 +1031,7 @@
                     <Property name="text" type="java.lang.String" value="1"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton29">
+                <Component class="javax.swing.JRadioButton" name="Q2_N2_2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1062,7 +1042,7 @@
                     <Property name="text" type="java.lang.String" value="2"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton28">
+                <Component class="javax.swing.JRadioButton" name="Q2_N2_3">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1073,7 +1053,7 @@
                     <Property name="text" type="java.lang.String" value="3"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton27">
+                <Component class="javax.swing.JRadioButton" name="Q2_N2_4">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1084,7 +1064,7 @@
                     <Property name="text" type="java.lang.String" value="4"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton26">
+                <Component class="javax.swing.JRadioButton" name="Q2_N2_5">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1095,10 +1075,10 @@
                     <Property name="text" type="java.lang.String" value="5"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton26ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Q2_N2_5ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton31">
+                <Component class="javax.swing.JRadioButton" name="Q2_N3_5">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1109,10 +1089,10 @@
                     <Property name="text" type="java.lang.String" value="5"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton31ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Q2_N3_5ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton32">
+                <Component class="javax.swing.JRadioButton" name="Q2_N3_4">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1123,7 +1103,7 @@
                     <Property name="text" type="java.lang.String" value="4"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton33">
+                <Component class="javax.swing.JRadioButton" name="Q2_N3_3">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1134,7 +1114,7 @@
                     <Property name="text" type="java.lang.String" value="3"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton34">
+                <Component class="javax.swing.JRadioButton" name="Q2_N3_2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1145,7 +1125,7 @@
                     <Property name="text" type="java.lang.String" value="2"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton35">
+                <Component class="javax.swing.JRadioButton" name="Q2_N3_1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1156,7 +1136,7 @@
                     <Property name="text" type="java.lang.String" value="1"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton40">
+                <Component class="javax.swing.JRadioButton" name="Q2_N4_1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1167,7 +1147,7 @@
                     <Property name="text" type="java.lang.String" value="1"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton39">
+                <Component class="javax.swing.JRadioButton" name="Q2_N4_2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1178,7 +1158,7 @@
                     <Property name="text" type="java.lang.String" value="2"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton37">
+                <Component class="javax.swing.JRadioButton" name="Q2_N4_4">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1189,7 +1169,7 @@
                     <Property name="text" type="java.lang.String" value="4"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton38">
+                <Component class="javax.swing.JRadioButton" name="Q2_N4_3">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1200,7 +1180,7 @@
                     <Property name="text" type="java.lang.String" value="3"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton36">
+                <Component class="javax.swing.JRadioButton" name="Q2_N4_5">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1211,10 +1191,10 @@
                     <Property name="text" type="java.lang.String" value="5"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton36ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Q2_N4_5ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton46">
+                <Component class="javax.swing.JRadioButton" name="Q2_N5_5">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1225,10 +1205,10 @@
                     <Property name="text" type="java.lang.String" value="5"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton46ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Q2_N5_5ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton47">
+                <Component class="javax.swing.JRadioButton" name="Q2_N5_4">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1239,7 +1219,7 @@
                     <Property name="text" type="java.lang.String" value="4"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton48">
+                <Component class="javax.swing.JRadioButton" name="Q2_N5_3">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1250,7 +1230,7 @@
                     <Property name="text" type="java.lang.String" value="3"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton49">
+                <Component class="javax.swing.JRadioButton" name="Q2_N5_2">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1261,7 +1241,7 @@
                     <Property name="text" type="java.lang.String" value="2"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton50">
+                <Component class="javax.swing.JRadioButton" name="Q2_N5_1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1416,64 +1396,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton41">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup10"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="5"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton41ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton42">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup10"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="4"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton43">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup10"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="3"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton44">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup10"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="2"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton45">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup10"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="1"/>
-              </Properties>
-            </Component>
             <Container class="javax.swing.JPanel" name="jPanel3">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1490,7 +1412,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="989" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1524,10 +1446,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <EmptySpace min="0" pref="358" max="32767" attributes="0"/>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="143" max="32767" attributes="0"/>
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="144" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace pref="23" max="32767" attributes="0"/>
+                              <Component id="EventName" min="-2" pref="181" max="-2" attributes="0"/>
+                              <EmptySpace pref="154" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1536,17 +1458,17 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <EmptySpace min="0" pref="41" max="32767" attributes="0"/>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace pref="13" max="32767" attributes="0"/>
+                              <Component id="EventName" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="14" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel7">
+                <Component class="javax.swing.JLabel" name="EventName">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&#xe0a;&#xe37;&#xe48;&#xe2d;&#xe01;&#xe34;&#xe08;&#xe01;&#xe23;&#xe23;&#xe21;"/>
                   </Properties>
