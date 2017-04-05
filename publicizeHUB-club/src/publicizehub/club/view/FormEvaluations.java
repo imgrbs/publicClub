@@ -5,7 +5,8 @@
  */
 package publicizehub.club.view;
 
-import publicizehub.club.controller.FeedbackController;
+import publicizehub.club.controller.*;
+import publicizehub.club.model.*;
 
 /**
  *
@@ -19,6 +20,8 @@ public class FormEvaluations extends javax.swing.JFrame {
     private long stdId = 59130500007L;
     
     FeedbackController fbc = new FeedbackController();
+    FeedbackModel fbm = new FeedbackModel();
+       
     
 
     public FormEvaluations(int evId, long stdId) {
@@ -1122,23 +1125,11 @@ public class FormEvaluations extends javax.swing.JFrame {
             valueRadio10 += 0;
         } 
          
-         fbc.getValue(valueRadio1, valueRadio2, valueRadio3, valueRadio4, valueRadio5, valueRadio6, valueRadio7, valueRadio8, valueRadio9, valueRadio10, evId, stdId);
-        // คิด percent แต่ละข้อ
-//        double percentNumber1=valueRadio1*x;
-//        double percentNumber2=valueRadio2*x;
-//        double percentNumber3=valueRadio3*x;
-//        double percentNumber4=valueRadio4*x;
-//        double percentNumber5=valueRadio5*x;
-//        double percentNumber6=valueRadio6*x;
-//        double percentNumber7=valueRadio7*x;
-//        double percentNumber8=valueRadio8*x;
-//        double percentNumber9=valueRadio9*x;
-//        double percentNumber10=valueRadio10*x;
-//        
-//        double percentQuestion1= percentNumber1+percentNumber2+percentNumber3+percentNumber4+percentNumber5;
-//        double percentQuestion2= percentNumber6+percentNumber7+percentNumber8+percentNumber9+percentNumber10;
-        
-         //EventName.setText(Double.toString(percentQuestion1));
+       fbc.getValue(valueRadio1, valueRadio2, valueRadio3, valueRadio4, valueRadio5, 
+               valueRadio6, valueRadio7, valueRadio8, valueRadio9, valueRadio10, evId, stdId);
+       
+
+         //EventName.setText(Double.toString(valueRadio1));
         
         
        
@@ -1191,6 +1182,7 @@ public class FormEvaluations extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

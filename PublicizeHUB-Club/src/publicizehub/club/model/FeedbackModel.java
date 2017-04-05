@@ -15,46 +15,32 @@ import javax.swing.*;
  */
 public class FeedbackModel {
     
-    public void insertValue(int q1,int q2,int evId,long stdId){
+    public void insertValue(int percentQ1,int percentQ2,int evId,long stdId){
         Statement s = null; 
         String sql;
         ConnectionBuilder cb = new ConnectionBuilder();
         cb.connecting(); //connect database
         try {
-            sql = "INSERT INTO tb_feedback"
-             + "(evId,stdId,q1,q2)"
-             + "VALUES ('"+ evId +"','" +stdId+ "','" +q1+ "','" +q2+ "') ";
+            s = cb.getConnect().createStatement();  // สร้าง Statement
+            sql = "INSERT INTO tb_feedback (evId,stdId,q1,q2) VALUES ('" + evId + "','" + stdId + "','" + percentQ1 + "','" + percentQ2 + "') ";
                   
             s.executeUpdate(sql); // ส่งข้อมูลไป Database 
             
         } catch (Exception e) {
+            
+            System.out.println(percentQ1);
+            System.out.println(percentQ2);
+            System.out.println(evId);
+            System.out.println(stdId);
+            
             JOptionPane.showMessageDialog(null, e.getMessage());
+            
             e.printStackTrace();
         }
 
         cb.logout(); 
     }
     
-    public void updateValue(int q1,int q2,int evId,long stdId){
-        // update
-        ConnectionBuilder cb = new ConnectionBuilder();
-        cb.connecting();
-        PreparedStatement ps = null; 
-        String sql;
-        try {
-            sql = "UPDATE tb_feedback set evID = '"+evId+"' , "
-                    + "stdId = '"+stdId+"' , q1 = '"+q1+"' , "
-                    + "q2 = '"+q2;
-            ps = cb.getConnect().prepareStatement(sql); 
-            System.out.println("Before Update");
-            ps.executeUpdate();
-            System.out.println("Success Update");
-        }
-        catch(SQLException ex){
-            ex.printStackTrace();
-            System.out.println("SQL ERROR at updateEvent()");
-        }
-        cb.logout();
-    }
-    
+   
+       
 }
