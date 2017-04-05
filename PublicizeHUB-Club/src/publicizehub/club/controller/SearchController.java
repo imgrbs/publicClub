@@ -67,7 +67,13 @@ public class SearchController implements Initializable {
         String temp = search.getText();
         search.setText("");
         try{
-            if(temp.charAt(0)!=' '&&(temp.equals("")==false)&&(temp.equals(" ")==false)){
+            if(temp.charAt(0)==' '||(temp.equals("")==true)||(temp.equals(" ")==true)){
+                temp = "nullEventThatNoMeaning";
+                search.setText("");
+                alert.setTitle("คำเตือน");
+                alert.setHeaderText("กรุณาใส่ชื่อกิจกรรม!");
+                alert.showAndWait();
+            } else {
                 for (int i = 0; i < temp.length(); i++) {
                     if(temp.charAt(i)=='%'||temp.charAt(i)=='_'||temp.charAt(0)=='\''){
                         temp = "nullEventThatNoMeaning";
@@ -78,26 +84,20 @@ public class SearchController implements Initializable {
                         alert.showAndWait();
                     }
                 }
-            } else if(temp.charAt(0)==' '){
-                        temp = "nullEventThatNoMeaning";
-                        search.setText("");
-                        alert.setTitle("คำเตือน");
-                        alert.setHeaderText("กรุณาใส่ชื่อกิจกรรม!");
-                        alert.showAndWait();
-                    } else {
-                        result = s.resultSearch(temp);
-                        if(result.next()==false){
-                            search.setText("");
-                            alert.setTitle("คำเตือน");
-                            alert.setHeaderText("ขออภัยไม่มีกิจกรรมที่คุณค้นหา!");
-                            alert.setContentText("ขอโทษเนาะ");
-                            alert.showAndWait();
-                        } else {
-                            while(result.next()){
-                                initialize(result.getString("evName"));
-                            }
-                        }
-                    }
+            }
+            result = s.resultSearch(temp);
+            if(result.next()==false){
+                temp = "nullEventThatNoMeaning";
+                search.setText("");
+                alert.setTitle("คำเตือน");
+                alert.setHeaderText("ขออภัยไม่มีกิจกรรมที่คุณค้นหา!");
+                alert.setContentText("ขอโทษเนาะ");
+                alert.showAndWait();
+            } else {
+                while(result.next()){
+                    initialize(result.getString("evName"));
+                }
+            }
         } catch(Exception e){
             temp = "nullEventThatNoMeaning";
         }
