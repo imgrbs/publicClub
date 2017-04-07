@@ -121,3 +121,7 @@
 .checkInBody{
     -fx-effect: dropshadow(three-pass-box, #4D4D4D, 5, 0, 0, 3);
 }
+.feedbackHead{
+    -fx-background-color:  #FFE042;
+    -fx-effect: dropshadow(three-pass-box, #9F870A, 0, 0, 0, 5);
+}
