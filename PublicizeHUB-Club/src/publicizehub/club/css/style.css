@@ -54,3 +54,53 @@
 .detailbtn:hover{
     -fx-background-color: #e0e0e0;
 }
+.loginBg{
+    -fx-background-image: url('images/half.png');
+    -fx-background-position: 0 -100;
+    -fx-background-size: 170%;
+    -fx-background-repeat: no-repeat;
+}
+.loginBth{
+    -fx-background-color: #F10674;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 7;
+}
+}
+.loginBth:hover{
+    -fx-background-color: #FD268B;
+}
+.registerBtn{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 7;
+    -fx-text-fill: #4D4D4D;
+    -fx-border-style: solid;
+    -fx-border-color: #4D4D4D;
+    -fx-border-radius: 7;
+}
+}
+.registerBtn:hover{
+    -fx-background-color: #4D4D4D;
+    -fx-background-radius: 7;
+    -fx-text-fill: #ffffff;
+    -fx-border-style: solid;
+    -fx-border-radius: 7;
+}
+.usernamefield{
+    -fx-background-color: rgba(255,255,255,0);
+    -fx-border-color: rgb(82%, 82%, 82%);
+    -fx-border-width: 0 0 1px 0;
+    -fx-outline: none;
+}
+.passwordfield{
+    -fx-background-color: rgba(255,255,255,0);
+    -fx-border-color: rgb(82%, 82%, 82%);
+    -fx-border-width: 0 0 1px 0;
+    -fx-outline: none;
+}
+.cover{
+    -fx-background-color: rgba(255,255,255,0);;
+    -fx-background-image: url('images/cover.png');
+    -fx-background-size: 100%;
+    -fx-background-position: bottom;
+    -fx-background-repeat: no-repeat;
+}
