@@ -5,14 +5,15 @@
  */
 package publicizehub.club.controller;
 
+import java.awt.event.ActionEvent;
+import publicizehub.club.model.*;
+import publicizehub.club.view.*;
+
 /**
  *
  * @author ImagineRabbits
  */
-public class TestConnection {
-    public static void main(String[] args) {
-        ConnectionBuilder cb = new ConnectionBuilder();
-        cb.connecting();
-        cb.logout();
-    }
+public class Action {    
+    
+    
 }

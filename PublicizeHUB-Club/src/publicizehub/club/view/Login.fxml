@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.layout.Layer?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane layoutX="107.0" layoutY="81.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <Pane prefHeight="600.0" prefWidth="423.0" styleClass="loginBg" stylesheets="@../css/style.css" BorderPane.alignment="CENTER" />
+         </left>
+         <center>
+            <Pane prefHeight="600.0" prefWidth="409.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="84.0" layoutY="186.0" prefHeight="54.0" prefWidth="272.0" text="KMUTT Publicize Hub" textFill="#eb5d35">
+                     <font>
+                        <Font name="Quark-Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="25.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../css/images/logo.png" />
+                     </image>
+                  </ImageView>
+                  <TextField layoutX="53.0" layoutY="283.0" prefHeight="31.0" prefWidth="240.0" promptText="Username" styleClass="usernamefield" />
+                  <PasswordField layoutX="54.0" layoutY="327.0" prefHeight="31.0" prefWidth="239.0" promptText="Password" styleClass="passwordfield" />
+                  <Button layoutX="54.0" layoutY="379.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" styleClass="loginBth" text="SIGN IN">
+                     <font>
+                        <Font name="ThaiSans Neue Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="174.0" layoutY="377.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="102.0" styleClass="registerBtn" text="REGISTER">
+                     <font>
+                        <Font name="ThaiSans Neue Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="82.0" layoutY="221.0" prefHeight="26.0" prefWidth="277.0" text="Sign in with KMUTT Account">
+                     <font>
+                        <Font name="ThaiSans Neue Bold" size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+      <Layer mouseTransparent="true" pickOnBounds="false" prefHeight="600.0" prefWidth="800.0" styleClass="cover" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane mouseTransparent="true" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </Layer>
+   </children>
+</AnchorPane>

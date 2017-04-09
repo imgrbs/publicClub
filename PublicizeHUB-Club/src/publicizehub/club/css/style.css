@@ -1,0 +1,127 @@
+.body{
+    -fx-background-image: url('images/feed-bg-02-01.png');
+    -fx-background-size: 100%;
+    -fx-background-position: bottom;
+    -fx-background-repeat: no-repeat; 
+}
+.menu{
+    -fx-background-image: url('images/head-menu-01.png');
+    -fx-background-color: white;
+    -fx-background-size: 100%;
+    -fx-background-position: top;
+    -fx-background-repeat: no-repeat;
+}
+.search-btn{
+    -fx-background-color: #e7560c;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, #9d2705, 0, 0, 0, 4);
+}
+.search-btn:pressed{
+    -fx-background-color: #e7560c;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, #9d2705, 0, 0, 0, 0);
+    -fx-translate-y: 5;
+}
+.boxEv{
+    -fx-background-radius: 8;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, #4d4d4d, 10, 0, 0, 2);
+}
+.menubtn{
+    -fx-background-color: white;
+    -fx-background-size: 20%;
+    -fx-background-position: left;
+    -fx-background-repeat: no-repeat;
+}
+.menubtn:hover{
+    -fx-background-color: #e4e4e4;
+}
+.joinbtn{
+    -fx-background-color: #e7560c;
+    -fx-text-fill:white;
+    -fx-cursor: hand;
+}
+.detailbtn{
+    -fx-background-color: #d3d3d3;
+    -fx-text-fill: #4d4d4d;
+    -fx-cursor: hand;
+}
+.joinbtn:hover{
+    -fx-background-color: #ff8d53;
+}
+.detailbtn:hover{
+    -fx-background-color: #e0e0e0;
+}
+.loginBg{
+    -fx-background-image: url('images/half.png');
+    -fx-background-position: 0 -100;
+    -fx-background-size: 170%;
+    -fx-background-repeat: no-repeat;
+}
+.loginBth{
+    -fx-background-color: #F10674;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 7;
+}
+.loginBth:hover{
+    -fx-background-color: #FD268B;
+}
+.registerBtn{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 7;
+    -fx-text-fill: #4D4D4D;
+    -fx-border-style: solid;
+    -fx-border-color: #4D4D4D;
+    -fx-border-radius: 7;
+}
+.registerBtn:hover{
+    -fx-background-color: #4D4D4D;
+    -fx-background-radius: 7;
+    -fx-text-fill: #ffffff;
+    -fx-border-style: solid;
+    -fx-border-radius: 7;
+}
+.usernamefield{
+    -fx-background-color: rgba(255,255,255,0);
+    -fx-border-color: rgb(82%, 82%, 82%);
+    -fx-border-width: 0 0 1px 0;
+    -fx-outline: none;
+}
+.passwordfield{
+    -fx-background-color: rgba(255,255,255,0);
+    -fx-border-color: rgb(82%, 82%, 82%);
+    -fx-border-width: 0 0 1px 0;
+    -fx-outline: none;
+}
+.cover{
+    -fx-background-color: rgba(255,255,255,0);
+    -fx-background-image: url('images/cover.png');
+    -fx-background-size: 100%;
+    -fx-background-position: bottom;
+    -fx-background-repeat: no-repeat;
+}
+.closeBtn{
+    -fx-background-color: rgba(255,255,255,0);
+    -fx-background-image: url('images/delete.png');
+    -fx-background-size: 100%;
+    -fx-background-repeat:no-repeat;
+}
+.submitBtn{
+    -fx-background-color: #E11072;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, #B70D5D, 0, 0, 0, 4);
+}
+.submitBtn:pressed{
+    -fx-effect: dropshadow(three-pass-box, #B70D5D, 0, 0, 0, 0);
+    -fx-translate-y: 5;
+}
+.checkInBody{
+    -fx-effect: dropshadow(three-pass-box, #4D4D4D, 5, 0, 0, 3);
+}
+.feedbackHead{
+    -fx-background-color:  #FFE042;
+    -fx-effect: dropshadow(three-pass-box, #9F870A, 0, 0, 0, 5);
+}

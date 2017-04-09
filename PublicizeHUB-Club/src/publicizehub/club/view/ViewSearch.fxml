@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.SearchController">
+   <children>
+      <ScrollPane layoutX="26.0" layoutY="61.0" prefHeight="327.0" prefWidth="554.0" style="-fx-background-color: #151515;">
+         <content>
+            <VBox fx:id="buttonBox" style="-fx-background-color: none;" />
+         </content>
+      </ScrollPane>
+      <TextField fx:id="search" layoutX="366.0" layoutY="22.0" promptText="Search" />
+      <Button layoutX="528.0" layoutY="22.0" mnemonicParsing="false" onAction="#checkSearch" text="Search" />
+   </children>
+</AnchorPane>

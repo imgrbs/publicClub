@@ -1,10 +1,9 @@
 package publicizehub.club.view;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import publicizehub.club.controller.ConnectionBuilder;
+import publicizehub.club.model.ConnectionBuilder;
 
 /**
  *
@@ -12,6 +11,7 @@ import publicizehub.club.controller.ConnectionBuilder;
  */
 public class CheckIn extends javax.swing.JFrame {
     private int evId;
+    ConnectionBuilder cb = new ConnectionBuilder();
     ArrayList<String> myArrList = new ArrayList<String>();
     /**
      * Creates new form CheckIn
@@ -96,9 +96,6 @@ public class CheckIn extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
 
-        insertCode.setForeground(new java.awt.Color(204, 204, 204));
-        insertCode.setText("Insert code");
-
         confirmInsert.setText("ตกลง");
         confirmInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,6 +175,7 @@ public class CheckIn extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     public void checkCode(){
@@ -186,28 +184,25 @@ public class CheckIn extends javax.swing.JFrame {
         ResultSet result;
         ResultSet result1;
         
-        ConnectionBuilder cb = new ConnectionBuilder();
         cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
         
         try {
             ps = cb.getConnect().prepareStatement("SELECT * FROM generateCode where evId = ?");
-            ps.setInt(1, evId);
-            //ps1 = cb.getConnect().prepareStatement("SELECT * FROM tb_profile where stuId = ?");  
+            ps.setInt(1, evId); 
             long id=0;
             result = ps.executeQuery();
             
             while (result.next()) {
                 if(insertCode.getText().equalsIgnoreCase(result.getString("evCode"))){
-                    id = result.getLong("stuId");
+                    id = result.getLong("stdId");
                 }
 
             }
-            ps1 = cb.getConnect().prepareStatement("SELECT * FROM tb_profile where stuId = ?");
+            ps1 = cb.getConnect().prepareStatement("SELECT * FROM tb_profile where stdId = ?");
             ps1.setLong(1, id); 
             result1 = ps1.executeQuery();
             while (result1.next()){
-
-                String name = result1.getString("stuName")+" "+result1.getString("stuSurname");
+                String name = result1.getString("stdName")+" "+result1.getString("stdSurname");
                 String temp = id+"  "+name;
                 myArrList.add(temp);
             }
@@ -215,24 +210,41 @@ public class CheckIn extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
             e.printStackTrace();
         }
-
-        cb.logout();
         
-        
-            String[] temp = new String[myArrList.size()];
-            for (int i = 0; i < myArrList.size(); i++) {
-                temp[i] = (i+1) + ". " + myArrList.get(i);
-            }
-            showName.setListData(temp);
+        String[] temp = new String[myArrList.size()];
+        for (int i = 0; i < myArrList.size(); i++) {
+            temp[i] = (i+1) + ". " + myArrList.get(i);
+        }
+        showName.setListData(temp);
         
     }
     private void confirmInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmInsertActionPerformed
         checkCode();
+        deleteCode();
+        
         //insert code
     }//GEN-LAST:event_confirmInsertActionPerformed
 
+    public void deleteCode(){
+        PreparedStatement ps;
+        try{
+            ps = cb.getConnect().prepareStatement("DELETE FROM generateCode where evId = ?");
+            ps.setInt(1, this.evId);
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        cb.logout();
+    }
+    
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
         setVisible(false);
+        
         //back to admin
     }//GEN-LAST:event_closeActionPerformed
 

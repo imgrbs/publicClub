@@ -1,73 +1,60 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package publicizehub.club.view;
 
-import java.sql.*;
 import javax.swing.*;
-import publicizehub.club.controller.ConnectionBuilder;
+import publicizehub.club.controller.*;
 /**
  *
  * @author JIL
  */
 public class CreateEvent extends javax.swing.JFrame {
-    public static int runId=10001;
+    EventController ec=null;
     private int eventType;
-    private long stdId=59130500007l;
+    private long stdId;
     /**
      * Creates new form CreateEvent
      */
     public CreateEvent() {
         initComponents();
     }
+    public CreateEvent(long stdId,EventController ec) {
+        initComponents();
+        this.stdId = stdId;
+        this.ec = ec;
+    }
+    
+    
     
     public void newEvent() {
-        ConnectionBuilder cb = new ConnectionBuilder();
-        cb.connecting();
-        Statement s = null;
-       
-        try {
-            s = cb.getConnect().createStatement();
-            // SQL Insert
-            String sql = "INSERT INTO tb_event"
-                    + "(evName,evDescrip,evDate,evEndDate,evTime,evEndTime,evPlace,evTicket,evType,stuId) "
-                    + "VALUES ('" 
-                    + evName.getText()+ "','"
-                    + evDescrip.getText()+ "','"
-                    + evDate.getText()+ "','"
-                    + evEndDate.getText()+ "','"
-                    + evTime.getText()+ "','"
-                    + evEndTime.getText()+ "','"
-                    + evPlace.getText()+ "','"
-                    + evTicket.getText()+ "','"
-                    + this.eventType + "','"
-                    + this.stdId + "') ";
-            s.executeUpdate(sql);
-            
-            evName.setText("");
-            evDescrip.setText("");
-            evDate.setText("");
-            evEndDate.setText("");
-            evTime.setText("");
-            evEndTime.setText("");
-            evPlace.setText("");
-            evTicket.setText("");
-            evType.setText("");
-            JOptionPane.showMessageDialog(null, "Record Inserted Successfully");
-        } 
-        catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-            e.printStackTrace();
-        }
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-            e.printStackTrace();
-        }
-
-        cb.logout();
+        /* นำ String ที่ได้จาก input 
+        มาเก็บใส่ ตัวแปร เพื่อส่งค่าไปยัง method ใน
+        Controller */
+        String name = evName.getText();
+        String desc = evDescrip.getText();
+        String date = evDate.getText();
+        String endDate = evEndDate.getText();
+        String time = evTime.getText();
+        String endTime = evEndTime.getText();
+        String place = evPlace.getText();
+        String ticket = evTicket.getText();
+        
+        /* นำค่า ส่งไปยัง Method ใน Controller */
+        ec.CreateEventValue(name,desc,date,endDate,time,endTime,place,ticket,this.eventType,this.stdId);
+        
+        /* Reset Text ใน input GUI */
+        evName.setText("");
+        evDescrip.setText("");
+        evDate.setText("");
+        evEndDate.setText("");
+        evTime.setText("");
+        evEndTime.setText("");
+        evPlace.setText("");
+        evTicket.setText("");
+        evType.setText("");
+        
+        /* แสดง Alert ว่า ส่งข้อมูลสำเร็จ เมื่อสงข้อมูลไปยัง Database สำเร็จ */
+        JOptionPane.showMessageDialog(null, "Record Inserted Successfully");
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,9 +70,7 @@ public class CreateEvent extends javax.swing.JFrame {
         evName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        evDate = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        evTime = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         evPlace = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -93,9 +78,7 @@ public class CreateEvent extends javax.swing.JFrame {
         cancel = new javax.swing.JButton();
         confirm = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        evEndDate = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        evEndTime = new javax.swing.JTextField();
         stuId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         other = new javax.swing.JRadioButton();
@@ -104,10 +87,14 @@ public class CreateEvent extends javax.swing.JFrame {
         evType = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         evDescrip = new javax.swing.JTextArea();
+        evDate = new javax.swing.JTextField();
+        evEndDate = new javax.swing.JTextField();
+        evTime = new javax.swing.JTextField();
+        evEndTime = new javax.swing.JTextField();
 
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("สร้างกิจกรรม");
 
         jLabel2.setText("ชื่อกิจกรรม :");
@@ -115,12 +102,6 @@ public class CreateEvent extends javax.swing.JFrame {
         jLabel4.setText("รายละเอียด :");
 
         jLabel5.setText("วันจัดกิจกรรม :");
-
-        evDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                evDateActionPerformed(evt);
-            }
-        });
 
         jLabel6.setText("เวลาเริ่ม :");
 
@@ -154,6 +135,11 @@ public class CreateEvent extends javax.swing.JFrame {
 
         stuId.setBackground(new java.awt.Color(240, 240, 240));
         stuId.setBorder(null);
+        stuId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stuIdActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("ประเภทกิจกรรม :");
 
@@ -161,6 +147,11 @@ public class CreateEvent extends javax.swing.JFrame {
         other.setMnemonic('2');
         other.setText("อื่นๆ");
         other.setActionCommand("0");
+        other.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                otherActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(seminar);
         seminar.setMnemonic('1');
@@ -184,6 +175,7 @@ public class CreateEvent extends javax.swing.JFrame {
         evType.setBorder(null);
 
         evDescrip.setColumns(20);
+        evDescrip.setLineWrap(true);
         evDescrip.setRows(5);
         jScrollPane2.setViewportView(evDescrip);
 
@@ -191,68 +183,68 @@ public class CreateEvent extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(258, 258, 258))
             .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel4))
-                        .addGap(22, 22, 22)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(evPlace, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(evName)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(evDate, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(evTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addGap(18, 18, 18)
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(evEndDate)
-                            .addComponent(evEndTime, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
-                    .addComponent(evTicket)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(131, 131, 131)
-                                .addComponent(confirm)
-                                .addGap(39, 39, 39)
-                                .addComponent(cancel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(camp)
-                                .addGap(18, 18, 18)
-                                .addComponent(seminar)
-                                .addGap(18, 18, 18)
-                                .addComponent(other)
-                                .addGap(26, 26, 26)
-                                .addComponent(evType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
-                        .addComponent(stuId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2))
-                .addContainerGap(44, Short.MAX_VALUE))
+                                .addGap(201, 201, 201)
+                                .addComponent(jLabel1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(evName)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(confirm)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cancel))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(evTime, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(evDate, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(evPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel9)
+                                                    .addComponent(jLabel8)
+                                                    .addComponent(jLabel10))))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(evEndDate, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                                            .addComponent(evEndTime)
+                                            .addComponent(evTicket))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(evType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, 0)
+                                        .addComponent(stuId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(17, 17, 17))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel6))
+                    .addComponent(jLabel7)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(camp)
+                        .addGap(18, 18, 18)
+                        .addComponent(seminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(other)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(evName, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -260,47 +252,43 @@ public class CreateEvent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(evType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stuId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(evDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel9)
+                                .addComponent(evEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(evDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel10)
+                            .addComponent(evTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(evEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(evEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel7)
+                            .addComponent(evPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(evTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(evTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(evEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(evPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(evTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(camp)
-                        .addComponent(seminar)
-                        .addComponent(other)
-                        .addComponent(evType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(stuId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)))
-                .addGap(49, 49, 49)
+                    .addComponent(camp)
+                    .addComponent(seminar)
+                    .addComponent(other)
+                    .addComponent(jLabel3))
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel)
                     .addComponent(confirm))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -311,11 +299,15 @@ public class CreateEvent extends javax.swing.JFrame {
     
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         setVisible(false);
-        // TODO add your handling code here:
     }//GEN-LAST:event_cancelActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
+        /* จะถูกใช้เมื่อกดปุ่มยืนยัน */
         
+        /* เมื่อกด Radio Button ต่างๆ จะแปลงค่าเป็น int
+        0 = Event Camp
+        1 = Event Seminar
+        2 = Other Event */
         if(camp.isSelected()){
             this.eventType=0;
         }else if(seminar.isSelected()){
@@ -323,22 +315,27 @@ public class CreateEvent extends javax.swing.JFrame {
         }else if(other.isSelected()){
             this.eventType=2;
         }
-
+        
+        /* Call New Event เพื่อเรียกใช้ Method
+        ดึงค่าจาก input ใน gui */
         newEvent();
-        // TODO add your handling code here:
     }//GEN-LAST:event_confirmActionPerformed
 
     private void evPlaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evPlaceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_evPlaceActionPerformed
 
-    private void evDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_evDateActionPerformed
-
     private void campActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campActionPerformed
+
+    private void stuIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stuIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stuIdActionPerformed
+
+    private void otherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_otherActionPerformed
 
     /**
      * @param args the command line arguments
