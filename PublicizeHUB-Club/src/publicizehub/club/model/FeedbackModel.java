@@ -7,7 +7,9 @@ package publicizehub.club.model;
 
 
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.*;
+import publicizehub.club.controller.FeedbackController;
 
 /**
  *
@@ -15,6 +17,9 @@ import javax.swing.*;
  */
 public class FeedbackModel {
     
+    ArrayList <FeedbackStd> myArrList = new ArrayList<FeedbackStd>();
+    FeedbackController fbc = new FeedbackController();
+        
     public void insertValue(int percentQ1,int percentQ2,int evId,long stdId){
         Statement s = null; 
         String sql;
@@ -42,5 +47,30 @@ public class FeedbackModel {
     }
     
    
-       
+     public void setSumQ() {
+        PreparedStatement ps = null;
+        ResultSet result;
+        ConnectionBuilder cb = new ConnectionBuilder();
+        cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
+        try {
+            ps = cb.getConnect().prepareStatement("SELECT * FROM std_feedback");
+            result = ps.executeQuery();
+            while (result.next()) {
+                FeedbackStd fb = new FeedbackStd(result.getInt("evId"), result.getLong("stdId"),result.getInt("sumQ1"),result.getInt("sumQ2"),result.getInt("sumQ3"),result.getInt("sumQ4"), 
+                                result.getInt("sumQ5"),result.getInt("sumQ6"), result.getInt("sumQ7"),  result.getInt("sumQ8"),result.getInt("sumQ9"),result.getInt("sumQ10"));
+                
+                myArrList.add(fb);
+                
+            }
+            
+            fbc.getArrayList(myArrList);
+            
+                    
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            e.printStackTrace();
+        }
+
+        cb.logout();
+    }   
 }
