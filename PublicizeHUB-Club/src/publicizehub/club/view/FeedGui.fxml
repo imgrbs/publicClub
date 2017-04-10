@@ -72,7 +72,7 @@
                         <Font name="Quark-Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutY="322.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="Main">
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutY="369.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="Seminar Event">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -80,7 +80,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutY="416.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="Seminar Event">
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutY="416.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="Other">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -88,15 +88,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutY="463.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="Other">
-                     <font>
-                        <Font name="Quark-Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Separator layoutY="488.0" prefHeight="44.0" prefWidth="200.0" />
+                  <Separator layoutY="441.0" prefHeight="44.0" prefWidth="200.0" />
                   <ImageView fitHeight="78.0" fitWidth="62.0" layoutX="9.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../css/images/logo.png" />
@@ -112,7 +104,7 @@
                         <Image url="@../css/images/school-material.png" />
                      </image>
                   </ImageView>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutY="369.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="Camp Event">
+                  <Button fx:id="campBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="322.0" mnemonicParsing="false" onAction="#callSearchEvent" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="Camp Event">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -130,12 +122,12 @@
                      <right>
                         <Pane prefHeight="66.0" prefWidth="422.0" BorderPane.alignment="CENTER">
                            <children>
-                              <TextField fx:id="searchfield" layoutX="47.0" layoutY="20.0" prefHeight="19.0" prefWidth="213.0" promptText="Search..">
+                              <TextField fx:id="searchfield" layoutX="47.0" layoutY="20.0" onAction="#callSearchText" prefHeight="19.0" prefWidth="213.0" promptText="Search..">
                                  <font>
                                     <Font name="Quark-Bold" size="14.0" />
                                  </font>
                               </TextField>
-                              <Button fx:id="searchbtn" layoutX="271.0" layoutY="20.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="78.0" styleClass="search-btn" stylesheets="@../css/style.css" text="Search">
+                              <Button fx:id="searchbtn" layoutX="271.0" layoutY="20.0" mnemonicParsing="false" onAction="#callSearchText" prefHeight="32.0" prefWidth="78.0" styleClass="search-btn" stylesheets="@../css/style.css" text="Search">
                                  <font>
                                     <Font name="Quark-Bold" size="14.0" />
                                  </font>

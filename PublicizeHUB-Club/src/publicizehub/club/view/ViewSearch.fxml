@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="body" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.SearchController">
    <children>
@@ -17,8 +18,11 @@
                <children>
                   <Pane prefHeight="82.0" prefWidth="598.0">
                      <children>
-                        <TextField fx:id="search" layoutX="370.0" layoutY="29.0" promptText="Search" />
-                        <Button layoutX="532.0" layoutY="29.0" mnemonicParsing="false" onAction="#checkSearch" text="Search" />
+                        <TextField fx:id="search" layoutX="341.0" layoutY="26.0" onAction="#checkSearch" promptText="Search" />
+                        <Button layoutX="497.0" layoutY="22.0" mnemonicParsing="false" onAction="#checkSearch" prefHeight="32.0" prefWidth="81.0" styleClass="search-btn" text="Search">
+                           <font>
+                              <Font name="Quark-Bold" size="14.0" />
+                           </font></Button>
                      </children>
                   </Pane>
                </children>

@@ -9,6 +9,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert.AlertType;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import publicizehub.club.model.Search;
 import publicizehub.club.model.ConnectionBuilder;
@@ -20,8 +24,10 @@ import java.sql.SQLException;
  * @author Imagine
  */
 public class SearchController implements Initializable {
-    Search s = new Search();
     ConnectionBuilder cb = new ConnectionBuilder();
+    
+    Search s = new Search();
+    Alert alert = new Alert(AlertType.WARNING);
     
     @FXML
     private Label label;
@@ -32,8 +38,34 @@ public class SearchController implements Initializable {
     @FXML
     Label l;
     
-    Alert alert = new Alert(AlertType.WARNING);
+    int checkEvType;
 
+    public int getCheckEvType() {
+        return checkEvType;
+    }
+
+    public void setCheckEvType(int checkEvType) {
+        this.checkEvType = checkEvType;
+    }
+
+    public TextField getSearch() {
+        return search;
+    }
+
+    public void setSearch(TextField search) {
+        this.search = search;
+    }
+    
+    public void setSearch(String search) {
+        try{
+            this.search.setText(""+search);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    
     @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -106,4 +138,23 @@ public class SearchController implements Initializable {
 
         cb.logout();
     }
+    
+    @FXML
+    public void checkSearchEvType() throws Exception{
+        System.out.println("checkSearchEvType");
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../view/ViewSearch.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        if(this.checkEvType==0){
+            s.resultEventType(0);
+        }
+        else if(this.checkEvType==1){
+            s.resultEventType(1);
+        }
+        else {
+            s.resultEventType(2);
+        }
+    }  
 }

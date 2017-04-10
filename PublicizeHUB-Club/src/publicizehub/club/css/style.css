@@ -1,5 +1,6 @@
 .body{
     -fx-background-image: url('images/feed-bg-02-01.png');
+    -fx-background-color: #F1E8E5;
     -fx-background-size: 100%;
     -fx-background-position: bottom;
     -fx-background-repeat: no-repeat; 
