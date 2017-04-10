@@ -22,6 +22,7 @@ public class FeedbackStd {
     private int sumQ8;
     private int sumQ9;
     private int sumQ10;
+ 
 
     public FeedbackStd() {
     }
@@ -40,9 +41,9 @@ public class FeedbackStd {
         this.sumQ8 = sumQ8;
         this.sumQ9 = sumQ9;
         this.sumQ10 = sumQ10;
+                
     }
-
-    
+ 
     
     
     public int getEvId() {
