@@ -1128,7 +1128,7 @@ public class FormEvaluations extends javax.swing.JFrame {
        
        fbc.getValue(valueRadio1, valueRadio2, valueRadio3, valueRadio4, valueRadio5, 
                valueRadio6, valueRadio7, valueRadio8, valueRadio9, valueRadio10, evId, stdId);
-       
+       fbc.AverSum();
 
          //EventName.setText(Double.toString(valueRadio1));
         
