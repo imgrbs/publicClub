@@ -9,23 +9,23 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="body" stylesheets="@xampp/htdocs/Github/publicClub/PublicizeHUB-Club/src/publicizehub/club/css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.SearchController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="body" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.SearchController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <FlowPane alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="600.0" BorderPane.alignment="TOP_RIGHT">
                <children>
-                  <Pane prefHeight="60.0" prefWidth="598.0">
+                  <Pane prefHeight="82.0" prefWidth="598.0">
                      <children>
-                        <TextField fx:id="search" layoutX="370.0" layoutY="31.0" promptText="Search" />
-                        <Button layoutX="532.0" layoutY="31.0" mnemonicParsing="false" onAction="#checkSearch" text="Search" />
+                        <TextField fx:id="search" layoutX="370.0" layoutY="29.0" promptText="Search" />
+                        <Button layoutX="532.0" layoutY="29.0" mnemonicParsing="false" onAction="#checkSearch" text="Search" />
                      </children>
                   </Pane>
                </children>
             </FlowPane>
          </top>
          <center>
-            <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="TOP_CENTER">
+            <FlowPane alignment="TOP_CENTER" prefHeight="319.0" prefWidth="600.0" BorderPane.alignment="TOP_CENTER">
                <children>
                   <ScrollPane prefHeight="293.0" prefWidth="555.0" style="-fx-background-color: #151515;">
                      <content>

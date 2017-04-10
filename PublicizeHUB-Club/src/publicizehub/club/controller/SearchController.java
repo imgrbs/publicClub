@@ -71,7 +71,7 @@ public class SearchController implements Initializable {
                 temp = "nullEventThatNoMeaning";
                 search.setText("");
                 alert.setTitle("คำเตือน");
-                alert.setHeaderText("กรุณาใส่ชื่อกิจกรรม!");
+                alert.setHeaderText("กรุณาใส่ชื่อกิจกรรมให้ถูกต้อง!");
                 alert.showAndWait();
             } else {
                 for (int i = 0; i < temp.length(); i++) {

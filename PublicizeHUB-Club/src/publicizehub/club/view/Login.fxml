@@ -16,7 +16,7 @@
    <children>
       <BorderPane layoutX="107.0" layoutY="81.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <Pane prefHeight="600.0" prefWidth="423.0" styleClass="loginBg" stylesheets="@../css/style.css" BorderPane.alignment="CENTER" />
+            <Pane prefHeight="690.0" prefWidth="402.0" styleClass="loginBg" stylesheets="@../css/style.css" BorderPane.alignment="CENTER" />
          </left>
          <center>
             <Pane prefHeight="600.0" prefWidth="409.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
