@@ -171,9 +171,8 @@ public class Event {
     public ResultSet updateCurrentMember(int updateMember,int evId){
         cb.connecting();
         try{
-            ps = cb.getConnect().prepareStatement("UPDATE tb_event set currentMember='"+updateMember+"' where evId = ?");
-            ps.setInt(1,evId);
-            rs = ps.executeQuery();
+            ps = cb.getConnect().prepareStatement("UPDATE tb_event set currentMember='"+updateMember+"' where evId = "+evId);
+            ps.executeUpdate();
         }
         catch(SQLException e){
             e.printStackTrace();

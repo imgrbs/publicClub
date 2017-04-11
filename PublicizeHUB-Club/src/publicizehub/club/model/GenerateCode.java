@@ -47,26 +47,29 @@ public class GenerateCode {
 
     public void pushCode(int eventId) {
         generateCode();
-        cb.connecting();
-        ResultSet rs = ev.getSelect(eventId);
+        ResultSet checkMember = ev.getSelect(eventId);
+        cb.logout();
         try {
-            if (rs.getInt("currentMember") < rs.getInt("evTicket")) {
-                int updateMember = rs.getInt("currentMember")+1;
-                
-                PreparedStatement ps;
-                String sql = "INSERT INTO generatecode"
-                        + "(evId,stdId,evCode) "
-                        + "VALUES ('"
-                        + this.evId + "','"
-                        + this.stdId + "','"
-                        + this.evCode + "') ";
-                try {
-                    ps = cb.getConnect().prepareStatement(sql);
-                    ps.executeUpdate();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
+            if(checkMember.next()){
+                if (checkMember.getInt("currentMember") < checkMember.getInt("evTicket")) {
+                    int updateMember = checkMember.getInt("currentMember")+1;
+                    ev.updateCurrentMember(updateMember, eventId);
+                    cb.connecting();
+                    PreparedStatement ps;
+                    String sql = "INSERT INTO generatecode"
+                            + "(evId,stdId,evCode) "
+                            + "VALUES ('"
+                            + this.evId + "','"
+                            + this.stdId + "','"
+                            + this.evCode + "') ";
+                    try {
+                        ps = cb.getConnect().prepareStatement(sql);
+                        ps.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }catch(SQLException e){

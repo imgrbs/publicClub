@@ -12,8 +12,8 @@ package publicizehub.club.controller;
 
 //จำลองเอาเด้อ
 public class LogIn {
-    private long stdId = 59130500012l;
-    private String name = "จิราภา";
+    private long stdId = 59130500007l;
+    private String name = "Keerati";
 
     public long getStdId() {
         return stdId;
