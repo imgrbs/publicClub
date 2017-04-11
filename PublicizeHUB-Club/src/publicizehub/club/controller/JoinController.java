@@ -22,9 +22,9 @@ public class JoinController {
     Join jn = new Join();
     
     Alert comfirm = new Alert(Alert.AlertType.CONFIRMATION);
-    
-    
+ 
     ConnectionBuilder cb = new ConnectionBuilder();
+    
     public void toJoinEvent(int eventId){
         ResultSet rs = jn.getGenCode(eventId);
         int tempId=0;
@@ -57,4 +57,6 @@ public class JoinController {
   
         cb.logout();
     }
+    
+    
 }

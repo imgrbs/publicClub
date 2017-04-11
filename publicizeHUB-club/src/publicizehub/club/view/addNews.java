@@ -117,11 +117,11 @@ public class addNews extends javax.swing.JFrame {
     }//GEN-LAST:event_insertNewsActionPerformed
 
     private void deleteNewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteNewsActionPerformed
-        nw.deleteNews();
+        
     }//GEN-LAST:event_deleteNewsActionPerformed
 
     private void editNewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editNewsActionPerformed
-        nw.editNews();
+        
     }//GEN-LAST:event_editNewsActionPerformed
 
     /**
