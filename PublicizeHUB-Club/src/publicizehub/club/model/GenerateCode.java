@@ -43,6 +43,10 @@ public class GenerateCode {
         Code = (int) (timerand + rand);
         System.out.println("C" + Code);
         evCode = "C" + Code;
+        if(evCode.length()<6){
+            int fixCode = (int) (Math.random()*10);
+            evCode += fixCode;
+        }
     }
 
     public void pushCode(int eventId) {

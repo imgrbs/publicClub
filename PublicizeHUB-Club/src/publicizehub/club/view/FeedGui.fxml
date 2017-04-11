@@ -151,12 +151,12 @@
                                        <children>
                                           <Pane layoutX="-3.0" layoutY="26.0" prefHeight="149.0" prefWidth="252.0" styleClass="boxEv" stylesheets="@../css/style.css">
                                              <children>
-                                                <Label fx:id="labelEvMain1" layoutX="15.0" layoutY="10.0" prefHeight="20.0" prefWidth="192.0" text="IT 3K ครั้งที่ 13">
+                                                <Label fx:id="labelEvMain1" layoutX="15.0" layoutY="10.0" prefHeight="20.0" prefWidth="192.0" text="IT 3K ครั้งที่13">
                                                    <font>
                                                       <Font name="ThaiSans Neue Regular" size="35.0" />
                                                    </font>
                                                 </Label>
-                                                <Button layoutX="72.0" layoutY="106.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="79.0" styleClass="joinbtn" text="Join">
+                                                <Button fx:id="joinEvMain1" layoutX="72.0" layoutY="106.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="79.0" styleClass="joinbtn" text="Join">
                                                    <font>
                                                       <Font name="Quark-Bold" size="15.0" />
                                                    </font>
@@ -179,7 +179,7 @@
                                                       <Font name="ThaiSans Neue Regular" size="35.0" />
                                                    </font>
                                                 </Label>
-                                                <Button layoutX="80.0" layoutY="102.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="79.0" styleClass="joinbtn" text="Join">
+                                                <Button fx:id="joinEvMain2" layoutX="80.0" layoutY="102.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="79.0" styleClass="joinbtn" text="Join">
                                                    <font>
                                                       <Font name="Quark-Bold" size="15.0" />
                                                    </font>
