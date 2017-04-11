@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Quark';
+    src: url('./font/Quark-Light.otf');
+}
+/*100 normal: UltraLight*/
+@font-face {
+    font-family: 'Thaisans Neue for Web';
+    src: url('./font/thaisansneue/thaisansneue-ultralight-webfont.ttf');
+}

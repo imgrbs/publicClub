@@ -1,3 +1,10 @@
+@import url('fontface-thaisansneue.css');
+
+/*
+-fx-font-family:'Thaisans Neue for Web';
+-fx-font-family:'Quark';
+*/
+
 .body{
     -fx-background-image: url('images/feed-bg-02-01.png');
     -fx-background-color: #F1E8E5;
@@ -28,7 +35,7 @@
 .boxEv{
     -fx-background-radius: 8;
     -fx-background-color: #ffffff;
-    -fx-effect: dropshadow(three-pass-box, #4d4d4d, 10, 0, 0, 2);
+    -fx-effect: dropshadow(three-pass-box, #4d4d4d, 5, 0, 0, 2);
 }
 .menubtn{
     -fx-background-color: white;
@@ -48,6 +55,29 @@
     -fx-background-color: #d3d3d3;
     -fx-text-fill: #4d4d4d;
     -fx-cursor: hand;
+}
+.joinbtnSearch{
+    -fx-font-family:'Thaisans Neue for Web';
+    -fx-background-color: #e7560c;
+    -fx-text-fill:white;
+    -fx-cursor: hand;
+    -fx-font-size: 15px;
+    -fx-pref-width: 80px;
+}
+
+.joinbtnSearch:hover{
+    -fx-background-color: #F9AD87;
+}
+.detailbtnSearch{
+    -fx-font-family:'Thaisans Neue for Web';
+    -fx-background-color: #d3d3d3;
+    -fx-text-fill: #4d4d4d;
+    -fx-cursor: hand;
+    -fx-font-size: 15px;
+    -fx-pref-width: 80px;
+}
+.detailbtnSearch:hover{
+    -fx-background-color: #ECECEC;
 }
 .joinbtn:hover{
     -fx-background-color: #ff8d53;

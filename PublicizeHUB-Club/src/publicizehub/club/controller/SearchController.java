@@ -81,12 +81,25 @@ public class SearchController implements Initializable {
     protected void initialize(String eventName) {
         Pane p = new Pane();
         l= new Label(eventName);
+        Button joinbtn = new Button("Join");
+        Button detailbtn = new Button("Detail");
+        joinbtn.getStyleClass().add("joinbtnSearch");
+        detailbtn.getStyleClass().add("detailbtnSearch");
+        joinbtn.setLayoutX(285);
+        joinbtn.setLayoutY(100);
+        detailbtn.setLayoutX(370);
+        detailbtn.setLayoutY(100);
         p.getChildren().add(l);
+        p.getChildren().add(joinbtn);
+        p.getChildren().add(detailbtn);
+        
         buttonBox.setMargin(p,new Insets(15,25,15,30));
-        p.setStyle("-fx-background-color: #" + "CD4D28");
+        p.setStyle("-fx-background-color: #" + "ffffff" + ";" +
+                   "-fx-background-radius: 10px;" +
+                   "-fx-effect: dropshadow(three-pass-box, #4d4d4d, 5, 0, 0, 1);");
         l.setStyle("-fx-padding: 30px 0px 0px 50px;"+
                    "-fx-font-size: 30px;"+
-                   "-fx-text-fill: #fff;");
+                   "-fx-text-fill: #000000;");
         p.setPrefSize(480,150);
         buttonBox.getChildren().add(p);
     }

@@ -1,18 +1,7 @@
 package publicizehub.club.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 import publicizehub.club.view.*;
 
 /**
@@ -35,19 +24,7 @@ public class MainController {
     
     @FXML
     protected void callSearchText(){
-        Stage stage = new Stage();
-        Parent root = null;
-        try{
-           root = FXMLLoader.load(getClass().getResource("../view/ViewSearch.fxml"));
-        } 
-        catch(Exception e){
-           e.printStackTrace();
-        }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        sc.setSearch(searchfield.getText());
-        sc.checkSearch();
+        System.out.println(searchfield.getText());
     }
     
     @FXML
