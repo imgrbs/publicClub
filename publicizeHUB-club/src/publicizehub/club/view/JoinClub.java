@@ -5,7 +5,21 @@ package publicizehub.club.view;
  * @author ImagineRabbits
  */
 public class JoinClub extends javax.swing.JFrame {
+    private String eventCode;
 
+    public String getEventCode() {
+        return eventCode;
+    }
+
+    public void setEventCode(String eventCode) {
+        this.eventCode = eventCode;
+    }
+
+    public JoinClub(String eventCode) {
+        this.eventCode = eventCode;
+        initComponents();
+    }
+    
     /**
      * Creates new form JoinClub
      */
@@ -24,7 +38,7 @@ public class JoinClub extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        evCode = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -36,9 +50,9 @@ public class JoinClub extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("รหัสกิจกรรม :");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("X45S8X");
+        evCode.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        evCode.setForeground(new java.awt.Color(255, 255, 255));
+        evCode.setText(eventCode);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -48,7 +62,7 @@ public class JoinClub extends javax.swing.JFrame {
                 .addGap(0, 33, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(evCode, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
@@ -57,7 +71,7 @@ public class JoinClub extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(evCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -148,9 +162,9 @@ public class JoinClub extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel evCode;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
