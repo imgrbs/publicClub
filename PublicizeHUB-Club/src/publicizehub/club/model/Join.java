@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import publicizehub.club.controller.LogIn;
 
 /**
  *
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
 public class Join {
     private ConnectionBuilder cb = new ConnectionBuilder();
     private String cont;
+    LogIn li = new LogIn();
     PreparedStatement ps;
     ResultSet rs;
     
@@ -24,8 +26,9 @@ public class Join {
         cb.connecting();
               
         try {
-            ps = cb.getConnect().prepareStatement("SELECT * FROM generatecode where evId = ?");
+            ps = cb.getConnect().prepareStatement("SELECT * FROM generatecode where evId = ? and stdId = ?");
             ps.setInt(1, eventId);
+            ps.setLong(2, li.getStdId());
             rs = ps.executeQuery();
             
         } catch(SQLException e){

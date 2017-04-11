@@ -14,8 +14,8 @@ public class GenerateCode {
     private int timerand;
     private int Code;
 
-    private long stdId = 59130500007l;
-    private int evId = 10035;
+    private long stdId = 59130500012l;
+    private int evId = 10051;
     private String evCode ="";
 
     public GenerateCode() {
@@ -44,9 +44,9 @@ public class GenerateCode {
         generateCode();
         cb.connecting();
         PreparedStatement ps;
-        String sql = "INSERT INTO generateCode"
-                    + "(evId,stuId,evCode) "
-                    + "VALUES ('" 
+        String sql = "INSERT INTO generatecode"
+                    + "(evId,stdId,evCode) "
+                    + "VALUES ('"               
                     + this.evId + "','"
                     + this.stdId + "','"
                     + this.evCode + "') ";
@@ -60,8 +60,9 @@ public class GenerateCode {
         catch(Exception e){
             e.printStackTrace();
         }
+        cb.logout();
     }
-    
+        
     public static void main(String[] args) {
         
     }
