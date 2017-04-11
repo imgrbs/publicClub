@@ -81,11 +81,5 @@ public class News {
         cb.logout();
     }*/
     
-    public void editNews() {
-        JOptionPane.showMessageDialog(null, "Test Edit Button");
-    }
 
-    public void deleteNews() {
-        JOptionPane.showMessageDialog(null, "Test Delete Button");
-    }
 }
