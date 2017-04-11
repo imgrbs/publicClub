@@ -167,4 +167,22 @@ public class Event {
         }
         return rs;
     }
+    
+    public ResultSet updateCurrentMember(int updateMember,int evId){
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("UPDATE tb_event set currentMember='"+updateMember+"' where evId = ?");
+            ps.setInt(1,evId);
+            rs = ps.executeQuery();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("SQLException at getSelect()");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Exception at getSelect()");
+        }
+        return rs;
+    }
 }

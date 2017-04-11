@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import publicizehub.club.controller.LogIn;
-
 /**
  *
  * @author JIL

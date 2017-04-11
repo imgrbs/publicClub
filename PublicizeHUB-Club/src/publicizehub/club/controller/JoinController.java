@@ -25,8 +25,8 @@ public class JoinController {
     Alert comfirm = new Alert(Alert.AlertType.CONFIRMATION);
     Alert warning = new Alert(Alert.AlertType.ERROR);
     
-    
     ConnectionBuilder cb = new ConnectionBuilder();
+    
     public void toJoinEvent(int eventId){
         ResultSet rs = jn.getGenCode(eventId);
         int tempId=0;
@@ -69,4 +69,6 @@ public class JoinController {
   
         cb.logout();
     }
+    
+    
 }
