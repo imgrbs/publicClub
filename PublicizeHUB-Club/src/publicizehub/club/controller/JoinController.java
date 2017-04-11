@@ -20,8 +20,10 @@ import publicizehub.club.view.*;
 public class JoinController {
     LogIn li = new LogIn();
     Join jn = new Join();
+    Event ev = new Event();
     
     Alert comfirm = new Alert(Alert.AlertType.CONFIRMATION);
+    Alert warning = new Alert(Alert.AlertType.ERROR);
     
     
     ConnectionBuilder cb = new ConnectionBuilder();
@@ -31,7 +33,6 @@ public class JoinController {
         long tempStdId=0;
         String tempEvCode="";
         try {
-            
             if(rs.next()) {
                 tempId = rs.getInt("evId");
                 tempStdId = rs.getLong("stdId");
@@ -45,9 +46,20 @@ public class JoinController {
                 comfirm.setContentText("คุณยืนยันที่จะจองใช่หรือไม่");
                 Optional<ButtonType> result = comfirm.showAndWait();
                 if (result.get() == ButtonType.OK){
-                    GenerateCode gc = new GenerateCode(li.getStdId(),eventId);
-                    gc.pushCode();
-                    new JoinClub(gc.getEvCode()).setVisible(true);
+                    ResultSet CheckTicket = ev.getSelect(eventId);
+                    if(CheckTicket.next()){
+                        if(CheckTicket.getInt("currentMember")<CheckTicket.getInt("evTicket")){
+                            GenerateCode gc = new GenerateCode(li.getStdId(),eventId);
+                            gc.pushCode(eventId);
+                            new JoinClub(gc.getEvCode()).setVisible(true);
+                        }
+                        else{
+                            warning.setTitle("Error !");
+                            warning.setHeaderText("กิจกรรมนี้เต็มแล้ว");
+                            warning.setContentText("ขออภัย, กิจกรรมเต็มแล้วไม่สามารถจองได้");
+                            warning.showAndWait();
+                        }
+                    }
                 }
             }
         } catch (Exception e) {
