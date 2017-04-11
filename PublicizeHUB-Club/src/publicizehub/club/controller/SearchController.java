@@ -176,5 +176,11 @@ public class SearchController implements Initializable {
         else {
             s.resultEventType(2);
         }
-    }  
+    }
+    
+    @FXML
+    public ResultSet getEventToGui(String wording){
+        ResultSet rs = s.resultSearch(wording);
+        return rs;
+    }
 }
