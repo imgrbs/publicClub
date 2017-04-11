@@ -18,6 +18,7 @@ import publicizehub.club.model.Search;
 import publicizehub.club.model.ConnectionBuilder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import javafx.event.EventHandler;
 
 /**
@@ -29,6 +30,8 @@ public class SearchController implements Initializable {
     JoinController jc = new JoinController();
     Search s = new Search();
     Alert alert = new Alert(AlertType.WARNING);
+    Alert comfirm = new Alert(AlertType.CONFIRMATION);
+
     
     @FXML
     private Label label;
@@ -97,7 +100,13 @@ public class SearchController implements Initializable {
             
             @Override
             public void handle(ActionEvent event) {
-               jc.toJoinEvent(eventId);
+                comfirm.setTitle("ยืนยันการจอง");
+                comfirm.setHeaderText("ยืนยันว่าจะจองกิจกรรมนี้");
+                comfirm.setContentText("คุณยืนยันที่จะจองใช่หรือไม่");
+                Optional<ButtonType> result = comfirm.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    jc.toJoinEvent(eventId);
+                }
             }
         });
         buttonBox.setMargin(p,new Insets(15,25,15,30));
@@ -119,7 +128,7 @@ public class SearchController implements Initializable {
         String temp = search.getText();
         search.setText("");
         try{
-            if(temp.charAt(0)==' '||(temp.equals("")==true)||(temp.equals(" ")==true)){
+            if(temp.equals("")||temp.charAt(0)==' '||(temp.equals("")==true)||(temp.equals(" ")==true)){
                 temp = "nullEventThatNoMeaning";
                 search.setText("");
                 alert.setTitle("คำเตือน");

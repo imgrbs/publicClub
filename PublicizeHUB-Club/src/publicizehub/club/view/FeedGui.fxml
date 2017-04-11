@@ -151,7 +151,7 @@
                                        <children>
                                           <Pane layoutX="-3.0" layoutY="26.0" prefHeight="149.0" prefWidth="252.0" styleClass="boxEv" stylesheets="@../css/style.css">
                                              <children>
-                                                <Label fx:id="labelEvMain1" layoutX="15.0" layoutY="10.0" prefHeight="20.0" prefWidth="192.0" text="IT 3K">
+                                                <Label fx:id="labelEvMain1" layoutX="15.0" layoutY="10.0" prefHeight="20.0" prefWidth="192.0" text="IT 3K ครั้งที่ 13">
                                                    <font>
                                                       <Font name="ThaiSans Neue Regular" size="35.0" />
                                                    </font>

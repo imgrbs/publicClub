@@ -18,6 +18,7 @@ public class Search {
     public ResultSet resultSearch(String wording){
         cb.connecting();
         String sql="";
+        System.out.println(wording);
         sql = "SELECT * FROM tb_event WHERE evName LIKE '%"+wording+"%'";
         try{
             ps = cb.getConnect().createStatement();

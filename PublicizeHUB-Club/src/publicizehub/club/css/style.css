@@ -5,6 +5,12 @@
 -fx-font-family:'Quark';
 */
 
+.thaisans{
+    -fx-font-family:'Thaisans Neue for Web';
+}
+.quark{
+    -fx-font-family:'Quark';
+}
 .body{
     -fx-background-image: url('images/feed-bg-02-01.png');
     -fx-background-color: #F1E8E5;
@@ -155,4 +161,13 @@
 .feedbackHead{
     -fx-background-color:  #FFE042;
     -fx-effect: dropshadow(three-pass-box, #9F870A, 0, 0, 0, 5);
+}
+.unjoin{
+    -fx-font-family:'Thaisans Neue for Web';
+    -fx-background-color:  #F82222;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+}
+.unjoin:hover{
+    -fx-background-color:  #FA5050;
 }
