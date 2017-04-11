@@ -47,6 +47,7 @@ public class JoinController {
                 if (result.get() == ButtonType.OK){
                     GenerateCode gc = new GenerateCode(li.getStdId(),eventId);
                     gc.pushCode();
+                    new JoinClub(gc.getEvCode()).setVisible(true);
                 }
             }
         } catch (Exception e) {

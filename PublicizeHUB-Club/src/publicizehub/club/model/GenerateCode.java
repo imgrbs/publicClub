@@ -18,6 +18,10 @@ public class GenerateCode {
     private int evId = 10051;
     private String evCode ="";
 
+    public String getEvCode() {
+        return evCode;
+    }
+    
     public GenerateCode() {
     }
     
