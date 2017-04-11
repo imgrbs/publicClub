@@ -1,5 +1,6 @@
 package publicizehub.club.controller;
 
+import java.sql.ResultSet;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import publicizehub.club.view.*;
@@ -10,6 +11,12 @@ import publicizehub.club.view.*;
  */
 public class MainController {
     SearchController sc = new SearchController();
+    ResultSet rs = null;
+    
+    @FXML
+    Label labelEvMain1;
+    @FXML
+    Label labelEvMain2;
     
     @FXML
     TextField searchfield;
@@ -37,5 +44,29 @@ public class MainController {
             e.printStackTrace();
             System.out.println("Exception callCampEvent");
         }
+    }
+    
+    @FXML
+    protected void getEvent(){
+        if(rs==null){
+            System.out.println("LOAD EVENT ONSTART");
+            rs = sc.getEventToGui("IT 3K ครั้งที่ 13");
+            try{
+                if(rs.next()){
+                    labelEvMain1.setText(rs.getString("evName"));
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            rs = sc.getEventToGui("Brown Bag #2.0");
+            try{
+                if(rs.next()){
+                    labelEvMain2.setText(rs.getString("evName"));
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        
     }
 }
