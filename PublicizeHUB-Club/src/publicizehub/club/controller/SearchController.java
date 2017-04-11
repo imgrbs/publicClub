@@ -17,9 +17,8 @@ import javafx.stage.Stage;
 import publicizehub.club.model.Search;
 import publicizehub.club.model.ConnectionBuilder;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Optional;
 import javafx.event.EventHandler;
+import publicizehub.club.view.Detail;
 
 /**
  *
@@ -30,7 +29,6 @@ public class SearchController implements Initializable {
     JoinController jc = new JoinController();
     Search s = new Search();
     Alert alert = new Alert(AlertType.WARNING);
-    Alert comfirm = new Alert(AlertType.CONFIRMATION);
 
     
     @FXML
@@ -97,16 +95,15 @@ public class SearchController implements Initializable {
         p.getChildren().add(joinbtn);
         p.getChildren().add(detailbtn);
         joinbtn.setOnAction(new EventHandler<ActionEvent>() {
-            
             @Override
             public void handle(ActionEvent event) {
-                comfirm.setTitle("ยืนยันการจอง");
-                comfirm.setHeaderText("ยืนยันว่าจะจองกิจกรรมนี้");
-                comfirm.setContentText("คุณยืนยันที่จะจองใช่หรือไม่");
-                Optional<ButtonType> result = comfirm.showAndWait();
-                if (result.get() == ButtonType.OK){
-                    jc.toJoinEvent(eventId);
-                }
+                jc.toJoinEvent(eventId);
+            }
+        });
+        detailbtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                new Detail().setVisible(true);
             }
         });
         buttonBox.setMargin(p,new Insets(15,25,15,30));

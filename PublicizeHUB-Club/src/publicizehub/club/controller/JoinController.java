@@ -6,6 +6,9 @@
 package publicizehub.club.controller;
 
 import java.sql.ResultSet;
+import java.util.Optional;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javax.swing.JOptionPane;
 import publicizehub.club.model.*;
 import publicizehub.club.view.*;
@@ -17,6 +20,8 @@ import publicizehub.club.view.*;
 public class JoinController {
     LogIn li = new LogIn();
     Join jn = new Join();
+    
+    Alert comfirm = new Alert(Alert.AlertType.CONFIRMATION);
     
     
     ConnectionBuilder cb = new ConnectionBuilder();
@@ -34,10 +39,15 @@ public class JoinController {
                 if(li.getStdId()==tempStdId){
                     new JoinClub(tempEvCode).setVisible(true);
                 }             
-            }else{
-                GenerateCode gc = new GenerateCode(li.getStdId(),eventId);
-                gc.pushCode();
-                new Detail().setVisible(true);
+            }else{                    
+                comfirm.setTitle("ยืนยันการจอง");
+                comfirm.setHeaderText("ยืนยันว่าจะจองกิจกรรมนี้");
+                comfirm.setContentText("คุณยืนยันที่จะจองใช่หรือไม่");
+                Optional<ButtonType> result = comfirm.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    GenerateCode gc = new GenerateCode(li.getStdId(),eventId);
+                    gc.pushCode();
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
