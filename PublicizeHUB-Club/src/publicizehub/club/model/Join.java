@@ -20,11 +20,12 @@ public class Join {
     PreparedStatement ps;
     ResultSet rs;
     
-    public ResultSet getEvent(){
+    public ResultSet getGenCode(int eventId){
         cb.connecting();
               
         try {
-            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_event");
+            ps = cb.getConnect().prepareStatement("SELECT * FROM generatecode where evId = ?");
+            ps.setInt(1, eventId);
             rs = ps.executeQuery();
             
         } catch(SQLException e){

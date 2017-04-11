@@ -18,6 +18,7 @@ import publicizehub.club.model.Search;
 import publicizehub.club.model.ConnectionBuilder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.event.EventHandler;
 
 /**
  *
@@ -25,7 +26,7 @@ import java.sql.SQLException;
  */
 public class SearchController implements Initializable {
     ConnectionBuilder cb = new ConnectionBuilder();
-    
+    JoinController jc = new JoinController();
     Search s = new Search();
     Alert alert = new Alert(AlertType.WARNING);
     
@@ -78,7 +79,7 @@ public class SearchController implements Initializable {
     }    
     
     @FXML
-    protected void initialize(String eventName) {
+    protected void initialize(String eventName,int eventId) {
         Pane p = new Pane();
         l= new Label(eventName);
         Button joinbtn = new Button("Join");
@@ -92,7 +93,13 @@ public class SearchController implements Initializable {
         p.getChildren().add(l);
         p.getChildren().add(joinbtn);
         p.getChildren().add(detailbtn);
-        
+        joinbtn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+               jc.toJoinEvent(eventId);
+            }
+        });
         buttonBox.setMargin(p,new Insets(15,25,15,30));
         p.setStyle("-fx-background-color: #" + "ffffff" + ";" +
                    "-fx-background-radius: 10px;" +
@@ -140,7 +147,7 @@ public class SearchController implements Initializable {
                 alert.showAndWait();
             } else {
                 while(result.next()){
-                    initialize(result.getString("evName"));
+                    initialize(result.getString("evName"),result.getInt("evId"));
                 }
             }
         } catch(Exception e){
