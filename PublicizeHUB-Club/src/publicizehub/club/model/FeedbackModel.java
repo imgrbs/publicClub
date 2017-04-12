@@ -93,8 +93,8 @@ public class FeedbackModel {
                 
                 
                 //myArrList.add(fb);
-            }System.out.println(sumQ1);
-            System.out.println(numPeple);
+            }
+            
                 int averQ1 = sumQ1 / numPeple;
                 int averQ2 = sumQ2 / numPeple;
                 int averQ3 = sumQ3 / numPeple;
@@ -123,7 +123,7 @@ public class FeedbackModel {
                 int setSumQ1 = (int) (percentQ1 + percentQ2 + percentQ3 + percentQ4 + percentQ5);
                 int setSumQ2 = (int) (percentQ6 + percentQ7 + percentQ8 + percentQ9 + percentQ10);
 
-                insertAvgrValue(evId, stdId,  averQ1,  averQ2,  averQ3, averQ4,  averQ5,  averQ6,  
+                insertAvgrValue(evId, numPeple,  averQ1,  averQ2,  averQ3, averQ4,  averQ5,  averQ6,  
                                 averQ7,  averQ8, averQ9,  averQ10,  setSumQ1,  setSumQ2);
 
         } catch (Exception e) {
@@ -134,16 +134,17 @@ public class FeedbackModel {
         cb.logout();
     }
 
-    public void insertAvgrValue(int evId, long stdId, int averQ1, int averQ2, int averQ3,
-            int averQ4, int averQ5, int averQ6, int averQ7, int averQ8, int averQ9, int averQ10, int setSumQ1, int setSumQ2) {
+    //ส่งข้อมูลหลังคำนวณไป tb_feedback
+    public void insertAvgrValue(int evId,int numPeple, int averQ1, int averQ2, int averQ3,
+            int averQ4, int averQ5, int averQ6, int averQ7, int averQ8, int averQ9, int averQ10, int setSumQ1, int setSumQ2 ) {
         Statement s = null;
         String sql;
         ConnectionBuilder cb = new ConnectionBuilder();
         cb.connecting(); //connect database
         try {
             s = cb.getConnect().createStatement();  // สร้าง Statement
-            sql = "INSERT INTO tb_feedback (evId,stdId,sumQ1,sumQ2,sumQ3,sumQ4,sumQ5,sumQ6,sumQ7,sumQ8,sumQ9,sumQ10,setSumQ1,setSumQ2) "
-                    + "VALUES ('" + evId + "','" + stdId + "'," + "'" + averQ1 + "','" + averQ2 + "','" + averQ3 + "','"
+            sql = "INSERT INTO tb_feedback (evId,stdEstimated,sumQ1,sumQ2,sumQ3,sumQ4,sumQ5,sumQ6,sumQ7,sumQ8,sumQ9,sumQ10,setSumQ1,setSumQ2) "
+                    + "VALUES ('" + evId + "','" + numPeple + "'," + "'" + averQ1 + "','" + averQ2 + "','" + averQ3 + "','"
                     + averQ4 + "','" + averQ5 + "','" + averQ6 + "','" + averQ7 + "','" + averQ8 + "','" + averQ9
                     + "','" + averQ10 + "','" + setSumQ1 + "','" + setSumQ2 + "') ";
 
@@ -159,4 +160,36 @@ public class FeedbackModel {
         cb.logout();
     }
 
+    //ดึงข้อมูลจาก tb_feedback
+    public void selectValueFeedback() {
+        PreparedStatement ps = null;
+        PreparedStatement ps2 = null;
+        ResultSet result,result2;
+        //String evId = "";
+        ConnectionBuilder cb = new ConnectionBuilder();
+        cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
+        try {
+            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_feedback where evId = ?");
+            
+            //ps.setInt(1, 200);  //ให้แสดงชื่อตาม id 
+            result = ps.executeQuery();
+            while (result.last()) {
+               String tempSum = result.getInt("sumQ1")+"   "+result.getInt("sumQ2") +"  "+result.getInt("sumQ3")+"   "+result.getInt("sumQ4")
+                                +"   "+result.getInt("sumQ5")+"   "+result.getInt("sumQ6")+"   "+result.getInt("sumQ7")+"   "+result.getInt("sumQ8")
+                                +"   "+result.getInt("sumQ9")+"   "+result.getInt("sumQ10")  ;
+                String tempSetSum= result.getInt("setSumQ1")+"   "+result.getInt("setSumQ2");
+                String tempNumPeple = result.getString("stdEstimated");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            e.printStackTrace();
+        }
+
+        cb.logout();
+        
+        
+            
+           
+    }
+    
 }
