@@ -1,4 +1,4 @@
-@import url('fontface-thaisansneue.css');
+@import url('fontface.css');
 
 /*
 -fx-font-family:'Thaisans Neue for Web';
@@ -6,7 +6,7 @@
 */
 
 .thaisans{
-    -fx-font-family:'Thaisans Neue for Web';
+    -fx-font-family:'ThaiSansNeueRegular';
 }
 .quark{
     -fx-font-family:'Quark';
@@ -17,6 +17,11 @@
     -fx-background-size: 100%;
     -fx-background-position: bottom;
     -fx-background-repeat: no-repeat; 
+}
+.bodyOnlyColor{
+    -fx-background-image: url('images/semi-BG-01.png');
+    -fx-background-size: 100%;
+    -fx-background-position: bottom;
 }
 .menu{
     -fx-background-image: url('images/head-menu-01.png');
@@ -63,7 +68,7 @@
     -fx-cursor: hand;
 }
 .joinbtnSearch{
-    -fx-font-family:'Thaisans Neue for Web';
+    -fx-font-family:'ThaiSansNeueRegular';
     -fx-background-color: #e7560c;
     -fx-text-fill:white;
     -fx-cursor: hand;
@@ -75,7 +80,7 @@
     -fx-background-color: #F9AD87;
 }
 .detailbtnSearch{
-    -fx-font-family:'Thaisans Neue for Web';
+    -fx-font-family:'ThaiSansNeueRegular';
     -fx-background-color: #d3d3d3;
     -fx-text-fill: #4d4d4d;
     -fx-cursor: hand;
@@ -163,11 +168,36 @@
     -fx-effect: dropshadow(three-pass-box, #9F870A, 0, 0, 0, 5);
 }
 .unjoin{
-    -fx-font-family:'Thaisans Neue for Web';
+    -fx-font-family:'ThaiSansNeueRegular';
     -fx-background-color:  #F82222;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;
 }
 .unjoin:hover{
     -fx-background-color:  #FA5050;
+}
+.detailName{
+    -fx-font-size: 29px;
+    -fx-font-style : italic;
+}
+.detailPane{
+    -fx-background-color:  #ffffff;
+    -fx-effect: dropshadow(three-pass-box, #4D4D4D, 5, 0, 0, 1);
+}
+.detailDate{
+    -fx-font-size: 20px;
+    -fx-text-fill: #DB9B64;
+}
+.listJoinBtn{
+    -fx-font-size: 20px;
+    -fx-background-color: #EF4C1E;
+    -fx-text-fill: #fff;
+    -fx-effect: dropshadow(three-pass-box, #A7A7A7, 4, 0, 0, 2);
+    -fx-cursor: hand;
+}
+.listJoinBtn:hover{
+    -fx-background-color: #FF6A40;
+}
+.listDescrip{
+    -fx-font-size: 18px;
 }
