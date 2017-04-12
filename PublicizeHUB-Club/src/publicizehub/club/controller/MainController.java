@@ -77,7 +77,7 @@ public class MainController {
                     joinEvMain1.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            dc.callDetail(eventId1);
+                            jc.toJoinEvent(eventId1);
                         }
                     });
                     detailEv1.setOnAction(new EventHandler<ActionEvent>() {

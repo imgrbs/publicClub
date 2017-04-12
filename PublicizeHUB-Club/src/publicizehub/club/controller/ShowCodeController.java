@@ -23,7 +23,7 @@ public class ShowCodeController {
     
     Stage showCodeStage;
     
-    int eventId;
+    private int eventId;
     
     @FXML
     AnchorPane mainPane;

@@ -82,7 +82,4 @@ public class DetailController {
         stage.show();
     }
     
-    public void setEvDate(){
-        
-    }
 }

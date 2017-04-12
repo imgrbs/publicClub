@@ -44,6 +44,9 @@ public class Join {
         getGenCode(eventId);
         cb.connecting();
         try{
+            ps = cb.getConnect().prepareStatement("UPDATE logJoining set status = '1' where evCode = ?");
+            ps.setString(1, evCode);
+            ps.executeUpdate();
             ps = cb.getConnect().prepareStatement("DELETE FROM generatecode where evCode = ?");
             ps.setString(1, evCode);
             ps.executeUpdate();

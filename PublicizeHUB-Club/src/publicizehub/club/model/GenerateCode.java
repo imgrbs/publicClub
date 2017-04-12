@@ -11,11 +11,12 @@ public class GenerateCode {
 
     ConnectionBuilder cb = new ConnectionBuilder();
     Event ev = new Event();
-    private long rand;
+    private int rand;
+    private int randString;
     private String timestamp = "";
     private int timerand;
     private int Code;
-
+    private String codeString ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private long stdId = 59130500012l;
     private int evId = 10051;
     private String evCode = "";
@@ -37,12 +38,13 @@ public class GenerateCode {
     }
 
     public void generateCode() {
-        rand = (long) (Math.random() * 7999) + 1000;
+        rand = (int) (Math.random() * 7999) + 1000;
+      	randString = (int) (Math.random() * codeString.length());
         timestamp += System.currentTimeMillis();
         timerand = parseInt(timestamp.substring(timestamp.length() - 5, timestamp.length()));
         Code = (int) (timerand + rand);
-        System.out.println("C" + Code);
-        evCode = "C" + Code;
+        System.out.println(codeString.charAt(randString)+"" + Code);
+        evCode = "" + codeString.charAt(randString) + Code;
         if(evCode.length()<6){
             int fixCode = (int) (Math.random()*10);
             evCode += fixCode;
@@ -77,6 +79,9 @@ public class GenerateCode {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    ps = cb.getConnect().prepareStatement("INSERT into logJoining (stdId,evId,evCode,status) "
+                                                  + "VALUES ('"+this.stdId+"','"+this.evId+"','"+this.evCode+"','"+0+"')");
+                    ps.executeUpdate();
                 }
             }
         }catch(SQLException e){
