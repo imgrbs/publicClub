@@ -42,8 +42,7 @@ public class JoinController {
                 tempStdId = rs.getLong("stdId");
                 tempEvCode = rs.getString("evCode");
                 if(li.getStdId()==tempStdId){
-                    callShowCode(tempEvCode);
-//                    new JoinClub(tempEvCode).setVisible(true);
+                    callShowCode(tempEvCode,eventId);
                 }             
             }else{                    
                 comfirm.setTitle("ยืนยันการจอง");
@@ -56,7 +55,7 @@ public class JoinController {
                         if(CheckTicket.getInt("currentMember")<CheckTicket.getInt("evTicket")){
                             GenerateCode gc = new GenerateCode(li.getStdId(),eventId);
                             gc.pushCode(eventId);
-                            new JoinClub(gc.getEvCode()).setVisible(true);
+                            callShowCode(gc.getEvCode(),eventId);
                         }
                         else{
                             warning.setTitle("Error !");
@@ -75,8 +74,7 @@ public class JoinController {
         cb.logout();
     }
     
-    public void callShowCode(String evCode){
-        long stdId = 59130500007l;
+    public void callShowCode(String evCode,int eventId){
         Stage stage= new Stage();
         Parent root=null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ShowCode.fxml"));     
@@ -87,8 +85,8 @@ public class JoinController {
             e.printStackTrace();
         }
         ShowCodeController controller = fxmlLoader.<ShowCodeController>getController();
-        controller.setStdId(stdId);
         controller.setCodeText(evCode);
+        controller.setEventId(eventId);
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    

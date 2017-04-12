@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import publicizehub.club.controller.MainController;
 
 /**
  *
@@ -14,8 +15,19 @@ import javafx.stage.Stage;
 public class main extends Application  {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FeedGui.fxml"));
         
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource("FeedGui.fxml"));  
+        MainController controller=null;
+        Parent root = null;
+        try{
+            stage = new Stage();
+            root = (Parent)loader.load(); 
+            controller = loader.<MainController>getController();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        controller.getEvent();
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

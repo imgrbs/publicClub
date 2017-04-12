@@ -13,7 +13,7 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="529.0" styleClass="boxEv">
                <children>
-                  <Button layoutX="401.0" layoutY="151.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="98.0" styleClass="unjoin" text="UNJOIN" textFill="WHITE" />
+                  <Button fx:id="unJoinBtn" layoutX="401.0" layoutY="151.0" mnemonicParsing="false" onAction="#unJoinEvent" prefHeight="35.0" prefWidth="98.0" styleClass="unjoin" text="UNJOIN" textFill="WHITE" />
                   <Label alignment="CENTER" layoutX="17.0" layoutY="14.0" prefHeight="36.0" prefWidth="139.0" style="-fx-font-size: 25px;" styleClass="thaisans" text="YOUR CODE">
                      <font>
                         <Font size="33.0" />

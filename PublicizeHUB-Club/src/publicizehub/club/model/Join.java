@@ -23,7 +23,6 @@ public class Join {
     
     public ResultSet getGenCode(int eventId){
         cb.connecting();
-              
         try {
             ps = cb.getConnect().prepareStatement("SELECT * FROM generatecode where evId = ? and stdId = ?");
             ps.setInt(1, eventId);
@@ -40,4 +39,19 @@ public class Join {
         
         return rs;
     }
+    
+    public void deleteCode(String evCode,int eventId){
+        getGenCode(eventId);
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("DELETE FROM generatecode where evCode = ?");
+            ps.setString(1, evCode);
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        cb.logout();
+    }
+    
 }

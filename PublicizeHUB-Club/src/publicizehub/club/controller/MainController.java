@@ -57,7 +57,7 @@ public class MainController {
     int eventId1,eventId2;
 
     @FXML
-    protected void getEvent() {
+    public void getEvent() {
         if (rs == null) {
             System.out.println("LOAD EVENT ONSTART");
             rs = sc.getEventToGui("IT 3K ครั้งที่ 13");
