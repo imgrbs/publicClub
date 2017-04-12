@@ -80,7 +80,7 @@ public class SearchController implements Initializable {
     }    
     
     @FXML
-    protected void initialize(String eventName,int eventId) {
+    public void addEventToPane(String eventName,int eventId) {
         Pane p = new Pane();
         l= new Label(eventName);
         Button joinbtn = new Button("Join");
@@ -120,12 +120,12 @@ public class SearchController implements Initializable {
     
     @FXML
     public void checkSearch(){
-        buttonBox.getChildren().clear();
         ResultSet result;
+        buttonBox.getChildren().clear();
         String temp = search.getText();
         search.setText("");
         try{
-            if(temp.equals("")||temp.charAt(0)==' '||(temp.equals("")==true)||(temp.equals(" ")==true)){
+            if(temp.equals("")||temp.charAt(0)==' '){
                 temp = "nullEventThatNoMeaning";
                 search.setText("");
                 alert.setTitle("คำเตือน");
@@ -137,8 +137,8 @@ public class SearchController implements Initializable {
                         temp = "nullEventThatNoMeaning";
                         search.setText("");
                         alert.setTitle("คำเตือน");
-                        alert.setHeaderText("อย่ามาเล่น Injection ดิ ชิ้วๆ!");
-                        alert.setContentText("555555 อิอิอิอิอิอิอิอิ");
+                        alert.setHeaderText("กรุณาใส่ชื่อกิจกรรมให้ถูกต้อง!");
+                        alert.setContentText("Injection Detected :)");
                         alert.showAndWait();
                     }
                 }
@@ -147,13 +147,14 @@ public class SearchController implements Initializable {
             if(result.next()==false){
                 temp = "nullEventThatNoMeaning";
                 search.setText("");
-                alert.setTitle("คำเตือน");
-                alert.setHeaderText("ขออภัยไม่มีกิจกรรมที่คุณค้นหา!");
-                alert.setContentText("ขอโทษเนาะ");
+                alert.setTitle("Warning!");
+                alert.setHeaderText("ขออภัย");
+                alert.setContentText("ไม่มีกิจกรรมที่คุณค้นหา..");
                 alert.showAndWait();
             } else {
+                addEventToPane(result.getString("evName"),result.getInt("evId"));
                 while(result.next()){
-                    initialize(result.getString("evName"),result.getInt("evId"));
+                    addEventToPane(result.getString("evName"),result.getInt("evId"));
                 }
             }
         } catch(Exception e){
