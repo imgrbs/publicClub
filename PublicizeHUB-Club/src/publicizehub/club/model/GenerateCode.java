@@ -46,7 +46,10 @@ public class GenerateCode {
         if(evCode.length()<6){
             int fixCode = (int) (Math.random()*10);
             evCode += fixCode;
+        }else if(evCode.length()>6){
+            evCode = evCode.substring(0,7);
         }
+        
     }
 
     public void pushCode(int eventId) {

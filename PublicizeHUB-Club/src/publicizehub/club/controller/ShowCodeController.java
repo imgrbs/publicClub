@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import publicizehub.club.model.GenerateCode;
 import publicizehub.club.model.Join;
@@ -21,8 +22,12 @@ public class ShowCodeController {
     Alert comfirm = new Alert(Alert.AlertType.CONFIRMATION);
     Alert success = new Alert(Alert.AlertType.INFORMATION);
     
+    Stage showCodeStage;
+    
     int eventId;
     
+    @FXML
+    AnchorPane mainPane;
     @FXML
     Label codeText;
     @FXML
@@ -43,8 +48,14 @@ public class ShowCodeController {
     public void setEventId(int eventId) {
         this.eventId = eventId;
     }
-    
-    
+
+    public Stage getShowCodeStage() {
+        return showCodeStage;
+    }
+
+    public void setShowCodeStage(Stage showCodeStage) {
+        this.showCodeStage = showCodeStage;
+    }
     
     @FXML
     public void unJoinEvent(){
@@ -57,9 +68,12 @@ public class ShowCodeController {
             success.setHeaderText("ยกเลิกการจอง");
             success.setContentText("ยกเลิกการจอง สำเร็จแล้ว");
             success.showAndWait();
-            Stage stage = (Stage) closeButton.getScene().getWindow();
-            stage.close();
-            
+            try{
+                showCodeStage.close();
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
         }
     }
     

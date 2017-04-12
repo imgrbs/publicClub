@@ -87,6 +87,7 @@ public class JoinController {
         ShowCodeController controller = fxmlLoader.<ShowCodeController>getController();
         controller.setCodeText(evCode);
         controller.setEventId(eventId);
+        controller.setShowCodeStage(stage);
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    
