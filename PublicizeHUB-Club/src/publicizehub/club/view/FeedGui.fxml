@@ -161,7 +161,7 @@
                                                       <Font name="Quark-Bold" size="15.0" />
                                                    </font>
                                                 </Button>
-                                                <Button layoutX="156.0" layoutY="106.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="82.0" styleClass="detailbtn" text="Detail">
+                                                <Button fx:id="detailEv1" layoutX="156.0" layoutY="106.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="82.0" styleClass="detailbtn" text="Detail">
                                                    <font>
                                                       <Font name="Quark-Bold" size="15.0" />
                                                    </font>
@@ -184,7 +184,7 @@
                                                       <Font name="Quark-Bold" size="15.0" />
                                                    </font>
                                                 </Button>
-                                                <Button layoutX="164.0" layoutY="102.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="82.0" styleClass="detailbtn" text="Detail">
+                                                <Button fx:id="detailEv2" layoutX="164.0" layoutY="102.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="82.0" styleClass="detailbtn" text="Detail">
                                                    <font>
                                                       <Font name="Quark-Bold" size="15.0" />
                                                    </font>

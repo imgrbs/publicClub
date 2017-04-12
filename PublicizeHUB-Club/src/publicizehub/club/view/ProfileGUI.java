@@ -163,7 +163,7 @@ public class ProfileGUI extends JFrame implements ActionListener {
         btnCode.setBounds(600,45, 90, 30);
         btnCode.addActionListener((new ActionListener() {
                 public void actionPerformed(ActionEvent e) {           
-                       new JoinClub().setVisible(true);
+//                       new JoinClub().setVisible(true);
                 }
         }));
         act.add(btnCode);
@@ -200,7 +200,7 @@ public class ProfileGUI extends JFrame implements ActionListener {
         btnCode.setBounds(600,45, 90, 30);
         btnCode.addActionListener((new ActionListener() {
                 public void actionPerformed(ActionEvent e) {           
-                       new JoinClub().setVisible(true);
+//                       new JoinClub().setVisible(true);
                 }
         }));
         act.add(btnCode);

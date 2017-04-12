@@ -11,7 +11,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import publicizehub.club.model.GenerateCode;
 import publicizehub.club.model.Join;
-import publicizehub.club.view.JoinClub;
 
 /**
  *

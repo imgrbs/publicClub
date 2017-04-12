@@ -29,7 +29,7 @@ public class EventController {
     SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm");
 
-    PanelEventComponent pec = null;
+//    PanelEventComponent pec = null;
 
     public static int getyValueCurrent() {
         return yValueCurrent;
@@ -97,17 +97,17 @@ public class EventController {
                 tempEnd = rs.getDate("evEndDate");
                 tempType = rs.getInt("evType");
 
-                pec = new PanelEventComponent(tempName, tempId);
-                System.out.println("pec id " + pec.getEvId());
-                if (d.compareTo(tempEnd) <= 0) {
-                    this.ySizeCurrent += 110;
-                    jp.setPreferredSize(new java.awt.Dimension(400, this.ySizeCurrent));
-                    jp.add(pec.AddCurrentEvent());
-                } else {
-                    this.ySizeComplete += 110;
-                    jp2.setPreferredSize(new java.awt.Dimension(400, this.ySizeComplete));
-                    jp2.add(pec.AddCompleteEvent());
-                }
+//                pec = new PanelEventComponent(tempName, tempId);
+//                System.out.println("pec id " + pec.getEvId());
+//                if (d.compareTo(tempEnd) <= 0) {
+//                    this.ySizeCurrent += 110;
+//                    jp.setPreferredSize(new java.awt.Dimension(400, this.ySizeCurrent));
+//                    jp.add(pec.AddCurrentEvent());
+//                } else {
+//                    this.ySizeComplete += 110;
+//                    jp2.setPreferredSize(new java.awt.Dimension(400, this.ySizeComplete));
+//                    jp2.add(pec.AddCompleteEvent());
+//                }
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -119,10 +119,10 @@ public class EventController {
     }
 
     public void refreshPanel(JPanel jp, JPanel jp2) {
-        System.out.println("PEC ID REF" + pec.getEvId());
-        System.out.println("Refresh");
-        pec.setyValueCurrent(10);
-        pec.setyValueComplete(10);
+//        System.out.println("PEC ID REF" + pec.getEvId());
+//        System.out.println("Refresh");
+//        pec.setyValueCurrent(10);
+//        pec.setyValueComplete(10);
         this.ySizeCurrent = 0;
         this.ySizeComplete = 0;
         jp.removeAll();

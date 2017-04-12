@@ -4,7 +4,11 @@ import java.sql.ResultSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import publicizehub.club.view.*;
 
 /**
@@ -15,6 +19,7 @@ public class MainController {
 
     SearchController sc = new SearchController();
     JoinController jc = new JoinController();
+    DetailController dc = new DetailController();
     ResultSet rs = null;
 
     @FXML
@@ -25,6 +30,10 @@ public class MainController {
     Button joinEvMain1;
     @FXML
     Button joinEvMain2;
+    @FXML
+    Button detailEv1;
+    @FXML
+    Button detailEv2;
 
     @FXML
     TextField searchfield;
@@ -54,10 +63,10 @@ public class MainController {
         }
     }
 
-    int eventId1,eventId2;
 
     @FXML
     public void getEvent() {
+        int eventId1,eventId2;
         if (rs == null) {
             System.out.println("LOAD EVENT ONSTART");
             rs = sc.getEventToGui("IT 3K ครั้งที่ 13");
@@ -68,7 +77,13 @@ public class MainController {
                     joinEvMain1.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            jc.toJoinEvent(eventId1);
+                            dc.callDetail(eventId1);
+                        }
+                    });
+                    detailEv1.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            dc.callDetail(eventId1);
                         }
                     });
                 }
@@ -86,11 +101,17 @@ public class MainController {
                             jc.toJoinEvent(eventId2);
                         }
                     });
+                    detailEv2.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            dc.callDetail(eventId2);
+                        }
+                    });
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
     }
+    
 }

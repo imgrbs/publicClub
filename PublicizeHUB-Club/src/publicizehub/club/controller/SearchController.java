@@ -18,7 +18,6 @@ import publicizehub.club.model.Search;
 import publicizehub.club.model.ConnectionBuilder;
 import java.sql.ResultSet;
 import javafx.event.EventHandler;
-import publicizehub.club.view.Detail;
 
 /**
  *
@@ -27,6 +26,7 @@ import publicizehub.club.view.Detail;
 public class SearchController implements Initializable {
     ConnectionBuilder cb = new ConnectionBuilder();
     JoinController jc = new JoinController();
+    DetailController dc = new DetailController();
     Search s = new Search();
     Alert alert = new Alert(AlertType.WARNING);
 
@@ -34,11 +34,11 @@ public class SearchController implements Initializable {
     @FXML
     private Label label;
     @FXML
-    VBox buttonBox = new VBox();
+    private VBox buttonBox = new VBox();
     @FXML
-    TextField search;
+    private TextField search;
     @FXML
-    Label l;
+    private Label l;
     
     int checkEvType;
 
@@ -103,7 +103,7 @@ public class SearchController implements Initializable {
         detailbtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                new Detail().setVisible(true);
+                dc.callDetail(eventId);
             }
         });
         buttonBox.setMargin(p,new Insets(15,25,15,30));
