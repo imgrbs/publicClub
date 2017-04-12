@@ -7,8 +7,12 @@ package publicizehub.club.controller;
 
 import java.sql.ResultSet;
 import java.util.Optional;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import publicizehub.club.model.*;
 import publicizehub.club.view.*;
@@ -38,7 +42,8 @@ public class JoinController {
                 tempStdId = rs.getLong("stdId");
                 tempEvCode = rs.getString("evCode");
                 if(li.getStdId()==tempStdId){
-                    new JoinClub(tempEvCode).setVisible(true);
+                    callShowCode(tempEvCode);
+//                    new JoinClub(tempEvCode).setVisible(true);
                 }             
             }else{                    
                 comfirm.setTitle("ยืนยันการจอง");
@@ -70,5 +75,27 @@ public class JoinController {
         cb.logout();
     }
     
-    
+    public void callShowCode(String evCode){
+        long stdId = 59130500007l;
+        Stage stage= new Stage();
+        Parent root=null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ShowCode.fxml"));     
+        try{
+            root = (Parent)fxmlLoader.load(); 
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        ShowCodeController controller = fxmlLoader.<ShowCodeController>getController();
+        controller.setStdId(stdId);
+        controller.setCodeText(evCode);
+        Scene scene = new Scene(root); 
+        try{
+            stage.setScene(scene);    
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        stage.show();
+    }
 }
