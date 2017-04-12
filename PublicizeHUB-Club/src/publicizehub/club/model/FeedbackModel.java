@@ -160,6 +160,36 @@ public class FeedbackModel {
         cb.logout();
     }
 
-    
+    //ดึงข้อมูลจาก tb_feedback
+    public void selectValueFeedback() {
+        PreparedStatement ps = null;
+        PreparedStatement ps2 = null;
+        ResultSet result,result2;
+        //String evId = "";
+        ConnectionBuilder cb = new ConnectionBuilder();
+        cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
+        try {
+            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_feedback where evId = ?");
+            
+            //ps.setInt(1, 200);  //ให้แสดงชื่อตาม id 
+            result = ps.executeQuery();
+            while (result.last()) {
+               String tempSum = result.getInt("sumQ1")+"   "+result.getInt("sumQ2") +"  "+result.getInt("sumQ3")+"   "+result.getInt("sumQ4")
+                                +"   "+result.getInt("sumQ5")+"   "+result.getInt("sumQ6")+"   "+result.getInt("sumQ7")+"   "+result.getInt("sumQ8")
+                                +"   "+result.getInt("sumQ9")+"   "+result.getInt("sumQ10")  ;
+                String tempSetSum= result.getInt("setSumQ1")+"   "+result.getInt("setSumQ2");
+                String tempNumPeple = result.getString("stdEstimated");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            e.printStackTrace();
+        }
+
+        cb.logout();
+        
+        
+            
+           
+    }
     
 }
