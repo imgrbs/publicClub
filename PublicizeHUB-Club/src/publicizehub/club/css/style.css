@@ -216,3 +216,10 @@
     -fx-text-fill: #ffffff;
     -fx-background-color: #4F8900;
 }
+.tabPane{
+	-fx-background-color:  #ffffff;
+	-fx-border-style: solid;
+}
+.white{
+	-fx-background-color:  #ffffff;
+}

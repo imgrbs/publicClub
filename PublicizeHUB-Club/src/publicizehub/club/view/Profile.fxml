@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.102" fx:controller="publicizehub.club.controller.ProfileController">
+   <children>
+      <FlowPane alignment="CENTER" layoutX="200.0" layoutY="78.0" prefHeight="400.0" prefWidth="600.0" styleClass="bodyOnlyColor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="377.0" prefWidth="475.0" styleClass="boxEv">
+               <children>
+                  <Pane layoutX="46.0" layoutY="163.0" prefHeight="200.0" prefWidth="383.0" styleClass="white">
+                     <children>
+                        <TabPane layoutY="-9.0" prefHeight="200.0" prefWidth="383.0" styleClass="detailPane" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab fx:id="presentTab" style="-fx-background-color: white;" text="กิจกรรมที่กำลังจะเกิด">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ScrollPane layoutX="1.0" prefHeight="171.0" prefWidth="383.0" styleClass="white">
+                                             <content>
+                                                <VBox fx:id="listEventBox1" prefHeight="200.0" prefWidth="367.0" styleClass="tabPane" />
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab fx:id="pastTab" style="-fx-background-color: white;" text="กิจกรรมที่เสร็จสิ้นแล้ว">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ScrollPane prefHeight="172.0" prefWidth="383.0" styleClass="white">
+                                             <content>
+                                                <VBox fx:id="listEventBox2" prefHeight="200.0" prefWidth="367.0" styleClass="tabPane" />
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </Pane>
+                  <Line endX="100.0" layoutX="237.0" layoutY="127.0" scaleX="2.0" startX="-100.0" />
+                  <Label alignment="CENTER" layoutX="125.0" layoutY="103.0" styleClass="quark" text="*หากข้อมูลผิดพลาดหรือต้องการแก้ไขข้อมูลโปรดแจ้งผู้ดูแลระบบ" textFill="#d74949" />
+                  <Label layoutX="181.0" layoutY="14.0" text="59130500007" textAlignment="CENTER">
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="listDescrip" />
+                     </styleClass>
+                  </Label>
+                  <Label fx:id="labelName" layoutX="157.0" layoutY="37.0" prefHeight="40.0" prefWidth="163.0" text="กีรติ  เจียรจินดารัตน์">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="formName" />
+                     </styleClass>
+                  </Label>
+                  <Label fx:id="labelDepartment" layoutX="147.0" layoutY="73.0" text="Information Technology">
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="formEvName" />
+                     </styleClass>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </FlowPane>
+   </children>
+</AnchorPane>
