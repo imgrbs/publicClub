@@ -5,6 +5,7 @@
  */
 package publicizehub.club.controller;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -47,7 +48,7 @@ public class ShowFeedbackController implements Initializable {
         setl.getData().add(new XYChart.Data("Q9", 88));
         setl.getData().add(new XYChart.Data("Q10", 20));
         FeedbackChart.getData().addAll(setl);
-                     
+        
     }    
     
 }
