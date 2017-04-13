@@ -38,7 +38,7 @@ public class FeedbackController {
         
 
     }
-
+       //method ให้กดปุ่มแล้วคำนวณส่งค่าไป tb_feedback
        public void AverSum(){
            
           fbm.setSumQ();
@@ -56,8 +56,8 @@ public class FeedbackController {
            
             
         }
-        
-     
     }
      */
+       
+       
 }
