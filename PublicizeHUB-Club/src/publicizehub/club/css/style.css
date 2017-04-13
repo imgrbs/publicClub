@@ -201,3 +201,18 @@
 .listDescrip{
     -fx-font-size: 18px;
 }
+.formName{
+    -fx-font-size: 25px;
+}
+.formEvName{
+    -fx-font-size: 20px;
+}
+.formBg{
+    -fx-background-radius: 25px;
+    -fx-effect: dropshadow(three-pass-box, #898989, 8, 0, 0, 0);
+}
+.accepBtn{
+    -fx-cursor: hand;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #4F8900;
+}

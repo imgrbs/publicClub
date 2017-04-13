@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.SearchController">
+   <children>
+      <FlowPane alignment="CENTER" layoutX="18.0" layoutY="20.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="497.0" prefWidth="664.0" style="-fx-background-color: #fff;" styleClass="formBg">
+               <children>
+                  <Label layoutX="41.0" layoutY="29.0" prefHeight="45.0" prefWidth="181.0" text="ประเมิณกิจกรรม">
+                     <styleClass>
+                        <String fx:value="formName" />
+                        <String fx:value="quark" />
+                     </styleClass></Label>
+                  <Label fx:id="evName" layoutX="443.0" layoutY="29.0" prefHeight="45.0" prefWidth="139.0" text="BrownBag #2.0">
+                     <styleClass>
+                        <String fx:value="formEvName" />
+                        <String fx:value="quark" />
+                     </styleClass></Label>
+                  <Line endX="100.0" layoutX="110.0" layoutY="94.0" startX="-100.0" />
+                  <Line endX="100.0" layoutX="311.0" layoutY="94.0" startX="-100.0" />
+                  <Line endX="100.0" layoutX="512.0" layoutY="94.0" startX="-100.0" />
+                  <Button fx:id="acceptBtn" layoutX="243.0" layoutY="452.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="82.0" styleClass="accepBtn" text="ยืนยัน" />
+               </children>
+            </Pane>
+         </children>
+      </FlowPane>
+   </children>
+</AnchorPane>
