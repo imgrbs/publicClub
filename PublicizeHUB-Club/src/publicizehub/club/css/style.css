@@ -47,7 +47,7 @@
 .boxEv{
     -fx-background-radius: 8;
     -fx-background-color: #ffffff;
-    -fx-effect: dropshadow(three-pass-box, #4d4d4d, 5, 0, 0, 2);
+    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
 }
 .menubtn{
     -fx-background-color: white;
@@ -173,7 +173,7 @@
     -fx-translate-y: 5;
 }
 .checkInBody{
-    -fx-effect: dropshadow(three-pass-box, #4D4D4D, 5, 0, 0, 3);
+    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
 }
 .feedbackHead{
     -fx-background-color:  #FFE042;
@@ -193,8 +193,9 @@
     -fx-font-style : italic;
 }
 .detailPane{
+    -fx-background-radius: 15px;
     -fx-background-color:  #ffffff;
-    -fx-effect: dropshadow(three-pass-box, #4D4D4D, 5, 0, 0, 1);
+    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
 }
 .detailDate{
     -fx-font-size: 20px;
@@ -204,7 +205,7 @@
     -fx-font-size: 20px;
     -fx-background-color: #EF4C1E;
     -fx-text-fill: #fff;
-    -fx-effect: dropshadow(three-pass-box, #A7A7A7, 4, 0, 0, 2);
+    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
     -fx-cursor: hand;
 }
 .listJoinBtn:hover{
@@ -221,7 +222,7 @@
 }
 .formBg{
     -fx-background-radius: 25px;
-    -fx-effect: dropshadow(three-pass-box, #898989, 8, 0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
 }
 .accepBtn{
     -fx-cursor: hand;
@@ -244,14 +245,12 @@
 .warningProfile{
     -fx-font-size: 20px;
 }
-
 .insertEventSize{
 	-fx-font-size: 45px;
 	-fx-text-fill: #C14B1C;
-	
 }
 .dropshadow{
-	-fx-effect: dropshadow(three-pass-box, #D1CAC7, 3, 0, 0, 2);
+    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
 }
 .backBtn{
     -fx-background-color: none;
