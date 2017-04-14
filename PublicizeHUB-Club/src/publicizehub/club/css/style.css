@@ -22,6 +22,7 @@
     -fx-background-image: url('images/semi-BG-01.png');
     -fx-background-size: 100%;
     -fx-background-position: bottom;
+	
 }
 .menu{
     -fx-background-image: url('images/head-menu-01.png');
@@ -245,7 +246,7 @@
 }
 
 .insertEventSize{
-	-fx-font-size: 40px;
+	-fx-font-size: 45px;
 	-fx-text-fill: #C14B1C;
 	
 }
@@ -260,4 +261,17 @@
 .backBtn:hover{
     -fx-background-image: url('images/arrowwhite.png');
 
+}
+.createIcon{
+	-fx-background-color: none;
+	-fx-background-image: url('images/create.png');
+	-fx-background-repeat: no-repeat;
+}
+.editIcon{
+	-fx-background-color: none;
+	-fx-background-image: url('images/editt.png');
+	-fx-background-repeat: no-repeat;
+	-fx-background-width: 64px;
+	-fx-background-height: 64px;
+	
 }
