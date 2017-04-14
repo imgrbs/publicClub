@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import publicizehub.club.view.*;
 
@@ -16,34 +17,77 @@ import publicizehub.club.view.*;
  * @author ImagineRabbits
  */
 public class MainController {
+    private LoginController li = new LoginController();
 
+    public LoginController getLi() {
+        return li;
+    }
+    
     SearchController sc = new SearchController();
     JoinController jc = new JoinController();
     DetailController dc = new DetailController();
     ResultSet rs = null;
 
     @FXML
-    Label labelEvMain1;
+    private Label stdId;
+
     @FXML
-    Label labelEvMain2;
+    private Label stdName;
+
     @FXML
-    Button joinEvMain1;
+    private Label labelEvMain1;
     @FXML
-    Button joinEvMain2;
+    private Label labelEvMain2;
     @FXML
-    Button detailEv1;
+    private Button joinEvMain1;
     @FXML
-    Button detailEv2;
+    private Button joinEvMain2;
+    @FXML
+    private Button detailEv1;
+    @FXML
+    private Button detailEv2;
+    @FXML
+    private Button manageBtn;
+    @FXML
+    private ImageView managePic;
+    
+    public void setManageDisable(){
+        this.manageBtn.setVisible(false);
+        this.managePic.setVisible(false);
+    }
+    
+    public void setUserData(long stdId,String stdName){
+        this.stdId.setText(""+stdId);
+        this.stdName.setText(""+stdName);
+    }
 
     @FXML
     TextField searchfield;
 
     @FXML
-    protected void callAdminGui() {
-        AdminGUI ag = new AdminGUI();
-        ag.setTheme();
-        ag.Run();
-        ag.setVisible(true);
+    protected void callProfile() {
+        Stage stage= new Stage();
+        Parent root=null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Profile.fxml"));     
+        try{
+            root = (Parent)fxmlLoader.load(); 
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        ProfileController controller = fxmlLoader.<ProfileController>getController();
+        controller.setLabelDepartment(li.getDepartment());
+        controller.setLabelId(""+li.getStdId());
+        controller.setLabelName(li.getName()+" "+li.getSurname());
+        controller.setStage(stage);
+        Scene scene = new Scene(root); 
+        try{
+            stage.setScene(scene);    
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        stage.show();
     }
 
     @FXML

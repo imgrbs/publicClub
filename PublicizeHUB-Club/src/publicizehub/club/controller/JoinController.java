@@ -22,7 +22,7 @@ import publicizehub.club.view.*;
  * @author JIL
  */
 public class JoinController {
-    LogIn li = new LogIn();
+    LoginController li = new LoginController();
     Join jn = new Join();
     Event ev = new Event();
     

@@ -11,13 +11,18 @@ package publicizehub.club.controller;
  */
 
 //จำลองเอาเด้อ
-public class LogIn {
-    private long stdId = 59130500012l;
-    private String name = "จิราภา";
-    private String surname = "ทรงโฉม";
-    private String department = "Informstion Technnology";
+public class LoginController {
+    private long stdId = 59130500007l;
+    private String name = "อิอิ";
+    private String surname = "เจียรจินดารัตน์";
+    private String department = "Information Technnology";
     private int status = 1;
+    private boolean checkLogin = true;
 
+    
+    public LoginController() {
+    }
+    
     public long getStdId() {
         return stdId;
     }
@@ -41,9 +46,6 @@ public class LogIn {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-    
-    public LogIn() {
-    }
 
     public String getDepartment() {
         return department;
@@ -60,6 +62,10 @@ public class LogIn {
     public void setStatus(int status) {
         this.status = status;
     }
-    
+
+    public boolean getCheckLogin() {
+        return checkLogin;
+    }
+
     
 }

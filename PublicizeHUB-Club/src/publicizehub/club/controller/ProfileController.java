@@ -16,6 +16,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+
+import static java.lang.Long.parseLong;
+import java.sql.ResultSet;
+import publicizehub.club.model.ConnectionBuilder;
+import publicizehub.club.model.Event;
 
 /**
  * FXML Controller class
@@ -23,6 +30,14 @@ import javafx.scene.layout.VBox;
  * @author JIL
  */
 public class ProfileController implements Initializable {
+    Event ev = new Event();
+    ConnectionBuilder cb = new ConnectionBuilder();
+    JoinController jc = new JoinController();
+    DetailController dc = new DetailController();
+    EventController ec = new EventController();
+    
+    private Stage temp;
+    
     @FXML
     private Label labelId;
     @FXML
@@ -35,6 +50,7 @@ public class ProfileController implements Initializable {
     private VBox listEventBox1 = new VBox();
     @FXML
     private VBox listEventBox2 = new VBox();
+    
     /**
      * Initializes the controller class.
      */
@@ -42,42 +58,35 @@ public class ProfileController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    public void setLabelId(String labelId) {
+        this.labelId.setText(labelId);
+    }
+
+    public void setLabelName(String labelName) {
+        this.labelName.setText(labelName);
+    }
+
+    public void setLabelDepartment(String labelDepartment) {
+        this.labelDepartment.setText(labelDepartment);
+    }
+
+    public void setStage(Stage temp) {
+        this.temp = temp;
+    }
     
-     @FXML
-    public void addEventToPresentPane(String eventName,int eventId) {
-        Pane p = new Pane();
-        labelEvName = new Label(eventName);
-        Button joinbtn = new Button("Join");
-        Button detailbtn = new Button("Detail");
-        joinbtn.getStyleClass().add("joinbtnSearch");
-        detailbtn.getStyleClass().add("detailbtnSearch");
-        joinbtn.setLayoutX(285);
-        joinbtn.setLayoutY(100);
-        detailbtn.setLayoutX(370);
-        detailbtn.setLayoutY(100);
-        p.getChildren().add(labelEvName);
-        p.getChildren().add(joinbtn);
-        p.getChildren().add(detailbtn);
-        joinbtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                //jc.toJoinEvent(eventId);
+    @FXML
+    public void getEventToProfile(){
+        ResultSet rs = ev.getSelect(parseLong(this.labelId.getText()));
+        try{
+            while(rs.next()){
+                if(rs.getString("evEndDate").compareTo(anotherString)){
+                    
+                }
             }
-        });
-        detailbtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                //dc.callDetail(eventId);
-            }
-        });
-        listEventBox1.setMargin(p,new Insets(15,25,15,30));
-        p.setStyle("-fx-background-color: #" + "ffffff" + ";" +
-                   "-fx-background-radius: 10px;" +
-                   "-fx-effect: dropshadow(three-pass-box, #4d4d4d, 5, 0, 0, 1);");
-        labelEvName.setStyle("-fx-padding: 30px 0px 0px 50px;"+
-                   "-fx-font-size: 30px;"+
-                   "-fx-text-fill: #000000;");
-        p.setPrefSize(480,150);
-        listEventBox1.getChildren().add(p);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        cb.logout();
     }
 }

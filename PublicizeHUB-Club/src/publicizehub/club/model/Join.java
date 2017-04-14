@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import publicizehub.club.controller.LogIn;
+import publicizehub.club.controller.LoginController;
 /**
  *
  * @author JIL
@@ -17,7 +17,7 @@ import publicizehub.club.controller.LogIn;
 public class Join {
     private ConnectionBuilder cb = new ConnectionBuilder();
     private String cont;
-    LogIn li = new LogIn();
+    LoginController li = new LoginController();
     PreparedStatement ps;
     ResultSet rs;
     
