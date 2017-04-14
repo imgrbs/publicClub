@@ -52,6 +52,8 @@ public class main extends Application  {
         if(controller.getLi().getStatus()==1){
             controller.setManageDisable();
         }
+        controller.setThisStage(stage);
+       
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

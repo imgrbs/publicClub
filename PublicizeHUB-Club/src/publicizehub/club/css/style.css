@@ -243,6 +243,7 @@
 .warningProfile{
     -fx-font-size: 20px;
 }
+
 .insertEventSize{
 	-fx-font-size: 40px;
 	-fx-text-fill: #C14B1C;
@@ -250,4 +251,13 @@
 }
 .dropshadow{
 	-fx-effect: dropshadow(three-pass-box, #D1CAC7, 3, 0, 0, 2);
+}
+.backBtn{
+    -fx-background-color: none;
+    -fx-background-image: url('images/arrow.png');
+    -fx-background-repeat: no-repeat;
+}
+.backBtn:hover{
+    -fx-background-image: url('images/arrowwhite.png');
+
 }

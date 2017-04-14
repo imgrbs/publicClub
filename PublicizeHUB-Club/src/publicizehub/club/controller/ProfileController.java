@@ -17,6 +17,7 @@ import static java.lang.Long.parseLong;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import javafx.scene.control.Button;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.Event;
 
@@ -34,7 +35,8 @@ public class ProfileController implements Initializable {
     
 //    Date d = new Date();
     
-    private Stage temp;
+    private Stage mainStage;
+    private Stage thisStage;
     
     @FXML
     private Label labelId;
@@ -48,6 +50,9 @@ public class ProfileController implements Initializable {
     private VBox listEventBox1 = new VBox();
     @FXML
     private VBox listEventBox2 = new VBox();
+    
+    @FXML
+    private Button backBtn;
     
     /**
      * Initializes the controller class.
@@ -69,9 +74,23 @@ public class ProfileController implements Initializable {
         this.labelDepartment.setText(labelDepartment);
     }
 
-    public void setStage(Stage temp) {
-        this.temp = temp;
+    public Stage getMainStage() {
+        return mainStage;
     }
+
+    public void setMainStage(Stage mainStage) {
+        this.mainStage = mainStage;
+    }
+
+    public Stage getThisStage() {
+        return thisStage;
+    }
+
+    public void setThisStage(Stage thisStage) {
+        this.thisStage = thisStage;
+    }
+
+    
     
     @FXML
     public void getEventToProfile(){
@@ -118,4 +137,11 @@ public class ProfileController implements Initializable {
             e.printStackTrace();
         }
     }
+    
+    public void callMain(){
+        System.out.println("callMain() WORK");
+        mainStage.show();
+        thisStage.close();
+    }
+    
 }
