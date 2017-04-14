@@ -7,20 +7,16 @@ package publicizehub.club.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
 import static java.lang.Long.parseLong;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.Event;
 
@@ -35,6 +31,8 @@ public class ProfileController implements Initializable {
     JoinController jc = new JoinController();
     DetailController dc = new DetailController();
     EventController ec = new EventController();
+    
+//    Date d = new Date();
     
     private Stage temp;
     
@@ -77,16 +75,47 @@ public class ProfileController implements Initializable {
     
     @FXML
     public void getEventToProfile(){
+        System.out.println("Befor Get Event");
         ResultSet rs = ev.getSelect(parseLong(this.labelId.getText()));
+        cb.logout();
+        System.out.println("After Get Event");
         try{
-            while(rs.next()){
-                if(rs.getString("evEndDate").compareTo(anotherString)){
-                    
+            if(rs.next()){
+                System.out.println("Event Come");
+                setEventToGui(rs.getInt("evId"));
+                while(rs.next()){
+                    setEventToGui(rs.getInt("evId"));
                 }
             }
-        }catch(Exception e){
+        }catch(SQLException e){
             e.printStackTrace();
         }
         cb.logout();
+    }
+
+    public void setEventToGui(int eventId){
+        ResultSet findStd = ev.getSelect(eventId);
+        try{
+            if(findStd.next()){
+                LocalDate ld = LocalDate.parse(""+findStd.getString("evEndDate"));
+                if(ld.compareTo(LocalDate.now())>-1){
+                    ec.addEventToPresentPane(""+findStd.getString("evName"),findStd.getInt("evId"),this.listEventBox1,true);
+                }
+                else {
+                    ec.addEventToPresentPane(""+findStd.getString("evName"),findStd.getInt("evId"),this.listEventBox2,false);
+                    while(findStd.next()){
+                        ld = LocalDate.parse(""+findStd.getString("evEndDate"));
+                        if(ld.compareTo(LocalDate.now())>-1){
+                            ec.addEventToPresentPane(""+findStd.getString("evName"),findStd.getInt("evId"),this.listEventBox1,true);
+                        }
+                        else {
+                            ec.addEventToPresentPane(""+findStd.getString("evName"),findStd.getInt("evId"),this.listEventBox2,false);
+                        }
+                    }
+                }
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 }

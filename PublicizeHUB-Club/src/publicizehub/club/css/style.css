@@ -90,6 +90,17 @@
 .detailbtnSearch:hover{
     -fx-background-color: #ECECEC;
 }
+.evaluationbtn{
+    -fx-background-color: #E51677;
+    -fx-text-fill:white;
+    -fx-font-size: 17px;
+    -fx-pref-width: 160px;
+    -fx-pref-height: 30px;
+    -fx-cursor: hand;
+}
+.evaluationbtn:hover{
+    -fx-background-color: #E51677;
+}
 .joinbtn:hover{
     -fx-background-color: #ff8d53;
 }
@@ -222,4 +233,13 @@
 }
 .white{
 	-fx-background-color:  #ffffff;
+}
+.stdIdProfile{
+    -fx-font-size: 25px;
+}
+.stdNameProfile{
+    -fx-font-size: 40px;
+}
+.warningProfile{
+    -fx-font-size: 20px;
 }

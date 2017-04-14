@@ -38,7 +38,7 @@ public class CreateEvent extends javax.swing.JFrame {
         String ticket = evTicket.getText();
         
         /* นำค่า ส่งไปยัง Method ใน Controller */
-        ec.CreateEventValue(name,desc,date,endDate,time,endTime,place,ticket,this.eventType,this.stdId);
+//        ec.CreateEventValue(name,desc,date,endDate,time,endTime,place,ticket,this.eventType,this.stdId);
         
         /* Reset Text ใน input GUI */
         evName.setText("");

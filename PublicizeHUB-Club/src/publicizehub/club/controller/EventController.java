@@ -35,22 +35,28 @@ public class EventController {
         return evType;
     }
     
-    public void addEventToPresentPane(Label labelEvName,VBox listEventBox) {
-        String eventName="";
-        int eventId=0;
+    public void addEventToPresentPane(String evName,int eventId,VBox listEventBox,boolean evaluation) {
         Pane p = new Pane();
-        labelEvName = new Label(eventName);
+        Label labelEvName = new Label(evName);
         Button joinbtn = new Button("Join");
         Button detailbtn = new Button("Detail");
-        joinbtn.getStyleClass().add("joinbtnSearch");
-        detailbtn.getStyleClass().add("detailbtnSearch");
-        joinbtn.setLayoutX(285);
-        joinbtn.setLayoutY(100);
-        detailbtn.setLayoutX(370);
-        detailbtn.setLayoutY(100);
+        Button evaluationbtn = new Button("ประเมิณกิจกรรม");
+        if(evaluation){
+            joinbtn.getStyleClass().add("joinbtnSearch");
+            detailbtn.getStyleClass().add("detailbtnSearch");
+            joinbtn.setLayoutX(285);
+            joinbtn.setLayoutY(100);
+            detailbtn.setLayoutX(370);
+            detailbtn.setLayoutY(100);
+            p.getChildren().add(joinbtn);
+            p.getChildren().add(detailbtn);
+        }else{
+            evaluationbtn.getStyleClass().add("evaluationbtn");
+            evaluationbtn.setLayoutX(280);
+            evaluationbtn.setLayoutY(90);
+            p.getChildren().add(evaluationbtn);
+        }
         p.getChildren().add(labelEvName);
-        p.getChildren().add(joinbtn);
-        p.getChildren().add(detailbtn);
         joinbtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

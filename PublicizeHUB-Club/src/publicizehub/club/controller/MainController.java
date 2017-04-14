@@ -79,6 +79,7 @@ public class MainController {
         controller.setLabelDepartment(li.getDepartment());
         controller.setLabelId(""+li.getStdId());
         controller.setLabelName(li.getName()+" "+li.getSurname());
+        controller.getEventToProfile();
         controller.setStage(stage);
         Scene scene = new Scene(root); 
         try{

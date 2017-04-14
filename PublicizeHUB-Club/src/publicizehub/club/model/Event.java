@@ -171,9 +171,8 @@ public class Event {
     public ResultSet getSelect(long stdId){
         cb.connecting();
         try{
-            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_event where evId = ? and stdId = ?");
-            ps.setInt(1,evId);
-            ps.setLong(2,stdId);
+            ps = cb.getConnect().prepareStatement("SELECT * FROM generatecode where stdId = ?");
+            ps.setLong(1,stdId);
             rs = ps.executeQuery();
         }
         catch(SQLException e){

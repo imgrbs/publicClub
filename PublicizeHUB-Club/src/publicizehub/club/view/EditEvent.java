@@ -28,15 +28,15 @@ public class EditEvent extends javax.swing.JFrame {
     }
     
     public void setTextValue(){
-        ec.getUpdate(evId, evName, evDescrip, evDate,
-                     evEndDate, evTime, evEndTime,
-                     evPlace, evTicket , camp , seminar, other);
+//        ec.getUpdate(evId, evName, evDescrip, evDate,
+//                     evEndDate, evTime, evEndTime,
+//                     evPlace, evTicket , camp , seminar, other);
     }
     
     public void getTextValue(){
-        ec.setUpdate(evName.getText(), evDescrip.getText(), evDate.getText(), 
-                evEndDate.getText(), evTime.getText(), evEndTime.getText(), 
-                evPlace.getText(), evTicket.getText(), eventType, evId);
+//        ec.setUpdate(evName.getText(), evDescrip.getText(), evDate.getText(), 
+//                evEndDate.getText(), evTime.getText(), evEndTime.getText(), 
+//                evPlace.getText(), evTicket.getText(), eventType, evId);
     }
     
     /**
