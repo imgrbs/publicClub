@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.102" fx:controller="publicizehub.club.controller.CreateEventController">
+   <children>
+      <FlowPane layoutX="59.0" layoutY="50.0" prefHeight="400.0" prefWidth="895.0" styleClass="bodyOnlyColor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <BorderPane prefHeight="600.0" prefWidth="800.0">
+               <top>
+                  <Label text="Create Event" BorderPane.alignment="CENTER">
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="insertEventSize" />
+                     </styleClass>
+                  </Label>
+               </top>
+               <center>
+                  <Pane prefHeight="200.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="107.0" layoutY="34.0" text="ชื่อกิจกรรม :">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                           </styleClass>
+                        </Label>
+                        <TextField id="eventName" layoutX="226.0" layoutY="37.0" prefHeight="25.0" prefWidth="293.0" />
+                     </children>
+                  </Pane>
+               </center>
+               <bottom>
+                  <Pane prefHeight="81.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+               </bottom>
+            </BorderPane>
+         </children>
+      </FlowPane>
+   </children>
+</AnchorPane>
