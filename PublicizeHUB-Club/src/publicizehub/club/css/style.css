@@ -248,3 +248,6 @@
     -fx-background-image: url('images/arrow.png');
     -fx-background-repeat: no-repeat;
 }
+.backBtn:hover{
+    -fx-background-image: url('images/arrowwhite.png');
+}
