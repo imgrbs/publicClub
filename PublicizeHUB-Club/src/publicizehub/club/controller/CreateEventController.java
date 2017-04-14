@@ -291,7 +291,7 @@ public class CreateEventController implements Initializable {
         confirmBtn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
-                e.createEvent(evName, evName, evDate, evDate, evTime, evTime, evPlace, evTicket, evType, stdId);
+                e.createEvent(evName, evDescrip, evDate, evEndDate, evTime, evEndTime, evPlace, evTicket, evType, stdId);
             }
         });
     }
