@@ -28,6 +28,8 @@ public class MainController {
     DetailController dc = new DetailController();
     ResultSet rs = null;
 
+    private Stage thisStage;
+    
     @FXML
     private Label stdId;
 
@@ -50,6 +52,14 @@ public class MainController {
     private Button manageBtn;
     @FXML
     private ImageView managePic;
+
+    public Stage getThisStage() {
+        return thisStage;
+    }
+
+    public void setThisStage(Stage thisStage) {
+        this.thisStage = thisStage;
+    }
     
     public void setManageDisable(){
         this.manageBtn.setVisible(false);
@@ -80,7 +90,8 @@ public class MainController {
         controller.setLabelId(""+li.getStdId());
         controller.setLabelName(li.getName()+" "+li.getSurname());
         controller.getEventToProfile();
-        controller.setStage(stage);
+        controller.setMainStage(thisStage);
+        controller.setThisStage(stage);
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    
@@ -89,6 +100,7 @@ public class MainController {
             e.printStackTrace();
         }
         stage.show();
+        thisStage.close();
     }
 
     @FXML

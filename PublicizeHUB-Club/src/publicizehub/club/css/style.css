@@ -243,3 +243,8 @@
 .warningProfile{
     -fx-font-size: 20px;
 }
+.backBtn{
+    -fx-background-color: none;
+    -fx-background-image: url('images/arrow.png');
+    -fx-background-repeat: no-repeat;
+}
