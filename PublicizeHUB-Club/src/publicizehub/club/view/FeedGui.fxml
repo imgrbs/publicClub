@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f1e7e5;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.MainController">
+<AnchorPane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f1e7e5;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.MainController">
    <children>
       <Pane prefHeight="600.0" prefWidth="800.0" styleClass="body" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <BorderPane layoutX="-456.0" layoutY="28.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -34,7 +34,7 @@
                      </font>
                   </Label>
                   <Separator layoutY="153.0" prefHeight="44.0" prefWidth="200.0" />
-                  <Button fx:id="proileBtn" alignment="CENTER" layoutY="175.0" mnemonicParsing="false" onAction="#callAdminGui" prefHeight="47.0" prefWidth="200.0" text="Profile">
+                  <Button fx:id="proileBtn" alignment="CENTER" layoutY="175.0" mnemonicParsing="false" onAction="#callProfile" prefHeight="47.0" prefWidth="200.0" text="Profile">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -49,7 +49,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button alignment="CENTER_RIGHT" layoutY="222.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" text="Manage Event">
+                  <Button fx:id="manageBtn" alignment="CENTER_RIGHT" layoutY="222.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" text="Manage Event">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -72,14 +72,6 @@
                         <Font name="Quark-Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutY="322.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="Camp Event">
-                     <font>
-                        <Font name="Quark-Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
                   <Button alignment="CENTER" contentDisplay="CENTER" layoutY="369.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="Seminar Event">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
@@ -107,11 +99,19 @@
                         <Image url="@../css/images/user.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="24.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="managePic" fitHeight="32.0" fitWidth="32.0" layoutX="24.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../css/images/school-material.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="campBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="322.0" mnemonicParsing="false" onAction="#callSearchEvent" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="Camp Event">
+                     <font>
+                        <Font name="Quark-Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </Pane>
          </left>
@@ -122,12 +122,12 @@
                      <right>
                         <Pane prefHeight="66.0" prefWidth="422.0" BorderPane.alignment="CENTER">
                            <children>
-                              <TextField fx:id="searchfield" layoutX="47.0" layoutY="20.0" prefHeight="19.0" prefWidth="213.0" promptText="Search..">
+                              <TextField fx:id="searchfield" layoutX="47.0" layoutY="20.0" onAction="#callSearchText" prefHeight="19.0" prefWidth="213.0" promptText="Search..">
                                  <font>
                                     <Font name="Quark-Bold" size="14.0" />
                                  </font>
                               </TextField>
-                              <Button fx:id="searchbtn" layoutX="271.0" layoutY="20.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="78.0" styleClass="search-btn" stylesheets="@../css/style.css" text="Search">
+                              <Button fx:id="searchbtn" layoutX="271.0" layoutY="20.0" mnemonicParsing="false" onAction="#callSearchText" prefHeight="32.0" prefWidth="78.0" styleClass="search-btn" stylesheets="@../css/style.css" text="Search">
                                  <font>
                                     <Font name="Quark-Bold" size="14.0" />
                                  </font>
@@ -151,17 +151,17 @@
                                        <children>
                                           <Pane layoutX="-3.0" layoutY="26.0" prefHeight="149.0" prefWidth="252.0" styleClass="boxEv" stylesheets="@../css/style.css">
                                              <children>
-                                                <Label layoutX="15.0" layoutY="10.0" prefHeight="20.0" prefWidth="192.0" text="IT 3K">
+                                                <Label fx:id="labelEvMain1" layoutX="15.0" layoutY="10.0" prefHeight="20.0" prefWidth="192.0" text="IT 3K ครั้งที่13">
                                                    <font>
                                                       <Font name="ThaiSans Neue Regular" size="35.0" />
                                                    </font>
                                                 </Label>
-                                                <Button layoutX="72.0" layoutY="106.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="79.0" styleClass="joinbtn" text="Join">
+                                                <Button fx:id="joinEvMain1" layoutX="72.0" layoutY="106.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="79.0" styleClass="joinbtn" text="Join">
                                                    <font>
                                                       <Font name="Quark-Bold" size="15.0" />
                                                    </font>
                                                 </Button>
-                                                <Button layoutX="156.0" layoutY="106.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="82.0" styleClass="detailbtn" text="Detail">
+                                                <Button fx:id="detailEv1" layoutX="156.0" layoutY="106.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="82.0" styleClass="detailbtn" text="Detail">
                                                    <font>
                                                       <Font name="Quark-Bold" size="15.0" />
                                                    </font>
@@ -174,17 +174,17 @@
                                        <children>
                                           <Pane layoutX="-2.0" layoutY="26.0" prefHeight="149.0" prefWidth="260.0" styleClass="boxEv" stylesheets="@../css/style.css">
                                              <children>
-                                                <Label layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="192.0" text="Brown Bag 2.0">
+                                                <Label fx:id="labelEvMain2" layoutX="14.0" layoutY="14.0" onMouseMoved="#getEvent" prefHeight="20.0" prefWidth="192.0" text="Brown Bag #2.0">
                                                    <font>
                                                       <Font name="ThaiSans Neue Regular" size="35.0" />
                                                    </font>
                                                 </Label>
-                                                <Button layoutX="80.0" layoutY="102.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="79.0" styleClass="joinbtn" text="Join">
+                                                <Button fx:id="joinEvMain2" layoutX="80.0" layoutY="102.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="79.0" styleClass="joinbtn" text="Join">
                                                    <font>
                                                       <Font name="Quark-Bold" size="15.0" />
                                                    </font>
                                                 </Button>
-                                                <Button layoutX="164.0" layoutY="102.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="82.0" styleClass="detailbtn" text="Detail">
+                                                <Button fx:id="detailEv2" layoutX="164.0" layoutY="102.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="82.0" styleClass="detailbtn" text="Detail">
                                                    <font>
                                                       <Font name="Quark-Bold" size="15.0" />
                                                    </font>

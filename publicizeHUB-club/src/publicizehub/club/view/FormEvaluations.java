@@ -17,7 +17,7 @@ public class FormEvaluations extends javax.swing.JFrame {
     
     
     private int evId = 10048;
-    private long stdId = 59130500007L;
+    private long stdId = 59130500012L;
     
     FeedbackController fbc = new FeedbackController();
     FeedbackModel fbm = new FeedbackModel();
@@ -852,7 +852,7 @@ public class FormEvaluations extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 23, Short.MAX_VALUE)
+                .addGap(0, 21, Short.MAX_VALUE)
                 .addComponent(jLabel2))
         );
 
@@ -871,7 +871,7 @@ public class FormEvaluations extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 43, Short.MAX_VALUE)
+            .addGap(0, 52, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(13, Short.MAX_VALUE)
@@ -1125,9 +1125,10 @@ public class FormEvaluations extends javax.swing.JFrame {
             valueRadio10 += 0;
         } 
          
+       
        fbc.getValue(valueRadio1, valueRadio2, valueRadio3, valueRadio4, valueRadio5, 
                valueRadio6, valueRadio7, valueRadio8, valueRadio9, valueRadio10, evId, stdId);
-       
+       fbc.AverSum();
 
          //EventName.setText(Double.toString(valueRadio1));
         

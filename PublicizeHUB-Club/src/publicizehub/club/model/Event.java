@@ -2,6 +2,7 @@ package publicizehub.club.model;
 
 import java.sql.*;
 import java.text.*;
+import java.time.LocalDate;
 import javax.swing.*;
 /**
  *
@@ -13,8 +14,8 @@ public class Event {
     private int evId;
     private String evName="";
     private String evDescrip="";
-    private Date evDate;
-    private Date evEndDate;
+    private LocalDate evDate;
+    private LocalDate evEndDate;
     private Time evTime;
     private Time evEndTime;
     private String evPlace;
@@ -48,7 +49,7 @@ public class Event {
     /* รับค่าที่ประมวลผลแล้วจาก Controller เพื่อ ส่งไป Database
     โดยใช้คำสั่ง SQL และ ประมวลผลคำสั่งโดย 
     การสร้าง Statement และเรียกใช้ method */
-    public void createEvent(String name,String desc,String date,String endDate,
+    public void createEvent(String name,String desc,LocalDate date,LocalDate endDate,
                         String time,String endTime,String place,int ticket,
                         int evType,long stdId) {
         cb.connecting(); // Connect ไป Database ผ่าน Connection Builder
@@ -156,6 +157,41 @@ public class Event {
             ps = cb.getConnect().prepareStatement("SELECT * FROM tb_event where evId = ?");
             ps.setInt(1,evId);
             rs = ps.executeQuery();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("SQLException at getSelect()");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Exception at getSelect()");
+        }
+        return rs;
+    }
+    
+    public ResultSet getSelect(long stdId){
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("SELECT * FROM generatecode where stdId = ?");
+            ps.setLong(1,stdId);
+            rs = ps.executeQuery();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("SQLException at getSelect()");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Exception at getSelect()");
+        }
+        return rs;
+    }
+    
+    public ResultSet updateCurrentMember(int updateMember,int evId){
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("UPDATE tb_event set currentMember='"+updateMember+"' where evId = "+evId);
+            ps.executeUpdate();
         }
         catch(SQLException e){
             e.printStackTrace();

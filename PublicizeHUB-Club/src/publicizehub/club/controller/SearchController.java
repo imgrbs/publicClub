@@ -9,31 +9,65 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert.AlertType;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import publicizehub.club.model.Search;
 import publicizehub.club.model.ConnectionBuilder;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import javafx.event.EventHandler;
 
 /**
  *
  * @author Imagine
  */
 public class SearchController implements Initializable {
-    Search s = new Search();
     ConnectionBuilder cb = new ConnectionBuilder();
+    JoinController jc = new JoinController();
+    DetailController dc = new DetailController();
+    Search s = new Search();
+    Alert alert = new Alert(AlertType.WARNING);
+
     
     @FXML
     private Label label;
     @FXML
-    VBox buttonBox = new VBox();
+    private VBox buttonBox = new VBox();
     @FXML
-    TextField search;
+    private TextField search;
     @FXML
-    Label l;
+    private Label l;
     
-    Alert alert = new Alert(AlertType.WARNING);
+    int checkEvType;
 
+    public int getCheckEvType() {
+        return checkEvType;
+    }
+
+    public void setCheckEvType(int checkEvType) {
+        this.checkEvType = checkEvType;
+    }
+
+    public TextField getSearch() {
+        return search;
+    }
+
+    public void setSearch(TextField search) {
+        this.search = search;
+    }
+    
+    public void setSearch(String search) {
+        try{
+            this.search.setText(""+search);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    
     @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -46,15 +80,39 @@ public class SearchController implements Initializable {
     }    
     
     @FXML
-    protected void initialize(String eventName) {
+    public void addEventToPane(String eventName,int eventId) {
         Pane p = new Pane();
         l= new Label(eventName);
+        Button joinbtn = new Button("Join");
+        Button detailbtn = new Button("Detail");
+        joinbtn.getStyleClass().add("joinbtnSearch");
+        detailbtn.getStyleClass().add("detailbtnSearch");
+        joinbtn.setLayoutX(285);
+        joinbtn.setLayoutY(100);
+        detailbtn.setLayoutX(370);
+        detailbtn.setLayoutY(100);
         p.getChildren().add(l);
+        p.getChildren().add(joinbtn);
+        p.getChildren().add(detailbtn);
+        joinbtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                jc.toJoinEvent(eventId);
+            }
+        });
+        detailbtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                dc.callDetail(eventId);
+            }
+        });
         buttonBox.setMargin(p,new Insets(15,25,15,30));
-        p.setStyle("-fx-background-color: #" + "CD4D28");
+        p.setStyle("-fx-background-color: #" + "ffffff" + ";" +
+                   "-fx-background-radius: 10px;" +
+                   "-fx-effect: dropshadow(three-pass-box, #4d4d4d, 5, 0, 0, 1);");
         l.setStyle("-fx-padding: 30px 0px 0px 50px;"+
                    "-fx-font-size: 30px;"+
-                   "-fx-text-fill: #fff;");
+                   "-fx-text-fill: #000000;");
         p.setPrefSize(480,150);
         buttonBox.getChildren().add(p);
     }
@@ -62,16 +120,16 @@ public class SearchController implements Initializable {
     
     @FXML
     public void checkSearch(){
-        buttonBox.getChildren().clear();
         ResultSet result;
+        buttonBox.getChildren().clear();
         String temp = search.getText();
         search.setText("");
         try{
-            if(temp.charAt(0)==' '||(temp.equals("")==true)||(temp.equals(" ")==true)){
+            if(temp.equals("")||temp.charAt(0)==' '){
                 temp = "nullEventThatNoMeaning";
                 search.setText("");
                 alert.setTitle("คำเตือน");
-                alert.setHeaderText("กรุณาใส่ชื่อกิจกรรม!");
+                alert.setHeaderText("กรุณาใส่ชื่อกิจกรรมให้ถูกต้อง!");
                 alert.showAndWait();
             } else {
                 for (int i = 0; i < temp.length(); i++) {
@@ -79,8 +137,8 @@ public class SearchController implements Initializable {
                         temp = "nullEventThatNoMeaning";
                         search.setText("");
                         alert.setTitle("คำเตือน");
-                        alert.setHeaderText("อย่ามาเล่น Injection ดิ ชิ้วๆ!");
-                        alert.setContentText("555555 อิอิอิอิอิอิอิอิ");
+                        alert.setHeaderText("กรุณาใส่ชื่อกิจกรรมให้ถูกต้อง!");
+                        alert.setContentText("Injection Detected :)");
                         alert.showAndWait();
                     }
                 }
@@ -89,13 +147,14 @@ public class SearchController implements Initializable {
             if(result.next()==false){
                 temp = "nullEventThatNoMeaning";
                 search.setText("");
-                alert.setTitle("คำเตือน");
-                alert.setHeaderText("ขออภัยไม่มีกิจกรรมที่คุณค้นหา!");
-                alert.setContentText("ขอโทษเนาะ");
+                alert.setTitle("Warning!");
+                alert.setHeaderText("ขออภัย");
+                alert.setContentText("ไม่มีกิจกรรมที่คุณค้นหา..");
                 alert.showAndWait();
             } else {
+                addEventToPane(result.getString("evName"),result.getInt("evId"));
                 while(result.next()){
-                    initialize(result.getString("evName"));
+                    addEventToPane(result.getString("evName"),result.getInt("evId"));
                 }
             }
         } catch(Exception e){
@@ -105,5 +164,30 @@ public class SearchController implements Initializable {
         System.out.println(temp);
 
         cb.logout();
+    }
+    
+    @FXML
+    public void checkSearchEvType() throws Exception{
+        System.out.println("checkSearchEvType");
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("../view/ViewSearch.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        if(this.checkEvType==0){
+            s.resultEventType(0);
+        }
+        else if(this.checkEvType==1){
+            s.resultEventType(1);
+        }
+        else {
+            s.resultEventType(2);
+        }
+    }
+    
+    @FXML
+    public ResultSet getEventToGui(String wording){
+        ResultSet rs = s.resultSearch(wording);
+        return rs;
     }
 }

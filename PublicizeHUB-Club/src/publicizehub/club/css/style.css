@@ -1,8 +1,28 @@
+@import url('fontface.css');
+
+/*
+-fx-font-family:'Thaisans Neue for Web';
+-fx-font-family:'Quark';
+*/
+
+.thaisans{
+    -fx-font-family:'ThaiSansNeueRegular';
+}
+.quark{
+    -fx-font-family:'Quark';
+}
 .body{
     -fx-background-image: url('images/feed-bg-02-01.png');
+    -fx-background-color: #F1E8E5;
     -fx-background-size: 100%;
     -fx-background-position: bottom;
     -fx-background-repeat: no-repeat; 
+}
+.bodyOnlyColor{
+    -fx-background-image: url('images/semi-BG-01.png');
+    -fx-background-size: 100%;
+    -fx-background-position: bottom;
+	
 }
 .menu{
     -fx-background-image: url('images/head-menu-01.png');
@@ -27,7 +47,7 @@
 .boxEv{
     -fx-background-radius: 8;
     -fx-background-color: #ffffff;
-    -fx-effect: dropshadow(three-pass-box, #4d4d4d, 10, 0, 0, 2);
+    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
 }
 .menubtn{
     -fx-background-color: white;
@@ -47,6 +67,40 @@
     -fx-background-color: #d3d3d3;
     -fx-text-fill: #4d4d4d;
     -fx-cursor: hand;
+}
+.joinbtnSearch{
+    -fx-font-family:'ThaiSansNeueRegular';
+    -fx-background-color: #e7560c;
+    -fx-text-fill:white;
+    -fx-cursor: hand;
+    -fx-font-size: 15px;
+    -fx-pref-width: 80px;
+}
+
+.joinbtnSearch:hover{
+    -fx-background-color: #F9AD87;
+}
+.detailbtnSearch{
+    -fx-font-family:'ThaiSansNeueRegular';
+    -fx-background-color: #d3d3d3;
+    -fx-text-fill: #4d4d4d;
+    -fx-cursor: hand;
+    -fx-font-size: 15px;
+    -fx-pref-width: 80px;
+}
+.detailbtnSearch:hover{
+    -fx-background-color: #ECECEC;
+}
+.evaluationbtn{
+    -fx-background-color: #E51677;
+    -fx-text-fill:white;
+    -fx-font-size: 17px;
+    -fx-pref-width: 160px;
+    -fx-pref-height: 30px;
+    -fx-cursor: hand;
+}
+.evaluationbtn:hover{
+    -fx-background-color: #E51677;
 }
 .joinbtn:hover{
     -fx-background-color: #ff8d53;
@@ -119,9 +173,120 @@
     -fx-translate-y: 5;
 }
 .checkInBody{
-    -fx-effect: dropshadow(three-pass-box, #4D4D4D, 5, 0, 0, 3);
+    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
 }
 .feedbackHead{
     -fx-background-color:  #FFE042;
     -fx-effect: dropshadow(three-pass-box, #9F870A, 0, 0, 0, 5);
+}
+.unjoin{
+    -fx-font-family:'ThaiSansNeueRegular';
+    -fx-background-color:  #F82222;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+}
+.unjoin:hover{
+    -fx-background-color:  #FA5050;
+}
+.detailName{
+    -fx-font-size: 29px;
+    -fx-font-style : italic;
+}
+.detailPane{
+    -fx-background-radius: 15px;
+    -fx-background-color:  #ffffff;
+    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
+}
+.detailDate{
+    -fx-font-size: 20px;
+    -fx-text-fill: #DB9B64;
+}
+.listJoinBtn{
+    -fx-font-size: 20px;
+    -fx-background-color: #EF4C1E;
+    -fx-text-fill: #fff;
+    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
+    -fx-cursor: hand;
+}
+.listJoinBtn:hover{
+    -fx-background-color: #FF6A40;
+}
+.listDescrip{
+    -fx-font-size: 18px;
+}
+.formName{
+    -fx-font-size: 29px;
+}
+.formEvName{
+    -fx-font-size: 20px;
+}
+
+.formSetQName{
+    -fx-font-size: 20px;
+}
+.formQName{
+    -fx-font-size: 19px;
+   
+}
+.formBg{
+    -fx-background-radius: 25px;
+    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
+}
+.formCancelBtn{
+    -fx-cursor: hand;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #e11c1c;
+    -fx-font-size: 13px;
+}
+.accepBtn{
+    -fx-cursor: hand;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #4F8900;
+    -fx-font-size: 13px;
+  
+}
+.tabPane{
+	-fx-background-color:  #ffffff;
+	-fx-border-style: solid;
+}
+.white{
+	-fx-background-color:  #ffffff;
+}
+.stdIdProfile{
+    -fx-font-size: 25px;
+}
+.stdNameProfile{
+    -fx-font-size: 40px;
+}
+.warningProfile{
+    -fx-font-size: 20px;
+}
+.insertEventSize{
+	-fx-font-size: 45px;
+	-fx-text-fill: #C14B1C;
+}
+.dropshadow{
+    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
+}
+.backBtn{
+    -fx-background-color: none;
+    -fx-background-image: url('images/arrow.png');
+    -fx-background-repeat: no-repeat;
+}
+.backBtn:hover{
+    -fx-background-image: url('images/arrowwhite.png');
+
+}
+.createIcon{
+	-fx-background-color: none;
+	-fx-background-image: url('images/create.png');
+	-fx-background-repeat: no-repeat;
+}
+.editIcon{
+	-fx-background-color: none;
+	-fx-background-image: url('images/editt.png');
+	-fx-background-repeat: no-repeat;
+	-fx-background-width: 64px;
+	-fx-background-height: 64px;
+	
 }

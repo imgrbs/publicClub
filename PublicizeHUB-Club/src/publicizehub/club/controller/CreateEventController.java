@@ -1,0 +1,125 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package publicizehub.club.controller;
+
+import com.jfoenix.controls.JFXTimePicker;
+import java.awt.event.ActionEvent;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import publicizehub.club.model.Event;
+
+/**
+ * FXML Controller class
+ *
+ * @author JIL
+ */
+public class CreateEventController implements Initializable {
+    Event e = new Event();
+    LoginController lc = new LoginController();
+    
+    private String evName; 
+    private String evDescrip;
+    private LocalDate evDate;
+    private LocalDate evEndDate;
+    private String evPlace;
+    private int evTicket;
+    private int currentMember;
+    private String evTime;
+    private String evEndTime;
+    private int evType;
+    private long stdId=lc.getStdId();;
+    
+    
+    @FXML
+    private TextField eventName;
+    @FXML
+    private TextArea description;
+    @FXML
+    private DatePicker startDate;
+    @FXML
+    private DatePicker endDate;
+    @FXML
+    private JFXTimePicker startTime;
+    @FXML
+    private JFXTimePicker endTime;
+    @FXML
+    private TextField place;
+    @FXML
+    private ComboBox<String> ticket;
+    @FXML
+    private RadioButton camp;
+    @FXML
+    private ToggleGroup type;
+    @FXML
+    private RadioButton seminar;
+    @FXML
+    private RadioButton other;
+    @FXML
+    private Button confirmBtn;
+    @FXML
+    private Button cancelBtn;
+
+
+    @FXML
+    public void setAllValue(){
+        this.evName = eventName.getText();
+        this.evDescrip = description.getText();
+        this.evDate = startDate.getValue();
+        this.evEndDate = endDate.getValue();
+        this.evTime = (startTime.getValue())+"";
+        this.evEndTime = (endTime.getValue())+"";
+        this.evTicket = Integer.parseInt(ticket.getValue());
+        this.evPlace = place.getText();
+        evTypeResult();
+    }
+    @FXML
+    public void evTypeResult(){
+        
+        if(camp.isSelected()){
+            this.evType=0;
+        }else if(seminar.isSelected()){
+            this.evType=1;
+        }else if(other.isSelected()){
+            this.evType=2;
+        }
+    }
+    /**
+     * Initializes the controller class.
+     */
+    @FXML
+    public void setValueToCombobox(){
+        
+        ticket.getItems().addAll("5","10","15","20","25","30","35","40","45","50","75","100","ระบุเอง");  
+        //if(ticket.selectionModelProperty().equals("ระบุเอง")){
+            ticket.setEditable(true);
+        //}  
+    }
+    @FXML
+    public void clickConfirm(){
+        setAllValue();
+        confirmBtn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+            @Override
+            public void handle(javafx.event.ActionEvent event) {
+                e.createEvent(evName, evDescrip, evDate, evEndDate, evTime, evEndTime, evPlace, evTicket, evType, stdId);
+            }
+        });
+    }
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        setValueToCombobox();
+        
+        
+    }
+    
+}

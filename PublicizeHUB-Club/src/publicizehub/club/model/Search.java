@@ -9,7 +9,7 @@ import java.sql.*;
 public class Search {
     
     ConnectionBuilder cb = new ConnectionBuilder();
-    Statement ps = null;
+    PreparedStatement ps = null;
     ResultSet rs = null;
     
     public Search() {
@@ -18,17 +18,25 @@ public class Search {
     public ResultSet resultSearch(String wording){
         cb.connecting();
         String sql="";
-        if(wording.equalsIgnoreCase("camp")){
-            sql = "SELECT * FROM tb_event WHERE evType LIKE '"+0+"'";
-        }else if(wording.equalsIgnoreCase("seminar")){
-            sql = "SELECT * FROM tb_event WHERE evType LIKE '"+1+"'";
-        }else {
-            sql = "SELECT * FROM tb_event WHERE evName LIKE '%"+wording+"%'";
+        sql = "SELECT * FROM tb_event WHERE evName LIKE '%"+wording+"%'";
+        try{
+            ps = cb.getConnect().prepareStatement(sql);
+            rs = ps.executeQuery();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("SQLException resultSearch()");
         }
         
+        return rs;
+    }
+    public ResultSet resultEventType(int evType){
+        cb.connecting();
+        String sql="";
+        sql = "SELECT * FROM tb_event WHERE evType LIKE '%"+evType+"%'";
         try{
-            ps = cb.getConnect().createStatement();
-            rs = ps.executeQuery(sql);
+            ps = cb.getConnect().prepareStatement(sql);
+            rs = ps.executeQuery();
         }
         catch(SQLException e){
             e.printStackTrace();
