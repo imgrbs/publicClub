@@ -185,8 +185,8 @@
                <top>
                   <Pane prefHeight="105.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label layoutX="330.0" layoutY="25.0" styleClass="insertEventSize" text="Create Event" />
-                        <Pane layoutX="241.0" layoutY="22.0" prefHeight="69.0" prefWidth="68.0" styleClass="createIcon" />
+                        <Label layoutX="330.0" layoutY="25.0" styleClass="insertEventSize" text="Edit Event" />
+                        <Pane layoutX="241.0" layoutY="22.0" prefHeight="69.0" prefWidth="68.0" styleClass="editIcon" />
                      </children>
                   </Pane>
                </top>

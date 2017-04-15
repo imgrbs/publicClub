@@ -37,7 +37,7 @@ public class EditEventController implements Initializable {
     private LocalDate evDate;
     private LocalDate evEndDate;
     private String evPlace="eeeee";
-    private int evTicket=1;
+    private int evTicket=10;
     private int currentMember=23;
     private String evTime;
     private String evEndTime;
