@@ -31,18 +31,18 @@ public class EditEventController implements Initializable {
     Event e = new Event();
     TableEvent te = new TableEvent();
     LoginController lc = new LoginController();
-    
-    private String evName="WWW"; 
-    private String evDescrip="qqqqq";
+   
+    private String evName; 
+    private String evDescrip;
     private LocalDate evDate;
     private LocalDate evEndDate;
-    private String evPlace="eeeee";
-    private int evTicket=10;
-    private int currentMember=23;
+    private String evPlace;
+    private int evTicket;
+    private int currentMember;
     private String evTime;
     private String evEndTime;
-    private int evType=1;
-    private long stdId=lc.getStdId();;
+    private int evType;
+    private long stdId=lc.getStdId();
 
     public String getEvName() {
         return evName;
@@ -240,7 +240,7 @@ public class EditEventController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        e.getSelect(10052);
+        
         setValueToCombobox();
         showValue();
     }    
