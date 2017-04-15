@@ -10,6 +10,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
@@ -143,14 +144,17 @@
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
                            </styleClass>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="type" />
+                           </toggleGroup>
                         </JFXRadioButton>
-                        <JFXRadioButton fx:id="seminar" layoutX="274.0" layoutY="333.0" text="สัมมนา">
+                        <JFXRadioButton fx:id="seminar" layoutX="274.0" layoutY="333.0" text="สัมมนา" toggleGroup="$type">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXRadioButton>
-                        <JFXRadioButton fx:id="other" layoutX="359.0" layoutY="333.0" text="อื่นๆ">
+                        <JFXRadioButton fx:id="other" layoutX="359.0" layoutY="333.0" text="อื่นๆ" toggleGroup="$type">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
