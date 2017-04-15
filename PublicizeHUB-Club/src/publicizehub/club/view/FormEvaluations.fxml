@@ -129,8 +129,8 @@
                      </toggleGroup></RadioButton>
                   <RadioButton fx:id="Q1_N1_4" layoutX="488.0" layoutY="148.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ1" />
                   <RadioButton fx:id="Q1_N2_4" layoutX="488.0" layoutY="178.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ2" />
-                  <RadioButton fx:id="Q1_N3_5" layoutX="488.0" layoutY="208.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ3" />
-                  <RadioButton fx:id="Q1_N4_5" layoutX="488.0" layoutY="238.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ4" />
+                  <RadioButton fx:id="Q1_N3_4" layoutX="488.0" layoutY="208.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ3" />
+                  <RadioButton fx:id="Q1_N4_4" layoutX="488.0" layoutY="238.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ4" />
                   <RadioButton fx:id="Q1_N5_4" layoutX="488.0" layoutY="268.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ5" />
                   <RadioButton fx:id="Q1_N1_3" layoutX="523.0" layoutY="148.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" toggleGroup="$groupQ1" />
                   <RadioButton fx:id="Q1_N2_3" layoutX="523.0" layoutY="178.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" toggleGroup="$groupQ2" />

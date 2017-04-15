@@ -6,23 +6,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import publicizehub.club.controller.FormController;
+import publicizehub.club.controller.Form_EvaluationsController;
 
 /**
  *
  * @author ImagineRabbits
  */
-public class Form extends Application   {
+public class Form_Evaluations extends Application   {
     @Override
     public void start(Stage stage) throws Exception {
         
         try{
             stage = new Stage();
             FXMLLoader loader =  new FXMLLoader(getClass().getResource("FormEvaluations.fxml"));  
-            FormController controller=null;
+            Form_EvaluationsController controller=null;
             Parent root = null;
             root = (Parent)loader.load(); 
-            controller = loader.<FormController>getController();
+            controller = loader.<Form_EvaluationsController>getController();
             controller.setEvName("Dek-D Adminssion");
             Scene scene = new Scene(root);
             stage.setScene(scene);
