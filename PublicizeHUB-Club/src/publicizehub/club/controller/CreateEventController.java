@@ -5,6 +5,7 @@
  */
 package publicizehub.club.controller;
 
+import com.jfoenix.controls.JFXTimePicker;
 import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.time.LocalDate;
@@ -48,9 +49,9 @@ public class CreateEventController implements Initializable {
     @FXML
     private DatePicker endDate;
     @FXML
-    private TextField startTime;
+    private JFXTimePicker startTime;
     @FXML
-    private TextField endTime;
+    private JFXTimePicker endTime;
     @FXML
     private TextField place;
     @FXML
@@ -68,197 +69,15 @@ public class CreateEventController implements Initializable {
     @FXML
     private Button cancelBtn;
 
-    public String getEvName() {
-        return evName;
-    }
-    @FXML
-    public void setEvName(String evName) {
-        this.evName = eventName.getText();
-    }
 
-    public String getEvDescrip() {
-        return evDescrip;
-    }
-    @FXML
-    public void setEvDescrip(String evDescrip) {
-        this.evDescrip = description.getText();
-    }
-
-    public LocalDate getEvDate() {
-        return evDate;
-    }
-    @FXML
-    public void setEvDate(LocalDate evDate) {
-        this.evDate = startDate.getValue();
-    }  
-
-    public LocalDate getEvEndDate() {
-        return evEndDate;
-    }
-    @FXML
-    public void setEvEndDate(LocalDate evEndDate) {
-        this.evEndDate = endDate.getValue();
-    }
-
-    public String getEvPlace() {
-        return evPlace;
-    }
-    @FXML
-    public void setEvPlace(String evPlace) {
-        this.evPlace = place.getText();
-    }
-
-    public int getEvTicket() {
-        return evTicket;
-    }
-    @FXML
-    public void setEvTicket(int evTicket) {
-        this.evTicket = Integer.parseInt(ticket.getValue());
-    }
-
-    public int getCurrentMember() {
-        return currentMember;
-    }
-
-    public void setCurrentMember(int currentMember) {
-        this.currentMember = currentMember;
-    }
-
-    public String getEvTime() {
-        return evTime;
-    }
-    @FXML
-    public void setEvTime(String evTime) {
-        this.evTime = startTime.getText();
-    }
-
-    public String getEvEndTime() {
-        return evEndTime;
-    }
-    @FXML
-    public void setEvEndTime(String evEndTime) {
-        this.evEndTime = endTime.getText();
-    }
-
-    public int getEvType() {
-        return evType;
-    }
-
-    public void setEvType(int evType) {
-        this.evType = evType;
-    }
-
-    public long getStdId() {
-        return lc.getStdId();
-    }
-
-    public void setStdId(long stdId) {
-        this.stdId = stdId;
-    }
-//------------------------------------------------------------------------------------------------------------------------------
-    public TextField getEventName() {
-        return eventName;
-    }
-
-    public void setEventName(TextField eventName) {
-        this.eventName = eventName;
-    }
-
-    public TextArea getDescription() {
-        return description;
-    }
-
-    public void setDescription(TextArea description) {
-        this.description = description;
-    }
-
-    public DatePicker getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(DatePicker startDate) {
-        this.startDate = startDate;
-    }
-
-    public DatePicker getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(DatePicker endDate) {
-        this.endDate = endDate;
-    }
-
-    public TextField getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(TextField startTime) {
-        this.startTime = startTime;
-    }
-
-    public TextField getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(TextField endTime) {
-        this.endTime = endTime;
-    }
-
-    public TextField getPlace() {
-        return place;
-    }
-
-    public void setPlace(TextField place) {
-        this.place = place;
-    }
-
-    public ComboBox<?> getTicket() {
-        return ticket;
-    }
-
-    public void setTicket(ComboBox<String> ticket) {
-        this.ticket = ticket;
-    }
-
-    public RadioButton getCamp() {
-        return camp;
-    }
-
-    public void setCamp(RadioButton camp) {
-        this.camp = camp;
-    }
-
-    public ToggleGroup getType() {
-        return type;
-    }
-
-    public void setType(ToggleGroup type) {
-        this.type = type;
-    }
-
-    public RadioButton getSeminar() {
-        return seminar;
-    }
-
-    public void setSeminar(RadioButton seminar) {
-        this.seminar = seminar;
-    }
-
-    public RadioButton getOther() {
-        return other;
-    }
-
-    public void setOther(RadioButton other) {
-        this.other = other;
-    }
     @FXML
     public void setAllValue(){
         this.evName = eventName.getText();
         this.evDescrip = description.getText();
         this.evDate = startDate.getValue();
         this.evEndDate = endDate.getValue();
-        this.evTime = startTime.getText();
-        this.evEndTime = endTime.getText();
+        this.evTime = (startTime.getValue())+"";
+        this.evEndTime = (endTime.getValue())+"";
         this.evTicket = Integer.parseInt(ticket.getValue());
         this.evPlace = place.getText();
         evTypeResult();

@@ -54,7 +54,7 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <DatePicker id="startDate" fx:id="startDate" layoutX="226.0" layoutY="196.0">
+                        <DatePicker id="startDate" fx:id="startDate" layoutX="226.0" layoutY="196.0" promptText="เดือน / วัน / ปี">
                            <styleClass>
                               <String fx:value="white" />
                               <String fx:value="dropshadow" />
@@ -67,7 +67,7 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <DatePicker id="endDate" fx:id="endDate" layoutX="547.0" layoutY="196.0">
+                        <DatePicker id="endDate" fx:id="endDate" layoutX="547.0" layoutY="196.0" promptText="เดือน / วัน / ปี">
                            <styleClass>
                               <String fx:value="white" />
                               <String fx:value="dropshadow" />
