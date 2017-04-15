@@ -215,19 +215,35 @@
     -fx-font-size: 18px;
 }
 .formName{
-    -fx-font-size: 25px;
+    -fx-font-size: 29px;
 }
 .formEvName{
     -fx-font-size: 20px;
+}
+
+.formSetQName{
+    -fx-font-size: 20px;
+}
+.formQName{
+    -fx-font-size: 19px;
+   
 }
 .formBg{
     -fx-background-radius: 25px;
     -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
 }
+.formCancelBtn{
+    -fx-cursor: hand;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #e11c1c;
+    -fx-font-size: 13px;
+}
 .accepBtn{
     -fx-cursor: hand;
     -fx-text-fill: #ffffff;
     -fx-background-color: #4F8900;
+    -fx-font-size: 13px;
+  
 }
 .tabPane{
 	-fx-background-color:  #ffffff;
