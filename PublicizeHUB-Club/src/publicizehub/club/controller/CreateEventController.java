@@ -5,6 +5,11 @@
  */
 package publicizehub.club.controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import java.awt.event.ActionEvent;
 import java.net.URL;
@@ -41,33 +46,39 @@ public class CreateEventController implements Initializable {
     
     
     @FXML
-    private TextField eventName;
+    private JFXTextField eventName;
     @FXML
-    private TextArea description;
+    private JFXDatePicker startDate;
     @FXML
-    private DatePicker startDate;
-    @FXML
-    private DatePicker endDate;
+    private JFXDatePicker endDate;
     @FXML
     private JFXTimePicker startTime;
     @FXML
     private JFXTimePicker endTime;
     @FXML
-    private TextField place;
-    @FXML
     private ComboBox<String> ticket;
     @FXML
-    private RadioButton camp;
-    @FXML
     private ToggleGroup type;
+
     @FXML
-    private RadioButton seminar;
+    private JFXTextArea description;
+
     @FXML
-    private RadioButton other;
+    private JFXTextField place;
+
     @FXML
-    private Button confirmBtn;
+    private JFXRadioButton camp;
+
     @FXML
-    private Button cancelBtn;
+    private JFXRadioButton seminar;
+
+    @FXML
+    private JFXRadioButton other;
+
+    @FXML
+    private JFXButton confirmBtn;
+    @FXML
+    private JFXButton cancelBtn;
 
 
     @FXML

@@ -205,7 +205,7 @@
     -fx-font-size: 20px;
     -fx-background-color: #EF4C1E;
     -fx-text-fill: #fff;
-    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
+    -fx-effect: dropshadow(three-pass-box, #C5C5C5  , 15, 0, 0, 1);
     -fx-cursor: hand;
 }
 .listJoinBtn:hover{
