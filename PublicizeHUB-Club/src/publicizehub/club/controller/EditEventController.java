@@ -13,6 +13,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -28,19 +29,108 @@ import publicizehub.club.model.Event;
  */
 public class EditEventController implements Initializable {
     Event e = new Event();
+    TableEvent te = new TableEvent();
     LoginController lc = new LoginController();
     
-    private String evName; 
-    private String evDescrip;
+    private String evName="WWW"; 
+    private String evDescrip="qqqqq";
     private LocalDate evDate;
     private LocalDate evEndDate;
-    private String evPlace;
-    private int evTicket;
-    private int currentMember;
+    private String evPlace="eeeee";
+    private int evTicket=1;
+    private int currentMember=23;
     private String evTime;
     private String evEndTime;
-    private int evType;
+    private int evType=1;
     private long stdId=lc.getStdId();;
+
+    public String getEvName() {
+        return evName;
+    }
+
+    public void setEvName(String evName) {
+        this.evName = evName;
+    }
+
+    public String getEvDescrip() {
+        return evDescrip;
+    }
+
+    public void setEvDescrip(String evDescrip) {
+        this.evDescrip = evDescrip;
+    }
+
+    public LocalDate getEvDate() {
+        return evDate;
+    }
+
+    public void setEvDate(LocalDate evDate) {
+        this.evDate = evDate;
+    }
+
+    public LocalDate getEvEndDate() {
+        return evEndDate;
+    }
+
+    public void setEvEndDate(LocalDate evEndDate) {
+        this.evEndDate = evEndDate;
+    }
+
+    public String getEvPlace() {
+        return evPlace;
+    }
+
+    public void setEvPlace(String evPlace) {
+        this.evPlace = evPlace;
+    }
+
+    public int getEvTicket() {
+        return evTicket;
+    }
+
+    public void setEvTicket(int evTicket) {
+        this.evTicket = evTicket;
+    }
+
+    public int getCurrentMember() {
+        return currentMember;
+    }
+
+    public void setCurrentMember(int currentMember) {
+        this.currentMember = currentMember;
+    }
+
+    public String getEvTime() {
+        return evTime;
+    }
+
+    public void setEvTime(String evTime) {
+        this.evTime = evTime;
+    }
+
+    public String getEvEndTime() {
+        return evEndTime;
+    }
+
+    public void setEvEndTime(String evEndTime) {
+        this.evEndTime = evEndTime;
+    }
+
+    public int getEvType() {
+        return evType;
+    }
+
+    public void setEvType(int evType) {
+        this.evType = evType;
+    }
+
+    public long getStdId() {
+        return stdId;
+    }
+
+    public void setStdId(long stdId) {
+        this.stdId = stdId;
+    }
     
     
     @FXML
@@ -77,6 +167,31 @@ public class EditEventController implements Initializable {
     private JFXButton confirmBtn;
     @FXML
     private JFXButton cancelBtn;
+    
+    @FXML
+    public void showValue(){
+        
+        eventName.setText(evName);        
+        startDate.setValue(evDate);        
+        endDate.setValue(evEndDate);        
+        startTime.setValue(LocalTime.MAX);
+        endTime.setValue(LocalTime.MAX);
+        ticket.setValue(evTicket+"");
+        setType(evType);
+        //type.selectToggle(camp);
+        description.setText(evDescrip);
+        place.setText(evPlace);
+    }
+    @FXML
+    public void setType(int evType){
+        
+        if(evType==0){
+            camp.setSelected(true);
+        }else if(evType==1){
+            seminar.setSelected(true);
+        }else
+            other.setSelected(true);
+    }
     @FXML
     public void setAllValue(){
         this.evName = eventName.getText();
@@ -111,6 +226,7 @@ public class EditEventController implements Initializable {
     }
     @FXML
     public void clickConfirm(){
+        
         setAllValue();
         confirmBtn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
@@ -124,7 +240,9 @@ public class EditEventController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        e.getSelect(10052);
         setValueToCombobox();
+        showValue();
     }    
     
 }
