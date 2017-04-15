@@ -7,6 +7,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -48,31 +49,31 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="98.0" layoutY="242.0" text="เวลาเริ่มกิจกรรม :">
+                        <Label layoutX="98.0" layoutY="248.0" text="เวลาเริ่มกิจกรรม :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="400.0" layoutY="242.0" text="เวลาสิ้นสุดกิจกรรม :">
+                        <Label layoutX="400.0" layoutY="249.0" text="เวลาสิ้นสุดกิจกรรม :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="98.0" layoutY="289.0" text="สถานที่ :">
+                        <Label layoutX="98.0" layoutY="299.0" text="สถานที่ :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="400.0" layoutY="289.0" text="จำนวนบัตร :">
+                        <Label layoutX="400.0" layoutY="301.0" text="จำนวนบัตร :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <ComboBox id="ticket" fx:id="ticket" layoutX="493.0" layoutY="291.0" prefHeight="27.0" prefWidth="158.0" promptText="เลือกจำนวนบัตร" visibleRowCount="12">
+                        <ComboBox id="ticket" fx:id="ticket" layoutX="496.0" layoutY="303.0" prefHeight="27.0" prefWidth="158.0" promptText="เลือกจำนวนบัตร" visibleRowCount="12">
                            <styleClass>
                               <String fx:value="white" />
                               <String fx:value="dropshadow" />
@@ -133,11 +134,14 @@
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXTextArea>
-                        <JFXTextField fx:id="place" layoutX="165.0" layoutY="292.0" prefHeight="25.0" prefWidth="193.0">
+                        <JFXTextField fx:id="place" layoutX="167.0" layoutY="285.0" prefHeight="38.0" prefWidth="182.0">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
                            </styleClass>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
                         </JFXTextField>
                         <JFXRadioButton fx:id="camp" layoutX="206.0" layoutY="333.0" text="ค่าย">
                            <styleClass>
