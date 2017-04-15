@@ -14,23 +14,13 @@ import publicizehub.club.controller.Form_EvaluationsController;
  */
 public class Form_Evaluations extends Application   {
     @Override
+
     public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("FormEvaluations.fxml"));
         
-        try{
-            stage = new Stage();
-            FXMLLoader loader =  new FXMLLoader(getClass().getResource("FormEvaluations.fxml"));  
-            Form_EvaluationsController controller=null;
-            Parent root = null;
-            root = (Parent)loader.load(); 
-            controller = loader.<Form_EvaluationsController>getController();
-            controller.setEvName("Dek-D Adminssion");
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.centerOnScreen();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
         stage.show();
     }
 
@@ -39,5 +29,5 @@ public class Form_Evaluations extends Application   {
      */
     public static void main(String[] args) {
         launch(args);
-    }  
+    }
 }

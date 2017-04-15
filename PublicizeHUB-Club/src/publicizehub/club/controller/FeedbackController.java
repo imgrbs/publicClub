@@ -16,7 +16,7 @@ public class FeedbackController {
     public void getValue(int valueRadio1, int valueRadio2, int valueRadio3, int valueRadio4, int valueRadio5,
             int valueRadio6, int valueRadio7, int valueRadio8, int valueRadio9, int valueRadio10, int evId, long stdId) {
 
-//        double x = 0.2;
+ //      double x = 0.2;
 //
 //        double percentNumber1 = valueRadio1 * x;
 //        double percentNumber2 = valueRadio2 * x;
@@ -42,7 +42,7 @@ public class FeedbackController {
        public void AverSum(){
            
           fbm.setSumQ();
-     
+        
        }
        
    
