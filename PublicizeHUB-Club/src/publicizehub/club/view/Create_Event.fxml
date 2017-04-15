@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTimePicker?>
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -79,33 +80,19 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <TextField id="startTime" fx:id="startTime" layoutX="226.0" layoutY="244.0">
-                           <styleClass>
-                              <String fx:value="white" />
-                              <String fx:value="dropshadow" />
-                              <String fx:value="quark" />
-                           </styleClass>
-                        </TextField>
                         <Label layoutX="404.0" layoutY="242.0" text="เวลาสิ้นสุดกิจกรรม :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <TextField id="endTime" fx:id="endTime" layoutX="547.0" layoutY="244.0">
-                           <styleClass>
-                              <String fx:value="white" />
-                              <String fx:value="dropshadow" />
-                              <String fx:value="quark" />
-                           </styleClass>
-                        </TextField>
                         <Label layoutX="98.0" layoutY="289.0" text="สถานที่ :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <TextField id="place" fx:id="place" layoutX="161.0" layoutY="292.0" prefHeight="25.0" prefWidth="214.0">
+                        <TextField id="place" fx:id="place" layoutX="161.0" layoutY="292.0" prefHeight="27.0" prefWidth="223.0">
                            <styleClass>
                               <String fx:value="white" />
                               <String fx:value="dropshadow" />
@@ -118,7 +105,7 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <ComboBox id="ticket" fx:id="ticket" layoutX="547.0" layoutY="293.0" prefWidth="150.0" promptText="เลือกจำนวนบัตร" visibleRowCount="12">
+                        <ComboBox id="ticket" fx:id="ticket" layoutX="547.0" layoutY="293.0" prefHeight="27.0" prefWidth="158.0" promptText="เลือกจำนวนบัตร" visibleRowCount="12">
                            <styleClass>
                               <String fx:value="white" />
                               <String fx:value="dropshadow" />
@@ -138,6 +125,18 @@
                         </RadioButton>
                         <RadioButton id="seminar" fx:id="seminar" layoutX="306.0" layoutY="338.0" mnemonicParsing="false" styleClass="quark" text="สัมมนา" toggleGroup="$type" />
                         <RadioButton id="other" fx:id="other" layoutX="389.0" layoutY="338.0" mnemonicParsing="false" styleClass="quark" text="อื่นๆ" toggleGroup="$type" />
+                        <JFXTimePicker fx:id="startTime" defaultColor="#dd721a" layoutX="226.0" layoutY="244.0" prefHeight="28.0" prefWidth="158.0">
+                           <styleClass>
+                              <String fx:value="white" />
+                              <String fx:value="dropshadow" />
+                           </styleClass>
+                        </JFXTimePicker>
+                        <JFXTimePicker fx:id="endTime" defaultColor="#dd721a" layoutX="547.0" layoutY="244.0" prefHeight="28.0" prefWidth="158.0">
+                           <styleClass>
+                              <String fx:value="white" />
+                              <String fx:value="dropshadow" />
+                           </styleClass>
+                        </JFXTimePicker>
                      </children>
                   </Pane>
                </center>
