@@ -306,3 +306,17 @@
 	-fx-background-height: 64px;
 	
 }
+
+.formSumName{
+    -fx-font-size: 25px;
+}
+
+.formSumActi{
+     -fx-font-size: 30px;
+}
+.nameNumber{
+    -fx-font-size: 33px;
+}
+.tabelView{
+    -fx-font-size: 14px;
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.FormSumActivityController">
+   <children>
+      <FlowPane alignment="CENTER" layoutX="28.0" layoutY="39.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="547.0" prefWidth="733.0" style="-fx-background-color: white;" styleClass="formBg">
+               <children>
+                  <Label layoutX="174.0" layoutY="19.0" text="ผลตอบรับกิจกรรม">
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="formSumName" />
+                     </styleClass></Label>
+                  <Label layoutX="487.0" layoutY="25.0" text="Dek-D Admission ">
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="formSumActi" />
+                     </styleClass></Label>
+                  <BarChart layoutX="27.0" layoutY="49.0" prefHeight="233.0" prefWidth="422.0" style="-fx-background-color: white; -fx-background-position: white;">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+                  <Label layoutX="515.0" layoutY="92.0" prefHeight="34.0" prefWidth="123.0" text="จำนวนคนสมัคร">
+                     <styleClass>
+                        <String fx:value="formSumName" />
+                        <String fx:value="quark" />
+                     </styleClass>
+                  </Label>
+                  <Label layoutX="545.0" layoutY="126.0" prefHeight="48.0" prefWidth="80.0" text="99999">
+                     <styleClass>
+                        <String fx:value="formSumName" />
+                        <String fx:value="quark" />
+                     </styleClass>
+                  </Label>
+                  <Line endX="120.0" layoutX="582.0" layoutY="174.0" startX="-100.0" />
+                  <Text layoutX="638.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="คน" wrappingWidth="44.130001068115234">
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="nameNumber" />
+                     </styleClass>
+                  </Text>
+                  <Label layoutX="502.0" layoutY="182.0" prefHeight="40.0" prefWidth="145.0" text="จำนวนคนที่เข้าร่วม">
+                     <styleClass>
+                        <String fx:value="formSumName" />
+                        <String fx:value="quark" />
+                     </styleClass>
+                  </Label>
+                  <Label layoutX="545.0" layoutY="216.0" prefHeight="48.0" prefWidth="80.0" text="99980" textAlignment="CENTER">
+                     <styleClass>
+                        <String fx:value="formSumName" />
+                        <String fx:value="quark" />
+                     </styleClass>
+                  </Label>
+                  <Text layoutX="638.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="คน" wrappingWidth="44.130001068115234">
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="nameNumber" />
+                     </styleClass>
+                  </Text>
+                  <TableView layoutX="17.0" layoutY="282.0" prefHeight="247.0" prefWidth="696.0">
+                    <columns>
+                      <TableColumn fx:id="stdName" prefWidth="116.0" text="ชื่อ" />
+                      <TableColumn fx:id="stdSurname" minWidth="0.0" prefWidth="165.0" text="นามสกุล" />
+                        <TableColumn fx:id="department" minWidth="0.0" prefWidth="228.0" text="ภาควิชา" />
+                        <TableColumn fx:id="regisDate" prefWidth="89.0" text="วันที่สมัคร" />
+                        <TableColumn fx:id="joinDate" prefWidth="97.0" text="วันที่เข้าร่วม" />
+                    </columns>
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="tabelView" />
+                     </styleClass>
+                  </TableView>
+               </children>
+            </Pane>
+         </children>
+      </FlowPane>
+   </children>
+</AnchorPane>
