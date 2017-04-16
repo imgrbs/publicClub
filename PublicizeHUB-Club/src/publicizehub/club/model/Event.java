@@ -75,8 +75,8 @@ public class Event {
         cb.logout(); // ปิดการ connection กับ database
     }
     
-    public void updateEvent(String name,String desc,String date,
-                            String endDate,String time,String endTime,
+    public void updateEvent(String name,String desc,LocalDate date,
+                            LocalDate endDate,String time,String endTime,
                             String place,int ticket,int evType,int evId){
         // update
         System.out.println(this.evId);
