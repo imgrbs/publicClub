@@ -79,7 +79,7 @@
                               <String fx:value="quark" />
                            </styleClass>
                         </ComboBox>
-                        <Label layoutX="98.0" layoutY="333.0" text="ประเภทกิจกรรม :">
+                        <Label layoutX="98.0" layoutY="376.0" text="ประเภทกิจกรรม :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
@@ -133,13 +133,13 @@
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXTextArea>
-                        <JFXTextField fx:id="place" layoutX="165.0" layoutY="292.0" prefHeight="25.0" prefWidth="193.0">
+                        <JFXTextField fx:id="place" layoutX="165.0" layoutY="292.0" prefHeight="38.0" prefWidth="184.0">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXTextField>
-                        <JFXRadioButton fx:id="camp" layoutX="206.0" layoutY="333.0" text="ค่าย">
+                        <JFXRadioButton fx:id="camp" layoutX="206.0" layoutY="376.0" text="ค่าย">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
@@ -148,18 +148,25 @@
                               <ToggleGroup fx:id="type" />
                            </toggleGroup>
                         </JFXRadioButton>
-                        <JFXRadioButton fx:id="seminar" layoutX="274.0" layoutY="333.0" text="สัมมนา" toggleGroup="$type">
+                        <JFXRadioButton fx:id="seminar" layoutX="274.0" layoutY="376.0" text="สัมมนา" toggleGroup="$type">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXRadioButton>
-                        <JFXRadioButton fx:id="other" layoutX="359.0" layoutY="333.0" text="อื่นๆ" toggleGroup="$type">
+                        <JFXRadioButton fx:id="other" layoutX="359.0" layoutY="376.0" text="อื่นๆ" toggleGroup="$type">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXRadioButton>
+                        <Label layoutX="98.0" layoutY="346.0" text="วันเปิดรับสมัคร :">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                           </styleClass>
+                        </Label>
+                        <JFXDatePicker fx:id="startRegis" defaultColor="#dd721a" layoutX="221.0" layoutY="335.0" prefHeight="40.0" prefWidth="166.0" />
                      </children>
                   </Pane>
                </center>

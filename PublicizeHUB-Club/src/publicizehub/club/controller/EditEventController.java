@@ -37,15 +37,34 @@ public class EditEventController implements Initializable {
     private String evDescrip;
     private LocalDate evDate;
     private LocalDate evEndDate;
+    private LocalDate evStartRegis;
+    private LocalDate evEndFeedback;
     private String evPlace;
     private int evTicket;
     private int currentMember;
-    private String evTime;
-    private String evEndTime;
+    private LocalTime evTime;
+    private LocalTime evEndTime;
     private int evType;
     private int evId;
     private long stdId=lc.getStdId();
 
+    public EditEventController(String evName, String evDescrip, LocalDate evDate, LocalDate evEndDate, LocalDate evStartRegis, LocalDate evEndFeedback, String evPlace, int evTicket, int currentMember, LocalTime evTime, LocalTime evEndTime, int evType, int evId) {
+        this.evName = evName;
+        this.evDescrip = evDescrip;
+        this.evDate = evDate;
+        this.evEndDate = evEndDate;
+        this.evStartRegis = evStartRegis;
+        this.evEndFeedback = evEndFeedback;
+        this.evPlace = evPlace;
+        this.evTicket = evTicket;
+        this.currentMember = currentMember;
+        this.evTime = evTime;
+        this.evEndTime = evEndTime;
+        this.evType = evType;
+        this.evId = evId;
+    }
+
+     
     public String getEvName() {
         return evName;
     }
@@ -102,19 +121,19 @@ public class EditEventController implements Initializable {
         this.currentMember = currentMember;
     }
 
-    public String getEvTime() {
+    public LocalTime getEvTime() {
         return evTime;
     }
 
-    public void setEvTime(String evTime) {
+    public void setEvTime(LocalTime evTime) {
         this.evTime = evTime;
     }
 
-    public String getEvEndTime() {
+    public LocalTime getEvEndTime() {
         return evEndTime;
     }
 
-    public void setEvEndTime(String evEndTime) {
+    public void setEvEndTime(LocalTime evEndTime) {
         this.evEndTime = evEndTime;
     }
 
@@ -146,41 +165,35 @@ public class EditEventController implements Initializable {
     @FXML
     private JFXTimePicker endTime;
     @FXML
+    private JFXDatePicker startRegis;
+    @FXML
     private ComboBox<String> ticket;
     @FXML
     private ToggleGroup type;
-
     @FXML
     private JFXTextArea description;
-
     @FXML
     private JFXTextField place;
-
     @FXML
     private JFXRadioButton camp;
-
     @FXML
     private JFXRadioButton seminar;
-
     @FXML
     private JFXRadioButton other;
-
     @FXML
     private JFXButton confirmBtn;
     @FXML
     private JFXButton cancelBtn;
-    
     @FXML
     public void showValue(){
         
         eventName.setText(evName);        
         startDate.setValue(evDate);        
         endDate.setValue(evEndDate);        
-        startTime.setValue(LocalTime.MAX);
-        endTime.setValue(LocalTime.MAX);
+        startTime.setValue(evTime);
+        endTime.setValue(evEndTime);
         ticket.setValue(evTicket+"");
         setType(evType);
-        //type.selectToggle(camp);
         description.setText(evDescrip);
         place.setText(evPlace);
     }
@@ -200,8 +213,10 @@ public class EditEventController implements Initializable {
         this.evDescrip = description.getText();
         this.evDate = startDate.getValue();
         this.evEndDate = endDate.getValue();
-        this.evTime = (startTime.getValue())+"";
-        this.evEndTime = (endTime.getValue())+"";
+        this.evStartRegis = startRegis.getValue();
+        this.evStartRegis = startRegis.getValue().plusDays(15);
+        this.evTime = (startTime.getValue());
+        this.evEndTime = (endTime.getValue());
         this.evTicket = Integer.parseInt(ticket.getValue());
         this.evPlace = place.getText();
         evTypeResult();
@@ -233,7 +248,7 @@ public class EditEventController implements Initializable {
         confirmBtn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
-                e.updateEvent(evName, evDescrip, evDate, evEndDate , evTime, evEndTime, evPlace, evTicket, evType, evId);
+                e.updateEvent( evName, evDescrip, evDate, evEndDate , evStartRegis ,evEndFeedback, evTime, evEndTime, evPlace, evTicket, evType, evId);
             }
         });
     }
