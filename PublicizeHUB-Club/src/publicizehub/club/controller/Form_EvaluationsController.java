@@ -222,9 +222,9 @@ public class Form_EvaluationsController implements Initializable {
         Q1_N1[2]=Q1_N1_3;
         Q1_N1[3]=Q1_N1_4;
         Q1_N1[4]=Q1_N1_5;
-        for (int i = 0; i < Q1_N1.length; i++) {
-            Q1_N1[i].setToggleGroup(groupQ[0]);
-        }
+        
+        Q1_N2[1]=Q2_N1_1;
+        Q1_N2[2]=Q2_N1_2;
     }
 
     public Label getEvName() {
