@@ -44,8 +44,11 @@ public class Form_EvaluationsController implements Initializable {
     RadioButton[] Q2_N8 = new RadioButton[5];
     RadioButton[] Q2_N9 = new RadioButton[5];
     RadioButton[] Q2_N10 = new RadioButton[5];
-
+    
     int[] valueRadio = new int[10];
+    @FXML
+    ToggleGroup[] groupQ = new ToggleGroup[10];    
+    
 
     @FXML
     private Label evName;
@@ -55,35 +58,8 @@ public class Form_EvaluationsController implements Initializable {
     @FXML
     private Button cancelBtn;
 
-    @FXML
-    private ToggleGroup groupQ1;
+   
 
-    @FXML
-    private ToggleGroup groupQ2;
-
-    @FXML
-    private ToggleGroup groupQ3;
-
-    @FXML
-    private ToggleGroup groupQ4;
-
-    @FXML
-    private ToggleGroup groupQ5;
-
-    @FXML
-    private ToggleGroup groupQ6;
-
-    @FXML
-    private ToggleGroup groupQ7;
-
-    @FXML
-    private ToggleGroup groupQ8;
-
-    @FXML
-    private ToggleGroup groupQ9;
-
-    @FXML
-    private ToggleGroup groupQ10;
     
     @FXML
     private RadioButton Q1_N1_5;
