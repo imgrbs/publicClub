@@ -235,14 +235,16 @@
 .formCancelBtn{
     -fx-cursor: hand;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 15px;
+    -fx-background-radius: 8px;
     -fx-background-color: #e11c1c;
-    -fx-font-size: 13px;
 }
 .accepBtn{
     -fx-cursor: hand;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 15px;
     -fx-background-color: #4F8900;
-    -fx-font-size: 13px;
+    -fx-background-radius: 8px;
   
 }
 .tabPane{

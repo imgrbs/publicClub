@@ -4,9 +4,8 @@ package publicizehub.club.controller;
  *
  * @author ImagineRabbits
  */
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -25,7 +23,7 @@ import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.Event;
 import publicizehub.club.model.FeedbackModel;
 
-public class Form_EvaluationsController implements Initializable {
+public class Form_EvaluationsController {
 
     ConnectionBuilder cb = new ConnectionBuilder();
     Event ev = new Event();
@@ -54,9 +52,9 @@ public class Form_EvaluationsController implements Initializable {
     private Label evName;
 
     @FXML
-    private Button confirmBtn;
+    private JFXButton confirmBtn;
     @FXML
-    private Button cancelBtn;
+    private JFXButton cancelBtn;
 
     @FXML
     private ToggleGroup groupQ1;
@@ -424,10 +422,5 @@ public class Form_EvaluationsController implements Initializable {
     public void stageClose(Stage stage) {
         stage.close();
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
+    
 }
