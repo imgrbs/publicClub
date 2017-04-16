@@ -3,6 +3,7 @@ package publicizehub.club.model;
 import java.sql.*;
 import java.text.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.swing.*;
 /**
  *
@@ -49,8 +50,8 @@ public class Event {
     /* รับค่าที่ประมวลผลแล้วจาก Controller เพื่อ ส่งไป Database
     โดยใช้คำสั่ง SQL และ ประมวลผลคำสั่งโดย 
     การสร้าง Statement และเรียกใช้ method */
-    public void createEvent(String name,String desc,LocalDate date,LocalDate endDate,
-                        String time,String endTime,String place,int ticket,
+    public void createEvent(String name,String desc,LocalDate date,LocalDate endDate,LocalDate startRegis,LocalDate endFeedback,
+                        LocalTime time,LocalTime endTime,String place,int ticket,
                         int evType,long stdId) {
         cb.connecting(); // Connect ไป Database ผ่าน Connection Builder
         Statement s = null; // สร้างตัวแปร Statement
@@ -58,8 +59,8 @@ public class Event {
             s = cb.getConnect().createStatement();  // สร้าง Statement
             // SQL Insert (คำสัง SQL)
             String sql = "INSERT INTO tb_event"
-                    + "(evName,evDescrip,evDate,evEndDate,evTime,evEndTime,evPlace,evTicket,evType,stdId) "
-                    + "VALUES ('"  + name + "','" + desc + "','"+ date + "','"+ endDate + "','" + time + "','"
+                    + "(evName,evDescrip,evStartDate,evEndDate,evStartRegis,evEndFeedback,evTime,evEndTime,evPlace,evTicket,evType,stdId) "
+                    + "VALUES ('"  + name + "','" + desc + "','"+ date + "','"+ endDate+ "','" +startRegis+ "','"+endFeedback+ "','" + time + "','"
                     + endTime + "','" + place + "','" + ticket + "','" + evType + "','" + stdId + "') ";
             s.executeUpdate(sql); // ส่งข้อมูลไป Database
         } 
@@ -76,7 +77,7 @@ public class Event {
     }
     
     public void updateEvent(String name,String desc,LocalDate date,
-                            LocalDate endDate,String time,String endTime,
+                            LocalDate endDate,LocalDate startRegis,LocalDate endFeedback,LocalTime time,LocalTime endTime,
                             String place,int ticket,int evType,int evId){
         // update
         System.out.println(this.evId);
@@ -85,8 +86,9 @@ public class Event {
         String command;
         try {
             command = "UPDATE tb_event set evName = '"+name+"' , "
-                    + "evDescrip = '"+desc+"' , evDate = '"+date+"' , "
-                    + "evEndDate = '"+endDate+"' , evTime = '"+time+"' , "
+                    + "evDescrip = '"+desc+"' , evStartDate = '"+date+"' , "
+                    + "evEndDate = '"+endDate+"' , evStartRegis = '"+startRegis+"' , "
+                    +"evTime = '"+time+"' , evEndFeedback = '"+endFeedback+"' , "
                     + "evEndTime = '"+endTime+"' , evPlace = '"+place+"' , "
                     + "evTicket = '"+ticket+"' , evType = '"+evType+"' "
                     + "where evId = "+evId;

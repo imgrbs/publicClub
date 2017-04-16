@@ -14,6 +14,7 @@ import com.jfoenix.controls.JFXTimePicker;
 import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,13 +37,15 @@ public class CreateEventController implements Initializable {
     private String evDescrip;
     private LocalDate evDate;
     private LocalDate evEndDate;
+    private LocalDate evStartRegis;
+    private LocalDate evEndFeedback;
     private String evPlace;
     private int evTicket;
     private int currentMember;
-    private String evTime;
-    private String evEndTime;
+    private LocalTime evTime;
+    private LocalTime evEndTime;
     private int evType;
-    private long stdId=lc.getStdId();;
+    private long stdId=lc.getStdId();
     
     
     @FXML
@@ -55,6 +58,8 @@ public class CreateEventController implements Initializable {
     private JFXTimePicker startTime;
     @FXML
     private JFXTimePicker endTime;
+    @FXML
+    private JFXDatePicker startRegis;
     @FXML
     private ComboBox<String> ticket;
     @FXML
@@ -87,8 +92,10 @@ public class CreateEventController implements Initializable {
         this.evDescrip = description.getText();
         this.evDate = startDate.getValue();
         this.evEndDate = endDate.getValue();
-        this.evTime = (startTime.getValue())+"";
-        this.evEndTime = (endTime.getValue())+"";
+        this.evStartRegis = startRegis.getValue();
+        this.evEndFeedback = startRegis.getValue().plusDays(15);
+        this.evTime = (startTime.getValue());
+        this.evEndTime = (endTime.getValue());
         this.evTicket = Integer.parseInt(ticket.getValue());
         this.evPlace = place.getText();
         evTypeResult();
@@ -125,7 +132,7 @@ public class CreateEventController implements Initializable {
         confirmBtn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
-                e.createEvent(evName, evDescrip, evDate, evEndDate, evTime, evEndTime, evPlace, evTicket, evType, stdId);
+                e.createEvent(evName, evDescrip, evDate, evEndDate,evStartRegis,evEndFeedback, evTime, evEndTime, evPlace, evTicket, evType, stdId);
             }
         });
     }
