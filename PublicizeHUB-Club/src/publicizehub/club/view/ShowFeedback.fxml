@@ -1,20 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import java.lang.String?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="publicizehub.club.controller.ShowFeedbackController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.ShowFeedbackController"> 
    <children>
-      <BarChart fx:id="FeedbackChart" layoutX="119.0" layoutY="97.0" prefHeight="419.0" prefWidth="562.0" title="Feedback">
-        <xAxis>
-          <CategoryAxis label="Question number" side="BOTTOM" fx:id="x" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis fx:id="y" label="value" side="LEFT" />
-        </yAxis>
-      </BarChart>
+      <FlowPane alignment="CENTER" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="566.0" prefWidth="726.0" styleClass="detailPane" stylesheets="@../css/style.css">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <children>
+                  <BarChart fx:id="feedbackChart" layoutX="32.0" layoutY="54.0" prefHeight="228.0" prefWidth="414.0">
+                    <xAxis>
+                      <CategoryAxis prefHeight="30.0" prefWidth="357.0" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+                  <Label alignment="CENTER" layoutX="132.0" layoutY="14.0" prefHeight="38.0" prefWidth="214.0" text="ผลตอบรับกิจกรรม">
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="stdIdProfile" />
+                     </styleClass>
+                  </Label>
+                  <Label layoutX="517.0" layoutY="83.0" prefHeight="50.0" prefWidth="169.0" text="จำนวนคนสมัคร">
+                     <styleClass>
+                        <String fx:value="stdIdProfile" />
+                        <String fx:value="quark" />
+                     </styleClass>
+                  </Label>
+                  <Label fx:id="numberBuy" alignment="CENTER" layoutX="538.0" layoutY="131.0" prefHeight="40.0" prefWidth="95.0" text="99999">
+                     <styleClass>
+                        <String fx:value="stdIdProfile" />
+                        <String fx:value="quark" />
+                     </styleClass>
+                  </Label>
+                  <Label layoutX="640.0" layoutY="115.0" prefHeight="32.0" prefWidth="44.0" text="คน">
+                     <styleClass>
+                        <String fx:value="stdNameProfile" />
+                        <String fx:value="quark" />
+                     </styleClass>
+                  </Label>
+                  <Label layoutX="517.0" layoutY="179.0" prefHeight="50.0" prefWidth="169.0" text="จำนวนคนที่เข้าร่วม">
+                     <styleClass>
+                        <String fx:value="stdIdProfile" />
+                        <String fx:value="quark" />
+                     </styleClass>
+                  </Label>
+                  <Line endX="120.0" layoutX="588.0" layoutY="171.0" startX="-100.0" />
+                  <Label fx:id="numberJoin" alignment="CENTER" layoutX="538.0" layoutY="206.0" prefHeight="63.0" prefWidth="95.0" text="99999">
+                     <styleClass>
+                        <String fx:value="stdIdProfile" />
+                        <String fx:value="quark" />
+                     </styleClass>
+                  </Label>
+                  <Label layoutX="640.0" layoutY="201.0" prefHeight="32.0" prefWidth="44.0" text="คน">
+                     <styleClass>
+                        <String fx:value="stdNameProfile" />
+                        <String fx:value="quark" />
+                     </styleClass>
+                  </Label>
+                  <Label fx:id="evName" alignment="CENTER" layoutX="457.0" layoutY="14.0" prefHeight="63.0" prefWidth="257.0" text="Dek-D Admission">
+                     <styleClass>
+                        <String fx:value="detailName" />
+                        <String fx:value="quark" />
+                     </styleClass>
+                  </Label>
+                  <JFXTreeTableView fx:id="tableStd" layoutX="14.0" layoutY="292.0" prefHeight="258.0" prefWidth="698.0">
+                     <columns>
+                        <TreeTableColumn fx:id="stdName" prefWidth="129.0" text="ชื่อ" />
+                        <TreeTableColumn fx:id="stdSurname" prefWidth="150.0" text="นามสกุล" />
+                        <TreeTableColumn fx:id="stdDepart" prefWidth="175.0" text="ภาควิชา" />
+                        <TreeTableColumn fx:id="stdBuy" prefWidth="94.0" text="วันที่จอง" />
+                        <TreeTableColumn fx:id="stdCheckin" prefWidth="126.0" text="เช็คอิน" />
+                     </columns>
+                  </JFXTreeTableView>
+               </children>
+            </Pane>
+         </children>
+      </FlowPane>
    </children>
 </AnchorPane>

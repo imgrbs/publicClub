@@ -425,7 +425,10 @@ public class Form_EvaluationsController implements Initializable {
         
         Scene scene = new Scene(root); 
         try{
-            stage.setScene(scene);    
+            stage.setScene(scene);   
+            if(rs.next()){
+                controller.evName.setText(rs.getString("evName"));
+            }
         }
         catch(Exception e){
             e.printStackTrace();
@@ -436,6 +439,7 @@ public class Form_EvaluationsController implements Initializable {
                 stageClose(stage);
             }
         });
+        
         stage.show();
         cb.logout();
     }

@@ -22,7 +22,7 @@
                         <String fx:value="formName" />
                         <String fx:value="quark" />
                      </styleClass></Label>
-                  <Label fx:id="evName" layoutX="504.0" layoutY="38.0" prefHeight="45.0" prefWidth="139.0" text="BrownBag #2.0">
+                  <Label fx:id="evName" alignment="CENTER_RIGHT" layoutX="422.0" layoutY="30.0" prefHeight="45.0" prefWidth="214.0" text="BrownBag #2.0">
                      <styleClass>
                         <String fx:value="formEvName" />
                         <String fx:value="quark" />
