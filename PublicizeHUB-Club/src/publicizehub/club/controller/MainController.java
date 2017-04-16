@@ -52,6 +52,8 @@ public class MainController {
     private Button manageBtn;
     @FXML
     private ImageView managePic;
+    @FXML
+    TextField searchfield;
 
     public Stage getThisStage() {
         return thisStage;
@@ -70,14 +72,11 @@ public class MainController {
         this.stdId.setText(""+stdId);
         this.stdName.setText(""+stdName);
     }
-
-    @FXML
-    TextField searchfield;
-
+    
     @FXML
     protected void callProfile() {
-        Stage stage= new Stage();
-        Parent root=null;
+        Stage stage = new Stage();
+        Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Profile.fxml"));     
         try{
             root = (Parent)fxmlLoader.load(); 
