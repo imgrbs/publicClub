@@ -56,34 +56,49 @@ public class Form_EvaluationsController implements Initializable {
     private Button cancelBtn;
 
     @FXML
-    private RadioButton Q1_N1_5;
-
-    @FXML
     private ToggleGroup groupQ1;
-
-    @FXML
-    private RadioButton Q1_N2_5;
 
     @FXML
     private ToggleGroup groupQ2;
 
     @FXML
-    private RadioButton Q1_N3_5;
-
-    @FXML
     private ToggleGroup groupQ3;
-
-    @FXML
-    private RadioButton Q1_N4_5;
 
     @FXML
     private ToggleGroup groupQ4;
 
     @FXML
-    private RadioButton Q1_N5_5;
+    private ToggleGroup groupQ5;
 
     @FXML
-    private ToggleGroup groupQ5;
+    private ToggleGroup groupQ6;
+
+    @FXML
+    private ToggleGroup groupQ7;
+
+    @FXML
+    private ToggleGroup groupQ8;
+
+    @FXML
+    private ToggleGroup groupQ9;
+
+    @FXML
+    private ToggleGroup groupQ10;
+    
+    @FXML
+    private RadioButton Q1_N1_5;
+    
+    @FXML
+    private RadioButton Q1_N2_5;
+
+    @FXML
+    private RadioButton Q1_N3_5;
+
+    @FXML
+    private RadioButton Q1_N4_5;
+
+    @FXML
+    private RadioButton Q1_N5_5;
 
     @FXML
     private RadioButton Q1_N1_4;
@@ -149,32 +164,17 @@ public class Form_EvaluationsController implements Initializable {
     private RadioButton Q2_N1_5;
 
     @FXML
-    private ToggleGroup groupQ6;
-
-    @FXML
     private RadioButton Q2_N2_5;
-
-    @FXML
-    private ToggleGroup groupQ7;
 
     @FXML
     private RadioButton Q2_N3_5;
 
     @FXML
-    private ToggleGroup groupQ8;
-
-    @FXML
     private RadioButton Q2_N4_5;
 
-    @FXML
-    private ToggleGroup groupQ9;
 
     @FXML
     private RadioButton Q2_N5_5;
-
-    @FXML
-    private ToggleGroup groupQ10;
-
     @FXML
     private RadioButton Q2_N1_4;
 
