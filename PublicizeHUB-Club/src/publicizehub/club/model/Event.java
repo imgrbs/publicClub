@@ -12,19 +12,21 @@ import javax.swing.*;
 public class Event {
     ConnectionBuilder cb = new ConnectionBuilder();
     
-    private int evId;
-    private String evName="";
-    private String evDescrip="";
+    private String evName; 
+    private String evDescrip;
     private LocalDate evDate;
     private LocalDate evEndDate;
-    private Time evTime;
-    private Time evEndTime;
+    private LocalDate evStartRegis;
+    private LocalDate evEndFeedback;
     private String evPlace;
     private int evTicket;
-    private int eventType;
-    private long stdId;
+    private int currentMember;
+    private LocalTime evTime;
+    private LocalTime evEndTime;
+    private int evType;
+    private int evId;
     
-    Date date;
+    
     SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
     
     PreparedStatement ps;
@@ -45,7 +47,110 @@ public class Event {
 //        this.eventType = eventType;
 //        this.stdId = stdId;
 //    }
-    
+
+    public String getEvName() {
+        return evName;
+    }
+
+    public void setEvName(String evName) {
+        this.evName = evName;
+    }
+
+    public String getEvDescrip() {
+        return evDescrip;
+    }
+
+    public void setEvDescrip(String evDescrip) {
+        this.evDescrip = evDescrip;
+    }
+
+    public LocalDate getEvDate() {
+        return evDate;
+    }
+
+    public void setEvDate(LocalDate evDate) {
+        this.evDate = evDate;
+    }
+
+    public LocalDate getEvEndDate() {
+        return evEndDate;
+    }
+
+    public void setEvEndDate(LocalDate evEndDate) {
+        this.evEndDate = evEndDate;
+    }
+
+    public LocalDate getEvStartRegis() {
+        return evStartRegis;
+    }
+
+    public void setEvStartRegis(LocalDate evStartRegis) {
+        this.evStartRegis = evStartRegis;
+    }
+
+    public LocalDate getEvEndFeedback() {
+        return evEndFeedback;
+    }
+
+    public void setEvEndFeedback(LocalDate evEndFeedback) {
+        this.evEndFeedback = evEndFeedback;
+    }
+
+    public String getEvPlace() {
+        return evPlace;
+    }
+
+    public void setEvPlace(String evPlace) {
+        this.evPlace = evPlace;
+    }
+
+    public int getEvTicket() {
+        return evTicket;
+    }
+
+    public void setEvTicket(int evTicket) {
+        this.evTicket = evTicket;
+    }
+
+    public int getCurrentMember() {
+        return currentMember;
+    }
+
+    public void setCurrentMember(int currentMember) {
+        this.currentMember = currentMember;
+    }
+
+    public LocalTime getEvTime() {
+        return evTime;
+    }
+
+    public void setEvTime(LocalTime evTime) {
+        this.evTime = evTime;
+    }
+
+    public LocalTime getEvEndTime() {
+        return evEndTime;
+    }
+
+    public void setEvEndTime(LocalTime evEndTime) {
+        this.evEndTime = evEndTime;
+    }
+
+    public int getEvType() {
+        return evType;
+    }
+
+    public void setEvType(int evType) {
+        this.evType = evType;
+    }
+
+    public int getEvId() {
+        return evId;
+    }
+
+    public void setEvId(int evId) {
+        this.evId = evId;
+    }
     
     /* รับค่าที่ประมวลผลแล้วจาก Controller เพื่อ ส่งไป Database
     โดยใช้คำสั่ง SQL และ ประมวลผลคำสั่งโดย 

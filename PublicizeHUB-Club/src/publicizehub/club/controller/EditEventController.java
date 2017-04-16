@@ -33,116 +33,12 @@ public class EditEventController implements Initializable {
     TableEvent te = new TableEvent();
     LoginController lc = new LoginController();
    
-    private String evName; 
-    private String evDescrip;
-    private LocalDate evDate;
-    private LocalDate evEndDate;
-    private LocalDate evStartRegis;
-    private LocalDate evEndFeedback;
-    private String evPlace;
-    private int evTicket;
-    private int currentMember;
-    private LocalTime evTime;
-    private LocalTime evEndTime;
-    private int evType;
-    private int evId;
+    private Event thisEvent;
     private long stdId=lc.getStdId();
+    
 
-    public EditEventController(String evName, String evDescrip, LocalDate evDate, LocalDate evEndDate, LocalDate evStartRegis, LocalDate evEndFeedback, String evPlace, int evTicket, int currentMember, LocalTime evTime, LocalTime evEndTime, int evType, int evId) {
-        this.evName = evName;
-        this.evDescrip = evDescrip;
-        this.evDate = evDate;
-        this.evEndDate = evEndDate;
-        this.evStartRegis = evStartRegis;
-        this.evEndFeedback = evEndFeedback;
-        this.evPlace = evPlace;
-        this.evTicket = evTicket;
-        this.currentMember = currentMember;
-        this.evTime = evTime;
-        this.evEndTime = evEndTime;
-        this.evType = evType;
-        this.evId = evId;
-    }
-
-     
-    public String getEvName() {
-        return evName;
-    }
-
-    public void setEvName(String evName) {
-        this.evName = evName;
-    }
-
-    public String getEvDescrip() {
-        return evDescrip;
-    }
-
-    public void setEvDescrip(String evDescrip) {
-        this.evDescrip = evDescrip;
-    }
-
-    public LocalDate getEvDate() {
-        return evDate;
-    }
-
-    public void setEvDate(LocalDate evDate) {
-        this.evDate = evDate;
-    }
-
-    public LocalDate getEvEndDate() {
-        return evEndDate;
-    }
-
-    public void setEvEndDate(LocalDate evEndDate) {
-        this.evEndDate = evEndDate;
-    }
-
-    public String getEvPlace() {
-        return evPlace;
-    }
-
-    public void setEvPlace(String evPlace) {
-        this.evPlace = evPlace;
-    }
-
-    public int getEvTicket() {
-        return evTicket;
-    }
-
-    public void setEvTicket(int evTicket) {
-        this.evTicket = evTicket;
-    }
-
-    public int getCurrentMember() {
-        return currentMember;
-    }
-
-    public void setCurrentMember(int currentMember) {
-        this.currentMember = currentMember;
-    }
-
-    public LocalTime getEvTime() {
-        return evTime;
-    }
-
-    public void setEvTime(LocalTime evTime) {
-        this.evTime = evTime;
-    }
-
-    public LocalTime getEvEndTime() {
-        return evEndTime;
-    }
-
-    public void setEvEndTime(LocalTime evEndTime) {
-        this.evEndTime = evEndTime;
-    }
-
-    public int getEvType() {
-        return evType;
-    }
-
-    public void setEvType(int evType) {
-        this.evType = evType;
+    public EditEventController(Event event) {
+        thisEvent = event;
     }
 
     public long getStdId() {
@@ -186,16 +82,15 @@ public class EditEventController implements Initializable {
     private JFXButton cancelBtn;
     @FXML
     public void showValue(){
-        
-        eventName.setText(evName);        
-        startDate.setValue(evDate);        
-        endDate.setValue(evEndDate);        
-        startTime.setValue(evTime);
-        endTime.setValue(evEndTime);
-        ticket.setValue(evTicket+"");
-        setType(evType);
-        description.setText(evDescrip);
-        place.setText(evPlace);
+        eventName.setText(thisEvent.getEvName());        
+        startDate.setValue(thisEvent.getEvDate());        
+        endDate.setValue(thisEvent.getEvEndDate());        
+        startTime.setValue(thisEvent.getEvTime());
+        endTime.setValue(thisEvent.getEvEndTime());
+//        ticket.setValue(""+thisEvent.getEvTicket());
+        setType(thisEvent.getEvType());
+        description.setText(thisEvent.getEvDescrip());
+        place.setText(thisEvent.getEvPlace());
     }
     @FXML
     public void setType(int evType){
