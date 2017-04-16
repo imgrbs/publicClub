@@ -43,6 +43,7 @@ public class EditEventController implements Initializable {
     private String evTime;
     private String evEndTime;
     private int evType;
+    private int evId;
     private long stdId=lc.getStdId();
 
     public String getEvName() {
@@ -232,7 +233,7 @@ public class EditEventController implements Initializable {
         confirmBtn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
-                e.createEvent(evName, evDescrip, evDate, evEndDate, evTime, evEndTime, evPlace, evTicket, evType, stdId);
+                e.updateEvent(evName, evDescrip, evDate, evEndDate , evTime, evEndTime, evPlace, evTicket, evType, evId);
             }
         });
     }
