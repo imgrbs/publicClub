@@ -70,7 +70,6 @@ public class JoinController {
             JOptionPane.showMessageDialog(null, e.getMessage());
             e.printStackTrace();
         }
-  
         cb.logout();
     }
     

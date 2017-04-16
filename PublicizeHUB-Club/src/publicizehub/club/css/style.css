@@ -47,7 +47,7 @@
 .boxEv{
     -fx-background-radius: 8;
     -fx-background-color: #ffffff;
-    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
+    -fx-effect: dropshadow(three-pass-box, #C3C3C3  , 15, 0, 0, 1);
 }
 .menubtn{
     -fx-background-color: white;

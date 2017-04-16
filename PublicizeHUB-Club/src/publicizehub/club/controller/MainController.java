@@ -86,6 +86,7 @@ public class MainController {
             e.printStackTrace();
         }
         ProfileController controller = fxmlLoader.<ProfileController>getController();
+        controller.setStdId(getLi().getStdId());
         controller.setLabelDepartment(li.getDepartment());
         controller.setLabelId(""+li.getStdId());
         controller.setLabelName(li.getName()+" "+li.getSurname());

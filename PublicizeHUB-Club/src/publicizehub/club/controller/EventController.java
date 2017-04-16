@@ -1,15 +1,18 @@
 package publicizehub.club.controller;
 
 
+import java.sql.ResultSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.Event;
+import publicizehub.club.model.FeedbackModel;
 
 /**
  *
@@ -35,8 +38,18 @@ public class EventController {
     public int getEvType() {
         return evType;
     }
+
+    public long getStdId() {
+        return stdId;
+    }
+
+    public void setStdId(long stdId) {
+        this.stdId = stdId;
+    }
     
     public void addEventToPresentPane(String evName,int eventId,VBox listEventBox,boolean evaluation) {
+        this.evId = eventId;
+//        this.stdId = 59130500007l;
         Pane p = new Pane();
         Label labelEvName = new Label(evName);
         Button joinbtn = new Button("Join");
@@ -70,12 +83,32 @@ public class EventController {
             evaluationbtn.getStyleClass().add("quark");
             evaluationbtn.setLayoutX(280);
             evaluationbtn.setLayoutY(90);
-            evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    fe.callEvaluation(eventId);
-                }
-            });
+            FeedbackModel fbm = new FeedbackModel();
+            ResultSet log=null;
+            Boolean checkLog=true;
+            try{
+                log = fbm.getFormLog(eventId, this.stdId);
+                if(log.next())checkLog = true;
+                else checkLog=false;
+                cb.logout();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            if(checkLog){
+                evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        blockFeedback();
+                    }
+                });
+            }else{
+                evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        fe.callEvaluation(eventId,evName,getStdId());
+                    }
+                });
+            }
             p.getChildren().add(evaluationbtn);
         }
         p.getChildren().add(labelEvName);
@@ -89,5 +122,13 @@ public class EventController {
                    "-fx-text-fill: #000000;");
         p.setPrefSize(480,150);
         listEventBox.getChildren().add(p);
+    }
+    
+    public void blockFeedback(){
+        Alert warning = new Alert(Alert.AlertType.WARNING);
+        warning.setTitle("Error !");
+        warning.setHeaderText("คุณเคยประเมิณแล้ว !");
+        warning.setContentText("ขออภัย , คุณเคยประเมิณกิจกรรมนี้แล้ว ไม่สามารถประเมิณอีกได้");
+        warning.showAndWait();
     }
 }

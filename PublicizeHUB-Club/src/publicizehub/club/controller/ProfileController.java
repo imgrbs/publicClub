@@ -17,6 +17,7 @@ import static java.lang.Long.parseLong;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.Event;
@@ -33,6 +34,7 @@ public class ProfileController implements Initializable {
     DetailController dc = new DetailController();
     EventController ec = new EventController();
     
+    private long stdId;
 //    Date d = new Date();
     
     private Stage mainStage;
@@ -90,8 +92,14 @@ public class ProfileController implements Initializable {
         this.thisStage = thisStage;
     }
 
-    
-    
+    public long getStdId() {
+        return stdId;
+    }
+
+    public void setStdId(long stdId) {
+        this.stdId = stdId;
+    }
+
     @FXML
     public void getEventToProfile(){
         System.out.println("Befor Get Event");
@@ -114,6 +122,7 @@ public class ProfileController implements Initializable {
 
     public void setEventToGui(int eventId){
         ResultSet findStd = ev.getSelect(eventId);
+        ec.setStdId(getStdId());
         try{
             if(findStd.next()){
                 LocalDate ld = LocalDate.parse(""+findStd.getString("evEndDate"));
@@ -143,5 +152,7 @@ public class ProfileController implements Initializable {
         mainStage.show();
         thisStage.close();
     }
+    
+
     
 }
