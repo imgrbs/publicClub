@@ -23,7 +23,7 @@ import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.Event;
 import publicizehub.club.model.FeedbackModel;
 
-public class Form_EvaluationsController {
+public class Form_EvaluationsController implements Initializable {
 
     ConnectionBuilder cb = new ConnectionBuilder();
     Event ev = new Event();
@@ -421,6 +421,11 @@ public class Form_EvaluationsController {
 
     public void stageClose(Stage stage) {
         stage.close();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        
     }
     
 }

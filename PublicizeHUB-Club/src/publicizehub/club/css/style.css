@@ -172,6 +172,20 @@
     -fx-effect: dropshadow(three-pass-box, #B70D5D, 0, 0, 0, 0);
     -fx-translate-y: 5;
 }
+.addNewsBtn{
+    -fx-effect: dropshadow(three-pass-box, #B3430A, 0, 0, 0, 4);
+    -fx-background-color: #E7560C;
+    -fx-text-fill: #fff;
+    -fx-font-size: 17px;
+    -fx-background-radius: 14px;
+}
+.addNewsBtn:pressed{
+    -fx-effect: dropshadow(three-pass-box, #B3430A, 0, 0, 0, 0);
+    -fx-translate-y: 5;
+}
+.newsText{
+    -fx-font-size: 23px; 
+}
 .checkInBody{
     -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
 }
