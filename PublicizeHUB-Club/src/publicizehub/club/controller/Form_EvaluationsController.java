@@ -46,6 +46,7 @@ public class Form_EvaluationsController implements Initializable {
     RadioButton[] Q2_N10 = new RadioButton[5];
     
     int[] valueRadio = new int[10];
+    
     @FXML
     ToggleGroup[] groupQ = new ToggleGroup[10];    
     
@@ -210,6 +211,21 @@ public class Form_EvaluationsController implements Initializable {
 
     @FXML
     private RadioButton Q2_N5_1;
+
+    public Form_EvaluationsController() {
+        setRadioFromGui();
+    }
+    
+    public void setRadioFromGui(){
+        Q1_N1[0]=Q1_N1_1;
+        Q1_N1[1]=Q1_N1_2;
+        Q1_N1[2]=Q1_N1_3;
+        Q1_N1[3]=Q1_N1_4;
+        Q1_N1[4]=Q1_N1_5;
+        for (int i = 0; i < Q1_N1.length; i++) {
+            Q1_N1[i].setToggleGroup(groupQ[0]);
+        }
+    }
 
     public Label getEvName() {
         return evName;
