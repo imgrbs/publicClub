@@ -44,12 +44,11 @@ public class Form_EvaluationsController implements Initializable {
     RadioButton[] Q2_N8 = new RadioButton[5];
     RadioButton[] Q2_N9 = new RadioButton[5];
     RadioButton[] Q2_N10 = new RadioButton[5];
-    
+
     int[] valueRadio = new int[10];
-    
+
     @FXML
-    ToggleGroup[] groupQ = new ToggleGroup[10];    
-    
+    ToggleGroup[] groupQ = new ToggleGroup[10];
 
     @FXML
     private Label evName;
@@ -59,12 +58,39 @@ public class Form_EvaluationsController implements Initializable {
     @FXML
     private Button cancelBtn;
 
-   
-
+    @FXML
+    private ToggleGroup groupQ1;
     
     @FXML
-    private RadioButton Q1_N1_5;
+    private ToggleGroup groupQ2;
     
+    @FXML
+    private ToggleGroup groupQ3;
+    
+    @FXML
+    private ToggleGroup groupQ4;
+    
+    @FXML
+    private ToggleGroup groupQ5;
+    
+    @FXML
+    private ToggleGroup groupQ6;
+    
+    @FXML
+    private ToggleGroup groupQ7;
+    
+    @FXML
+    private ToggleGroup groupQ8;
+    
+    @FXML
+    private ToggleGroup groupQ9;
+    
+    @FXML
+    private ToggleGroup groupQ10;
+
+    @FXML
+    private RadioButton Q1_N1_5;
+
     @FXML
     private RadioButton Q1_N2_5;
 
@@ -149,7 +175,6 @@ public class Form_EvaluationsController implements Initializable {
     @FXML
     private RadioButton Q2_N4_5;
 
-
     @FXML
     private RadioButton Q2_N5_5;
     @FXML
@@ -215,16 +240,72 @@ public class Form_EvaluationsController implements Initializable {
     public Form_EvaluationsController() {
         setRadioFromGui();
     }
-    
-    public void setRadioFromGui(){
-        Q1_N1[0]=Q1_N1_1;
-        Q1_N1[1]=Q1_N1_2;
-        Q1_N1[2]=Q1_N1_3;
-        Q1_N1[3]=Q1_N1_4;
-        Q1_N1[4]=Q1_N1_5;
+
+    public void setRadioFromGui() {
         
-        Q1_N2[1]=Q2_N1_1;
-        Q1_N2[2]=Q2_N1_2;
+        //num1
+        Q1_N1[0] = Q1_N1_1;
+        Q1_N1[1] = Q1_N1_2;
+        Q1_N1[2] = Q1_N1_3;
+        Q1_N1[3] = Q1_N1_4;
+        Q1_N1[4] = Q1_N1_5;
+        //num2
+        Q1_N2[0] = Q1_N2_1;
+        Q1_N2[1] = Q1_N2_2;
+        Q1_N2[2] = Q1_N2_3;
+        Q1_N2[3] = Q1_N2_4;
+        Q1_N2[4] = Q1_N2_5;
+        //num3
+        Q1_N3[0] = Q1_N3_1;
+        Q1_N3[1] = Q1_N3_2;
+        Q1_N3[2] = Q1_N3_3;
+        Q1_N3[3] = Q1_N3_4;
+        Q1_N3[4] = Q1_N3_5;
+        //num4
+        Q1_N4[0] = Q1_N4_1;
+        Q1_N4[1] = Q1_N4_2;
+        Q1_N4[2] = Q1_N4_3;
+        Q1_N4[3] = Q1_N4_4;
+        Q1_N4[4] = Q1_N4_5;
+        //num5
+        Q1_N5[0] = Q1_N5_1;
+        Q1_N5[1] = Q1_N5_2;
+        Q1_N5[2] = Q1_N5_3;
+        Q1_N5[3] = Q1_N5_4;
+        Q1_N5[4] = Q1_N5_5;
+        //num6
+        Q2_N6[0] = Q2_N1_1;
+        Q2_N6[1] = Q2_N1_2;
+        Q2_N6[2] = Q2_N1_3;
+        Q2_N6[3] = Q2_N1_4;
+        Q2_N6[4] = Q2_N1_5;
+        //num7
+        Q2_N7[0] = Q2_N2_1;
+        Q2_N7[1] = Q2_N2_2;
+        Q2_N7[2] = Q2_N2_3;
+        Q2_N7[3] = Q2_N2_4;
+        Q2_N7[4] = Q2_N2_5;
+        //num8
+        Q2_N8[0] = Q2_N3_1;
+        Q2_N8[1] = Q2_N3_2;
+        Q2_N8[2] = Q2_N3_3;
+        Q2_N8[3] = Q2_N3_4;
+        Q2_N8[4] = Q2_N3_5;
+        //num9
+        Q2_N9[0] = Q2_N4_1;
+        Q2_N9[1] = Q2_N4_2;
+        Q2_N9[2] = Q2_N4_3;
+        Q2_N9[3] = Q2_N4_4;
+        Q2_N9[4] = Q2_N4_5;
+        //num10
+        Q2_N10[0] = Q2_N5_1;
+        Q2_N10[1] = Q2_N5_2;
+        Q2_N10[2] = Q2_N5_3;
+        Q2_N10[3] = Q2_N5_4;
+        Q2_N10[4] = Q2_N5_5;
+        
+
+       
     }
 
     public Label getEvName() {
