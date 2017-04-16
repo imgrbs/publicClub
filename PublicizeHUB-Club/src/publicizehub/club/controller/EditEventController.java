@@ -5,6 +5,7 @@
  */
 package publicizehub.club.controller;
 
+import publicizehub.club.model.TableEvent;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;

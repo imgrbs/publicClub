@@ -29,20 +29,26 @@ public class Form_EvaluationsController implements Initializable {
 
     ConnectionBuilder cb = new ConnectionBuilder();
     Event ev = new Event();
-    
+
     private int evId = 10048;
     private long stdId = 59130500012L;
-    int valueRadio1 = -1;
-    int valueRadio2 = -1;
-    int valueRadio3 = -1;
-    int valueRadio4 = -1;
-    int valueRadio5 = -1;
-    int valueRadio6 = -1;
-    int valueRadio7 = -1;
-    int valueRadio8 = -1;
-    int valueRadio9 = -1;
-    int valueRadio10 = -1;
     FeedbackModel fbm = new FeedbackModel();
+
+    RadioButton[] Q1_N1 = new RadioButton[5];
+    RadioButton[] Q1_N2 = new RadioButton[5];
+    RadioButton[] Q1_N3 = new RadioButton[5];
+    RadioButton[] Q1_N4 = new RadioButton[5];
+    RadioButton[] Q1_N5 = new RadioButton[5];
+    RadioButton[] Q2_N6 = new RadioButton[5];
+    RadioButton[] Q2_N7 = new RadioButton[5];
+    RadioButton[] Q2_N8 = new RadioButton[5];
+    RadioButton[] Q2_N9 = new RadioButton[5];
+    RadioButton[] Q2_N10 = new RadioButton[5];
+
+    int[] valueRadio = new int[10];
+
+    @FXML
+    ToggleGroup[] groupQ = new ToggleGroup[10];
 
     @FXML
     private Label evName;
@@ -53,34 +59,49 @@ public class Form_EvaluationsController implements Initializable {
     private Button cancelBtn;
 
     @FXML
-    private RadioButton Q1_N1_5;
+    private ToggleGroup groupQ1;
+    
+    @FXML
+    private ToggleGroup groupQ2;
+    
+    @FXML
+    private ToggleGroup groupQ3;
+    
+    @FXML
+    private ToggleGroup groupQ4;
+    
+    @FXML
+    private ToggleGroup groupQ5;
+    
+    @FXML
+    private ToggleGroup groupQ6;
+    
+    @FXML
+    private ToggleGroup groupQ7;
+    
+    @FXML
+    private ToggleGroup groupQ8;
+    
+    @FXML
+    private ToggleGroup groupQ9;
+    
+    @FXML
+    private ToggleGroup groupQ10;
 
     @FXML
-    private ToggleGroup groupQ1;
+    private RadioButton Q1_N1_5;
 
     @FXML
     private RadioButton Q1_N2_5;
 
     @FXML
-    private ToggleGroup groupQ2;
-
-    @FXML
     private RadioButton Q1_N3_5;
-
-    @FXML
-    private ToggleGroup groupQ3;
 
     @FXML
     private RadioButton Q1_N4_5;
 
     @FXML
-    private ToggleGroup groupQ4;
-
-    @FXML
     private RadioButton Q1_N5_5;
-
-    @FXML
-    private ToggleGroup groupQ5;
 
     @FXML
     private RadioButton Q1_N1_4;
@@ -146,32 +167,16 @@ public class Form_EvaluationsController implements Initializable {
     private RadioButton Q2_N1_5;
 
     @FXML
-    private ToggleGroup groupQ6;
-
-    @FXML
     private RadioButton Q2_N2_5;
-
-    @FXML
-    private ToggleGroup groupQ7;
 
     @FXML
     private RadioButton Q2_N3_5;
 
     @FXML
-    private ToggleGroup groupQ8;
-
-    @FXML
     private RadioButton Q2_N4_5;
 
     @FXML
-    private ToggleGroup groupQ9;
-
-    @FXML
     private RadioButton Q2_N5_5;
-
-    @FXML
-    private ToggleGroup groupQ10;
-
     @FXML
     private RadioButton Q2_N1_4;
 
@@ -232,6 +237,76 @@ public class Form_EvaluationsController implements Initializable {
     @FXML
     private RadioButton Q2_N5_1;
 
+    public Form_EvaluationsController() {
+        setRadioFromGui();
+    }
+
+    public void setRadioFromGui() {
+        
+        //num1
+        Q1_N1[0] = Q1_N1_1;
+        Q1_N1[1] = Q1_N1_2;
+        Q1_N1[2] = Q1_N1_3;
+        Q1_N1[3] = Q1_N1_4;
+        Q1_N1[4] = Q1_N1_5;
+        //num2
+        Q1_N2[0] = Q1_N2_1;
+        Q1_N2[1] = Q1_N2_2;
+        Q1_N2[2] = Q1_N2_3;
+        Q1_N2[3] = Q1_N2_4;
+        Q1_N2[4] = Q1_N2_5;
+        //num3
+        Q1_N3[0] = Q1_N3_1;
+        Q1_N3[1] = Q1_N3_2;
+        Q1_N3[2] = Q1_N3_3;
+        Q1_N3[3] = Q1_N3_4;
+        Q1_N3[4] = Q1_N3_5;
+        //num4
+        Q1_N4[0] = Q1_N4_1;
+        Q1_N4[1] = Q1_N4_2;
+        Q1_N4[2] = Q1_N4_3;
+        Q1_N4[3] = Q1_N4_4;
+        Q1_N4[4] = Q1_N4_5;
+        //num5
+        Q1_N5[0] = Q1_N5_1;
+        Q1_N5[1] = Q1_N5_2;
+        Q1_N5[2] = Q1_N5_3;
+        Q1_N5[3] = Q1_N5_4;
+        Q1_N5[4] = Q1_N5_5;
+        //num6
+        Q2_N6[0] = Q2_N1_1;
+        Q2_N6[1] = Q2_N1_2;
+        Q2_N6[2] = Q2_N1_3;
+        Q2_N6[3] = Q2_N1_4;
+        Q2_N6[4] = Q2_N1_5;
+        //num7
+        Q2_N7[0] = Q2_N2_1;
+        Q2_N7[1] = Q2_N2_2;
+        Q2_N7[2] = Q2_N2_3;
+        Q2_N7[3] = Q2_N2_4;
+        Q2_N7[4] = Q2_N2_5;
+        //num8
+        Q2_N8[0] = Q2_N3_1;
+        Q2_N8[1] = Q2_N3_2;
+        Q2_N8[2] = Q2_N3_3;
+        Q2_N8[3] = Q2_N3_4;
+        Q2_N8[4] = Q2_N3_5;
+        //num9
+        Q2_N9[0] = Q2_N4_1;
+        Q2_N9[1] = Q2_N4_2;
+        Q2_N9[2] = Q2_N4_3;
+        Q2_N9[3] = Q2_N4_4;
+        Q2_N9[4] = Q2_N4_5;
+        //num10
+        Q2_N10[0] = Q2_N5_1;
+        Q2_N10[1] = Q2_N5_2;
+        Q2_N10[2] = Q2_N5_3;
+        Q2_N10[3] = Q2_N5_4;
+        Q2_N10[4] = Q2_N5_5;
+        
+
+       
+    }
 
     public Label getEvName() {
         return evName;
@@ -241,160 +316,39 @@ public class Form_EvaluationsController implements Initializable {
         this.evName.setText(evName);
     }
 
+    public void setValueRadio(RadioButton[] radio, int valueRadio) {
+        if (radio[0].isSelected()) {
+            valueRadio += 100;
+        } else if (radio[1].isSelected()) {
+            valueRadio += 80;
+        } else if (radio[2].isSelected()) {
+            valueRadio += 60;
+        } else if (radio[3].isSelected()) {
+            valueRadio += 40;
+        } else if (radio[4].isSelected()) {
+            valueRadio += 20;
+        } else {
+            valueRadio += 0;
+        }
+
+    }
+
     @FXML
     public void setValueRadio() {
-        try{
-            //Num1
-            if (Q1_N1_5.isSelected()) {
-                valueRadio1 += 100;
-            } else if (Q1_N1_4.isSelected()) {
-                valueRadio1 += 80;
-            } else if (Q1_N1_3.isSelected()) {
-                valueRadio1 += 60;
-            } else if (Q1_N1_2.isSelected()) {
-                valueRadio1 += 40;
-            } else if (Q1_N1_1.isSelected()) {
-                valueRadio1 += 20;
-            } else {
-                valueRadio1 += 0;
-            }
 
-            //Num2
-            if (Q1_N2_5.isSelected()) {
-                valueRadio2 += 100;
-            } else if (Q1_N2_4.isSelected()) {
-                valueRadio2 += 80;
-            } else if (Q1_N2_3.isSelected()) {
-                valueRadio2 += 60;
-            } else if (Q1_N2_2.isSelected()) {
-                valueRadio2 += 40;
-            } else if (Q1_N2_1.isSelected()) {
-                valueRadio2 += 20;
-            } else {
-                valueRadio2 += 0;
-            }
+        try {
+            setValueRadio(Q1_N1, valueRadio[0]);
+            setValueRadio(Q1_N2, valueRadio[1]);
+            setValueRadio(Q1_N3, valueRadio[2]);
+            setValueRadio(Q1_N4, valueRadio[3]);
+            setValueRadio(Q1_N5, valueRadio[4]);
+            setValueRadio(Q2_N6, valueRadio[5]);
+            setValueRadio(Q2_N7, valueRadio[6]);
+            setValueRadio(Q2_N8, valueRadio[7]);
+            setValueRadio(Q2_N9, valueRadio[8]);
+            setValueRadio(Q2_N10, valueRadio[9]);
 
-            //Num3
-            if (Q1_N3_5.isSelected()) {
-                valueRadio3 += 100;
-            } else if (Q1_N3_4.isSelected()) {
-                valueRadio3 += 80;
-            } else if (Q1_N3_3.isSelected()) {
-                valueRadio3 += 60;
-            } else if (Q1_N3_2.isSelected()) {
-                valueRadio3 += 40;
-            } else if (Q1_N3_1.isSelected()) {
-                valueRadio3 += 20;
-            } else {
-                valueRadio3 += 0;
-            }
-
-            //Num4
-            if (Q1_N4_5.isSelected()) {
-                valueRadio4 += 100;
-            } else if (Q1_N4_4.isSelected()) {
-                valueRadio4 += 80;
-            } else if (Q1_N4_3.isSelected()) {
-                valueRadio4 += 60;
-            } else if (Q1_N4_2.isSelected()) {
-                valueRadio4 += 40;
-            } else if (Q1_N4_1.isSelected()) {
-                valueRadio4 += 20;
-            } else {
-                valueRadio4 += 0;
-            }
-
-            //Num5
-            if (Q1_N5_5.isSelected()) {
-                valueRadio5 += 100;
-            } else if (Q1_N5_4.isSelected()) {
-                valueRadio5 += 80;
-            } else if (Q1_N5_3.isSelected()) {
-                valueRadio5 += 60;
-            } else if (Q1_N5_2.isSelected()) {
-                valueRadio5 += 40;
-            } else if (Q1_N5_1.isSelected()) {
-                valueRadio5 += 20;
-            } else {
-                valueRadio5 += 0;
-            }
-
-    //Q2
-            //Num1
-            if (Q2_N1_5.isSelected()) {
-                valueRadio6 += 100;
-            } else if (Q2_N1_4.isSelected()) {
-                valueRadio6 += 80;
-            } else if (Q2_N1_3.isSelected()) {
-                valueRadio6 += 60;
-            } else if (Q2_N1_2.isSelected()) {
-                valueRadio6 += 40;
-            } else if (Q2_N1_1.isSelected()) {
-                valueRadio6 += 20;
-            } else {
-                valueRadio6 += 0;
-            }
-
-            //Num2
-            if (Q2_N2_5.isSelected()) {
-                valueRadio7 += 100;
-            } else if (Q2_N2_4.isSelected()) {
-                valueRadio7 += 80;
-            } else if (Q2_N2_3.isSelected()) {
-                valueRadio7 += 60;
-            } else if (Q2_N2_2.isSelected()) {
-                valueRadio7 += 40;
-            } else if (Q2_N2_1.isSelected()) {
-                valueRadio7 += 20;
-            } else {
-                valueRadio7 += 0;
-            }
-
-            //Num3
-            if (Q2_N3_5.isSelected()) {
-                valueRadio8 += 100;
-            } else if (Q2_N3_4.isSelected()) {
-                valueRadio8 += 80;
-            } else if (Q2_N3_3.isSelected()) {
-                valueRadio8 += 60;
-            } else if (Q2_N3_2.isSelected()) {
-                valueRadio8 += 40;
-            } else if (Q2_N3_1.isSelected()) {
-                valueRadio8 += 20;
-            } else {
-                valueRadio8 += 0;
-            }
-
-            //Num4
-            if (Q2_N4_5.isSelected()) {
-                valueRadio9 += 100;
-            } else if (Q2_N4_4.isSelected()) {
-                valueRadio9 += 80;
-            } else if (Q2_N4_3.isSelected()) {
-                valueRadio9 += 60;
-            } else if (Q2_N4_2.isSelected()) {
-                valueRadio9 += 40;
-            } else if (Q2_N4_1.isSelected()) {
-                valueRadio9 += 20;
-            } else {
-                valueRadio9 += 0;
-            }
-
-            //Num5
-            if (Q2_N5_5.isSelected()) {
-                valueRadio10 += 100;
-            } else if (Q2_N5_4.isSelected()) {
-                valueRadio10 += 80;
-            } else if (Q2_N5_3.isSelected()) {
-                valueRadio10 += 60;
-            } else if (Q2_N5_2.isSelected()) {
-                valueRadio10 += 40;
-            } else if (Q2_N5_1.isSelected()) {
-                valueRadio10 += 20;
-            } else {
-                valueRadio10 += 0;
-            }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Alert warning = new Alert(Alert.AlertType.WARNING);
             warning.setTitle("Error !");
@@ -408,34 +362,32 @@ public class Form_EvaluationsController implements Initializable {
     public void clickConfirm() {
         setValueRadio();
     }
-    
-    public void sentValue(){
-        fbm.insertValue(evId, stdId, valueRadio1, valueRadio2, valueRadio3, valueRadio4, valueRadio5,
-        valueRadio6, valueRadio7, valueRadio8, valueRadio9, valueRadio10);
+
+    public void sentValue() {
+        fbm.insertValue(evId, stdId, valueRadio[0], valueRadio[1], valueRadio[2], valueRadio[3], valueRadio[4],
+                valueRadio[5], valueRadio[6], valueRadio[7], valueRadio[8], valueRadio[9]);
         fbm.setSumQ();
     }
-                
-    public void callEvaluation(int eventId,String evName,long stdId){
-        this.evId=eventId;
-        this.stdId=stdId;
+
+    public void callEvaluation(int eventId, String evName, long stdId) {
+        this.evId = eventId;
+        this.stdId = stdId;
 //        ResultSet rs = ev.getSelect(eventId);
-        Stage stage= new Stage();
-        Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/FormEvaluations.fxml"));     
-        try{
-            root = (Parent)fxmlLoader.load(); 
-        }
-        catch(Exception e){
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/FormEvaluations.fxml"));
+        try {
+            root = (Parent) fxmlLoader.load();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         Form_EvaluationsController controller = fxmlLoader.<Form_EvaluationsController>getController();
-        
-        Scene scene = new Scene(root); 
-        try{
-            stage.setScene(scene);   
+
+        Scene scene = new Scene(root);
+        try {
+            stage.setScene(scene);
             controller.evName.setText(evName);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         controller.confirmBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -443,13 +395,13 @@ public class Form_EvaluationsController implements Initializable {
             public void handle(ActionEvent event) {
                 System.out.println("CLICK!");
                 clickConfirm();
-                if(valueRadio1 != -1 && valueRadio2 != -1 ||
-                    valueRadio3 != -1 && valueRadio4 != -1 ||
-                    valueRadio5 != -1 && valueRadio6 != -1 ||
-                    valueRadio7 != -1 && valueRadio8 != -1 ||
-                    valueRadio9 != -1 && valueRadio10 != -1 ){
+                if (valueRadio[0] != -1 && valueRadio[1] != -1
+                        || valueRadio[2] != -1 && valueRadio[3] != -1
+                        || valueRadio[4] != -1 && valueRadio[5] != -1
+                        || valueRadio[6] != -1 && valueRadio[7] != -1
+                        || valueRadio[8] != -1 && valueRadio[9] != -1) {
                     sentValue();
-                    fbm.insertToLog(eventId,stdId);
+                    fbm.insertToLog(eventId, stdId);
                     Alert warning = new Alert(Alert.AlertType.INFORMATION);
                     warning.setTitle("Success !");
                     warning.setHeaderText("ประเมิณสำเร็จ");
@@ -464,19 +416,18 @@ public class Form_EvaluationsController implements Initializable {
                 stageClose(stage);
             }
         });
-        
+
         stage.show();
         cb.logout();
     }
 
-    public void stageClose(Stage stage){
+    public void stageClose(Stage stage) {
         stage.close();
     }
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-
 
 }
