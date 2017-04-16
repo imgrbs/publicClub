@@ -319,15 +319,15 @@ public class Form_EvaluationsController implements Initializable {
 
     public void setValueRadio(RadioButton[] radio, int valueRadio) {
         try{
-            if (radio[0].isSelected()) {
+            if (radio[4].isSelected()) {
                 valueRadio += 101;
-            } else if (radio[1].isSelected()) {
+            } else if (radio[3].isSelected()) {
                 valueRadio += 81;
             } else if (radio[2].isSelected()) {
                 valueRadio += 61;
-            } else if (radio[3].isSelected()) {
+            } else if (radio[1].isSelected()) {
                 valueRadio += 41;
-            } else if (radio[4].isSelected()) {
+            } else if (radio[0].isSelected()) {
                 valueRadio += 21;
             }
         }catch(Exception e){
