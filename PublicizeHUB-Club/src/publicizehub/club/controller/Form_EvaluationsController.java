@@ -242,11 +242,14 @@ public class Form_EvaluationsController implements Initializable {
         setRadioFromGui();
     }
 
+    @FXML
     public void setRadioFromGui() {
         for (int i = 0; i < valueRadio.length; i++) {
             valueRadio[i] = -1;
         }
-        
+    }
+    
+    public void setValueToArr(){
         //num1
         Q1_N1[0] = Q1_N1_1;
         Q1_N1[1] = Q1_N1_2;;
@@ -307,7 +310,6 @@ public class Form_EvaluationsController implements Initializable {
         Q2_N10[2] = Q2_N5_3;
         Q2_N10[3] = Q2_N5_4;
         Q2_N10[4] = Q2_N5_5;
-       
     }
 
     public Label getEvName() {
@@ -319,56 +321,33 @@ public class Form_EvaluationsController implements Initializable {
     }
 
     @FXML
-    public void setValueRadio(RadioButton radio[], int value) {
-        System.out.println("setValueRadio WORK");
-        System.out.println(value);
+    public void setValueRadio(RadioButton radio[], int index) {
         if (radio[4].isSelected()) {
-            value += 101;
+            valueRadio[index] += 101;
         } else if (radio[3].isSelected()) {
-            value += 81;
+            valueRadio[index]  += 81;
         } else if (radio[2].isSelected()) {
-            value += 61;
+            valueRadio[index]  += 61;
         } else if (radio[1].isSelected()) {
-            value += 41;
+            valueRadio[index]  += 41;
         } else if (radio[0].isSelected()) {
-            value += 21;
+            valueRadio[index]  += 21;
         }
-        System.out.println(value);
     }
 
     @FXML
     public void setValueRadio() {
-
-        try {
-            setValueRadio(this.Q1_N1, this.valueRadio[0]);
-            System.out.println(this.valueRadio[0]);
-            setValueRadio(this.Q1_N2, this.valueRadio[1]);
-            System.out.println(this.valueRadio[1]);
-            setValueRadio(this.Q1_N3, this.valueRadio[2]);
-            System.out.println(this.valueRadio[2]);
-            setValueRadio(this.Q1_N4, this.valueRadio[3]);
-            System.out.println(this.valueRadio[3]);
-            setValueRadio(this.Q1_N5, this.valueRadio[4]);
-            System.out.println(this.valueRadio[4]);
-            setValueRadio(this.Q2_N6, this.valueRadio[5]);
-            System.out.println(this.valueRadio[5]);
-            setValueRadio(this.Q2_N7, this.valueRadio[6]);
-            System.out.println(this.valueRadio[6]);
-            setValueRadio(this.Q2_N8, this.valueRadio[7]);
-            System.out.println(this.valueRadio[7]);
-            setValueRadio(this.Q2_N9, this.valueRadio[8]);
-            System.out.println(this.valueRadio[8]);
-            setValueRadio(this.Q2_N10, this.valueRadio[9]);
-            System.out.println(this.valueRadio[9]);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Alert warning = new Alert(Alert.AlertType.WARNING);
-            warning.setTitle("Error !");
-            warning.setHeaderText("กรุณาให้คะแนนให้ครบทุกข้อ");
-            warning.setContentText("ขออภัย, คุณให้คะแนนไม่ครบทุกข้อ");
-            warning.showAndWait();
-        }
+        setValueToArr();
+        setValueRadio(Q1_N1, 0);
+        setValueRadio(Q1_N2, 1);
+        setValueRadio(Q1_N3, 2);
+        setValueRadio(Q1_N4, 3);
+        setValueRadio(Q1_N5, 4);
+        setValueRadio(Q2_N6, 5);
+        setValueRadio(Q2_N7, 6);
+        setValueRadio(Q2_N8, 7);
+        setValueRadio(Q2_N9, 8);
+        setValueRadio(Q2_N10, 9);
     }
 
     @FXML
@@ -379,8 +358,7 @@ public class Form_EvaluationsController implements Initializable {
     public void sentValue() {
         fbm.insertValue(this.evId, this.stdId, valueRadio[0], valueRadio[1], valueRadio[2], valueRadio[3], valueRadio[4],
                 valueRadio[5], valueRadio[6], valueRadio[7], valueRadio[8], valueRadio[9]);
-        System.out.println("sentValue");
-//        fbm.setSumQ();
+        fbm.setSumQ();
     }
 
     public void callEvaluation(int eventId, String evName, long stdId) {
@@ -409,18 +387,25 @@ public class Form_EvaluationsController implements Initializable {
             public void handle(ActionEvent event) {
                 System.out.println("CLICK!");
                 controller.clickConfirm();
-                if (valueRadio[0] != -1 && valueRadio[1] != -1
-                        || valueRadio[2] != -1 && valueRadio[3] != -1
-                        || valueRadio[4] != -1 && valueRadio[5] != -1
-                        || valueRadio[6] != -1 && valueRadio[7] != -1
-                        || valueRadio[8] != -1 && valueRadio[9] != -1) {
-//                    controller.sentValue();
-                    System.out.println("controller SentValue");
+                if (controller.valueRadio[0] != -1 && controller.valueRadio[1] != -1
+                        || controller.valueRadio[2] != -1 && controller.valueRadio[3] != -1
+                        || controller.valueRadio[4] != -1 && controller.valueRadio[5] != -1
+                        || controller.valueRadio[6] != -1 && controller.valueRadio[7] != -1
+                        || controller.valueRadio[8] != -1 && controller.valueRadio[9] != -1) {
+                    controller.sentValue();
+                    System.out.println("SENT COMPLETE");
                     fbm.insertToLog(eventId, stdId);
                     Alert warning = new Alert(Alert.AlertType.INFORMATION);
                     warning.setTitle("Success !");
                     warning.setHeaderText("ประเมิณสำเร็จ");
                     warning.setContentText("ขอบคุณครับ");
+                    warning.showAndWait();
+                    stage.close();
+                }else {
+                    Alert warning = new Alert(Alert.AlertType.WARNING);
+                    warning.setTitle("Error !");
+                    warning.setHeaderText("กรุณาให้คะแนนให้ครบทุกข้อ");
+                    warning.setContentText("ขออภัย, คุณให้คะแนนไม่ครบทุกข้อ");
                     warning.showAndWait();
                 }
             }

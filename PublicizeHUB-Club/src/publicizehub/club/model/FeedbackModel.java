@@ -7,6 +7,9 @@ package publicizehub.club.model;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import javax.swing.*;
 import publicizehub.club.controller.FeedbackController;
@@ -189,9 +192,10 @@ public class FeedbackModel {
     public void insertToLog(int eventId,long stdId){
         ResultSet log=null;
         cb.connecting();
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
         try{
-            PreparedStatement ps =  cb.getConnect().prepareStatement("INSERT into logFeedback (evId,stdId,timestamp) VALUES('"+eventId+"','"+
-                                                                    +stdId+"','"+LocalDate.now()+"')");
+            PreparedStatement ps =  cb.getConnect().prepareStatement("INSERT into logFeedback (evId,stdId,datestamp,timestamp) VALUES('"+eventId+"','"+
+                                                                    +stdId+"','"+LocalDate.now()+"','"+timeFormat.format(LocalTime.now())+"')");
             ps.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();

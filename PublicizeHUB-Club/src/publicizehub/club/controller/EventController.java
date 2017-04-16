@@ -2,6 +2,7 @@ package publicizehub.club.controller;
 
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -84,31 +85,19 @@ public class EventController {
             evaluationbtn.setLayoutX(280);
             evaluationbtn.setLayoutY(90);
             FeedbackModel fbm = new FeedbackModel();
-            ResultSet log=null;
-            Boolean checkLog=true;
-            try{
-                log = fbm.getFormLog(eventId, this.stdId);
-                if(log.next())checkLog = true;
-                else checkLog=false;
-                cb.logout();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            if(checkLog){
-                evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        blockFeedback();
+            evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                        ResultSet  log = fbm.getFormLog(eventId, getStdId());
+                        try{
+                            if(log.next())blockFeedback();
+                            else fe.callEvaluation(eventId,evName,getStdId());
+                        }catch(SQLException e){
+                            e.printStackTrace();
+                        }
                     }
-                });
-            }else{
-                evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        fe.callEvaluation(eventId,evName,getStdId());
-                    }
-                });
-            }
+            });
+            cb.logout();
             p.getChildren().add(evaluationbtn);
         }
         p.getChildren().add(labelEvName);
