@@ -18,6 +18,7 @@ import publicizehub.club.model.Event;
 public class EventController {
     JoinController jc = new JoinController();
     DetailController dc = new DetailController();
+    Form_EvaluationsController fe = new Form_EvaluationsController();
 
     private int evId;
     private int evType;
@@ -43,32 +44,42 @@ public class EventController {
         Button evaluationbtn = new Button("ประเมิณกิจกรรม");
         if(evaluation){
             joinbtn.getStyleClass().add("joinbtnSearch");
+            joinbtn.getStyleClass().add("quark");
             detailbtn.getStyleClass().add("detailbtnSearch");
+            detailbtn.getStyleClass().add("quark");
             joinbtn.setLayoutX(285);
             joinbtn.setLayoutY(100);
             detailbtn.setLayoutX(370);
             detailbtn.setLayoutY(100);
+            joinbtn.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    jc.toJoinEvent(eventId);
+                }
+            });
+            detailbtn.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    dc.callDetail(eventId);
+                }
+            });
             p.getChildren().add(joinbtn);
             p.getChildren().add(detailbtn);
         }else{
             evaluationbtn.getStyleClass().add("evaluationbtn");
+            evaluationbtn.getStyleClass().add("quark");
             evaluationbtn.setLayoutX(280);
             evaluationbtn.setLayoutY(90);
+            evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    fe.callEvaluation(eventId);
+                }
+            });
             p.getChildren().add(evaluationbtn);
         }
         p.getChildren().add(labelEvName);
-        joinbtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                jc.toJoinEvent(eventId);
-            }
-        });
-        detailbtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                dc.callDetail(eventId);
-            }
-        });
+
         listEventBox.setMargin(p,new Insets(15,25,15,30));
         p.setStyle("-fx-background-color: #" + "ffffff" + ";" +
                    "-fx-background-radius: 10px;" +

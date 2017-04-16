@@ -5,19 +5,30 @@ package publicizehub.club.controller;
  * @author ImagineRabbits
  */
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
+import publicizehub.club.model.ConnectionBuilder;
+import publicizehub.club.model.Event;
 import publicizehub.club.model.FeedbackModel;
 
 public class Form_EvaluationsController implements Initializable {
 
+    ConnectionBuilder cb = new ConnectionBuilder();
+    Event ev = new Event();
+    
     private int evId = 10048;
     private long stdId = 59130500012L;
     int valueRadio1 = 0;
@@ -37,6 +48,8 @@ public class Form_EvaluationsController implements Initializable {
 
     @FXML
     private Button confirmBtn;
+    @FXML
+    private Button cancelBtn;
 
     @FXML
     private RadioButton Q1_N1_5;
@@ -218,8 +231,6 @@ public class Form_EvaluationsController implements Initializable {
     @FXML
     private RadioButton Q2_N5_1;
 
-    @FXML
-    private Button cancelBtn;
 
     public Label getEvName() {
         return evName;
@@ -399,7 +410,39 @@ public class Form_EvaluationsController implements Initializable {
         
     }
                 
+    public void callEvaluation(int eventId){
+        ResultSet rs = ev.getSelect(eventId);
+        Stage stage= new Stage();
+        Parent root=null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/FormEvaluations.fxml"));     
+        try{
+            root = (Parent)fxmlLoader.load(); 
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        Form_EvaluationsController controller = fxmlLoader.<Form_EvaluationsController>getController();
+        
+        Scene scene = new Scene(root); 
+        try{
+            stage.setScene(scene);    
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        controller.cancelBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stageClose(stage);
+            }
+        });
+        stage.show();
+        cb.logout();
+    }
 
+    public void stageClose(Stage stage){
+        stage.close();
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

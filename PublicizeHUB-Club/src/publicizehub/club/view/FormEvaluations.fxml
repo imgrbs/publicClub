@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.SearchController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.Form_EvaluationsController">
    <children>
       <FlowPane alignment="CENTER" layoutX="18.0" layoutY="20.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -188,7 +188,7 @@
                   <RadioButton fx:id="Q2_N3_1" layoutX="595.0" layoutY="399.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" toggleGroup="$groupQ8" />
                   <RadioButton fx:id="Q2_N4_1" layoutX="595.0" layoutY="429.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" toggleGroup="$groupQ9" />
                   <RadioButton fx:id="Q2_N5_1" layoutX="595.0" layoutY="459.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" toggleGroup="$groupQ10" />
-                  <Button fx:id="cancelBtn" layoutX="356.0" layoutY="517.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" text="ยกเลิก">
+                  <Button fx:id="cancelBtn" cancelButton="true" layoutX="356.0" layoutY="517.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" text="ยกเลิก">
                      <styleClass>
                         <String fx:value="formCancelBtn" />
                         <String fx:value="quark" />

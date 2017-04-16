@@ -112,7 +112,10 @@ public class CreateEventController implements Initializable {
         
         ticket.getItems().addAll("5","10","15","20","25","30","35","40","45","50","75","100","ระบุเอง");  
         //if(ticket.selectionModelProperty().equals("ระบุเอง")){
-            ticket.setEditable(true);
+            if(ticket.getTypeSelector().equals("ระบุเอง")){
+                ticket.setValue("");
+                ticket.setEditable(true);                
+            }
         //}  
     }
     @FXML
