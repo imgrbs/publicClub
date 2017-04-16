@@ -181,21 +181,19 @@ public class Event {
         cb.logout(); // ปิดการ connection กับ database
     }
     
-    public void updateEvent(String name,String desc,LocalDate date,
-                            LocalDate endDate,LocalDate startRegis,LocalDate endFeedback,LocalTime time,LocalTime endTime,
-                            String place,int ticket,int evType,int evId){
+    public void updateEvent(Event event){
         // update
         System.out.println(this.evId);
         PreparedStatement ps = null;    
         cb.connecting();
         String command;
         try {
-            command = "UPDATE tb_event set evName = '"+name+"' , "
-                    + "evDescrip = '"+desc+"' , evStartDate = '"+date+"' , "
-                    + "evEndDate = '"+endDate+"' , evStartRegis = '"+startRegis+"' , "
-                    +"evTime = '"+time+"' , evEndFeedback = '"+endFeedback+"' , "
-                    + "evEndTime = '"+endTime+"' , evPlace = '"+place+"' , "
-                    + "evTicket = '"+ticket+"' , evType = '"+evType+"' "
+            command = "UPDATE tb_event set evName = '"+event.getEvName()+"' , "
+                    + "evDescrip = '"+event.getEvDescrip()+"' , evStartDate = '"+event.getEvDate()+"' , "
+                    + "evEndDate = '"+event.getEvEndDate()+"' , evStartRegis = '"+event.getEvStartRegis()+"' , "
+                    +"evTime = '"+event.getEvTime()+"' , evEndFeedback = '"+event.getEvEndFeedback()+"' , "
+                    + "evEndTime = '"+event.getEvEndTime()+"' , evPlace = '"+event.getEvPlace()+"' , "
+                    + "evTicket = '"+event.getEvTicket()+"' , evType = '"+evType+"' "
                     + "where evId = "+evId;
             ps = cb.getConnect().prepareStatement(command); 
             System.out.println("Before Update");

@@ -6,12 +6,7 @@
 package publicizehub.club.controller;
 
 import publicizehub.club.model.TableEvent;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTimePicker;
+import com.jfoenix.controls.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -87,14 +82,13 @@ public class EditEventController implements Initializable {
         endDate.setValue(thisEvent.getEvEndDate());        
         startTime.setValue(thisEvent.getEvTime());
         endTime.setValue(thisEvent.getEvEndTime());
-//        ticket.setValue(""+thisEvent.getEvTicket());
+        ticket.setValue(""+thisEvent.getEvTicket());
         setType(thisEvent.getEvType());
         description.setText(thisEvent.getEvDescrip());
         place.setText(thisEvent.getEvPlace());
     }
     @FXML
     public void setType(int evType){
-        
         if(evType==0){
             camp.setSelected(true);
         }else if(evType==1){
@@ -104,28 +98,20 @@ public class EditEventController implements Initializable {
     }
     @FXML
     public void setAllValue(){
-        this.evName = eventName.getText();
-        this.evDescrip = description.getText();
-        this.evDate = startDate.getValue();
-        this.evEndDate = endDate.getValue();
-        this.evStartRegis = startRegis.getValue();
-        this.evStartRegis = startRegis.getValue().plusDays(15);
-        this.evTime = (startTime.getValue());
-        this.evEndTime = (endTime.getValue());
-        this.evTicket = Integer.parseInt(ticket.getValue());
-        this.evPlace = place.getText();
+        showValue();
         evTypeResult();
     }
     @FXML
     public void evTypeResult(){
-        
+        int evType=2;
         if(camp.isSelected()){
-            this.evType=0;
+            evType=0;
         }else if(seminar.isSelected()){
-            this.evType=1;
+            evType=1;
         }else if(other.isSelected()){
-            this.evType=2;
+            evType=2;
         }
+        thisEvent.setEvType(evType);
     }
    
     @FXML
@@ -143,7 +129,7 @@ public class EditEventController implements Initializable {
         confirmBtn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
-                e.updateEvent( evName, evDescrip, evDate, evEndDate , evStartRegis ,evEndFeedback, evTime, evEndTime, evPlace, evTicket, evType, evId);
+                e.updateEvent(thisEvent);
             }
         });
     }
