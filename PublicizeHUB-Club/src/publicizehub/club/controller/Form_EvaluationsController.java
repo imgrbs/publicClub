@@ -242,6 +242,9 @@ public class Form_EvaluationsController implements Initializable {
     }
 
     public void setRadioFromGui() {
+        for (int i = 0; i < valueRadio.length; i++) {
+            valueRadio[i] = -1;
+        }
         
         //num1
         Q1_N1[0] = Q1_N1_1;
@@ -303,8 +306,6 @@ public class Form_EvaluationsController implements Initializable {
         Q2_N10[2] = Q2_N5_3;
         Q2_N10[3] = Q2_N5_4;
         Q2_N10[4] = Q2_N5_5;
-        
-
        
     }
 
@@ -317,20 +318,21 @@ public class Form_EvaluationsController implements Initializable {
     }
 
     public void setValueRadio(RadioButton[] radio, int valueRadio) {
-        if (radio[0].isSelected()) {
-            valueRadio += 100;
-        } else if (radio[1].isSelected()) {
-            valueRadio += 80;
-        } else if (radio[2].isSelected()) {
-            valueRadio += 60;
-        } else if (radio[3].isSelected()) {
-            valueRadio += 40;
-        } else if (radio[4].isSelected()) {
-            valueRadio += 20;
-        } else {
-            valueRadio += 0;
+        try{
+            if (radio[0].isSelected()) {
+                valueRadio += 101;
+            } else if (radio[1].isSelected()) {
+                valueRadio += 81;
+            } else if (radio[2].isSelected()) {
+                valueRadio += 61;
+            } else if (radio[3].isSelected()) {
+                valueRadio += 41;
+            } else if (radio[4].isSelected()) {
+                valueRadio += 21;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
-
     }
 
     @FXML
