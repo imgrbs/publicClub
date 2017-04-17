@@ -49,8 +49,8 @@ public class EventController {
     }
     
     public void addEventToPresentPane(String evName,int eventId,VBox listEventBox,boolean evaluation) {
-        this.evId = eventId;
-//        this.stdId = 59130500007l;
+        this.evId = eventId; 
+        // this.stdId = 59130500007l
         Pane p = new Pane();
         Label labelEvName = new Label(evName);
         Button joinbtn = new Button("Join");

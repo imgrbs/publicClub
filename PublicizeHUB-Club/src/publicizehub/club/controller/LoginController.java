@@ -16,7 +16,7 @@ public class LoginController {
     private String name = "อิอิ";
     private String surname = "เจียรจินดารัตน์";
     private String department = "Information Technnology";
-    private int status = 1;
+    private int status = 0;
     private boolean checkLogin = true;
 
     

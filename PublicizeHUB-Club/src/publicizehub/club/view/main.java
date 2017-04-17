@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import publicizehub.club.controller.LoginController;
 import publicizehub.club.controller.MainController;
 
 /**
@@ -15,25 +14,6 @@ import publicizehub.club.controller.MainController;
  */
 public class main extends Application  {
     @Override
-//    public void start(Stage stage) throws Exception {
-//        FXMLLoader loginLoader =  new FXMLLoader(getClass().getResource("LoginGui.fxml"));  
-////        LoginController controller=null;
-//        try{
-//            Parent root = FXMLLoader.load(getClass().getResource("LoginGui.fxml"));
-//            stage = new Stage();
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-////            root = (Parent)loginLoader.load(); 
-////            controller = loginLoader.<LoginController>getController();
-//        }
-//        catch(Exception e){
-//            e.printStackTrace();
-//        }
-//        
-//        stage.centerOnScreen();
-//        stage.show();
-//
-//    }
     public void start(Stage stage) throws Exception {
         
         FXMLLoader loader =  new FXMLLoader(getClass().getResource("FeedGui.fxml"));  
