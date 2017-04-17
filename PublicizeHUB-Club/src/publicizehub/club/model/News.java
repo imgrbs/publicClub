@@ -61,10 +61,10 @@ public class News {
               
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
         try {
-            ConnectionBuilder cb = new ConnectionBuilder();
             PreparedStatement ps = cb.getConnect().prepareStatement("INSERT INTO tb_news"
                     + "(content,datestamp,timestamp) " + 
                     "VALUES ('" + content + "','"+LocalDate.now()+"','"+timeFormat.format(LocalTime.now())+"')");
+            ps.executeUpdate();
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
