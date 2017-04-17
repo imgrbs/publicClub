@@ -6,11 +6,14 @@
 package publicizehub.club.controller;
 
 import com.jfoenix.controls.*;
-import java.awt.event.ActionEvent;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import publicizehub.club.model.*;
 
@@ -86,5 +89,20 @@ public class NewsController implements Initializable {
             alert.showAndWait();
             textNews.setText("");
         }
+    }
+    
+    @FXML
+    public void addNewsToList(ListView<String> list){
+        ObservableList<String> items =FXCollections.observableArrayList();
+        ResultSet news = nw.getNews();
+        try{
+            while(news.next()){
+                items.add(news.getString("content"));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        list.setItems(items);
+
     }
 }

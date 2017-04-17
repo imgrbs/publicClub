@@ -45,22 +45,33 @@ public class MainController {
 
     @FXML
     private Label labelEvMain1;
+    
     @FXML
     private Label labelEvMain2;
+    
     @FXML
     private Button joinEvMain1;
+    
     @FXML
     private Button joinEvMain2;
+    
     @FXML
     private Button detailEv1;
+    
     @FXML
     private Button detailEv2;
+    
     @FXML
     private Button manageBtn;
+    
     @FXML
     private ImageView managePic;
+    
     @FXML
     TextField searchfield;
+    
+    @FXML
+    private ListView<String> newsList;
 
     public Stage getThisStage() {
         return thisStage;
@@ -79,6 +90,24 @@ public class MainController {
         this.stdId.setText(""+stdId);
         this.stdName.setText(""+stdName);
     }
+
+    public NewsController getNc() {
+        return nc;
+    }
+
+    public void setNc(NewsController nc) {
+        this.nc = nc;
+    }
+
+    public ListView<String> getNewsList() {
+        return newsList;
+    }
+
+    public void setNewsList(ListView<String> newsList) {
+        this.newsList = newsList;
+    }
+    
+    
     
     @FXML
     protected void callProfile() {

@@ -233,7 +233,7 @@
                                     <Font name="ThaiSans Neue Regular" size="31.0" />
                                  </font>
                               </Label>
-                              <ListView fx:id="newslisr" layoutX="22.0" layoutY="55.0" prefHeight="235.0" prefWidth="556.0" />
+                              <ListView fx:id="newsList" layoutX="22.0" layoutY="55.0" prefHeight="235.0" prefWidth="556.0" />
                            </children>
                         </Pane>
                      </children>
