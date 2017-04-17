@@ -76,8 +76,19 @@
     -fx-font-size: 15px;
     -fx-pref-width: 80px;
 }
-
 .joinbtnSearch:hover{
+    -fx-background-color: #F9AD87;
+}
+.joinBtnProfile{
+    -fx-font-family:'ThaiSansNeueRegular';
+    -fx-background-color: #e7560c;
+    -fx-text-fill:white;
+    -fx-cursor: hand;
+    -fx-font-size: 15px;
+    -fx-pref-width: 130px;
+}
+
+.joinBtnProfile:hover{
     -fx-background-color: #F9AD87;
 }
 .detailbtnSearch{

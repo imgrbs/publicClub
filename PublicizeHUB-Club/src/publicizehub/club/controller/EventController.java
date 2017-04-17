@@ -60,12 +60,12 @@ public class EventController {
             Button joinbtn = new Button("Check Code"); // สร้างปุ่มสำหรับ Check Code
             Button detailbtn = new Button("Detail"); // สร้างปุ่ม Detail กิจกรรม
             /* เพิ่ม CSS จากไฟล์ style.css */
-            joinbtn.getStyleClass().add("joinbtnSearch"); // css ตกแต่งปุ่ม
+            joinbtn.getStyleClass().add("joinBtnProfile"); // css ตกแต่งปุ่ม
             joinbtn.getStyleClass().add("quark"); // css font quark
             detailbtn.getStyleClass().add("detailbtnSearch"); // css ตกแต่งปุ่ม
             detailbtn.getStyleClass().add("quark"); // css font quark
             /* ตั้งตำแหน่งของปุ่มใน Box Component */
-            joinbtn.setLayoutX(285);
+            joinbtn.setLayoutX(225);
             joinbtn.setLayoutY(100);
             detailbtn.setLayoutX(370);
             detailbtn.setLayoutY(100);
