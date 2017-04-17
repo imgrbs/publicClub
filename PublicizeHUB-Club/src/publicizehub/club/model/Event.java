@@ -35,18 +35,23 @@ public class Event {
     public Event() {
     }
 
-//    public Event(int evId, Date evDate, Date evEndDate, Time evTime, Time evEndTime, 
-//            String evPlace, int evTicket, int eventType, long stdId) {
-//        this.evId = evId;
-//        this.evDate = evDate;
-//        this.evEndDate = evEndDate;
-//        this.evTime = evTime;
-//        this.evEndTime = evEndTime;
-//        this.evPlace = evPlace;
-//        this.evTicket = evTicket;
-//        this.eventType = eventType;
-//        this.stdId = stdId;
-//    }
+    public Event(String evName, String evDescrip, LocalDate evDate, LocalDate evEndDate, LocalDate evStartRegis, 
+                    LocalDate evEndFeedback, String evPlace, int evTicket, int currentMember, 
+                    LocalTime evTime, LocalTime evEndTime, int evType, int evId) {
+        this.evName = evName;
+        this.evDescrip = evDescrip;
+        this.evDate = evDate;
+        this.evEndDate = evEndDate;
+        this.evStartRegis = evStartRegis;
+        this.evEndFeedback = evEndFeedback;
+        this.evPlace = evPlace;
+        this.evTicket = evTicket;
+        this.currentMember = currentMember;
+        this.evTime = evTime;
+        this.evEndTime = evEndTime;
+        this.evType = evType;
+        this.evId = evId;
+    }
 
     public String getEvName() {
         return evName;

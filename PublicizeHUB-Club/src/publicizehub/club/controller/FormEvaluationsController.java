@@ -23,7 +23,7 @@ import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.Event;
 import publicizehub.club.model.FeedbackModel;
 
-public class Form_EvaluationsController implements Initializable {
+public class FormEvaluationsController implements Initializable {
 
     ConnectionBuilder cb = new ConnectionBuilder();
     Event ev = new Event();
@@ -236,7 +236,7 @@ public class Form_EvaluationsController implements Initializable {
     @FXML
     private RadioButton Q2_N5_1;
 
-    public Form_EvaluationsController() {
+    public FormEvaluationsController() {
         setRadioFromGui();
     }
 
@@ -371,7 +371,7 @@ public class Form_EvaluationsController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Form_EvaluationsController controller = fxmlLoader.<Form_EvaluationsController>getController();
+        FormEvaluationsController controller = fxmlLoader.<FormEvaluationsController>getController();
 
         Scene scene = new Scene(root);
         try {

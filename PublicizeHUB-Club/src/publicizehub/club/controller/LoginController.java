@@ -13,7 +13,7 @@ package publicizehub.club.controller;
 //จำลองเอาเด้อ
 public class LoginController {
     private long stdId = 59130500007l;
-    private String name = "อิอิ";
+    private String name = "กีรติ";
     private String surname = "เจียรจินดารัตน์";
     private String department = "Information Technnology";
     private int status = 0;
