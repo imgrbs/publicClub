@@ -81,12 +81,12 @@
                   </Label>
                   <JFXTreeTableView fx:id="tableStd" layoutX="14.0" layoutY="292.0" prefHeight="258.0" prefWidth="698.0">
                      <columns>
-                        <TreeTableColumn fx:id="stdName" prefWidth="93.0" text="ชื่อ" />
-                        <TreeTableColumn fx:id="stdSurname" prefWidth="139.0" text="นามสกุล" />
-                        <TreeTableColumn fx:id="stdDepart" prefWidth="150.0" text="ภาควิชา" />
-                        <TreeTableColumn fx:id="stdBuy" prefWidth="104.0" text="วันที่จอง" />
-                        <TreeTableColumn fx:id="stdCheckin" prefWidth="96.0" text="เช็คอิน" />
-                        <TreeTableColumn prefWidth="116.0" text="ประเมิณ" />
+                        <TreeTableColumn fx:id="stdName" prefWidth="93.0" styleClass="quark" text="ชื่อ" />
+                        <TreeTableColumn fx:id="stdSurname" prefWidth="139.0" styleClass="quark" text="นามสกุล" />
+                        <TreeTableColumn fx:id="stdDepart" prefWidth="150.0" styleClass="quark" text="ภาควิชา" />
+                        <TreeTableColumn fx:id="stdBuy" prefWidth="104.0" styleClass="quark" text="วันที่จอง" />
+                        <TreeTableColumn fx:id="stdCheckin" prefWidth="96.0" styleClass="quark" text="เช็คอิน" />
+                        <TreeTableColumn prefWidth="116.0" styleClass="quark" text="ประเมิณ" />
                      </columns>
                   </JFXTreeTableView>
                </children>

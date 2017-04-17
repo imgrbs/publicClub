@@ -25,14 +25,35 @@ import javafx.scene.chart.XYChart;
  */
 public class ShowFeedbackController implements Initializable {
 
-     @FXML
-    private BarChart<?, ?> FeedbackChart;
+    @FXML
+    private BarChart<?, ?> feedbackChart;
 
     @FXML
-    private CategoryAxis x;
+    private Label numberBuy;
 
     @FXML
-    private NumberAxis y;
+    private Label numberJoin;
+
+    @FXML
+    private Label evName;
+
+    @FXML
+    private JFXTreeTableView<?> tableStd;
+
+    @FXML
+    private TreeTableColumn<?, ?> stdName;
+
+    @FXML
+    private TreeTableColumn<?, ?> stdSurname;
+
+    @FXML
+    private TreeTableColumn<?, ?> stdDepart;
+
+    @FXML
+    private TreeTableColumn<?, ?> stdBuy;
+
+    @FXML
+    private TreeTableColumn<?, ?> stdCheckin;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
