@@ -77,7 +77,7 @@
                         <Font name="Quark-Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutY="369.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="Seminar Event">
+                  <Button fx:id="seminarBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="369.0" mnemonicParsing="false" onAction="#testAddnew" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="Seminar Event">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>

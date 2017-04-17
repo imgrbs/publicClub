@@ -5,14 +5,20 @@
  */
 package publicizehub.club.controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.*;
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import publicizehub.club.model.*;
 
 /**
@@ -34,5 +40,38 @@ public class NewsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
     }
+    
+    public void callAddNews(){
+        Stage stage= new Stage();
+        Parent root=null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/AddNews.fxml"));     
+        try{
+            root = (Parent)fxmlLoader.load(); 
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        NewsController controller = fxmlLoader.<NewsController>getController();
+        Scene scene = new Scene(root); 
+        try{
+            stage.setScene(scene);    
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        stage.show();
+    }
+    
+    
 
+    @FXML
+    public void insertNew(ActionEvent event) {
+        String text = textNews.getText();
+        JFXDialog dialog = new JFXDialog();
+        dialog.setContent(new Label("Content"));
+        dialog.show();
+        Alert warning = new Alert(Alert.AlertType.CONFIRMATION);
+//        if(warning)
+//        nw.toInsertNews(text);
+    }
 }

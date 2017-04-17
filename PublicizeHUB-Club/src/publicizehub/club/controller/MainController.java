@@ -19,6 +19,13 @@ import publicizehub.club.view.*;
 public class MainController {
     private LoginController li = new LoginController();
 
+    NewsController nc = new NewsController();
+    
+    @FXML
+    public void testAddnew(){
+        nc.callAddNews();
+    }
+    
     public LoginController getLi() {
         return li;
     }
