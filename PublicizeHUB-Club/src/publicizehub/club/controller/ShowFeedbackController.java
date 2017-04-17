@@ -6,6 +6,7 @@
 package publicizehub.club.controller;
 
 
+import com.jfoenix.controls.JFXTreeTableView;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -17,6 +18,8 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
+import javafx.scene.control.TreeTableColumn;
 
 /**
  * FXML Controller class
@@ -68,7 +71,7 @@ public class ShowFeedbackController implements Initializable {
         setl.getData().add(new XYChart.Data("Q8", 78));
         setl.getData().add(new XYChart.Data("Q9", 88));
         setl.getData().add(new XYChart.Data("Q10", 20));
-        FeedbackChart.getData().addAll(setl);
+        feedbackChart.getData().addAll(setl);
         
     }    
     
