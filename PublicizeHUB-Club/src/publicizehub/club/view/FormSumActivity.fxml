@@ -24,12 +24,12 @@
                         <String fx:value="quark" />
                         <String fx:value="formSumName" />
                      </styleClass></Label>
-                  <Label layoutX="487.0" layoutY="25.0" text="Dek-D Admission ">
+                  <Label fx:id="evName" layoutX="487.0" layoutY="25.0" text="Dek-D Admission ">
                      <styleClass>
                         <String fx:value="quark" />
                         <String fx:value="formSumActi" />
                      </styleClass></Label>
-                  <BarChart layoutX="27.0" layoutY="49.0" prefHeight="233.0" prefWidth="422.0" style="-fx-background-color: white; -fx-background-position: white;">
+                  <BarChart fx:id="feedbackChart" layoutX="27.0" layoutY="49.0" prefHeight="233.0" prefWidth="422.0" style="-fx-background-color: white; -fx-background-position: white;">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -43,7 +43,7 @@
                         <String fx:value="quark" />
                      </styleClass>
                   </Label>
-                  <Label layoutX="545.0" layoutY="126.0" prefHeight="48.0" prefWidth="80.0" text="99999">
+                  <Label fx:id="numPepleRegis" layoutX="545.0" layoutY="126.0" prefHeight="48.0" prefWidth="80.0" text="99999">
                      <styleClass>
                         <String fx:value="formSumName" />
                         <String fx:value="quark" />
@@ -62,7 +62,7 @@
                         <String fx:value="quark" />
                      </styleClass>
                   </Label>
-                  <Label layoutX="545.0" layoutY="216.0" prefHeight="48.0" prefWidth="80.0" text="99980" textAlignment="CENTER">
+                  <Label fx:id="numPepleJoin" layoutX="545.0" layoutY="216.0" prefHeight="48.0" prefWidth="80.0" text="99980" textAlignment="CENTER">
                      <styleClass>
                         <String fx:value="formSumName" />
                         <String fx:value="quark" />
