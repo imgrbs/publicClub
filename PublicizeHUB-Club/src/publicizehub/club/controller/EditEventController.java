@@ -118,21 +118,26 @@ public class EditEventController implements Initializable {
     public void setValueToCombobox(){
         
         ticket.getItems().addAll("5","10","15","20","25","30","35","40","45","50","75","100","ระบุเอง");  
-        //if(ticket.selectionModelProperty().equals("ระบุเอง")){
-            ticket.setEditable(true);
-        //}  
+        ticket.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+            @Override
+            public void handle(javafx.event.ActionEvent event) {
+                if(ticket.getValue().equals("ระบุเอง")){
+                    ticket.setValue("");
+                    ticket.setEditable(true);   
+                    
+                }else 
+                    
+                    ticket.setEditable(false); 
+                    
+            }
+        });
     }
     @FXML
     public void clickConfirm(){
         
         setAllValue();
-        confirmBtn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
-            @Override
-            public void handle(javafx.event.ActionEvent event) {
-                e.updateEvent(thisEvent);
-            }
-        });
-    }
+        e.updateEvent(thisEvent);
+    } 
     /**
      * Initializes the controller class.
      */
