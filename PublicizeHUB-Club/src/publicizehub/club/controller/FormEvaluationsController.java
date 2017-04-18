@@ -23,15 +23,18 @@ import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.Event;
 import publicizehub.club.model.FeedbackModel;
 
-public class FormEvaluationsController implements Initializable {
 
-    ConnectionBuilder cb = new ConnectionBuilder();
-    Event ev = new Event();
+public class FormEvaluationsController implements Initializable {  // JavaFX บังคับ implement Method ของ JavaFX
+
+    ConnectionBuilder cb = new ConnectionBuilder(); // Model Class สำหรับ Connect กับ DB
+    Event ev = new Event(); // Model Class ของ Event ( ดึงข้อมูล Event จาก DB )
 
     private int evId = 10048;
     private long stdId = 59130500012L;
-    FeedbackModel fbm = new FeedbackModel();
+    FeedbackModel fbm = new FeedbackModel(); // Model Class ของ FeedbackModel (ส่งค่าเข้า DB )
 
+    
+    /*สร้าง array object RadioButton  เพื่อ set ค่าเวลาคลิกที่ปุ่ม radio button*/
     RadioButton[] Q1_N1 = new RadioButton[5];
     RadioButton[] Q1_N2 = new RadioButton[5];
     RadioButton[] Q1_N3 = new RadioButton[5];
@@ -43,11 +46,10 @@ public class FormEvaluationsController implements Initializable {
     RadioButton[] Q2_N9 = new RadioButton[5];
     RadioButton[] Q2_N10 = new RadioButton[5];
 
+    //สร้างตัวแปร valueRadio array ที่มี type int เพื่อไว้เก็บค่าสำหรับค่าคำตอบของคำถาม 10 ข้อ
     int[] valueRadio = new int[10];
 
-    @FXML
-    ToggleGroup[] groupQ = new ToggleGroup[10];
-
+     /* ตัวแปรของ JavaFX ที่อิงกับไฟล์ .fxml จะต้องพิมพ์ @FXML กำกับเสมอ */
     @FXML
     private Label evName;
 
@@ -56,6 +58,7 @@ public class FormEvaluationsController implements Initializable {
     @FXML
     private JFXButton cancelBtn;
 
+    //ToggleGroup สำหรับจัดกลุ่ม radio
     @FXML
     private ToggleGroup groupQ1;
     
@@ -86,6 +89,7 @@ public class FormEvaluationsController implements Initializable {
     @FXML
     private ToggleGroup groupQ10;
 
+    //RadioButton 
     @FXML
     private RadioButton Q1_N1_5;
 
@@ -236,17 +240,21 @@ public class FormEvaluationsController implements Initializable {
     @FXML
     private RadioButton Q2_N5_1;
 
+    //method สำหรับ
     public FormEvaluationsController() {
         setRadioFromGui();
     }
 
     @FXML
+    /*method set ค่าเริ่มต้นของ valueRadio โดยจะวนลูป 5 รอบ ค่าเริ่มต้นของ valueRadio[0-5] = -1*/
     public void setRadioFromGui() {
         for (int i = 0; i < valueRadio.length; i++) {
             valueRadio[i] = -1;
         }
     }
     
+    /*method set ค่าปุ่มของ RadioButton ของ array ให้เท่ากับค่า fxid ใน javaFx
+    ex. Q1_N1[0] เท่ากับ ปุ่ม radio ที่ 1*/
     public void setValueToArr(){
         //num1
         Q1_N1[0] = Q1_N1_1;
@@ -318,7 +326,10 @@ public class FormEvaluationsController implements Initializable {
         this.evName.setText(evName);
     }
 
+    
     @FXML
+    /*method เก็บค่าเมื่อกดปุ่ม radio ตามค่าที่กำหนด 
+    ex. ถ้ากดradio[4] ค่าก็จะเท่ากับ 101 */
     public void setValueRadio(RadioButton radio[], int index) {
         if (radio[4].isSelected()) {
             valueRadio[index] += 101;
@@ -333,6 +344,7 @@ public class FormEvaluationsController implements Initializable {
         }
     }
 
+    
     @FXML
     public void setValueRadio() {
         setValueToArr();
@@ -353,12 +365,15 @@ public class FormEvaluationsController implements Initializable {
         this.setValueRadio();
     }
 
+    //method ส่งค่าไปที่ model
     public void sentValue() {
-        fbm.insertValue(this.evId, this.stdId, valueRadio[0], valueRadio[1], valueRadio[2], valueRadio[3], valueRadio[4],
-                valueRadio[5], valueRadio[6], valueRadio[7], valueRadio[8], valueRadio[9]);
+        fbm.insertValue(this.evId, this.stdId, valueRadio[0], valueRadio[1], 
+                valueRadio[2], valueRadio[3], valueRadio[4],valueRadio[5], 
+                valueRadio[6], valueRadio[7], valueRadio[8], valueRadio[9]);
         fbm.setSumQ();
     }
 
+    //method เรียกหน้าประเมิน
     public void callEvaluation(int eventId, String evName, long stdId) {
         this.evId = eventId;
         this.stdId = stdId;
@@ -368,6 +383,7 @@ public class FormEvaluationsController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/FormEvaluations.fxml"));
         try {
             root = (Parent) fxmlLoader.load();
+        /* ดัก SQLException ไว้กันพลาดจะได้รู้ว่าผิดส่วนนี้รึเปล่า */
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -380,11 +396,16 @@ public class FormEvaluationsController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        //set ค่าปุ่มยืนยันให้ทำงาน
         controller.confirmBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("CLICK!");
                 controller.clickConfirm();
+                
+                /*เช็คว่าค่าของปุ่มทุกข้อมีค่าตามที่กดจริง หากลืมหรือไม่กดปุ่มที่ข้อไหนค่าก็จะเท่ากับ -1 ตามที่กำหนดไว้ตอนแรก
+                แต่หากกดครบทุกปุ่มก็หมายความว่า ประเมินสำเร็จแล้ว"*/
                 if (controller.valueRadio[0] != -1 && controller.valueRadio[1] != -1
                         || controller.valueRadio[2] != -1 && controller.valueRadio[3] != -1
                         || controller.valueRadio[4] != -1 && controller.valueRadio[5] != -1
@@ -399,6 +420,8 @@ public class FormEvaluationsController implements Initializable {
                     warning.setContentText("ขอบคุณครับ");
                     warning.showAndWait();
                     stage.close();
+                    
+                    /*หากกดปุ่มไม่ครบ 10 ข้อ ก็จะมีหน้าต่างแจ้ง Error และบอกให้กรอกคะแนนให้ครบทุกข้อ*/
                 }else {
                     Alert warning = new Alert(Alert.AlertType.WARNING);
                     warning.setTitle("Error !");
@@ -419,6 +442,7 @@ public class FormEvaluationsController implements Initializable {
         cb.logout();
     }
 
+    //คำสั่งปิดหน้านั้น
     public void stageClose(Stage stage) {
         stage.close();
     }

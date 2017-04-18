@@ -22,17 +22,22 @@ public class FeedbackModel {
 
     ConnectionBuilder cb = new ConnectionBuilder();
     ArrayList<FeedbackStd> myArrList = new ArrayList<FeedbackStd>();
-//    FeedbackController fbc = new FeedbackController();
 
-    public void insertValue(int evId, long stdId, int valueRadio1, int valueRadio2, int valueRadio3, int valueRadio4, int valueRadio5,
-            int valueRadio6, int valueRadio7, int valueRadio8, int valueRadio9, int valueRadio10) {
+
+    //method รับค่าจาก class FormEvaluationsController เพื่อจะส่งค่าเข้า DB
+    public void insertValue(int evId, long stdId, int valueRadio1, int valueRadio2, int valueRadio3, 
+                int valueRadio4, int valueRadio5,int valueRadio6, int valueRadio7, int valueRadio8, 
+                int valueRadio9, int valueRadio10) {
         Statement s = null;
         String sql;
         cb.connecting(); //connect database
         try {
             s = cb.getConnect().createStatement();  // สร้าง Statement
-            sql = "INSERT INTO std_feedback (evId,stdId,sumQ1,sumQ2,sumQ3,sumQ4,sumQ5,sumQ6,sumQ7,sumQ8,sumQ9,sumQ10) VALUES ('" + evId + "','" + stdId + "',"
-                    + "'" + valueRadio1 + "','" + valueRadio2 + "','" + valueRadio3 + "','" + valueRadio4 + "','" + valueRadio5 + "','" + valueRadio6 + "','" + valueRadio7 + "','" + valueRadio8 + "','" + valueRadio9 + "','" + valueRadio10 + "') ";
+            sql = "INSERT INTO std_feedback (evId,stdId,sumQ1,sumQ2,sumQ3,sumQ4,sumQ5,sumQ6,sumQ7,sumQ8,sumQ9,sumQ10) "
+                    + "VALUES ('" + evId + "','" + stdId + "',"
+                    + "'" + valueRadio1 + "','" + valueRadio2 + "','" + valueRadio3 + "','" + valueRadio4 + "','" 
+                    + valueRadio5 + "','" + valueRadio6 + "','" + valueRadio7 + "','" + valueRadio8 + "','" 
+                    + valueRadio9 + "','" + valueRadio10 + "') ";
 
             s.executeUpdate(sql); // ส่งข้อมูลไป Database 
 
@@ -42,7 +47,6 @@ public class FeedbackModel {
 
             e.printStackTrace();
         }
-
         cb.logout();
     }
 
