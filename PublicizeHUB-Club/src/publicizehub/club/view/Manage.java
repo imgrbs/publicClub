@@ -29,14 +29,14 @@ public class Manage extends Application {
         catch(Exception e){
             e.printStackTrace();
         }
-        controller.getEvent();
-        controller.setUserData(controller.getLi().getStdId(),controller.getLi().getName()+" "+controller.getLi().getSurname());
-        if(controller.getLi().getStatus()==1){
-            controller.setManageDisable();
-        }
-        
-        controller.getNc().addNewsToList(controller.getNewsList());
-        controller.setThisStage(stage);
+//        controller.getEvent();
+//        controller.setUserData(controller.getLi().getStdId(),controller.getLi().getName()+" "+controller.getLi().getSurname());
+//        if(controller.getLi().getStatus()==1){
+//            controller.setManageDisable();
+//        }
+//        
+//        controller.getNc().addNewsToList(controller.getNewsList());
+//        controller.setThisStage(stage);
        
         Scene scene = new Scene(root);
         
