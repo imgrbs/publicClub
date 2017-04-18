@@ -373,7 +373,7 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
         fbm.setSumQ();
     }
 
-    //method เรียกหน้าประเมิน
+ 
     public void callEvaluation(int eventId, String evName, long stdId) {
         this.evId = eventId;
         this.stdId = stdId;
