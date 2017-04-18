@@ -36,6 +36,22 @@ public class Event {
     public Event() {
     }
 
+    public Event(long stdId, String evName, String evDescrip, LocalDate evDate, LocalDate evEndDate, LocalDate evStartRegis,
+            LocalDate evEndFeedback, String evPlace, int evTicket, LocalTime evTime, LocalTime evEndTime, int evType) {
+        this.stdId = stdId;
+        this.evName = evName;
+        this.evDescrip = evDescrip;
+        this.evDate = evDate;
+        this.evEndDate = evEndDate;
+        this.evStartRegis = evStartRegis;
+        this.evEndFeedback = evEndFeedback;
+        this.evPlace = evPlace;
+        this.evTicket = evTicket;
+        this.evTime = evTime;
+        this.evEndTime = evEndTime;
+        this.evType = evType;
+    }
+    
     public Event(String evName, String evDescrip, LocalDate evDate, LocalDate evEndDate, LocalDate evStartRegis, 
                     LocalDate evEndFeedback, String evPlace, int evTicket, int currentMember, 
                     LocalTime evTime, LocalTime evEndTime, int evType, int evId) {

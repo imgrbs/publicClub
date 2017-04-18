@@ -32,7 +32,7 @@ import publicizehub.club.model.Event;
 public class CreateEventController implements Initializable {
     Event e = new Event();
     LoginController lc = new LoginController();
-    private Event thisEvent = new Event();
+    Event thisEvent = null;
     
     private String evName; 
     private String evDescrip;
@@ -85,11 +85,20 @@ public class CreateEventController implements Initializable {
     private JFXButton confirmBtn;
     @FXML
     private JFXButton cancelBtn;
+    
+//    thisEvent = new Event(stdId,eventName.getText(),description.getText(),startDate.getValue(),endDate.getValue(),
+//            startRegis.getValue(),startRegis.getValue().plusDays(15),place.getText(),Integer.parseInt(ticket.getValue()),
+//            startTime.getValue(),endTime.getValue(),evType);
 
 
     @FXML
     public void setAllValue(){
-        thisEvent.setEvName(eventName.getText()); 
+        evTypeResult();
+        thisEvent = new Event(stdId,eventName.getText(),description.getText(),startDate.getValue(),endDate.getValue(),
+            startRegis.getValue(),startRegis.getValue().plusDays(15),place.getText(),Integer.parseInt(ticket.getValue()),
+            startTime.getValue(),endTime.getValue(),evType);
+        
+        /*thisEvent.setEvName(eventName.getText()); 
         thisEvent.setEvDescrip(description.getText());
         thisEvent.setEvDate(startDate.getValue());
         thisEvent.setEvEndDate(endDate.getValue()); 
@@ -101,7 +110,7 @@ public class CreateEventController implements Initializable {
         thisEvent.setEvPlace(place.getText());
         thisEvent.setStdId(stdId);
         evTypeResult();
-        thisEvent.setEvType(evType);
+        thisEvent.setEvType(evType);*/
     }
     @FXML
     public void evTypeResult(){
@@ -148,12 +157,8 @@ public class CreateEventController implements Initializable {
     @FXML
     public void clickConfirm(){
         setAllValue();
-        confirmBtn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
-            @Override
-            public void handle(javafx.event.ActionEvent event) {
-                e.createEvent(thisEvent);
-            }
-        });
+        e.createEvent(thisEvent);
+           
     }
     
     @Override
