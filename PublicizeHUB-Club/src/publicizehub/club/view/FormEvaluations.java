@@ -12,7 +12,7 @@ import publicizehub.club.controller.FormEvaluationsController;
  *
  * @author ImagineRabbits
  */
-public class Form_Evaluations extends Application   {
+public class FormEvaluations extends Application   {
     @Override
 
     public void start(Stage stage) throws Exception {
