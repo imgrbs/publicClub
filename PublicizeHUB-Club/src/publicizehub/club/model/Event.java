@@ -12,6 +12,7 @@ import javax.swing.*;
 public class Event {
     ConnectionBuilder cb = new ConnectionBuilder();
     
+    private long stdId;
     private String evName; 
     private String evDescrip;
     private LocalDate evDate;
@@ -53,6 +54,14 @@ public class Event {
         this.evId = evId;
     }
 
+    public long getStdId() {
+        return stdId;
+    }
+
+    public void setStdId(long stdId) {
+        this.stdId = stdId;
+    }
+    
     public String getEvName() {
         return evName;
     }
@@ -160,9 +169,7 @@ public class Event {
     /* รับค่าที่ประมวลผลแล้วจาก Controller เพื่อ ส่งไป Database
     โดยใช้คำสั่ง SQL และ ประมวลผลคำสั่งโดย 
     การสร้าง Statement และเรียกใช้ method */
-    public void createEvent(String name,String desc,LocalDate date,LocalDate endDate,LocalDate startRegis,LocalDate endFeedback,
-                        LocalTime time,LocalTime endTime,String place,int ticket,
-                        int evType,long stdId) {
+    public void createEvent(Event thisEvent) {
         cb.connecting(); // Connect ไป Database ผ่าน Connection Builder
         Statement s = null; // สร้างตัวแปร Statement
         try {
@@ -170,8 +177,8 @@ public class Event {
             // SQL Insert (คำสัง SQL)
             String sql = "INSERT INTO tb_event"
                     + "(evName,evDescrip,evStartDate,evEndDate,evStartRegis,evEndFeedback,evTime,evEndTime,evPlace,evTicket,evType,stdId) "
-                    + "VALUES ('"  + name + "','" + desc + "','"+ date + "','"+ endDate+ "','" +startRegis+ "','"+endFeedback+ "','" + time + "','"
-                    + endTime + "','" + place + "','" + ticket + "','" + evType + "','" + stdId + "') ";
+                    + "VALUES ('"  + thisEvent.getEvName() + "','" + thisEvent.getEvDescrip() + "','"+ thisEvent.getEvDate() + "','"+ thisEvent.getEvEndDate() + "','" +thisEvent.getEvStartRegis() + "','"+thisEvent.getEvEndFeedback() + "','" + thisEvent.getEvTime() + "','"
+                    + thisEvent.getEvEndTime() + "','" + thisEvent.getEvPlace() + "','" + thisEvent.getEvTicket() + "','" + thisEvent.getEvType() + "','" + thisEvent.getStdId() + "') ";
             s.executeUpdate(sql); // ส่งข้อมูลไป Database
         } 
         /* ดัก SQLException และ Exception ปกติ */

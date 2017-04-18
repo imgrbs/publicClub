@@ -32,6 +32,7 @@ import publicizehub.club.model.Event;
 public class CreateEventController implements Initializable {
     Event e = new Event();
     LoginController lc = new LoginController();
+    private Event thisEvent = new Event();
     
     private String evName; 
     private String evDescrip;
@@ -88,17 +89,19 @@ public class CreateEventController implements Initializable {
 
     @FXML
     public void setAllValue(){
-        this.evName = eventName.getText();
-        this.evDescrip = description.getText();
-        this.evDate = startDate.getValue();
-        this.evEndDate = endDate.getValue();
-        this.evStartRegis = startRegis.getValue();
-        this.evEndFeedback = startRegis.getValue().plusDays(15);
-        this.evTime = (startTime.getValue());
-        this.evEndTime = (endTime.getValue());
-        this.evTicket = Integer.parseInt(ticket.getValue());
-        this.evPlace = place.getText();
+        thisEvent.setEvName(eventName.getText()); 
+        thisEvent.setEvDescrip(description.getText());
+        thisEvent.setEvDate(startDate.getValue());
+        thisEvent.setEvEndDate(endDate.getValue()); 
+        thisEvent.setEvStartRegis(startRegis.getValue());
+        thisEvent.setEvEndFeedback(startRegis.getValue().plusDays(15));
+        thisEvent.setEvTime(startTime.getValue());
+        thisEvent.setEvEndTime(endTime.getValue());
+        thisEvent.setEvTicket(Integer.parseInt(ticket.getValue()));
+        thisEvent.setEvPlace(place.getText());
+        thisEvent.setStdId(stdId);
         evTypeResult();
+        thisEvent.setEvType(evType);
     }
     @FXML
     public void evTypeResult(){
@@ -114,16 +117,32 @@ public class CreateEventController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    public void checkCustomize(){
+        if(ticket.getTypeSelector().equals("ระบุเอง")){
+            ticket.setValue("");
+            ticket.setEditable(true);
+            
+        }else 
+            ticket.setEditable(false);
+    } 
     @FXML
     public void setValueToCombobox(){
         
         ticket.getItems().addAll("5","10","15","20","25","30","35","40","45","50","75","100","ระบุเอง");  
         //if(ticket.selectionModelProperty().equals("ระบุเอง")){
-        if(ticket.getTypeSelector().equals("ระบุเอง")){
-            ticket.setValue("");
-            ticket.setEditable(true);                
-        }else 
-            ticket.setEditable(false);  
+        ticket.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+            @Override
+            public void handle(javafx.event.ActionEvent event) {
+                if(ticket.getValue().equals("ระบุเอง")){
+                    ticket.setValue("");
+                    ticket.setEditable(true);   
+                    
+                }else 
+                    
+                    ticket.setEditable(false); 
+                    
+            }
+        });
         //}  
     }
     @FXML
@@ -132,7 +151,7 @@ public class CreateEventController implements Initializable {
         confirmBtn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
-                e.createEvent(evName, evDescrip, evDate, evEndDate,evStartRegis,evEndFeedback, evTime, evEndTime, evPlace, evTicket, evType, stdId);
+                e.createEvent(thisEvent);
             }
         });
     }
