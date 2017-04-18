@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXScrollPane?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="bodyManager" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane layoutX="10.0" layoutY="14.0" prefHeight="573.0" prefWidth="745.0">
+         <center>
+            <FlowPane alignment="CENTER" prefHeight="573.0" prefWidth="752.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="515.0" prefWidth="649.0" styleClass="detailPane">
+                     <children>
+                        <JFXTabPane layoutY="229.0" prefHeight="298.0" prefWidth="649.0" style="jfx-tab-pane-color: #fff;" styleClass="quark">
+                           <tabs>
+                              <Tab style="-fx-background-color: #E7560C;" text="กิจกรรมที่จบแล้ว">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="728.0">
+                                       <children>
+                                          <JFXScrollPane layoutY="14.0" prefHeight="224.0" prefWidth="649.0">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="246.0" prefWidth="728.0" style="-fx-background-color: #fff;" />
+                                             </children>
+                                          </JFXScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
+                              <Tab style="-fx-background-color: #E7560C;" text="กิจกรรมที่ยังไม่จบ">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <JFXScrollPane layoutX="-2.0" layoutY="14.0" prefHeight="226.0" prefWidth="652.0">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="211.0" prefWidth="652.0" style="-fx-background-color: #fff;" />
+                                             </children>
+                                          </JFXScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
+                           </tabs>
+                        </JFXTabPane>
+                        <Label alignment="CENTER" layoutX="8.0" layoutY="198.0" prefHeight="33.0" prefWidth="399.0" text="*หากข้อมูลผิดพลาดหรือต้องการแก้ไขข้อมูลโปรดแจ้งผู้ดูแลระบบ" textFill="#d74949">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                           </styleClass>
+                        </Label>
+                        <Label id="labelId" fx:id="labelId" alignment="CENTER" layoutX="232.0" layoutY="29.0" prefHeight="40.0" prefWidth="184.0" text="59130500007" textAlignment="CENTER">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="stdIdProfile" />
+                           </styleClass>
+                        </Label>
+                        <Label id="labelName" fx:id="labelName" alignment="CENTER" layoutX="176.0" layoutY="61.0" prefHeight="58.0" prefWidth="296.0" text="กีรติ  เจียรจินดารัตน์">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="stdNameProfile" />
+                           </styleClass>
+                        </Label>
+                        <Label id="labelDepartment" fx:id="labelDepartment" alignment="CENTER" layoutX="153.0" layoutY="117.0" prefHeight="40.0" prefWidth="343.0" text="Information Technology">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="stdIdProfile" />
+                           </styleClass>
+                        </Label>
+                        <JFXButton layoutX="529.0" layoutY="195.0" prefHeight="30.0" prefWidth="113.0" ripplerFill="#ffaf2e" text="สร้างกิจกรรม">
+                           <styleClass>
+                              <String fx:value="addEventManage" />
+                              <String fx:value="quark" />
+                           </styleClass></JFXButton>
+                        <JFXButton layoutX="416.0" layoutY="195.0" prefHeight="30.0" prefWidth="113.0" ripplerFill="#ff81c8" text="เพิ่มข่าวกิจกรรม">
+                           <styleClass>
+                              <String fx:value="addNewsManage" />
+                              <String fx:value="quark" />
+                           </styleClass></JFXButton>
+                        <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="77.0" styleClass="adminTag" text="Admin" />
+                     </children>
+                  </Pane>
+               </children>
+            </FlowPane>
+         </center>
+         <left>
+            <Pane prefHeight="573.0" prefWidth="44.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="backBtn" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="2.0" mnemonicParsing="false" onAction="#callMain" prefHeight="47.0" prefWidth="49.0" styleClass="backBtn">
+                     <padding>
+                        <Insets left="50.0" top="25.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="50.0" top="50.0" />
+               </padding>
+            </Pane>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>
