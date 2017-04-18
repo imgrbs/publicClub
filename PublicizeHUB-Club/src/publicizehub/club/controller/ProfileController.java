@@ -177,6 +177,7 @@ public class ProfileController implements Initializable { // JavaFX บังค
         }catch(SQLException e){
             e.printStackTrace();
         }
+        cb.logout();
     }
     
     /* Method สำหรับ เปลี่ยน Stage */

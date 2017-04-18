@@ -331,3 +331,43 @@
 .tabelView{
     -fx-font-size: 14px;
 }
+
+.manageHead{
+    -fx-font-size: 35px;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 2px 0; 
+    -fx-border-color: #CDCDCD;
+}
+
+.addNewsManage{
+    -fx-background-color: #E21586;
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-text-fill: #fff;
+    -fx-font-size: 15px;
+}
+
+.addEventManage{
+    -fx-background-color: #E74A00;
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-text-fill: #fff;
+    -fx-font-size: 15px;
+}
+
+.adminTag{
+    -fx-background-color: #E21D1D;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #fff;
+}
+.userTag{
+    -fx-background-color: #FF7631;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #fff;
+}
+/* Customize JFoenix */
+/*.headers-region */
+.tab-label{
+    -fx-font-family:'Quark';
+}
+.jfx-tab-pane .tab-header-area .tab-header-background{
+    -fx-background-color : #E76427;
+}
