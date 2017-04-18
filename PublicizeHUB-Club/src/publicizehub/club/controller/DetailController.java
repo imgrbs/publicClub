@@ -64,7 +64,7 @@ public class DetailController {
         try{
             if(rs.next()){
                 controller.setEvName(rs.getString("evName"));
-                controller.setEvDate(rs.getString("evDate"));
+                controller.setEvDate(rs.getString("evStartDate"));
                 controller.setEvPlace(rs.getString("evPlace"));
                 controller.setEvDescrip(rs.getString("evDescrip"));
             }
