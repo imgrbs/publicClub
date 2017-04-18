@@ -44,7 +44,7 @@ public class FormSumActivityController implements Initializable {
     @FXML
     private TableColumn<?, ?> joinDate;
 
-    FeedbackModel fbm = new FeedbackModel();
+//    FeedbackModel fbm = new FeedbackModel();
     int[] averQ = new int[10];
     
     public FormSumActivityController() {
@@ -93,8 +93,8 @@ public class FormSumActivityController implements Initializable {
         int setSumQ2 = (int) (percentQ6 + percentQ7 + percentQ8 + percentQ9 + percentQ10);
 
         //ส่งค่ากลับไป model เพื่อเอาค่าไปเก็บไว้ใน DB
-        fbm.insertAvgrValue(evId, numPeple, averQ[0], averQ[1], averQ[2], averQ[3], averQ[4], averQ[5],
-                averQ[6], averQ[7], averQ[8], averQ[9], setSumQ1, setSumQ2);
+//        fbm.insertAvgrValue(evId, numPeple, averQ[0], averQ[1], averQ[2], averQ[3], averQ[4], averQ[5],
+//                averQ[6], averQ[7], averQ[8], averQ[9], setSumQ1, setSumQ2);
     }
 
     //set ค่าที่จะโชว์กราฟ
