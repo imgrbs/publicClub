@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 public class ShowFeedback extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ShoeFeedback.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ShowFeedback.fxml"));
         
         Scene scene = new Scene(root);
         
