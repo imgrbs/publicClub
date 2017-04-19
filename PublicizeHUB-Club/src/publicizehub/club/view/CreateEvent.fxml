@@ -43,7 +43,7 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="400.0" layoutY="197.0" text="วันสิ้นสุดกิจกรรม :">
+                        <Label layoutX="404.0" layoutY="197.0" text="วันสิ้นสุดกิจกรรม :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
@@ -55,7 +55,7 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="400.0" layoutY="249.0" text="เวลาสิ้นสุดกิจกรรม :">
+                        <Label layoutX="399.0" layoutY="248.0" text="เวลาสิ้นสุดกิจกรรม :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
@@ -86,7 +86,7 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <JFXTimePicker fx:id="startTime" defaultColor="#dd721a" layoutX="221.0" layoutY="243.0" prefHeight="28.0" prefWidth="173.0">
+                        <JFXTimePicker fx:id="startTime" defaultColor="#dd721a" layoutX="206.0" layoutY="242.0" prefHeight="28.0" prefWidth="173.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -95,7 +95,7 @@
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXTimePicker>
-                        <JFXTimePicker fx:id="endTime" defaultColor="#dd721a" layoutX="541.0" layoutY="243.0" prefHeight="28.0" prefWidth="173.0">
+                        <JFXTimePicker fx:id="endTime" defaultColor="#dd721a" layoutX="510.0" layoutY="242.0" prefHeight="28.0" prefWidth="173.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -104,7 +104,7 @@
                               <String fx:value="quark" />
                            </styleClass>
                         </JFXTimePicker>
-                        <JFXDatePicker fx:id="startDate" defaultColor="#dd721a" editable="false" layoutX="221.0" layoutY="196.0" prefHeight="28.0" prefWidth="173.0">
+                        <JFXDatePicker fx:id="startDate" defaultColor="#dd721a" editable="false" layoutX="206.0" layoutY="190.0" prefHeight="28.0" prefWidth="173.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -113,7 +113,7 @@
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXDatePicker>
-                        <JFXDatePicker fx:id="endDate" defaultColor="#dd721a" editable="false" layoutX="541.0" layoutY="196.0" prefHeight="28.0" prefWidth="173.0">
+                        <JFXDatePicker fx:id="endDate" defaultColor="#dd721a" editable="false" layoutX="510.0" layoutY="190.0" prefHeight="28.0" prefWidth="173.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -122,13 +122,13 @@
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXDatePicker>
-                        <JFXTextField fx:id="eventName" focusColor="#dd721a" layoutX="221.0" layoutY="37.0" prefHeight="25.0" prefWidth="400.0">
+                        <JFXTextField fx:id="eventName" focusColor="#dd721a" layoutX="179.0" layoutY="28.0" prefHeight="25.0" prefWidth="400.0">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXTextField>
-                        <JFXTextArea fx:id="description" focusColor="#dd721a" layoutX="221.0" layoutY="91.0" prefHeight="90.0" prefWidth="400.0">
+                        <JFXTextArea fx:id="description" focusColor="#dd721a" layoutX="179.0" layoutY="76.0" prefHeight="107.0" prefWidth="400.0">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
@@ -170,7 +170,11 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <JFXDatePicker fx:id="startRegis" defaultColor="#dd721a" layoutX="221.0" layoutY="327.0" prefHeight="40.0" prefWidth="168.0" />
+                        <JFXDatePicker fx:id="startRegis" defaultColor="#dd721a" layoutX="221.0" layoutY="327.0" prefHeight="40.0" prefWidth="168.0">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="formEvName" />
+                           </styleClass></JFXDatePicker>
                      </children>
                   </Pane>
                </center>
@@ -197,7 +201,7 @@
                   <Pane prefHeight="105.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label layoutX="330.0" layoutY="25.0" styleClass="insertEventSize" text="Create Event" />
-                        <Pane layoutX="241.0" layoutY="22.0" prefHeight="69.0" prefWidth="68.0" styleClass="createIcon" />
+                        <Pane layoutX="241.0" layoutY="26.0" prefHeight="65.0" prefWidth="65.0" styleClass="createIcon" />
                      </children>
                   </Pane>
                </top>
