@@ -20,17 +20,18 @@ import publicizehub.club.model.FeedbackModel;
  * @author ImagineRabbits
  */
 public class EventController {
-    JoinController jc = new JoinController();
-    DetailController dc = new DetailController();
-    FormEvaluationsController fe = new FormEvaluationsController();
-    FeedbackModel fbm = new FeedbackModel();
-
+    private JoinController jc = new JoinController();
+    private DetailController dc = new DetailController();
+    private FormEvaluationsController fe = new FormEvaluationsController();
+    private EditEventController ee = new EditEventController();
+    
     private int evId;
     private int evType;
     private long stdId;
 
-    ConnectionBuilder cb = new ConnectionBuilder();
-    Event ev = new Event();
+    private ConnectionBuilder cb = new ConnectionBuilder();
+    private Event ev = new Event();
+    private FeedbackModel fbm = new FeedbackModel();
 
 
     public void setEventType(int evType) {
@@ -49,9 +50,8 @@ public class EventController {
         this.stdId = stdId;
     }
     
-    /* Method สร้าง Component ใน Profile GUI */
-    public void addEventToPresentPane(String evName,int eventId,VBox listEventBox,boolean evaluation,boolean checkTypeGui) {
-        /* รับ Event Name String มาเพื่อจะ Set Label เป็นชื่อ */
+    
+    public void addEventToPresentPane(Event event,VBox listEventBox,boolean evaluation,boolean checkTypeGui) {
         String presentText = "ตรวจสอบโค้ด";
         String presentDetail = "รายละเอียด";
         String evaluaText = "ประเมิณกิจกรรม";
@@ -60,65 +60,55 @@ public class EventController {
             presentDetail = "รายละเอียด";
             evaluaText = "ผลตอบรับ";
         }
-        Pane p = new Pane(); // สร้างกล่องสำหรับ 1 Component
-        Label labelEvName = new Label(evName); // สร้าง Label ชื่อ Event
-        /*เช็คว่า เป็น กิจกรรมที่จบแล้วหรือไม่ ถ้าเป็น true คือยังไม่จบ จะให้สร้าง
-        ปุ่ม Check Code กับ Detail ถ้าจบแล้วจะให้สร้างปุ่มประเมิณกิจกรรม */
+        Pane p = new Pane();
+        Label labelEvName = new Label(event.getEvName());
         if(evaluation){
-            Button joinbtn = new Button(presentText); // สร้างปุ่มสำหรับ Check Code
-            Button detailbtn = new Button(presentDetail); // สร้างปุ่ม Detail กิจกรรม
-            /* เพิ่ม CSS จากไฟล์ style.css */
-            joinbtn.getStyleClass().add("joinBtnProfile"); // css ตกแต่งปุ่ม
-            joinbtn.getStyleClass().add("quark"); // css font quark
-            detailbtn.getStyleClass().add("detailbtnProfile"); // css ตกแต่งปุ่ม
-            detailbtn.getStyleClass().add("quark"); // css font quark
-            /* ตั้งตำแหน่งของปุ่มใน Box Component */
+            Button joinbtn = new Button(presentText);
+            Button detailbtn = new Button(presentDetail);
+            joinbtn.getStyleClass().add("joinBtnProfile");
+            joinbtn.getStyleClass().add("quark");
+            detailbtn.getStyleClass().add("detailbtnProfile");
+            detailbtn.getStyleClass().add("quark");
             joinbtn.setLayoutX(225);
             joinbtn.setLayoutY(100);
             detailbtn.setLayoutX(370);
             detailbtn.setLayoutY(100);
-            /* Bind Event ให้กดปุ่ม Check Code แล้วจะเรียกใช้ Method 
-            ของ JoinController ทำให้เรียกดูโค้ด Join Event ได้ */
-            joinbtn.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    jc.toJoinEvent(eventId); 
-                    // method JoinEvent ของ JoinEvent Controller
-                }
-            });
-            /* Bind Event ให้ปุ่ม Detail สำหรับดูรายละเอียดกิจกรรม */
+            if(presentText.equals("ตรวจสอบโค้ด")){
+                joinbtn.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent evt) {
+                        jc.toJoinEvent(event.getEvId()); 
+                    }
+                });
+            }else{
+                joinbtn.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent evt) {
+                        ee.callEditEvent(event); 
+                    }
+                });
+            }
             detailbtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
-                public void handle(ActionEvent event) {
-                    dc.callDetail(eventId);
-                    // method CallDetail ของ Detail Controller
+                public void handle(ActionEvent evt) {
+                    dc.callDetail(event);
                 }
             });
-            /* สั่งเพิ่ม ปุ่มทั้ง2ปุ่ม เข้ากับ Box Component */
             p.getChildren().add(joinbtn);
             p.getChildren().add(detailbtn);
         }else{
-            /* Method คล้าย ใน if แต่ สร้างปุ่ม ประเมิณกิจกรรม และเรียกคนละ
-            Method โดยปุ่มนี้จะเรียก Method ประเมิณกิจกรรมนั้นๆ */
             Button evaluationbtn = new Button(evaluaText);
-            /* เพิ่ม CSS จากไฟล์ style.css */
-            evaluationbtn.getStyleClass().add("evaluationbtn"); // css ตกแต่งปุ่ม
-            evaluationbtn.getStyleClass().add("quark"); // css font quark
-            /* ปรับตำแหน่ง */
+            evaluationbtn.getStyleClass().add("evaluationbtn");
+            evaluationbtn.getStyleClass().add("quark");
             evaluationbtn.setLayoutX(370);
             evaluationbtn.setLayoutY(90);
-            /* Bind Event ให้ปุ่ม ประเมิณกิจกรรม */
             evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
-                public void handle(ActionEvent event) {
-                    /* เช็คใน Log ก่อนว่า เคยประเมิณรึยัง
-                    ถ้าประเมิณแล้วจะเรียก Alert แจ้ง และไม่ให้ประเมิณอีก 
-                    ถ้ายังไม่ประเมิณจะเรียก GUI สำหรับประเมิณมาแสดง */
-                        ResultSet  log = fbm.getFormLog(eventId, getStdId());
+                public void handle(ActionEvent evt) {
+                        ResultSet  log = fbm.getFormLog(event.getEvId(), getStdId());
                         try{
-                            if(log.next())blockFeedback(); // เรียก Alert
-                            else fe.callEvaluation(eventId,evName,getStdId());
-                            // เรียก Method ประเมิณ
+                            if(log.next())blockFeedback();
+                            else fe.callEvaluation(event,getStdId());
                         }catch(SQLException e){
                             e.printStackTrace();
                         }
@@ -127,19 +117,17 @@ public class EventController {
             cb.logout();
             p.getChildren().add(evaluationbtn);
         }
-        p.getChildren().add(labelEvName); // เพิ่ม Label ลง Component
+        p.getChildren().add(labelEvName);
 
-        /* ตกแต่ง Box สำหรับใส่ Component โดยให้เว้นระยะตามกำหนด */
         listEventBox.setMargin(p,new Insets(15,25,15,30));
         p.setStyle("-fx-background-color: #" + "ffffff" + ";" +
                    "-fx-background-radius: 10px;" +
                    "-fx-effect: dropshadow(three-pass-box, #4d4d4d, 5, 0, 0, 1);");
-        /* เขียน CSS inline Style ใน Java */
         labelEvName.setStyle("-fx-padding: 30px 0px 0px 50px;"+
                    "-fx-font-size: 30px;"+
                    "-fx-text-fill: #000000;");
-        p.setPrefSize(480,150); // ตั้งค่าขนาดของ Component
-        listEventBox.getChildren().add(p); // เพิ่ม Componnet ให้ Box
+        p.setPrefSize(480,150);
+        listEventBox.getChildren().add(p);
     }
     
     /* Alert สำหรับกิจกรรมที่ประเมิณแล้ว */

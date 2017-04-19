@@ -1,9 +1,11 @@
 package publicizehub.club.model;
 
+import java.sql.Date;
 import java.sql.*;
 import java.text.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import javax.swing.*;
 /**
  *
@@ -52,20 +54,24 @@ public class Event {
         this.evType = evType;
     }
     
-    public Event(String evName, String evDescrip, LocalDate evDate, LocalDate evEndDate, LocalDate evStartRegis, 
-                    LocalDate evEndFeedback, String evPlace, int evTicket, int currentMember, 
-                    LocalTime evTime, LocalTime evEndTime, int evType, int evId) {
+    public Event(String evName, String evDescrip, Date evDate, Date evEndDate, Date evStartRegis, 
+                    Date evEndFeedback, String evPlace, int evTicket, int currentMember, 
+                    Time evTime, Time evEndTime, int evType, int evId) {
         this.evName = evName;
         this.evDescrip = evDescrip;
-        this.evDate = evDate;
-        this.evEndDate = evEndDate;
-        this.evStartRegis = evStartRegis;
-        this.evEndFeedback = evEndFeedback;
+        try{
+            this.evDate = evDate.toLocalDate();
+            this.evEndDate = evEndDate.toLocalDate();
+            this.evStartRegis = evStartRegis.toLocalDate();
+            this.evEndFeedback = evEndFeedback.toLocalDate();
+            this.evTime = evTime.toLocalTime();
+            this.evEndTime = evEndTime.toLocalTime();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         this.evPlace = evPlace;
         this.evTicket = evTicket;
         this.currentMember = currentMember;
-        this.evTime = evTime;
-        this.evEndTime = evEndTime;
         this.evType = evType;
         this.evId = evId;
     }

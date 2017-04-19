@@ -189,12 +189,7 @@ public class CreateEventController implements Initializable {
             }
         });
         Scene scene = new Scene(root); 
-        try{
-            stage.setScene(scene);    
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        stage.setScene(scene);
         stage.show();
     }
     

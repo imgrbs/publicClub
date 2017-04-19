@@ -8,14 +8,20 @@ package publicizehub.club.controller;
 import publicizehub.club.model.TableEvent;
 import com.jfoenix.controls.*;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 import publicizehub.club.model.Event;
 
 /**
@@ -24,18 +30,16 @@ import publicizehub.club.model.Event;
  * @author JIL
  */
 public class EditEventController implements Initializable {
-    Event e = new Event();
+    Event ev = new Event();
     TableEvent te = new TableEvent();
     LoginController lc = new LoginController();
    
     private Event thisEvent;
     private long stdId=lc.getStdId();
-    
 
-    public EditEventController(Event event) {
-        thisEvent = event;
+    public EditEventController() {
     }
-
+    
     public long getStdId() {
         return stdId;
     }
@@ -43,6 +47,15 @@ public class EditEventController implements Initializable {
     public void setStdId(long stdId) {
         this.stdId = stdId;
     }
+
+    public Event getThisEvent() {
+        return thisEvent;
+    }
+
+    public void setThisEvent(Event thisEvent) {
+        this.thisEvent = thisEvent;
+    }
+    
     
     
     @FXML
@@ -75,6 +88,7 @@ public class EditEventController implements Initializable {
     private JFXButton confirmBtn;
     @FXML
     private JFXButton cancelBtn;
+    
     @FXML
     public void showValue(){
         eventName.setText(thisEvent.getEvName());        
@@ -87,6 +101,7 @@ public class EditEventController implements Initializable {
         description.setText(thisEvent.getEvDescrip());
         place.setText(thisEvent.getEvPlace());
     }
+    
     @FXML
     public void setType(int evType){
         if(evType==0){
@@ -96,11 +111,13 @@ public class EditEventController implements Initializable {
         }else
             other.setSelected(true);
     }
+    
     @FXML
     public void setAllValue(){
         showValue();
         evTypeResult();
     }
+    
     @FXML
     public void evTypeResult(){
         int evType=2;
@@ -116,7 +133,6 @@ public class EditEventController implements Initializable {
    
     @FXML
     public void setValueToCombobox(){
-        
         ticket.getItems().addAll("5","10","15","20","25","30","35","40","45","50","75","100","ระบุเอง");  
         ticket.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
@@ -124,19 +140,16 @@ public class EditEventController implements Initializable {
                 if(ticket.getValue().equals("ระบุเอง")){
                     ticket.setValue("");
                     ticket.setEditable(true);   
-                    
                 }else 
-                    
                     ticket.setEditable(false); 
-                    
             }
         });
     }
+    
     @FXML
     public void clickConfirm(){
-        
         setAllValue();
-        e.updateEvent(thisEvent);
+        ev.updateEvent(thisEvent);
     } 
     /**
      * Initializes the controller class.
@@ -148,4 +161,26 @@ public class EditEventController implements Initializable {
         showValue();
     }    
     
+        @FXML
+    public void callEditEvent(Event event){
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/EditEvent.fxml"));     
+        try{
+            root = (Parent)fxmlLoader.load(); 
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        EditEventController controller = fxmlLoader.<EditEventController>getController();
+        controller.setThisEvent(event);
+        Scene scene = new Scene(root); 
+        try{
+            stage.setScene(scene);    
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        stage.show();
+    }
 }

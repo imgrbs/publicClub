@@ -12,7 +12,7 @@ import publicizehub.club.controller.MainController;
  *
  * @author ImagineRabbits
  */
-public class main extends Application  {
+public class DriverPublicizeHUB extends Application  {
     @Override
     public void start(Stage stage) throws Exception {
         

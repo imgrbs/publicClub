@@ -374,9 +374,7 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
     }
 
  
-    public void callEvaluation(int eventId, String evName, long stdId) {
-        this.evId = eventId;
-        this.stdId = stdId;
+    public void callEvaluation(Event event, long stdId) {
 //        ResultSet rs = ev.getSelect(eventId);
         Stage stage = new Stage();
         Parent root = null;
@@ -392,7 +390,7 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
         Scene scene = new Scene(root);
         try {
             stage.setScene(scene);
-            controller.evName.setText(evName);
+            controller.evName.setText(event.getEvName());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -400,7 +398,7 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
         //set ค่าปุ่มยืนยันให้ทำงาน
         controller.confirmBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(ActionEvent evt) {
                 System.out.println("CLICK!");
                 controller.clickConfirm();
                 
@@ -413,7 +411,7 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
                         || controller.valueRadio[8] != -1 && controller.valueRadio[9] != -1) {
                     controller.sentValue();
                     System.out.println("SENT COMPLETE");
-                    fbm.insertToLog(eventId, stdId);
+                    fbm.insertToLog(event.getEvId(), stdId);
                     Alert warning = new Alert(Alert.AlertType.INFORMATION);
                     warning.setTitle("Success !");
                     warning.setHeaderText("ประเมิณสำเร็จ");

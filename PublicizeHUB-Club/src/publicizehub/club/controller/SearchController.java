@@ -97,13 +97,13 @@ public class SearchController implements Initializable {
         p.getChildren().add(detailbtn);
         joinbtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(ActionEvent evt) {
                 jc.toJoinEvent(eventId);
             }
         });
         detailbtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(ActionEvent evt) {
                 dc.callDetail(eventId);
             }
         });

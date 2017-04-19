@@ -83,6 +83,32 @@ public class DetailController {
         stage.show();
     }
     
+        @FXML
+    public void callDetail(Event event){
+        Stage stage= new Stage();
+        Parent root=null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Detail.fxml"));     
+        try{
+            root = (Parent)fxmlLoader.load(); 
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        DetailController controller = fxmlLoader.<DetailController>getController();
+        controller.setEvName(event.getEvName());
+        controller.setEvDate(event.getEvDate()+"");
+        controller.setEvPlace(event.getEvPlace());
+        controller.setEvDescrip(event.getEvDescrip());
+        Scene scene = new Scene(root); 
+        try{
+            stage.setScene(scene);    
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        stage.show();
+    }
+    
     public void callListPerson(){
         ListPerson lp = new ListPerson();
         lp.setVisible(true);

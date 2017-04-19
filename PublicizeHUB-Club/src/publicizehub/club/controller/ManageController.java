@@ -6,6 +6,7 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -154,32 +155,28 @@ public class ManageController implements Initializable  {
 
     public void setEventToGui(int eventId){
         ResultSet findStd = ev.getSelect(eventId);
-        ec.setStdId(getStdId());
+        Event event = null;
         try{
             if(findStd.next()){
-                LocalDate ld = LocalDate.parse(""+findStd.getString("evEndDate"));
-                if(ld.compareTo(LocalDate.now())>-1){ 
-                    ec.addEventToPresentPane(findStd.getString("evName"),
-                            findStd.getInt("evId"),this.listEventBox1,true,false); 
-                }
-                else {
-                    ec.addEventToPresentPane(findStd.getString("evName"),
-                            findStd.getInt("evId"),this.listEventBox2,false,false);
-                    while(findStd.next()){
-                        ld = LocalDate.parse(findStd.getString("evEndDate"));
-                        if(ld.compareTo(LocalDate.now())>-1){
-                            ec.addEventToPresentPane(findStd.getString("evName"),
-                                    findStd.getInt("evId"),this.listEventBox1,true,false);
-                        }
-                        else {
-                            ec.addEventToPresentPane(findStd.getString("evName"),
-                                    findStd.getInt("evId"),this.listEventBox2,false,false);
-                        }
-                    }
-                }
+                event = new Event(findStd.getString("evName"),
+                findStd.getString("evDescrip"),findStd.getDate("evStartDate"),
+                findStd.getDate("evEndDate"),findStd.getDate("evStartRegis"),
+                findStd.getDate("evEndFeedback"),findStd.getString("evPlace"),
+                findStd.getInt("evTicket"),findStd.getInt("currentMember"),
+                findStd.getTime("evTime"),findStd.getTime("evEndTime"),
+                findStd.getInt("evType"),findStd.getInt("evId")
+                );
             }
         }catch(SQLException e){
             e.printStackTrace();
+        }
+        ec.setStdId(getStdId());
+        LocalDate ld = LocalDate.parse(""+event.getEvEndDate());
+        if(ld.compareTo(LocalDate.now())>-1){ 
+            ec.addEventToPresentPane(event,this.listEventBox1,true,false); 
+        }
+        else {
+            ec.addEventToPresentPane(event,this.listEventBox2,false,false);
         }
     }
     
