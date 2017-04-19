@@ -386,3 +386,16 @@
 .jfx-tab-pane .tab-header-area .tab-header-background{
     -fx-background-color : #E76427;
 }
+.cancelbtn{
+    -fx-background-color: white;
+    -fx-text-fill: #4d4d4d;
+    -fx-cursor: hand;
+}
+.confirmBtn{
+    -fx-background-color: #EF4C1E;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+.confirmBtn:hover{
+    -fx-background-color: #FF6A40;
+}
