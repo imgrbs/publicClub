@@ -132,18 +132,18 @@ public class EditEventController implements Initializable {
     }
    
     @FXML
+    public void checkCustomize(){
+        if(ticket.getValue().equals("ระบุเอง")){
+            ticket.setEditable(true);   
+            ticket.setValue("");
+        }else {
+            ticket.setEditable(false);
+        }
+    } 
+    
+    @FXML
     public void setValueToCombobox(){
-        ticket.getItems().addAll("5","10","15","20","25","30","35","40","45","50","75","100","ระบุเอง");  
-        ticket.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
-            @Override
-            public void handle(javafx.event.ActionEvent event) {
-                if(ticket.getValue().equals("ระบุเอง")){
-                    ticket.setValue("");
-                    ticket.setEditable(true);   
-                }else 
-                    ticket.setEditable(false); 
-            }
-        });
+        ticket.getItems().addAll("5","10","15","20","25","30","35","40","45","50","75","100","ระบุเอง");
     }
     
     @FXML
