@@ -24,7 +24,7 @@ public class CreateEvent extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Create_Event.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("CreateEvent.fxml"));
         
         Scene scene = new Scene(root);
         
