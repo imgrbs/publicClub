@@ -11,17 +11,20 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
-import java.awt.event.ActionEvent;
+import com.sun.javafx.scene.control.behavior.OptionalBoolean;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import publicizehub.club.model.Event;
 
 /**
@@ -31,24 +34,15 @@ import publicizehub.club.model.Event;
  */
 public class CreateEventController implements Initializable {
     Event e = new Event();
-    LoginController lc = new LoginController();
     Event thisEvent = null;
     
-    private String evName; 
-    private String evDescrip;
-    private LocalDate evDate;
-    private LocalDate evEndDate;
-    private LocalDate evStartRegis;
-    private LocalDate evEndFeedback;
-    private String evPlace;
-    private int evTicket;
-    private int currentMember;
-    private LocalTime evTime;
-    private LocalTime evEndTime;
+    LoginController lc = new LoginController();
+    
     private int evType;
     private long stdId=lc.getStdId();
     
-    
+    @FXML
+    private Stage thisStage = null;
     @FXML
     private JFXTextField eventName;
     @FXML
@@ -86,10 +80,25 @@ public class CreateEventController implements Initializable {
     @FXML
     private JFXButton cancelBtn;
     
-//    thisEvent = new Event(stdId,eventName.getText(),description.getText(),startDate.getValue(),endDate.getValue(),
-//            startRegis.getValue(),startRegis.getValue().plusDays(15),place.getText(),Integer.parseInt(ticket.getValue()),
-//            startTime.getValue(),endTime.getValue(),evType);
+    private String customText="ระบุเอง";
 
+    public Stage getThisStage() {
+        return thisStage;
+    }
+
+    public void setThisStage(Stage thisStage) {
+        this.thisStage = thisStage;
+    }
+
+    public JFXButton getCancelBtn() {
+        return cancelBtn;
+    }
+
+    public void setCancelBtn(JFXButton cancelBtn) {
+        this.cancelBtn = cancelBtn;
+    }
+    
+    
 
     @FXML
     public void setAllValue(){
@@ -97,20 +106,6 @@ public class CreateEventController implements Initializable {
         thisEvent = new Event(stdId,eventName.getText(),description.getText(),startDate.getValue(),endDate.getValue(),
             startRegis.getValue(),startRegis.getValue().plusDays(15),place.getText(),Integer.parseInt(ticket.getValue()),
             startTime.getValue(),endTime.getValue(),evType);
-        
-        /*thisEvent.setEvName(eventName.getText()); 
-        thisEvent.setEvDescrip(description.getText());
-        thisEvent.setEvDate(startDate.getValue());
-        thisEvent.setEvEndDate(endDate.getValue()); 
-        thisEvent.setEvStartRegis(startRegis.getValue());
-        thisEvent.setEvEndFeedback(startRegis.getValue().plusDays(15));
-        thisEvent.setEvTime(startTime.getValue());
-        thisEvent.setEvEndTime(endTime.getValue());
-        thisEvent.setEvTicket(Integer.parseInt(ticket.getValue()));
-        thisEvent.setEvPlace(place.getText());
-        thisEvent.setStdId(stdId);
-        evTypeResult();
-        thisEvent.setEvType(evType);*/
     }
     @FXML
     public void evTypeResult(){
@@ -127,7 +122,7 @@ public class CreateEventController implements Initializable {
      * Initializes the controller class.
      */
     public void checkCustomize(){
-        if(ticket.getTypeSelector().equals("ระบุเอง")){
+        if(ticket.getTypeSelector().equals(customText)){
             ticket.setValue("");
             ticket.setEditable(true);
             
@@ -138,11 +133,10 @@ public class CreateEventController implements Initializable {
     public void setValueToCombobox(){
         
         ticket.getItems().addAll("5","10","15","20","25","30","35","40","45","50","75","100","ระบุเอง");  
-        //if(ticket.selectionModelProperty().equals("ระบุเอง")){
         ticket.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
-                if(ticket.getValue().equals("ระบุเอง")){
+                if(ticket.getValue().equals(customText)){
                     ticket.setValue("");
                     ticket.setEditable(true);   
                     
@@ -152,20 +146,65 @@ public class CreateEventController implements Initializable {
                     
             }
         });
-        //}  
     }
+    
     @FXML
     public void clickConfirm(){
-        setAllValue();
-        e.createEvent(thisEvent);
-           
+        Alert warning = null;
+        if(!true){
+            warning = new Alert(Alert.AlertType.CONFIRMATION);
+            warning.setTitle("ยืนยันการสร้างกิจกรรม");
+            warning.setHeaderText("");
+            warning.showAndWait();
+    //        <OptionalBoolean> check =
+            if(true){
+                setAllValue();
+                e.createEvent(thisEvent);
+            }
+        }else{
+            warning = new Alert(Alert.AlertType.ERROR);
+            warning.setTitle("Error!");
+            warning.setHeaderText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
+            warning.showAndWait();
+        }
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setValueToCombobox();
-        
-        
     }
     
+    @FXML
+    public void callCreateEvent(){
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/CreateEvent.fxml"));     
+        try{
+            root = (Parent)fxmlLoader.load(); 
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        CreateEventController controller = fxmlLoader.<CreateEventController>getController();
+        controller.setThisStage(stage);
+        controller.getCancelBtn().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                controller.closeStage();
+            }
+        });
+        Scene scene = new Scene(root); 
+        try{
+            stage.setScene(scene);    
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        stage.show();
+    }
+    
+    @FXML
+    public void closeStage(){
+        getThisStage().close();
+    }
 }

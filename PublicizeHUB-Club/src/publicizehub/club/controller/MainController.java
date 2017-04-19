@@ -1,6 +1,5 @@
 package publicizehub.club.controller;
 
-import java.sql.ResultSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -10,13 +9,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import publicizehub.club.view.*;
+
+import java.sql.ResultSet;
+import publicizehub.club.model.ConnectionBuilder;
 
 /**
  *
  * @author ImagineRabbits
  */
 public class MainController {
+    private ConnectionBuilder cb = new ConnectionBuilder();
     private LoginController li = new LoginController();
     private ManageController mc = new ManageController();
     private SearchController sc = new SearchController();
@@ -103,8 +105,14 @@ public class MainController {
     public void setNewsList(ListView<String> newsList) {
         this.newsList = newsList;
     }
-    
-    
+
+    public MainController() {
+     try{
+         cb.connecting();
+     }finally{
+         cb.logout();
+     }
+    }
     
     @FXML
     protected void callProfile() {
@@ -208,4 +216,5 @@ public class MainController {
     public void callManage(){
         mc.callManage(thisStage);
     }
+    
 }

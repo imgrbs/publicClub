@@ -24,9 +24,9 @@ import publicizehub.club.model.Event;
  */
 public class ManageController implements Initializable  {
     private NewsController nc = new NewsController();
+    private CreateEventController ce = new CreateEventController();
     private LoginController li = new LoginController();
     private EventController ec = new EventController();
-    private ConnectionBuilder cb = new ConnectionBuilder();
     
     private Event ev = new Event();
     
@@ -138,7 +138,6 @@ public class ManageController implements Initializable  {
     public void getEventToProfile(){
         System.out.println("Befor Get Event");
         ResultSet rs = ev.getSelect(parseLong(this.labelId.getText()));
-        cb.logout();
         System.out.println("After Get Event");
         try{
             if(rs.next()){
@@ -151,7 +150,6 @@ public class ManageController implements Initializable  {
         }catch(SQLException e){
             e.printStackTrace();
         }
-        cb.logout();
     }
 
     public void setEventToGui(int eventId){
@@ -183,7 +181,11 @@ public class ManageController implements Initializable  {
         }catch(SQLException e){
             e.printStackTrace();
         }
-        cb.logout();
+    }
+    
+    @FXML
+    public void callCreateEvent(){
+        ce.callCreateEvent();
     }
     
     @Override
