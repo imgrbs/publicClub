@@ -4,12 +4,8 @@ package publicizehub.club.controller;
 /* Import Package จำเป็นของ JavaFX และ
 Method ต่างๆ */
 /* JavaFX */
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -27,7 +23,7 @@ import publicizehub.club.model.Event;
  *
  * @author JIL
  */
-public class ProfileController implements Initializable { // JavaFX บังคับ implement Method ของ JavaFX
+public class ProfileController { // JavaFX บังคับ implement Method ของ JavaFX
     Event ev = new Event(); // Model Class ของ Event ( ดึงข้อมูล Event จาก DB )
     ConnectionBuilder cb = new ConnectionBuilder(); // Model Class สำหรับ Connect กับ DB
     
@@ -62,14 +58,6 @@ public class ProfileController implements Initializable { // JavaFX บังค
     @FXML
     private Button backBtn; // ปุ่มกดกลับหน้าหลัก
     
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
     /* Setter Getter */
     public void setLabelId(String labelId) {
         this.labelId.setText(labelId);

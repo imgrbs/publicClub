@@ -1,25 +1,42 @@
 package publicizehub.club.controller;
 
 import com.jfoenix.controls.JFXButton;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
  *
  * @author ImagineRabbits
  */
-public class ManageController {
+public class ManageController implements Initializable  {
     private NewsController nc = new NewsController();
     private LoginController li = new LoginController();
     
     private Stage mainStage;
     private Stage thisStage;
     
+    private long stdId;
+    
+    @FXML
+    private Label labelId;
+    @FXML
+    private Label labelName;
+    @FXML
+    private Label labelDepartment;
     @FXML
     private JFXButton addNewsBtn;
+    @FXML
+    private VBox listEventBox1 = new VBox(); // Box เก็บกิจกรรมที่ยังไม่จบ
+    @FXML
+    private VBox listEventBox2 = new VBox(); // Box เก็บกิจกรรมที่จบแล้ว
 
     public LoginController getLi() {
         return li;
@@ -29,6 +46,26 @@ public class ManageController {
         this.li = li;
     }
 
+    public long getStdId() {
+        return stdId;
+    }
+
+    public void setStdId(long stdId) {
+        this.stdId = stdId;
+    }
+
+    public void setLabelId(String labelId) {
+        this.labelId.setText(labelId);
+    }
+
+    public void setLabelName(String labelName) {
+        this.labelName.setText(labelName);
+    }
+
+    public void setLabelDepartment(String labelDepartment) {
+        this.labelDepartment.setText(labelDepartment);
+    }
+    
     public Stage getMainStage() {
         return mainStage;
     }
@@ -68,10 +105,10 @@ public class ManageController {
             e.printStackTrace();
         }
         ManageController controller = fxmlLoader.<ManageController>getController();
-//        controller.setStdId(getLi().getStdId());
-//        controller.setLabelDepartment(li.getDepartment());
-//        controller.setLabelId(""+li.getStdId());
-//        controller.setLabelName(li.getName()+" "+li.getSurname());
+        controller.setStdId(getLi().getStdId());
+        controller.setLabelDepartment(li.getDepartment());
+        controller.setLabelId(""+li.getStdId());
+        controller.setLabelName(li.getName()+" "+li.getSurname());
 //        controller.getEventToProfile();
         controller.setMainStage(mainStage);
         controller.setThisStage(stage);
@@ -84,6 +121,11 @@ public class ManageController {
         }
         stage.show();
         mainStage.close();
+        
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         
     }
             

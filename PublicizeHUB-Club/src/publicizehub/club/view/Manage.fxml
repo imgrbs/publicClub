@@ -66,7 +66,7 @@
                               <String fx:value="stdIdProfile" />
                            </styleClass>
                         </Label>
-                        <Label id="labelName" fx:id="labelName" alignment="CENTER" layoutX="176.0" layoutY="61.0" prefHeight="58.0" prefWidth="296.0" text="กีรติ  เจียรจินดารัตน์">
+                        <Label id="labelName" fx:id="labelName" alignment="CENTER" layoutX="176.0" layoutY="61.0" prefHeight="58.0" prefWidth="296.0" text="mock  เจียรจินดารัตน์">
                            <font>
                               <Font size="16.0" />
                            </font>
