@@ -1,7 +1,11 @@
 package publicizehub.club.controller;
 
 import com.jfoenix.controls.JFXButton;
+import static java.lang.Long.parseLong;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +15,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import publicizehub.club.model.ConnectionBuilder;
+import publicizehub.club.model.Event;
 
 /**
  *
@@ -19,6 +25,10 @@ import javafx.stage.Stage;
 public class ManageController implements Initializable  {
     private NewsController nc = new NewsController();
     private LoginController li = new LoginController();
+    private EventController ec = new EventController();
+    private ConnectionBuilder cb = new ConnectionBuilder();
+    
+    private Event ev = new Event();
     
     private Stage mainStage;
     private Stage thisStage;
@@ -109,7 +119,7 @@ public class ManageController implements Initializable  {
         controller.setLabelDepartment(li.getDepartment());
         controller.setLabelId(""+li.getStdId());
         controller.setLabelName(li.getName()+" "+li.getSurname());
-//        controller.getEventToProfile();
+        controller.getEventToProfile();
         controller.setMainStage(mainStage);
         controller.setThisStage(stage);
         Scene scene = new Scene(root); 
@@ -123,7 +133,59 @@ public class ManageController implements Initializable  {
         mainStage.close();
         
     }
+    
+    @FXML
+    public void getEventToProfile(){
+        System.out.println("Befor Get Event");
+        ResultSet rs = ev.getSelect(parseLong(this.labelId.getText()));
+        cb.logout();
+        System.out.println("After Get Event");
+        try{
+            if(rs.next()){
+                System.out.println("Event Come");
+                setEventToGui(rs.getInt("evId"));
+                while(rs.next()){
+                    setEventToGui(rs.getInt("evId"));
+                }
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        cb.logout();
+    }
 
+    public void setEventToGui(int eventId){
+        ResultSet findStd = ev.getSelect(eventId);
+        ec.setStdId(getStdId());
+        try{
+            if(findStd.next()){
+                LocalDate ld = LocalDate.parse(""+findStd.getString("evEndDate"));
+                if(ld.compareTo(LocalDate.now())>-1){ 
+                    ec.addEventToPresentPane(findStd.getString("evName"),
+                            findStd.getInt("evId"),this.listEventBox1,true); 
+                }
+                else {
+                    ec.addEventToPresentPane(findStd.getString("evName"),
+                            findStd.getInt("evId"),this.listEventBox2,false);
+                    while(findStd.next()){
+                        ld = LocalDate.parse(findStd.getString("evEndDate"));
+                        if(ld.compareTo(LocalDate.now())>-1){
+                            ec.addEventToPresentPane(findStd.getString("evName"),
+                                    findStd.getInt("evId"),this.listEventBox1,true);
+                        }
+                        else {
+                            ec.addEventToPresentPane(findStd.getString("evName"),
+                                    findStd.getInt("evId"),this.listEventBox2,false);
+                        }
+                    }
+                }
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        cb.logout();
+    }
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
