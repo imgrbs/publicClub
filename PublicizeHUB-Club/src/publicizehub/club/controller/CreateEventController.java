@@ -15,7 +15,6 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import com.jfoenix.controls.*;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import com.sun.javafx.scene.control.behavior.OptionalBoolean;
 import publicizehub.club.model.Event;
@@ -31,8 +30,9 @@ public class CreateEventController implements Initializable {
     
     LoginController lc = new LoginController();
     
-    private int evType;
+    private int evType = -1;
     private long stdId=lc.getStdId();
+    
     
     @FXML
     private Stage thisStage = null;
@@ -95,7 +95,6 @@ public class CreateEventController implements Initializable {
 
     @FXML
     public void setAllValue(){
-        evTypeResult();
         thisEvent = new Event(stdId,eventName.getText(),description.getText(),startDate.getValue(),endDate.getValue(),
             startRegis.getValue(),startRegis.getValue().plusDays(15),place.getText(),Integer.parseInt(ticket.getValue()),
             startTime.getValue(),endTime.getValue(),evType);
@@ -124,7 +123,6 @@ public class CreateEventController implements Initializable {
     } 
     @FXML
     public void setValueToCombobox(){
-        
         ticket.getItems().addAll("5","10","15","20","25","30","35","40","45","50","75","100","ระบุเอง");  
         ticket.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
@@ -132,19 +130,19 @@ public class CreateEventController implements Initializable {
                 if(ticket.getValue().equals(customText)){
                     ticket.setValue("");
                     ticket.setEditable(true);   
-                    
                 }else 
-                    
                     ticket.setEditable(false); 
-                    
             }
         });
     }
     
     @FXML
     public void clickConfirm(){
+        System.out.println(startDate.getValue());
         Alert warning = null;
-        if(!true){
+        evTypeResult();
+        boolean check = validateField();
+        if(check){
             warning = new Alert(Alert.AlertType.ERROR);
             warning.setTitle("Error!");
             warning.setHeaderText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
@@ -155,9 +153,10 @@ public class CreateEventController implements Initializable {
             warning.setHeaderText("ยืนยันที่จะสร้างกิจกรรม");
             Optional<ButtonType> result = warning.showAndWait();
             if(result.get() == ButtonType.OK){
-//                setAllValue();
-//                e.createEvent(thisEvent);
+                setAllValue();
+                e.createEvent(thisEvent);
                 warning = new Alert(Alert.AlertType.INFORMATION);
+                setEmptyField();
                 warning.setTitle("Success!");
                 warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
                 warning.showAndWait();
@@ -202,5 +201,37 @@ public class CreateEventController implements Initializable {
     @FXML
     public void closeStage(){
         getThisStage().close();
+    }
+    
+    public boolean validateField(){
+        boolean check = false;
+        if(eventName.getText().equals("")||description.getText().equals("")||
+           place.getText().equals("")||startRegis.getValue()==null||
+           startDate.getValue()==null||endDate.getValue()==null||
+           startTime.getValue()==null||endTime.getValue()==null||
+           evType==-1){
+            check = true;
+        }
+        return check;
+    }
+    
+    public void setEmptyField(){
+        eventName.setText("");
+        description.setText("");
+        place.setText("");
+        try{
+            startRegis.setValue(null);
+            startDate.setValue(null);
+            endDate.setValue(null);
+            startTime.setValue(null);
+            endTime.setValue(null);
+        }catch(NullPointerException e){
+            System.out.println("Set Date Value = null : maybe BUG");
+        }
+        evType=-1;
+        camp.setSelected(false);
+        seminar.setSelected(false);
+        other.setSelected(false);
+        ticket.setValue(customText);
     }
 }
