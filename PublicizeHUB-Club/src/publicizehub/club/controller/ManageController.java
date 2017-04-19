@@ -162,20 +162,20 @@ public class ManageController implements Initializable  {
                 LocalDate ld = LocalDate.parse(""+findStd.getString("evEndDate"));
                 if(ld.compareTo(LocalDate.now())>-1){ 
                     ec.addEventToPresentPane(findStd.getString("evName"),
-                            findStd.getInt("evId"),this.listEventBox1,true); 
+                            findStd.getInt("evId"),this.listEventBox1,true,false); 
                 }
                 else {
                     ec.addEventToPresentPane(findStd.getString("evName"),
-                            findStd.getInt("evId"),this.listEventBox2,false);
+                            findStd.getInt("evId"),this.listEventBox2,false,false);
                     while(findStd.next()){
                         ld = LocalDate.parse(findStd.getString("evEndDate"));
                         if(ld.compareTo(LocalDate.now())>-1){
                             ec.addEventToPresentPane(findStd.getString("evName"),
-                                    findStd.getInt("evId"),this.listEventBox1,true);
+                                    findStd.getInt("evId"),this.listEventBox1,true,false);
                         }
                         else {
                             ec.addEventToPresentPane(findStd.getString("evName"),
-                                    findStd.getInt("evId"),this.listEventBox2,false);
+                                    findStd.getInt("evId"),this.listEventBox2,false,false);
                         }
                     }
                 }

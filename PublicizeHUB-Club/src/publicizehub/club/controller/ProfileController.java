@@ -142,21 +142,21 @@ public class ProfileController { // JavaFX บังคับ implement Method �
             // ถ้าส่ง ใน Parameter สุดท้าย  True จะเป็นปุ่ม Join กับ Detail
             // ส่ง Event Name สำหรับ Label ชื่อ Event นั้นๆ และส่ง Event ID สำหรับใช้ Method อื่น
                     ec.addEventToPresentPane(findStd.getString("evName"),
-                            findStd.getInt("evId"),this.listEventBox1,true); 
+                            findStd.getInt("evId"),this.listEventBox1,true,true); 
                 }
                 else {
                     // ถ้าเป็น ใน Parameter สุดท้าย false จะเป็นปุ่มประเมิณขึ้นมาแทน
                     ec.addEventToPresentPane(findStd.getString("evName"),
-                            findStd.getInt("evId"),this.listEventBox2,false);
+                            findStd.getInt("evId"),this.listEventBox2,false,true);
                     while(findStd.next()){
                         ld = LocalDate.parse(findStd.getString("evEndDate"));
                         if(ld.compareTo(LocalDate.now())>-1){
                             ec.addEventToPresentPane(findStd.getString("evName"),
-                                    findStd.getInt("evId"),this.listEventBox1,true);
+                                    findStd.getInt("evId"),this.listEventBox1,true,true);
                         }
                         else {
                             ec.addEventToPresentPane(findStd.getString("evName"),
-                                    findStd.getInt("evId"),this.listEventBox2,false);
+                                    findStd.getInt("evId"),this.listEventBox2,false,true);
                         }
                     }
                 }

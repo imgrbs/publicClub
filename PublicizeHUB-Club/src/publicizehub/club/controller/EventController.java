@@ -50,19 +50,27 @@ public class EventController {
     }
     
     /* Method สร้าง Component ใน Profile GUI */
-    public void addEventToPresentPane(String evName,int eventId,VBox listEventBox,boolean evaluation) {
+    public void addEventToPresentPane(String evName,int eventId,VBox listEventBox,boolean evaluation,boolean checkTypeGui) {
         /* รับ Event Name String มาเพื่อจะ Set Label เป็นชื่อ */
+        String presentText = "ตรวจสอบโค้ด";
+        String presentDetail = "รายละเอียด";
+        String evaluaText = "ประเมิณกิจกรรม";
+        if(!checkTypeGui){
+            presentText="แก้ไขกิจกรรม";
+            presentDetail = "รายละเอียด";
+            evaluaText = "ผลตอบรับ";
+        }
         Pane p = new Pane(); // สร้างกล่องสำหรับ 1 Component
         Label labelEvName = new Label(evName); // สร้าง Label ชื่อ Event
         /*เช็คว่า เป็น กิจกรรมที่จบแล้วหรือไม่ ถ้าเป็น true คือยังไม่จบ จะให้สร้าง
         ปุ่ม Check Code กับ Detail ถ้าจบแล้วจะให้สร้างปุ่มประเมิณกิจกรรม */
         if(evaluation){
-            Button joinbtn = new Button("Check Code"); // สร้างปุ่มสำหรับ Check Code
-            Button detailbtn = new Button("Detail"); // สร้างปุ่ม Detail กิจกรรม
+            Button joinbtn = new Button(presentText); // สร้างปุ่มสำหรับ Check Code
+            Button detailbtn = new Button(presentDetail); // สร้างปุ่ม Detail กิจกรรม
             /* เพิ่ม CSS จากไฟล์ style.css */
             joinbtn.getStyleClass().add("joinBtnProfile"); // css ตกแต่งปุ่ม
             joinbtn.getStyleClass().add("quark"); // css font quark
-            detailbtn.getStyleClass().add("detailbtnSearch"); // css ตกแต่งปุ่ม
+            detailbtn.getStyleClass().add("detailbtnProfile"); // css ตกแต่งปุ่ม
             detailbtn.getStyleClass().add("quark"); // css font quark
             /* ตั้งตำแหน่งของปุ่มใน Box Component */
             joinbtn.setLayoutX(225);
@@ -92,12 +100,12 @@ public class EventController {
         }else{
             /* Method คล้าย ใน if แต่ สร้างปุ่ม ประเมิณกิจกรรม และเรียกคนละ
             Method โดยปุ่มนี้จะเรียก Method ประเมิณกิจกรรมนั้นๆ */
-            Button evaluationbtn = new Button("ประเมิณกิจกรรม");
+            Button evaluationbtn = new Button(evaluaText);
             /* เพิ่ม CSS จากไฟล์ style.css */
             evaluationbtn.getStyleClass().add("evaluationbtn"); // css ตกแต่งปุ่ม
             evaluationbtn.getStyleClass().add("quark"); // css font quark
             /* ปรับตำแหน่ง */
-            evaluationbtn.setLayoutX(280);
+            evaluationbtn.setLayoutX(370);
             evaluationbtn.setLayoutY(90);
             /* Bind Event ให้ปุ่ม ประเมิณกิจกรรม */
             evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {

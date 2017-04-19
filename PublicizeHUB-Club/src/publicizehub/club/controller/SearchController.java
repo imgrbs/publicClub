@@ -83,8 +83,8 @@ public class SearchController implements Initializable {
     public void addEventToPane(String eventName,int eventId) {
         Pane p = new Pane();
         l= new Label(eventName);
-        Button joinbtn = new Button("Join");
-        Button detailbtn = new Button("Detail");
+        Button joinbtn = new Button("เข้าร่วม");
+        Button detailbtn = new Button("รายละเอียด");
         joinbtn.getStyleClass().add("joinbtnSearch");
         detailbtn.getStyleClass().add("detailbtnSearch");
         joinbtn.setLayoutX(285);

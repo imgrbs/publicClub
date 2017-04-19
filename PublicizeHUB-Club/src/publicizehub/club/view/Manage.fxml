@@ -63,7 +63,7 @@
                               </Tab>
                            </tabs>
                         </JFXTabPane>
-                        <Label alignment="CENTER" layoutX="8.0" layoutY="198.0" prefHeight="33.0" prefWidth="399.0" text="*หากข้อมูลผิดพลาดหรือต้องการแก้ไขข้อมูลโปรดแจ้งผู้ดูแลระบบ" textFill="#d74949">
+                        <Label layoutX="8.0" layoutY="198.0" prefHeight="33.0" prefWidth="399.0" text="*หากข้อมูลผิดพลาดหรือต้องการแก้ไขข้อมูลโปรดแจ้งผู้ดูแลระบบ" textFill="#d74949">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />

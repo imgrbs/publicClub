@@ -69,22 +69,24 @@
     -fx-cursor: hand;
 }
 .joinbtnSearch{
-    -fx-font-family:'ThaiSansNeueRegular';
+    -fx-font-family:'Quark';
     -fx-background-color: #e7560c;
     -fx-text-fill:white;
     -fx-cursor: hand;
     -fx-font-size: 15px;
+    -fx-font-weight: bold;
     -fx-pref-width: 80px;
 }
 .joinbtnSearch:hover{
     -fx-background-color: #F9AD87;
 }
 .joinBtnProfile{
-    -fx-font-family:'ThaiSansNeueRegular';
+    -fx-font-family:'Quark';
     -fx-background-color: #e7560c;
     -fx-text-fill:white;
     -fx-cursor: hand;
-    -fx-font-size: 15px;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
     -fx-pref-width: 130px;
 }
 
@@ -92,14 +94,27 @@
     -fx-background-color: #F9AD87;
 }
 .detailbtnSearch{
-    -fx-font-family:'ThaiSansNeueRegular';
+    -fx-font-family:'Quark';
     -fx-background-color: #d3d3d3;
     -fx-text-fill: #4d4d4d;
     -fx-cursor: hand;
-    -fx-font-size: 15px;
-    -fx-pref-width: 80px;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-pref-width: 90px;
 }
 .detailbtnSearch:hover{
+    -fx-background-color: #ECECEC;
+}
+.detailbtnProfile{
+    -fx-font-family:'Quark';
+    -fx-background-color: #d3d3d3;
+    -fx-text-fill: #4d4d4d;
+    -fx-cursor: hand;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-pref-width: 130px;
+}
+.detailbtnProfile:hover{
     -fx-background-color: #ECECEC;
 }
 .evaluationbtn{
@@ -205,7 +220,7 @@
     -fx-effect: dropshadow(three-pass-box, #9F870A, 0, 0, 0, 5);
 }
 .unjoin{
-    -fx-font-family:'ThaiSansNeueRegular';
+    -fx-font-family:'Quark';
     -fx-background-color:  #F82222;
     -fx-text-fill: #ffffff;
     -fx-cursor: hand;
@@ -227,7 +242,7 @@
     -fx-text-fill: #DB9B64;
 }
 .listJoinBtn{
-    -fx-font-size: 20px;
+    -fx-font-size: 17px;
     -fx-background-color: #EF4C1E;
     -fx-text-fill: #fff;
     -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
@@ -286,7 +301,7 @@
     -fx-font-size: 40px;
 }
 .warningProfile{
-    -fx-font-size: 20px;
+    -fx-font-size: 17px;
 }
 .insertEventSize{
 	-fx-font-size: 45px;
