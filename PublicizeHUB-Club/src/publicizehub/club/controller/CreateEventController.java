@@ -1,20 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package publicizehub.club.controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTimePicker;
-import com.sun.javafx.scene.control.behavior.OptionalBoolean;
+
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -26,6 +13,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import com.jfoenix.controls.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import com.sun.javafx.scene.control.behavior.OptionalBoolean;
 import publicizehub.club.model.Event;
 
 /**
