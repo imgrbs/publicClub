@@ -29,8 +29,6 @@ public class SearchController implements Initializable {
     DetailController dc = new DetailController();
     Search s = new Search();
     Alert alert = new Alert(AlertType.WARNING);
-
-    
     @FXML
     private Label label;
     @FXML
@@ -41,7 +39,17 @@ public class SearchController implements Initializable {
     private Label l;
     
     int checkEvType;
+    
+    private String text;
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+    
     public int getCheckEvType() {
         return checkEvType;
     }
@@ -60,18 +68,11 @@ public class SearchController implements Initializable {
     
     public void setSearch(String search) {
         try{
-            this.search.setText(""+search);
+            this.search.setText(search);
         }
         catch(Exception e){
             e.printStackTrace();
         }
-    }
-    
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
     }
     
     @Override
@@ -123,6 +124,9 @@ public class SearchController implements Initializable {
         ResultSet result;
         buttonBox.getChildren().clear();
         String temp = search.getText();
+        if(temp.equals("")||search.getText()==null){
+            temp = this.text;
+        }
         search.setText("");
         try{
             if(temp.equals("")||temp.charAt(0)==' '){
@@ -189,5 +193,29 @@ public class SearchController implements Initializable {
     public ResultSet getEventToGui(String wording){
         ResultSet rs = s.resultSearch(wording);
         return rs;
+    }
+    
+    @FXML
+    public void callSearch(String text){
+        Stage stage= new Stage();
+        Parent root=null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/AddNews.fxml"));     
+        try{
+            root = (Parent)fxmlLoader.load(); 
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        SearchController controller = fxmlLoader.<SearchController>getController();
+        controller.setText(text);
+        controller.checkSearch();
+        Scene scene = new Scene(root); 
+        try{
+            stage.setScene(scene);    
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        stage.show();
     }
 }

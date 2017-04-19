@@ -127,12 +127,12 @@
                      <right>
                         <Pane prefHeight="66.0" prefWidth="422.0" BorderPane.alignment="CENTER">
                            <children>
-                              <TextField fx:id="searchfield" layoutX="47.0" layoutY="20.0" onAction="#callSearchText" prefHeight="19.0" prefWidth="213.0" promptText="พิมพ์คำที่ต้องการค้นหา..">
+                              <TextField fx:id="searchfield" layoutX="47.0" layoutY="20.0" onAction="#sentToSearch" prefHeight="19.0" prefWidth="213.0" promptText="พิมพ์คำที่ต้องการค้นหา..">
                                  <font>
                                     <Font name="Quark-Bold" size="14.0" />
                                  </font>
                               </TextField>
-                              <Button fx:id="searchbtn" layoutX="271.0" layoutY="20.0" mnemonicParsing="false" onAction="#callSearchText" prefHeight="32.0" prefWidth="78.0" styleClass="search-btn" stylesheets="@../css/style.css" text="ค้นหา">
+                              <Button fx:id="searchbtn" layoutX="271.0" layoutY="20.0" mnemonicParsing="false" onAction="#sentToSearch" prefHeight="32.0" prefWidth="78.0" styleClass="search-btn" stylesheets="@../css/style.css" text="ค้นหา">
                                  <font>
                                     <Font name="Quark-Bold" size="14.0" />
                                  </font>

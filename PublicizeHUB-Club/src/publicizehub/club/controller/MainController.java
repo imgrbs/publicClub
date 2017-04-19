@@ -143,12 +143,7 @@ public class MainController {
         stage.show();
         thisStage.close();
     }
-
-    @FXML
-    protected void callSearchText() {
-        System.out.println(searchfield.getText());
-    }
-
+    
     @FXML
     protected void callSearchEvent() {
         System.out.println("callCampEvent");
@@ -217,4 +212,11 @@ public class MainController {
         mc.callManage(thisStage);
     }
     
+    @FXML
+    public void sentToSearch(){
+        String text = searchfield.getText();
+        System.out.println(text);
+        sc.callSearch(text);
+        searchfield.setText("");
+    }
 }
