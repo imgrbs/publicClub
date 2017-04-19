@@ -54,7 +54,7 @@
                         </Button>
                      </children>
                   </JFXRippler>
-                  <Button fx:id="manageBtn" alignment="CENTER_RIGHT" layoutX="1.0" layoutY="224.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="200.0" text="Manage Event">
+                  <Button fx:id="manageBtn" alignment="CENTER_RIGHT" layoutX="1.0" layoutY="224.0" mnemonicParsing="false" onAction="#callManage" prefHeight="43.0" prefWidth="200.0" text="Manage Event">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -77,7 +77,7 @@
                         <Font name="Quark-Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Button fx:id="seminarBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="369.0" mnemonicParsing="false" onAction="#testAddnew" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="Seminar Event">
+                  <Button fx:id="seminarBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="369.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="Seminar Event">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -99,12 +99,12 @@
                         <Image url="@../css/images/logo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="34.0" fitWidth="36.0" layoutX="23.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="34.0" fitWidth="36.0" layoutX="23.0" layoutY="182.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../css/images/user.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="managePic" fitHeight="32.0" fitWidth="32.0" layoutX="24.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="managePic" fitHeight="32.0" fitWidth="32.0" layoutX="24.0" layoutY="230.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../css/images/school-material.png" />
                      </image>

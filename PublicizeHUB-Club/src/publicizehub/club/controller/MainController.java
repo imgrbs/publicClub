@@ -18,22 +18,12 @@ import publicizehub.club.view.*;
  */
 public class MainController {
     private LoginController li = new LoginController();
-
-    NewsController nc = new NewsController();
-    
-    @FXML
-    public void testAddnew(){
-        nc.callAddNews();
-    }
-    
-    public LoginController getLi() {
-        return li;
-    }
-    
-    SearchController sc = new SearchController();
-    JoinController jc = new JoinController();
-    DetailController dc = new DetailController();
-    ResultSet rs = null;
+    private ManageController mc = new ManageController();
+    private SearchController sc = new SearchController();
+    private JoinController jc = new JoinController();
+    private DetailController dc = new DetailController();
+    private NewsController nc = new NewsController();
+    private ResultSet rs = null;
 
     private Stage thisStage;
     
@@ -68,11 +58,15 @@ public class MainController {
     private ImageView managePic;
     
     @FXML
-    TextField searchfield;
+    private TextField searchfield;
     
     @FXML
     private ListView<String> newsList;
 
+    public LoginController getLi() {
+        return li;
+    }
+    
     public Stage getThisStage() {
         return thisStage;
     }
@@ -89,6 +83,9 @@ public class MainController {
     public void setUserData(long stdId,String stdName){
         this.stdId.setText(""+stdId);
         this.stdName.setText(""+stdName);
+        if(this.getLi().getStatus()==1){
+            this.setManageDisable();
+        }
     }
 
     public NewsController getNc() {
@@ -207,4 +204,8 @@ public class MainController {
         }
     }
     
+    @FXML
+    public void callManage(){
+        mc.callManage(thisStage);
+    }
 }

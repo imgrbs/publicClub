@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bodyManager" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="bodyManager" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.ManageController">
    <children>
       <BorderPane layoutX="10.0" layoutY="14.0" prefHeight="573.0" prefWidth="745.0">
          <center>
@@ -26,26 +26,26 @@
                      <children>
                         <JFXTabPane layoutY="229.0" prefHeight="298.0" prefWidth="649.0" style="jfx-tab-pane-color: #fff;" styleClass="quark">
                            <tabs>
-                              <Tab style="-fx-background-color: #E7560C;" text="กิจกรรมที่จบแล้ว">
+                              <Tab fx:id="presentTab" style="-fx-background-color: #E7560C;" text="กิจกรรมที่จบแล้ว">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="728.0">
                                        <children>
                                           <JFXScrollPane layoutY="14.0" prefHeight="224.0" prefWidth="649.0">
                                              <children>
-                                                <VBox alignment="CENTER" prefHeight="246.0" prefWidth="728.0" style="-fx-background-color: #fff;" />
+                                                <VBox fx:id="listEventBox1" alignment="CENTER" prefHeight="246.0" prefWidth="728.0" style="-fx-background-color: #fff;" />
                                              </children>
                                           </JFXScrollPane>
                                        </children>
                                     </AnchorPane>
                                 </content>
                               </Tab>
-                              <Tab style="-fx-background-color: #E7560C;" text="กิจกรรมที่ยังไม่จบ">
+                              <Tab fx:id="pastTab" style="-fx-background-color: #E7560C;" text="กิจกรรมที่ยังไม่จบ">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
                                           <JFXScrollPane layoutX="-2.0" layoutY="14.0" prefHeight="226.0" prefWidth="652.0">
                                              <children>
-                                                <VBox alignment="CENTER" prefHeight="211.0" prefWidth="652.0" style="-fx-background-color: #fff;" />
+                                                <VBox fx:id="listEventBox2" alignment="CENTER" prefHeight="211.0" prefWidth="652.0" style="-fx-background-color: #fff;" />
                                              </children>
                                           </JFXScrollPane>
                                        </children>
@@ -81,12 +81,12 @@
                               <String fx:value="stdIdProfile" />
                            </styleClass>
                         </Label>
-                        <JFXButton layoutX="529.0" layoutY="195.0" prefHeight="30.0" prefWidth="113.0" ripplerFill="#ffaf2e" text="สร้างกิจกรรม">
+                        <JFXButton fx:id="createEventBtn" layoutX="529.0" layoutY="195.0" prefHeight="30.0" prefWidth="113.0" ripplerFill="#ffaf2e" text="สร้างกิจกรรม">
                            <styleClass>
                               <String fx:value="addEventManage" />
                               <String fx:value="quark" />
                            </styleClass></JFXButton>
-                        <JFXButton layoutX="416.0" layoutY="195.0" prefHeight="30.0" prefWidth="113.0" ripplerFill="#ff81c8" text="เพิ่มข่าวกิจกรรม">
+                        <JFXButton fx:id="addNewsBtn" layoutX="416.0" layoutY="195.0" onAction="#callAddNews" prefHeight="30.0" prefWidth="113.0" ripplerFill="#ff81c8" text="เพิ่มข่าวกิจกรรม">
                            <styleClass>
                               <String fx:value="addNewsManage" />
                               <String fx:value="quark" />

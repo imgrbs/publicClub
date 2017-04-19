@@ -68,7 +68,7 @@
                                     </AnchorPane>
                               </content>
                             </Tab>
-                              <Tab id="presentTab" fx:id="presentTab1" style="-fx-background-color: white;" styleClass="quark" text="กิจกรรมที่ผ่านมาแล้ว">
+                              <Tab id="presentTab" fx:id="pastTab" style="-fx-background-color: white;" styleClass="quark" text="กิจกรรมที่ผ่านมาแล้ว">
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="122.0" prefWidth="552.0">
                                        <children>

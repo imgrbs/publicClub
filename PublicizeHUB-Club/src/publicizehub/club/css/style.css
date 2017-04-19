@@ -354,12 +354,12 @@
 }
 
 .adminTag{
-    -fx-background-color: #E21D1D;
+    -fx-background-color: #ff3860;
     -fx-background-radius: 10px;
     -fx-text-fill: #fff;
 }
 .userTag{
-    -fx-background-color: #FF7631;
+    -fx-background-color: #00d1b2;
     -fx-background-radius: 10px;
     -fx-text-fill: #fff;
 }

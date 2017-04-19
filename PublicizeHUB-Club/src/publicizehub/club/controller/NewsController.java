@@ -30,7 +30,7 @@ import publicizehub.club.model.*;
  *
  * @author JIL
  */
-public class NewsController implements Initializable {
+public class NewsController {
     News nw = new News();
     ArrayList<String> myArrList = new ArrayList<String>();
     ConnectionBuilder cb = new ConnectionBuilder();
@@ -40,11 +40,6 @@ public class NewsController implements Initializable {
 
     @FXML
     private JFXButton submit;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
-    }
     
     public void callAddNews(){
         Stage stage= new Stage();
