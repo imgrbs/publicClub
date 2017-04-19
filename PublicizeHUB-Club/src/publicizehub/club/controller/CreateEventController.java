@@ -32,7 +32,7 @@ public class CreateEventController implements Initializable {
     
     private int evType = -1;
     private long stdId=lc.getStdId();
-    
+    //String num[] = {"100","2","3","4","5","6","7","8","9","0"};
     
     @FXML
     private Stage thisStage = null;
@@ -72,7 +72,8 @@ public class CreateEventController implements Initializable {
     private JFXButton confirmBtn;
     @FXML
     private JFXButton cancelBtn;
-    
+    @FXML
+    private Label warnNum;
     private String customText="ระบุเอง";
 
     public Stage getThisStage() {
@@ -183,6 +184,22 @@ public class CreateEventController implements Initializable {
         stage.show();
     }
     
+    @FXML
+    public void checkNumber(){
+        
+        for(int i=0;i<ticket.getValue().length();i++){
+            char temp = ticket.getValue().charAt(i);
+            
+            for (int j = 0; j < ticket.getValue().length(); j++) {
+                if (temp != '0' || temp != '9') {
+                    warnNum.setText("*กรุณาใส่ตัวเลข");
+                } else {
+                    warnNum.setText("");
+                }
+            }
+        }
+    }
+                
     @FXML
     public void closeStage(){
         getThisStage().close();

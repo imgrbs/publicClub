@@ -8,6 +8,7 @@
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.CreateEventController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.CreateEventController">
    <children>
       <FlowPane layoutX="59.0" layoutY="50.0" prefHeight="400.0" prefWidth="895.0" styleClass="bodyOnlyColor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -94,9 +95,9 @@
 
                         <!--<JFXTimePicker fx:id="startTime" defaultColor="#dd721a" layoutX="206.0" layoutY="242.0" prefHeight="28.0" prefWidth="173.0">-->
 
-<!--                           <cursor>
+                           <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor>-->
+                           </cursor>
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
@@ -107,9 +108,9 @@
 
                         
 
-<!--                           <cursor>
+                           <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor>-->
+                           </cursor>
                            <styleClass>
                               <String fx:value="formEvName" />
                               <String fx:value="quark" />
@@ -120,9 +121,9 @@
 
                         
 
-<!--                           <cursor>
+                           <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor>-->
+                           </cursor>
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
@@ -133,9 +134,9 @@
 
                         <!--<JFXDatePicker fx:id="endDate" defaultColor="#dd721a" editable="false" layoutX="510.0" layoutY="190.0" prefHeight="28.0" prefWidth="173.0">-->
 
-<!--                           <cursor>
+                           <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor>-->
+                           </cursor>
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
@@ -204,6 +205,7 @@
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
                            </styleClass></JFXDatePicker>
+                        <Label fx:id="warnNum" layoutX="561.0" layoutY="287.0" prefHeight="21.0" prefWidth="83.0" styleClass="quark" textFill="#ff0909" />
                      </children>
                   </Pane>
                </center>
