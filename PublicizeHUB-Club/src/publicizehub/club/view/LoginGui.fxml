@@ -31,14 +31,14 @@
                         <Image url="@../css/images/logo.png" />
                      </image>
                   </ImageView>
-                  <TextField layoutX="53.0" layoutY="283.0" prefHeight="31.0" prefWidth="240.0" promptText="Username" styleClass="usernamefield" />
-                  <PasswordField layoutX="54.0" layoutY="327.0" prefHeight="31.0" prefWidth="239.0" promptText="Password" styleClass="passwordfield" />
-                  <Button layoutX="54.0" layoutY="379.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" styleClass="loginBth" text="SIGN IN">
+                  <TextField fx:id="username" layoutX="53.0" layoutY="283.0" prefHeight="31.0" prefWidth="240.0" promptText="Username" styleClass="usernamefield" />
+                  <PasswordField fx:id="password" layoutX="54.0" layoutY="327.0" prefHeight="31.0" prefWidth="239.0" promptText="Password" styleClass="passwordfield" />
+                  <Button fx:id="signinBtn" layoutX="54.0" layoutY="379.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" styleClass="loginBth" text="SIGN IN">
                      <font>
                         <Font name="ThaiSans Neue Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button layoutX="174.0" layoutY="377.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="102.0" styleClass="registerBtn" text="REGISTER">
+                  <Button fx:id="registerBtn" layoutX="174.0" layoutY="377.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="102.0" styleClass="registerBtn" text="REGISTER">
                      <font>
                         <Font name="ThaiSans Neue Bold" size="20.0" />
                      </font>

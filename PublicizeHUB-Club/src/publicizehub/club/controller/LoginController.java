@@ -1,9 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package publicizehub.club.controller;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -11,7 +14,8 @@ package publicizehub.club.controller;
  */
 
 //จำลองเอาเด้อ
-public class LoginController {
+public class LoginController implements Initializable{
+    
     private long stdId = 59130500007l;
     private String name = "กีรติ";
     private String surname = "เจียรจินดารัตน์";
@@ -65,6 +69,27 @@ public class LoginController {
 
     public boolean getCheckLogin() {
         return checkLogin;
+    }
+
+    
+     @FXML
+    private TextField username;
+
+    @FXML
+    private PasswordField password;
+
+    @FXML
+    private Button signinBtn;
+
+    @FXML
+    private Button registerBtn;
+    
+    
+    
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        
     }
 
     
