@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
  */
 
 //จำลองเอาเด้อ
-public class LoginController implements Initializable{
+public class LoginController{
    
     private long stdId = 59130500007l;
     private String name = "กีรติ";
@@ -83,14 +83,5 @@ public class LoginController implements Initializable{
 
     @FXML
     private Button registerBtn;
-
-    
-    
-    
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
-    }
-
     
 }
