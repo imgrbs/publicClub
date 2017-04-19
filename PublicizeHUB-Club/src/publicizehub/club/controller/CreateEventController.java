@@ -15,6 +15,7 @@ import com.sun.javafx.scene.control.behavior.OptionalBoolean;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -152,20 +153,23 @@ public class CreateEventController implements Initializable {
     public void clickConfirm(){
         Alert warning = null;
         if(!true){
-            warning = new Alert(Alert.AlertType.CONFIRMATION);
-            warning.setTitle("ยืนยันการสร้างกิจกรรม");
-            warning.setHeaderText("");
-            warning.showAndWait();
-    //        <OptionalBoolean> check =
-            if(true){
-                setAllValue();
-                e.createEvent(thisEvent);
-            }
-        }else{
             warning = new Alert(Alert.AlertType.ERROR);
             warning.setTitle("Error!");
             warning.setHeaderText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
-            warning.showAndWait();
+            warning.showAndWait();            
+        }else{
+            warning = new Alert(Alert.AlertType.CONFIRMATION);
+            warning.setTitle("Information!");
+            warning.setHeaderText("ยืนยันที่จะสร้างกิจกรรม");
+            Optional<ButtonType> result = warning.showAndWait();
+            if(result.get() == ButtonType.OK){
+//                setAllValue();
+//                e.createEvent(thisEvent);
+                warning = new Alert(Alert.AlertType.INFORMATION);
+                warning.setTitle("Success!");
+                warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
+                warning.showAndWait();
+            }
         }
     }
     

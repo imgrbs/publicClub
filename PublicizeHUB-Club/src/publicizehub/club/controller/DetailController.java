@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import publicizehub.club.model.Event;
+import publicizehub.club.view.ListPerson;
 
 public class DetailController {
     private Event ev = new Event();
@@ -82,4 +83,8 @@ public class DetailController {
         stage.show();
     }
     
+    public void callListPerson(){
+        ListPerson lp = new ListPerson();
+        lp.setVisible(true);
+    }
 }
