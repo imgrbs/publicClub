@@ -1,29 +1,25 @@
 package publicizehub.club.controller;
 
 import com.jfoenix.controls.JFXButton;
-import static java.lang.Long.parseLong;
-import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import publicizehub.club.model.ConnectionBuilder;
+
 import publicizehub.club.model.Event;
+import static java.lang.Long.parseLong;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 
 /**
  *
  * @author ImagineRabbits
  */
-public class ManageController implements Initializable  {
+public class ManageController {
     private NewsController nc = new NewsController();
     private CreateEventController ce = new CreateEventController();
     private LoginController li = new LoginController();
@@ -45,9 +41,9 @@ public class ManageController implements Initializable  {
     @FXML
     private JFXButton addNewsBtn;
     @FXML
-    private VBox listEventBox1 = new VBox(); // Box เก็บกิจกรรมที่ยังไม่จบ
+    private final VBox listEventBox1 = new VBox();
     @FXML
-    private VBox listEventBox2 = new VBox(); // Box เก็บกิจกรรมที่จบแล้ว
+    private final VBox listEventBox2 = new VBox();
 
     public LoginController getLi() {
         return li;
@@ -113,7 +109,7 @@ public class ManageController implements Initializable  {
             root = (Parent)fxmlLoader.load(); 
         }
         catch(Exception e){
-            e.printStackTrace();
+            System.out.println("ERROR at callManage");
         }
         ManageController controller = fxmlLoader.<ManageController>getController();
         controller.setStdId(getLi().getStdId());
@@ -128,7 +124,7 @@ public class ManageController implements Initializable  {
             stage.setScene(scene);    
         }
         catch(Exception e){
-            e.printStackTrace();
+            System.out.println("ERROR at callManage");
         }
         stage.show();
         mainStage.close();
@@ -137,19 +133,16 @@ public class ManageController implements Initializable  {
     
     @FXML
     public void getEventToProfile(){
-        System.out.println("Befor Get Event");
         ResultSet rs = ev.getSelect(parseLong(this.labelId.getText()));
-        System.out.println("After Get Event");
         try{
             if(rs.next()){
-                System.out.println("Event Come");
                 setEventToGui(rs.getInt("evId"));
                 while(rs.next()){
                     setEventToGui(rs.getInt("evId"));
                 }
             }
         }catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("ERROR at getEventToProfile");
         }
     }
 
@@ -168,10 +161,16 @@ public class ManageController implements Initializable  {
                 );
             }
         }catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("ERROR at setEventToGui");
         }
         ec.setStdId(getStdId());
-        LocalDate ld = LocalDate.parse(""+event.getEvEndDate());
+        String tempDate="";
+        try{
+            tempDate += event.getEvEndDate();
+        }catch(NullPointerException e){
+            System.out.println("NullNullPointerException");
+        }
+        LocalDate ld = LocalDate.parse(tempDate);
         if(ld.compareTo(LocalDate.now())>-1){ 
             ec.addEventToPresentPane(event,this.listEventBox1,true,false); 
         }
@@ -184,11 +183,5 @@ public class ManageController implements Initializable  {
     public void callCreateEvent(){
         ce.callCreateEvent();
     }
-    
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
-    }
-            
-    
+       
 }

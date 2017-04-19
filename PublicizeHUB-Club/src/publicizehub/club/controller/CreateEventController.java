@@ -15,8 +15,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import com.jfoenix.controls.*;
 
-import java.time.LocalTime;
-import com.sun.javafx.scene.control.behavior.OptionalBoolean;
+
 import publicizehub.club.model.Event;
 
 /**
@@ -72,8 +71,6 @@ public class CreateEventController implements Initializable {
     private JFXButton confirmBtn;
     @FXML
     private JFXButton cancelBtn;
-    
-    private String customText="ระบุเอง";
 
     public Stage getThisStage() {
         return thisStage;
@@ -113,6 +110,7 @@ public class CreateEventController implements Initializable {
     
     @FXML
     public void checkCustomize(){
+        String customText="ระบุเอง";
         if(ticket.getValue().equals(customText)){
             ticket.setEditable(true);   
             ticket.setValue("");
@@ -128,7 +126,6 @@ public class CreateEventController implements Initializable {
     
     @FXML
     public void clickConfirm(){
-        System.out.println(startDate.getValue());
         Alert warning = null;
         evTypeResult();
         boolean check = validateField();
@@ -201,6 +198,7 @@ public class CreateEventController implements Initializable {
     }
     
     public void setEmptyField(){
+        String customText="ระบุเอง";
         eventName.setText("");
         description.setText("");
         place.setText("");
