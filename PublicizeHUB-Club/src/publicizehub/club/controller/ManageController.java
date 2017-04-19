@@ -41,9 +41,9 @@ public class ManageController {
     @FXML
     private JFXButton addNewsBtn;
     @FXML
-    private final VBox listEventBox1 = new VBox();
+    private VBox listEventBox1 = new VBox();
     @FXML
-    private final VBox listEventBox2 = new VBox();
+    private VBox listEventBox2 = new VBox();
 
     public LoginController getLi() {
         return li;

@@ -31,6 +31,7 @@ public class CreateEventController implements Initializable {
     
     private int evType = -1;
     private long stdId=lc.getStdId();
+    boolean check=true;
     //String num[] = {"100","2","3","4","5","6","7","8","9","0"};
     
     @FXML
@@ -103,7 +104,6 @@ public class CreateEventController implements Initializable {
     }
     @FXML
     public void evTypeResult(){
-        
         if(camp.isSelected()){
             this.evType=0;
         }else if(seminar.isSelected()){
@@ -118,7 +118,7 @@ public class CreateEventController implements Initializable {
         String customText="ระบุเอง";
         if(ticket.getValue().equals(customText)){
             ticket.setEditable(true);   
-            ticket.setValue("");
+            ticket.setValue(" ");
         }else {
             ticket.setEditable(false);
         }
@@ -133,8 +133,8 @@ public class CreateEventController implements Initializable {
     public void clickConfirm(){
         Alert warning = null;
         evTypeResult();
-        boolean check = validateField();
-        if(check){
+        validateField();
+        if(this.check){
             warning = new Alert(Alert.AlertType.ERROR);
             warning.setTitle("Error!");
             warning.setHeaderText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
@@ -187,16 +187,17 @@ public class CreateEventController implements Initializable {
     
     @FXML
     public void checkNumber(){
-        
+        Alert warning = null;
         for(int i=0;i<ticket.getValue().length();i++){
-            char temp = ticket.getValue().charAt(i);
-            
-            for (int j = 0; j < ticket.getValue().length(); j++) {
-                if (temp != '0' || temp != '9') {
-                    warnNum.setText("*กรุณาใส่ตัวเลข");
-                } else {
-                    warnNum.setText("");
-                }
+            if (ticket.getValue().charAt(i) < '0' || ticket.getValue().charAt(i) > '9') {
+                warning = new Alert(Alert.AlertType.WARNING);
+                warning.setTitle("Error!");
+                warning.setHeaderText("จำนวนบัตรไม่ถูกต้อง");
+                warning.setContentText("กรุณาใส่จำนวนบัตรให้ถูกต้อง (0-9)");
+                warning.showAndWait();
+                this.check=true;
+                i=ticket.getValue().length();
+                ticket.setValue("");
             }
         }
     }
@@ -206,16 +207,14 @@ public class CreateEventController implements Initializable {
         getThisStage().close();
     }
     
-    public boolean validateField(){
-        boolean check = false;
-        if(eventName.getText().equals("")||description.getText().equals("")||
+    public void validateField(){
+        if(ticket.getValue()==null||ticket.getValue().equals("ระบุเอง")||ticket.getValue().equals("")||
+           eventName.getText().equals("")||description.getText().equals("")||
            place.getText().equals("")||startRegis.getValue()==null||
            startDate.getValue()==null||endDate.getValue()==null||
-           startTime.getValue()==null||endTime.getValue()==null||
-           evType==-1){
-            check = true;
-        }
-        return check;
+           startTime.getValue()==null||endTime.getValue()==null||evType==-1){
+            this.check = true;
+        }else if(ticket.getValue()!=null) checkNumber();
     }
     
     public void setEmptyField(){
