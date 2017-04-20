@@ -55,7 +55,7 @@ public class Event {
     }
     
     public Event(String evName, String evDescrip, Date evDate, Date evEndDate, Date evStartRegis, 
-                    Date evEndFeedback, String evPlace, int evTicket, int currentMember, 
+                    Date evEndFeedback, String evPlace, int evTicket, 
                     Time evTime, Time evEndTime, int evType, int evId) {
         this.evName = evName;
         this.evDescrip = evDescrip;
@@ -66,6 +66,48 @@ public class Event {
             this.evEndFeedback = evEndFeedback.toLocalDate();
             this.evTime = evTime.toLocalTime();
             this.evEndTime = evEndTime.toLocalTime();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        this.evPlace = evPlace;
+        this.evTicket = evTicket;
+        this.evType = evType;
+        this.evId = evId;
+    }
+    
+    public Event(String evName, String evDescrip, Date evDate, Date evEndDate, Date evStartRegis, 
+                    Date evEndFeedback, String evPlace, int evTicket,int currentMember,
+                    Time evTime, Time evEndTime, int evType, int evId) {
+        this.evName = evName;
+        this.evDescrip = evDescrip;
+        try{
+            this.evDate = evDate.toLocalDate();
+            this.evEndDate = evEndDate.toLocalDate();
+            this.evStartRegis = evStartRegis.toLocalDate();
+            this.evEndFeedback = evEndFeedback.toLocalDate();
+            this.evTime = evTime.toLocalTime();
+            this.evEndTime = evEndTime.toLocalTime();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        this.currentMember = currentMember;
+        this.evPlace = evPlace;
+        this.evTicket = evTicket;
+        this.evType = evType;
+        this.evId = evId;
+    }
+    public Event(String evName, String evDescrip, LocalDate evDate, LocalDate evEndDate, LocalDate evStartRegis, 
+                    LocalDate evEndFeedback, String evPlace, int evTicket, 
+                    LocalTime evTime, LocalTime evEndTime, int evType, int evId) {
+        this.evName = evName;
+        this.evDescrip = evDescrip;
+        try{
+            this.evDate = evDate;
+            this.evEndDate = evEndDate;
+            this.evStartRegis = evStartRegis;
+            this.evEndFeedback = evEndFeedback;
+            this.evTime = evTime;
+            this.evEndTime = evEndTime;
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -217,8 +259,7 @@ public class Event {
     
     public void updateEvent(Event event){
         // update
-        System.out.println(this.evId);
-        PreparedStatement ps = null;    
+        System.out.println(event.getEvId());
         cb.connecting();
         String command;
         try {
@@ -227,9 +268,10 @@ public class Event {
                     + "evEndDate = '"+event.getEvEndDate()+"' , evStartRegis = '"+event.getEvStartRegis()+"' , "
                     +"evTime = '"+event.getEvTime()+"' , evEndFeedback = '"+event.getEvEndFeedback()+"' , "
                     + "evEndTime = '"+event.getEvEndTime()+"' , evPlace = '"+event.getEvPlace()+"' , "
-                    + "evTicket = '"+event.getEvTicket()+"' , evType = '"+evType+"' "
-                    + "where evId = "+evId;
+                    + "evTicket = '"+event.getEvTicket()+"' , evType = '"+event.getEvType()+"' "
+                    + "where evId = "+event.getEvId();
             ps = cb.getConnect().prepareStatement(command); 
+            System.out.println(event.getEvId());
             System.out.println("Before Update");
             ps.executeUpdate();
             System.out.println("Success Update");
@@ -237,6 +279,8 @@ public class Event {
         catch(SQLException ex){
             ex.printStackTrace();
             System.out.println("SQL ERROR at updateEvent()");
+        }catch(Exception e){
+            e.printStackTrace();
         }
         cb.logout();
     }

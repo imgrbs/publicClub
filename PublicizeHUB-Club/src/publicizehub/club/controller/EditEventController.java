@@ -3,14 +3,17 @@ package publicizehub.club.controller;
 import publicizehub.club.model.TableEvent;
 import com.jfoenix.controls.*;
 import java.net.URL;
-import java.util.Objects;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
@@ -94,16 +97,16 @@ public class EditEventController implements Initializable {
     
     @FXML
     public void showValue(){
-        eventName.setText(getThisEvent().getEvName());        
+        eventName.setText(thisEvent.getEvName());        
         startDate.setValue(thisEvent.getEvDate());        
         endDate.setValue(thisEvent.getEvEndDate());        
         startTime.setValue(thisEvent.getEvTime());
         endTime.setValue(thisEvent.getEvEndTime());
         startRegis.setValue(thisEvent.getEvStartRegis());
         ticket.setValue(""+thisEvent.getEvTicket());
-        setType(thisEvent.getEvType());
         description.setText(thisEvent.getEvDescrip());
         place.setText(thisEvent.getEvPlace());
+        setType(thisEvent.getEvType());
     }
     
     @FXML
@@ -124,7 +127,7 @@ public class EditEventController implements Initializable {
     
     @FXML
     public void evTypeResult(){
-        int evType=2;
+        int evType=-1;
         if(camp.isSelected()){
             evType=0;
         }else if(seminar.isSelected()){
@@ -134,6 +137,7 @@ public class EditEventController implements Initializable {
         }
         thisEvent.setEvType(evType);
     }
+    
     @FXML
     public int typeResult(){
         int result=2;
@@ -168,8 +172,35 @@ public class EditEventController implements Initializable {
     
     @FXML
     public void clickConfirm(){
+        Alert warning = null;
+        if(checkEditEvent()){
+            warning = new Alert(Alert.AlertType.CONFIRMATION);
+            warning.setTitle("ยืนยันการแก้ไข");
+            warning.setHeaderText("คุณยังไม่ได้แก้ไขกิจกรรม");
+            warning.setContentText("ยืนยันที่จะไม่แก้ไขใช่หรือไม่");
+            Optional<ButtonType> result = warning.showAndWait();
+            if(result.get() == ButtonType.OK){
+                thisStage.close();
+            }
+        }else{
+            warning = new Alert(Alert.AlertType.CONFIRMATION);
+            warning.setTitle("ยืนยันการแก้ไข");
+            warning.setHeaderText("แก้ไขข้อมูลกิจกรรม");
+            warning.setContentText("ยืนยันที่จะแก้ไขข้อมูลกิจกรรม");
+            Optional<ButtonType> result = warning.showAndWait();
+            if(result.get() == ButtonType.OK){
+                setValueToObj();
+                ev.updateEvent(thisEvent);
+                warning = new Alert(Alert.AlertType.INFORMATION);
+                warning.setTitle("Success!");
+                warning.setHeaderText("แก้ไขข้อมูล");
+                warning.setContentText("แก้ไขข้อมูลสำเร็จแล้ว !");
+                warning.showAndWait();
+                thisStage.close();
+            }
+        }
+        resetEvent(this.thisEvent);
         setAllValue();
-        ev.updateEvent(thisEvent);
     } 
     /**
      * Initializes the controller class.
@@ -214,20 +245,42 @@ public class EditEventController implements Initializable {
   
     public boolean checkEditEvent() {
         boolean checkEdit = false;
-        if (getThisEvent().getEvName().equalsIgnoreCase(eventName.getText()) && 
-               thisEvent.getEvDate().equals(startDate.getValue()) && 
-               thisEvent.getEvEndDate().equals(endDate.getValue()) &&
-               thisEvent.getEvTime().equals(startTime.getValue()) &&
-               thisEvent.getEvEndTime().equals(endTime.getValue()) &&
-               thisEvent.getEvStartRegis().equals(startRegis.getValue()) &&
-               (thisEvent.getEvTicket()+"").equals(""+ticket.getValue()) &&
-               thisEvent.getEvType() == typeResult() &&
-               thisEvent.getEvDescrip().equalsIgnoreCase(description.getText()) &&
-               thisEvent.getEvPlace().equalsIgnoreCase(place.getText())){
+        if (getThisEvent().getEvName().equals(eventName.getText()) && 
+               getThisEvent().getEvDate().equals(startDate.getValue()) && 
+               getThisEvent().getEvEndDate().equals(endDate.getValue()) &&
+               getThisEvent().getEvTime().equals(startTime.getValue()) &&
+               getThisEvent().getEvEndTime().equals(endTime.getValue()) &&
+               getThisEvent().getEvStartRegis().equals(startRegis.getValue()) &&
+               (getThisEvent().getEvTicket()+"").equals(""+ticket.getValue()) &&
+               getThisEvent().getEvType() == typeResult() &&
+               getThisEvent().getEvDescrip().equalsIgnoreCase(description.getText()) &&
+               getThisEvent().getEvPlace().equalsIgnoreCase(place.getText())){
             checkEdit = true;
         }
         return checkEdit;
     }
     
+    public void setValueToObj(){
+        this.thisEvent = new Event(eventName.getText(),description.getText(),startDate.getValue(),
+                          endDate.getValue(),startRegis.getValue(),endDate.getValue().plusDays(15),
+                          place.getText(),Integer.parseInt(ticket.getValue()),startTime.getValue(),
+                          endTime.getValue(),typeResult(),this.thisEvent.getEvId());
+    }
     
+    public void resetEvent(Event event){
+        ResultSet rs = ev.getSelect(thisEvent.getEvId());
+        try{
+            if(rs.next()){
+                event = new Event(rs.getString("evName"),
+                rs.getString("evDescrip"),rs.getDate("evStartDate"),
+                rs.getDate("evEndDate"),rs.getDate("evStartRegis"),
+                rs.getDate("evEndFeedback"),rs.getString("evPlace"),
+                rs.getInt("evTicket"),rs.getTime("evTime"),
+                rs.getTime("evEndTime"),rs.getInt("evType"),rs.getInt("evId")
+                );
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

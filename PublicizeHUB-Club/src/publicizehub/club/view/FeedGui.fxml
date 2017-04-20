@@ -127,7 +127,7 @@
                      <right>
                         <Pane prefHeight="66.0" prefWidth="422.0" BorderPane.alignment="CENTER">
                            <children>
-                              <TextField fx:id="searchfield" layoutX="47.0" layoutY="20.0" onAction="#sentToSearch" prefHeight="19.0" prefWidth="213.0" promptText="พิมพ์คำที่ต้องการค้นหา..">
+                              <TextField fx:id="searchfield" layoutX="47.0" layoutY="20.0" onAction="#sentToSearch" prefHeight="19.0" prefWidth="213.0" promptText="พิมพ์ชื่อกิจกรรมที่ต้องหาค้นหา..">
                                  <font>
                                     <Font name="Quark-Bold" size="14.0" />
                                  </font>

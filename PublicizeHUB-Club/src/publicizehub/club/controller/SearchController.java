@@ -150,12 +150,13 @@ public class SearchController implements Initializable {
                         alert.setHeaderText("กรุณาใส่ชื่อกิจกรรมให้ถูกต้อง!");
                         alert.setContentText("Injection Detected :)");
                         alert.showAndWait();
+                        i=temp.length();
                     }
                 }
             }
             if(checkEvType!=-1){
                 result = s.resultEventType(checkEvType);
-            }else if(temp.equals("")||search.getText()==null){
+            }else {
                 result = s.resultSearch(temp);
             }
             
