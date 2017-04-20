@@ -38,7 +38,7 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="40.0" layoutY="176.0" text="วันจัดกิจกรรม :">
+                        <Label layoutX="40.0" layoutY="176.0" prefHeight="26.0" prefWidth="100.0" text="วันจัดกิจกรรม :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
@@ -52,7 +52,7 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="40.0" layoutY="229.0" text="เวลาเริ่มกิจกรรม :">
+                        <Label layoutX="39.0" layoutY="229.0" text="เวลาเริ่มกิจกรรม :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
@@ -65,19 +65,19 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="40.0" layoutY="278.0" text="สถานที่ :">
+                        <Label layoutX="40.0" layoutY="279.0" text="สถานที่ :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="297.0" layoutY="280.0" text="จำนวนบัตร :">
+                        <Label layoutX="350.0" layoutY="279.0" text="จำนวนบัตร :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <ComboBox id="ticket" fx:id="ticket" layoutX="387.0" layoutY="282.0" onHidden="#checkCustomize" prefHeight="27.0" prefWidth="158.0" promptText="เลือกจำนวนบัตร" visibleRowCount="12">
+                        <ComboBox id="ticket" fx:id="ticket" layoutX="445.0" layoutY="284.0" onHidden="#checkCustomize" prefHeight="27.0" prefWidth="173.0" promptText="เลือกจำนวนบัตร" visibleRowCount="12">
                            <styleClass>
                               <String fx:value="white" />
                               <String fx:value="dropshadow" />
@@ -91,7 +91,7 @@
                            </styleClass>
                         </Label>
 
-                        <JFXTimePicker fx:id="startTime" defaultColor="#dd721a" layoutX="160.0" layoutY="217.0" prefHeight="28.0" prefWidth="173.0">
+                        <JFXTimePicker fx:id="startTime" defaultColor="#dd721a" layoutX="160.0" layoutY="222.0" prefHeight="28.0" prefWidth="173.0">
 
                         <!--<JFXTimePicker fx:id="startTime" defaultColor="#dd721a" layoutX="206.0" layoutY="242.0" prefHeight="28.0" prefWidth="173.0">-->
 
@@ -104,7 +104,7 @@
                            </styleClass>
                         </JFXTimePicker>
 
-                        <JFXTimePicker fx:id="endTime" defaultColor="#dd721a" layoutX="470.0" layoutY="217.0" prefHeight="28.0" prefWidth="173.0">
+                        <JFXTimePicker fx:id="endTime" defaultColor="#dd721a" layoutX="469.0" layoutY="223.0" prefHeight="38.0" prefWidth="173.0">
 
                         
 
@@ -171,7 +171,7 @@
                               <Insets />
                            </opaqueInsets>
                         </JFXTextField>
-                        <JFXRadioButton fx:id="camp" layoutX="145.0" layoutY="372.0" text="ค่าย">
+                        <JFXRadioButton fx:id="camp" layoutX="140.0" layoutY="369.0" text="ค่าย">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
@@ -180,26 +180,26 @@
                               <ToggleGroup fx:id="type" />
                            </toggleGroup>
                         </JFXRadioButton>
-                        <JFXRadioButton fx:id="seminar" layoutX="213.0" layoutY="372.0" text="สัมมนา" toggleGroup="$type">
+                        <JFXRadioButton fx:id="seminar" layoutX="208.0" layoutY="369.0" text="สัมมนา" toggleGroup="$type">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXRadioButton>
-                        <JFXRadioButton fx:id="other" layoutX="298.0" layoutY="372.0" text="อื่นๆ" toggleGroup="$type">
+                        <JFXRadioButton fx:id="other" layoutX="293.0" layoutY="369.0" text="อื่นๆ" toggleGroup="$type">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXRadioButton>
-                        <Label layoutX="40.0" layoutY="327.0" text="วันเปิดรับสมัคร :">
+                        <Label layoutX="41.0" layoutY="320.0" text="วันเปิดรับสมัคร :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
 
-                        <JFXDatePicker fx:id="startRegis" defaultColor="#dd721a" layoutX="160.0" layoutY="313.0" prefHeight="40.0" prefWidth="173.0">
+                        <JFXDatePicker fx:id="startRegis" defaultColor="#dd721a" layoutX="165.0" layoutY="313.0" prefHeight="40.0" prefWidth="173.0">
 
                            <styleClass>
                               <String fx:value="quark" />
@@ -210,7 +210,7 @@
                   </Pane>
                </center>
                <bottom>
-                  <Pane prefHeight="68.0" prefWidth="800.0" styleClass="bodyOnlyColor" BorderPane.alignment="CENTER">
+                  <Pane prefHeight="80.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                      <children>
                         <JFXButton fx:id="confirmBtn" layoutX="294.0" layoutY="15.0" onAction="#clickConfirm" prefHeight="38.0" prefWidth="101.0" text="ยืนยัน" textFill="WHITE">
                            <styleClass>

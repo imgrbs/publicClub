@@ -13,8 +13,8 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="529.0" styleClass="boxEv">
                <children>
-                  <Button fx:id="unJoinBtn" layoutX="401.0" layoutY="151.0" mnemonicParsing="false" onAction="#unJoinEvent" prefHeight="35.0" prefWidth="98.0" styleClass="unjoin" text="UNJOIN" textFill="WHITE" />
-                  <Label alignment="CENTER" layoutX="17.0" layoutY="14.0" prefHeight="36.0" prefWidth="139.0" style="-fx-font-size: 25px;" styleClass="thaisans" text="YOUR CODE">
+                  <Button fx:id="unJoinBtn" layoutX="417.0" layoutY="149.0" mnemonicParsing="false" onAction="#unJoinEvent" prefHeight="40.0" prefWidth="98.0" styleClass="unjoin" text="ยกเลิกจอง" textFill="WHITE" />
+                  <Label alignment="CENTER" layoutX="17.0" layoutY="14.0" prefHeight="36.0" prefWidth="139.0" style="-fx-font-size: 25px;" styleClass="quark" text="รหัสกิจกรรม">
                      <font>
                         <Font size="33.0" />
                      </font>
@@ -24,7 +24,7 @@
                         <Font size="33.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="14.0" layoutY="156.0" prefHeight="25.0" prefWidth="285.0" style="-fx-font-size: 15px; -fx-text-fill: #DD1313;" styleClass="thaisans" text="หมายเหตุ : ท่านสามารถตรวจสอบรหัสได้ที่โปรไฟล์">
+                  <Label layoutX="14.0" layoutY="169.0" prefHeight="25.0" prefWidth="285.0" style="-fx-font-size: 15px; -fx-text-fill: #DD1313;" styleClass="quark" text="หมายเหตุ : ท่านสามารถตรวจสอบรหัสกิจกรรมได้ที่โปรไฟล์">
                      <font>
                         <Font size="33.0" />
                      </font>

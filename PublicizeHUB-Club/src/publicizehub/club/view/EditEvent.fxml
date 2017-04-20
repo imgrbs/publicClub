@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.EditEventController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.EditEventController">
    <children>
       <FlowPane layoutX="59.0" layoutY="50.0" prefHeight="400.0" prefWidth="895.0" styleClass="bodyOnlyColor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -66,13 +66,13 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="305.0" layoutY="280.0" text="จำนวนบัตร :">
+                        <Label layoutX="350.0" layoutY="279.0" text="จำนวนบัตร :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <ComboBox id="ticket" fx:id="ticket" layoutX="387.0" layoutY="282.0" onHiding="#checkCustomize" prefHeight="27.0" prefWidth="158.0" promptText="เลือกจำนวนบัตร" visibleRowCount="12">
+                        <ComboBox id="ticket" fx:id="ticket" layoutX="451.0" layoutY="280.0" onHiding="#checkCustomize" prefHeight="27.0" prefWidth="173.0" promptText="เลือกจำนวนบัตร" visibleRowCount="12">
                            <styleClass>
                               <String fx:value="white" />
                               <String fx:value="dropshadow" />
@@ -160,7 +160,7 @@
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXRadioButton>
-                        <Label layoutX="40.0" layoutY="330.0" text="วันเปิดรับสมัคร :">
+                        <Label layoutX="37.0" layoutY="332.0" text="วันเปิดรับสมัคร :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
@@ -199,7 +199,7 @@
                   <Pane prefHeight="105.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label layoutX="524.0" layoutY="25.0" styleClass="insertEventSize" text="Edit Event" />
-                        <Pane layoutX="435.0" layoutY="22.0" prefHeight="69.0" prefWidth="68.0" styleClass="editIcon" />
+                        <Pane layoutX="464.0" layoutY="32.0" prefHeight="53.0" prefWidth="52.0" styleClass="editIcon" />
                      </children>
                   </Pane>
                </top>

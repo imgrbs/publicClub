@@ -223,6 +223,7 @@
     -fx-font-family:'Quark';
     -fx-background-color:  #F82222;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 17px;
     -fx-cursor: hand;
 }
 .unjoin:hover{
@@ -326,8 +327,9 @@
 }
 .editIcon{
 	-fx-background-color: none;
-	-fx-background-image: url('images/editt.png');
+	-fx-background-image: url('images/edit.png');
 	-fx-background-repeat: no-repeat;
+    -fx-background-size: 103% 100%;
 	-fx-background-width: 64px;
 	-fx-background-height: 64px;
 	
