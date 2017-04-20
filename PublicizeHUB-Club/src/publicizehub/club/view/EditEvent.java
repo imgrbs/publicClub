@@ -24,7 +24,7 @@ public class EditEvent extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Edit_Event.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("EditEvent.fxml"));
         
         Scene scene = new Scene(root);
         

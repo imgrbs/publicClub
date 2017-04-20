@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.Event;
 import publicizehub.club.model.FeedbackModel;
+import publicizehub.club.view.CheckIn;
 
 /**
  *
@@ -24,8 +25,9 @@ public class EventController {
     private DetailController dc = new DetailController();
     private FormEvaluationsController fe = new FormEvaluationsController();
     private EditEventController ee = new EditEventController();
+    private CheckInController ci = new CheckInController();
+    private FormSumActivityController fsa = new FormSumActivityController();
     
-    private int evId;
     private int evType;
     private long stdId;
 
@@ -57,7 +59,7 @@ public class EventController {
         String evaluaText = "ประเมิณกิจกรรม";
         if(!checkTypeGui){
             presentText="แก้ไขกิจกรรม";
-            presentDetail = "รายละเอียด";
+            presentDetail = "เช็คอิน";
             evaluaText = "ผลตอบรับ";
         }
         Pane p = new Pane();
@@ -80,20 +82,32 @@ public class EventController {
                         jc.toJoinEvent(event.getEvId()); 
                     }
                 });
+                detailbtn.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent evt) {
+                        dc.callDetail(event.getEvId());
+                    }
+                });
             }else{
                 joinbtn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent evt) {
+//                        ee.setThisEvent(event);
                         ee.callEditEvent(event); 
                     }
                 });
+                detailbtn.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent evt) {
+//                        ci.callCheckIn(event.getEvId());
+                        CheckIn ci = new CheckIn();
+                        ci.setEvId(event.getEvId());
+
+                        ci.setVisible(true);
+                    }
+                });
             }
-            detailbtn.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent evt) {
-                    dc.callDetail(event);
-                }
-            });
+            
             p.getChildren().add(joinbtn);
             p.getChildren().add(detailbtn);
         }else{
@@ -102,18 +116,27 @@ public class EventController {
             evaluationbtn.getStyleClass().add("quark");
             evaluationbtn.setLayoutX(370);
             evaluationbtn.setLayoutY(90);
-            evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent evt) {
-                        ResultSet  log = fbm.getFormLog(event.getEvId(), getStdId());
-                        try{
-                            if(log.next())blockFeedback();
-                            else fe.callEvaluation(event,getStdId());
-                        }catch(SQLException e){
-                            e.printStackTrace();
+            if(presentText.equals("ตรวจสอบโค้ด")){
+                evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent evt) {
+                            ResultSet  log = fbm.getFormLog(event.getEvId(), getStdId());
+                            try{
+                                if(log.next())blockFeedback();
+                                else fe.callEvaluation(event,getStdId());
+                            }catch(SQLException e){
+                                e.printStackTrace();
+                            }
                         }
+                });
+            }else {
+                evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent evt) {
+                        fsa.callFeedback();
                     }
-            });
+                });           
+            }
             cb.logout();
             p.getChildren().add(evaluationbtn);
         }

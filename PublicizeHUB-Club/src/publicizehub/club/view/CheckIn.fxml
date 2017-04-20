@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -11,8 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="body"  stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="body" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.CheckInController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -22,15 +20,7 @@
                      <children>
                         <BorderPane prefHeight="118.0" prefWidth="340.0">
                            <left>
-                              <Pane prefHeight="118.0" prefWidth="122.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Button layoutX="-4.0" layoutY="22.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="36.0" styleClass="closeBtn">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                 </children>
-                              </Pane>
+                              <Pane prefHeight="118.0" prefWidth="122.0" BorderPane.alignment="CENTER" />
                            </left>
                            <bottom>
                               <Label alignment="BOTTOM_LEFT" prefHeight="54.0" prefWidth="164.0" text="CHECK IN" textFill="#4d4d4d" BorderPane.alignment="CENTER">
@@ -50,7 +40,7 @@
                               <Font name="Quark-Bold" size="17.0" />
                            </font>
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <!--<Cursor fx:constant="HAND" />-->
                            </cursor>
                         </Button>
                         <Label layoutX="9.0" layoutY="43.0" prefHeight="30.0" prefWidth="129.0" style="-fx-text-fill: #CD4D28;" text="Event Name : ">

@@ -1,19 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package publicizehub.club.controller;
 
 import publicizehub.club.model.TableEvent;
 import com.jfoenix.controls.*;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,7 +26,17 @@ public class EditEventController implements Initializable {
    
     private Event thisEvent;
     private long stdId=lc.getStdId();
+    
+    private Stage thisStage;
 
+    public Stage getThisStage() {
+        return thisStage;
+    }
+
+    public void setThisStage(Stage thisStage) {
+        this.thisStage = thisStage;
+    }
+    
     public EditEventController() {
     }
     
@@ -90,12 +90,13 @@ public class EditEventController implements Initializable {
     private JFXButton cancelBtn;
     
     @FXML
-    public void showValue(){
-        eventName.setText(thisEvent.getEvName());        
+    public void showValue(){     
+        eventName.setText(getThisEvent().getEvName());        
         startDate.setValue(thisEvent.getEvDate());        
         endDate.setValue(thisEvent.getEvEndDate());        
         startTime.setValue(thisEvent.getEvTime());
         endTime.setValue(thisEvent.getEvEndTime());
+        startRegis.setValue(thisEvent.getEvStartRegis());
         ticket.setValue(""+thisEvent.getEvTicket());
         setType(thisEvent.getEvType());
         description.setText(thisEvent.getEvDescrip());
@@ -156,15 +157,19 @@ public class EditEventController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        setValueToCombobox();
-        showValue();
+//        setValueToCombobox();
+//        showValue();
     }    
     
-        @FXML
+    @FXML
+    public void closeStage(){
+        getThisStage().close();
+    }
+    
+    @FXML
     public void callEditEvent(Event event){
-        Stage stage = new Stage();
-        Parent root = null;
+        Stage stage= new Stage();
+        Parent root=null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/EditEvent.fxml"));     
         try{
             root = (Parent)fxmlLoader.load(); 
@@ -173,7 +178,10 @@ public class EditEventController implements Initializable {
             e.printStackTrace();
         }
         EditEventController controller = fxmlLoader.<EditEventController>getController();
+        controller.setThisStage(stage);
         controller.setThisEvent(event);
+        controller.setValueToCombobox();
+        controller.showValue();
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    
