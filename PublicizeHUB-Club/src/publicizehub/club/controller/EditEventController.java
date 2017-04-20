@@ -90,7 +90,7 @@ public class EditEventController implements Initializable {
     private JFXButton cancelBtn;
     
     @FXML
-    public void showValue(){     
+    public void showValue(){
         eventName.setText(getThisEvent().getEvName());        
         startDate.setValue(thisEvent.getEvDate());        
         endDate.setValue(thisEvent.getEvEndDate());        

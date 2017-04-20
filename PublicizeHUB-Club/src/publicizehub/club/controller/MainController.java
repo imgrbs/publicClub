@@ -145,15 +145,43 @@ public class MainController {
     }
     
     @FXML
-    protected void callSearchEvent() {
-        System.out.println("callCampEvent");
-        sc.setCheckEvType(0);
-        try {
-            sc.checkSearchEvType();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Exception callCampEvent");
-        }
+    protected void callSearchCamp() {
+        System.out.println("callSearchCamp");
+//        sc.setCheckEvType(0);
+//        try {
+//            sc.checkSearchEvType();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        sc.callSearch(0);
+        searchfield.setText("");
+    }
+    
+    @FXML
+    protected void callSearchSeminar() {
+        System.out.println("callSearchSeminar");
+//        sc.setCheckEvType(1);
+//        try {
+//            sc.checkSearchEvType();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        sc.callSearch(1);
+        searchfield.setText("");
+    }
+    
+    @FXML
+    protected void callSearchOther() {
+        System.out.println("callCampOther");
+//        sc.setCheckEvType(2);
+//        try {
+//            sc.checkSearchEvType();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.out.println("Exception callCampEvent");
+//        }
+        sc.callSearch(2);
+        searchfield.setText("");
     }
 
 

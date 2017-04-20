@@ -77,7 +77,7 @@
                         <Font name="Quark-Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Button fx:id="seminarBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="369.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="สัมมนา">
+                  <Button fx:id="seminarBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="369.0" mnemonicParsing="false" onAction="#callSearchSeminar" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="สัมมนา">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -85,7 +85,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutY="416.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="อื่นๆ">
+                  <Button fx:id="otherBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="416.0" mnemonicParsing="false" onAction="#callSearchOther" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="อื่นๆ">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -109,7 +109,7 @@
                         <Image url="@../css/images/school-material.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="campBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="322.0" mnemonicParsing="false" onAction="#callSearchEvent" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="ค่าย">
+                  <Button fx:id="campBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="322.0" mnemonicParsing="false" onAction="#callSearchCamp" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="ค่าย">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
