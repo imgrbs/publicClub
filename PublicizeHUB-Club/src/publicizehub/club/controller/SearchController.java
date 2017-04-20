@@ -38,9 +38,13 @@ public class SearchController implements Initializable {
     @FXML
     private Label l;
     
-    int checkEvType;
+    private int checkEvType;
     
     private String text;
+
+    public SearchController() {
+        checkEvType=-1;
+    }
 
     public String getText() {
         return text;
@@ -121,15 +125,17 @@ public class SearchController implements Initializable {
     
     @FXML
     public void checkSearch(){
-        ResultSet result;
+        ResultSet result=null;
         buttonBox.getChildren().clear();
         String temp = search.getText();
-        if(temp.equals("")||search.getText()==null){
-            temp = this.text;
+        if(checkEvType!=-1){
+            
+        }else if(temp.equals("")||search.getText()==null){
+                temp = this.text;
         }
         search.setText("");
         try{
-            if(temp.equals("")||temp.charAt(0)==' '){
+            if((temp.equals("")||temp.charAt(0)==' ')&&checkEvType==-1){
                 temp = "nullEventThatNoMeaning";
                 search.setText("");
                 alert.setTitle("คำเตือน");
@@ -147,18 +153,25 @@ public class SearchController implements Initializable {
                     }
                 }
             }
-            result = s.resultSearch(temp);
-            if(result.next()==false){
-                temp = "nullEventThatNoMeaning";
-                search.setText("");
-                alert.setTitle("Warning!");
-                alert.setHeaderText("ขออภัย");
-                alert.setContentText("ไม่มีกิจกรรมที่คุณค้นหา..");
-                alert.showAndWait();
-            } else {
-                addEventToPane(result.getString("evName"),result.getInt("evId"));
-                while(result.next()){
+            if(checkEvType!=-1){
+                result = s.resultEventType(checkEvType);
+            }else if(temp.equals("")||search.getText()==null){
+                result = s.resultSearch(temp);
+            }
+            
+            if(result!=null){
+                if(result.next()==false){
+                    temp = "nullEventThatNoMeaning";
+                    search.setText("");
+                    alert.setTitle("Warning!");
+                    alert.setHeaderText("ขออภัย");
+                    alert.setContentText("ไม่มีกิจกรรมที่คุณค้นหา..");
+                    alert.showAndWait();
+                } else {
                     addEventToPane(result.getString("evName"),result.getInt("evId"));
+                    while(result.next()){
+                        addEventToPane(result.getString("evName"),result.getInt("evId"));
+                    }
                 }
             }
         } catch(Exception e){
@@ -172,21 +185,25 @@ public class SearchController implements Initializable {
     
     @FXML
     public void checkSearchEvType() throws Exception{
-        System.out.println("checkSearchEvType");
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../view/ViewSearch.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage= new Stage();
+        Parent root=null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));     
+        try{
+            root = (Parent)fxmlLoader.load(); 
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        SearchController controller = fxmlLoader.<SearchController>getController();
+        controller.setCheckEvType(getCheckEvType());
+        Scene scene = new Scene(root); 
+        try{
+            stage.setScene(scene);    
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
         stage.show();
-        if(this.checkEvType==0){
-            s.resultEventType(0);
-        }
-        else if(this.checkEvType==1){
-            s.resultEventType(1);
-        }
-        else {
-            s.resultEventType(2);
-        }
     }
     
     @FXML
@@ -199,7 +216,7 @@ public class SearchController implements Initializable {
     public void callSearch(String text){
         Stage stage= new Stage();
         Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/AddNews.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));     
         try{
             root = (Parent)fxmlLoader.load(); 
         }
@@ -208,6 +225,29 @@ public class SearchController implements Initializable {
         }
         SearchController controller = fxmlLoader.<SearchController>getController();
         controller.setText(text);
+        controller.checkSearch();
+        Scene scene = new Scene(root); 
+        try{
+            stage.setScene(scene);    
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        stage.show();
+    }
+    
+    public void callSearch(int evType){
+        Stage stage= new Stage();
+        Parent root=null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));     
+        try{
+            root = (Parent)fxmlLoader.load(); 
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        SearchController controller = fxmlLoader.<SearchController>getController();
+        controller.setCheckEvType(evType);
         controller.checkSearch();
         Scene scene = new Scene(root); 
         try{
