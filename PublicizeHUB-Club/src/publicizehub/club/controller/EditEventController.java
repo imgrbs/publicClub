@@ -3,7 +3,9 @@ package publicizehub.club.controller;
 import publicizehub.club.model.TableEvent;
 import com.jfoenix.controls.*;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,6 +25,7 @@ public class EditEventController implements Initializable {
     Event ev = new Event();
     TableEvent te = new TableEvent();
     LoginController lc = new LoginController();
+    int resultType=2;
    
     private Event thisEvent;
     private long stdId=lc.getStdId();
@@ -131,7 +134,23 @@ public class EditEventController implements Initializable {
         }
         thisEvent.setEvType(evType);
     }
-   
+    @FXML
+    public int typeResult(){
+        int result=2;
+        
+        if(camp.isSelected()){
+            
+            result= 0;
+        }else if(seminar.isSelected()){
+            
+            result=1;
+        }else if(other.isSelected()){
+            
+            result=2;
+        }
+        
+        return result;
+    }
     @FXML
     public void checkCustomize(){
         if(ticket.getValue().equals("ระบุเอง")){
@@ -191,4 +210,24 @@ public class EditEventController implements Initializable {
         }
         stage.show();
     }
+
+  
+    public boolean checkEditEvent() {
+        boolean checkEdit = false;
+        if (getThisEvent().getEvName().equalsIgnoreCase(eventName.getText()) && 
+               thisEvent.getEvDate().equals(startDate.getValue()) && 
+               thisEvent.getEvEndDate().equals(endDate.getValue()) &&
+               thisEvent.getEvTime().equals(startTime.getValue()) &&
+               thisEvent.getEvEndTime().equals(endTime.getValue()) &&
+               thisEvent.getEvStartRegis().equals(startRegis.getValue()) &&
+               (thisEvent.getEvTicket()+"").equals(""+ticket.getValue()) &&
+               thisEvent.getEvType() == typeResult() &&
+               thisEvent.getEvDescrip().equalsIgnoreCase(description.getText()) &&
+               thisEvent.getEvPlace().equalsIgnoreCase(place.getText())){
+            checkEdit = true;
+        }
+        return checkEdit;
+    }
+    
+    
 }
