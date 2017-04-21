@@ -32,7 +32,6 @@ public class CreateEventController implements Initializable {
     private int evType = -1;
     private long stdId=lc.getStdId();
     boolean check=true;
-    //String num[] = {"100","2","3","4","5","6","7","8","9","0"};
     
     @FXML
     private Stage thisStage = null;
@@ -144,14 +143,16 @@ public class CreateEventController implements Initializable {
             warning.setTitle("Information!");
             warning.setHeaderText("ยืนยันที่จะสร้างกิจกรรม");
             Optional<ButtonType> result = warning.showAndWait();
-            if(result.get() == ButtonType.OK){
-                setAllValue();
-                e.createEvent(thisEvent);
-                warning = new Alert(Alert.AlertType.INFORMATION);
-                setEmptyField();
-                warning.setTitle("Success!");
-                warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
-                warning.showAndWait();
+            if(result.isPresent()){
+                if(result.get() == ButtonType.OK){
+                    setAllValue();
+                    e.createEvent(thisEvent);
+                    warning = new Alert(Alert.AlertType.INFORMATION);
+                    setEmptyField();
+                    warning.setTitle("Success!");
+                    warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
+                    warning.showAndWait();
+                }
             }
         }
     }
@@ -214,7 +215,9 @@ public class CreateEventController implements Initializable {
            startDate.getValue()==null||endDate.getValue()==null||
            startTime.getValue()==null||endTime.getValue()==null||evType==-1){
             this.check = true;
-        }else if(ticket.getValue()!=null) checkNumber();
+        }else if(ticket.getValue()!=null) {
+                checkNumber();
+        }
     }
     
     public void setEmptyField(){

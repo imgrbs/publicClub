@@ -10,6 +10,8 @@ import static java.lang.Long.parseLong;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.EventModel;
 
@@ -19,6 +21,8 @@ import publicizehub.club.model.EventModel;
  * @author JIL
  */
 public class ProfileController {
+    
+    private static final Logger LOGGER = Logger.getLogger( FormSumActivityController.class.getName() );
     EventModel ev = new EventModel();
     ConnectionBuilder cb = new ConnectionBuilder();
     
@@ -87,20 +91,17 @@ public class ProfileController {
     
     @FXML
     public void getEventToProfile(){
-        System.out.println("Befor Get Event");
         ResultSet rs = ev.getSelect(parseLong(this.labelId.getText()));
         cb.logout();
-        System.out.println("After Get Event");
         try{
             if(rs.next()){
-                System.out.println("Event Come");
                 setEventToGui(rs.getInt("evId"));
                 while(rs.next()){
                     setEventToGui(rs.getInt("evId"));
                 }
             }
         }catch(SQLException e){
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"SQLException : getEventToProfile Bug !");
         }
         cb.logout();
     }
@@ -108,6 +109,7 @@ public class ProfileController {
     public void setEventToGui(int eventId){
         ResultSet findStd = ev.getSelect(eventId);
         EventModel event = null;
+        LocalDate ld = null;
         try{
             if(findStd.next()){
                 event = new EventModel(findStd.getString("evName"),
@@ -118,25 +120,24 @@ public class ProfileController {
                 findStd.getTime("evTime"),findStd.getTime("evEndTime"),
                 findStd.getInt("evType"),findStd.getInt("evId")
                 );
+                ld = event.getEvEndDate();
+                ec.setStdId(getStdId());
+                if(ld.compareTo(LocalDate.now())>-1){ 
+                    ec.addEventToPresentPane(event,this.listEventBox1,true,true); 
+                }
+                else {
+                    ec.addEventToPresentPane(event,this.listEventBox2,false,true);
+                }
             }
         }catch(SQLException e){
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"SQLException : setEventToGui Bug !");
         }
-        ec.setStdId(getStdId());
-        LocalDate ld = LocalDate.parse(""+event.getEvEndDate());
-        if(ld.compareTo(LocalDate.now())>-1){ 
-            ec.addEventToPresentPane(event,this.listEventBox1,true,true); 
-        }
-        else {
-            ec.addEventToPresentPane(event,this.listEventBox2,false,true);
-        }
+        
     }
     
-    /* Method สำหรับ เปลี่ยน Stage */
     public void callMain(){
-        System.out.println("callMain() WORK");
-        mainStage.show(); // แสดง Stage หลัก ( Main )
-        thisStage.close(); // ปิด Stage ปัจจุบัน ( Profile )
+        mainStage.show();
+        thisStage.close(); 
     }
     
 

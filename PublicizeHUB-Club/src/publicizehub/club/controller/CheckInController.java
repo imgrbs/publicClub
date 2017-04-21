@@ -27,7 +27,7 @@ public class CheckInController {
         catch(Exception e){
             e.printStackTrace();
         }
-        CheckInController controller = fxmlLoader.<CheckInController>getController();
+//        CheckInController controller = fxmlLoader.<CheckInController>getController();
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    

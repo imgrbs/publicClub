@@ -149,6 +149,7 @@ public class ManageController {
     public void setEventToGui(int eventId){
         ResultSet findStd = ev.getSelect(eventId);
         EventModel event = null;
+        String tempDate="";
         try{
             if(findStd.next()){
                 event = new EventModel(findStd.getString("evName"),
@@ -159,17 +160,12 @@ public class ManageController {
                 findStd.getTime("evTime"),findStd.getTime("evEndTime"),
                 findStd.getInt("evType"),findStd.getInt("evId")
                 );
+            tempDate += event.getEvEndDate();
             }
         }catch(SQLException e){
             System.out.println("ERROR at setEventToGui");
         }
         ec.setStdId(getStdId());
-        String tempDate="";
-        try{
-            tempDate += event.getEvEndDate();
-        }catch(NullPointerException e){
-            System.out.println("NullNullPointerException");
-        }
         LocalDate ld = LocalDate.parse(tempDate);
         if(ld.compareTo(LocalDate.now())>-1){ 
             ec.addEventToPresentPane(event,this.listEventBox1,true,false); 

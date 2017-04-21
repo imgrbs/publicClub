@@ -5,6 +5,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,19 +36,20 @@ public class GenerateCode {
 
 
     public void generateCode() {
+        Random r = new Random();
         int rand;
         int randString;
         int timerand;
         String timestamp = "";
         int Code;
-        rand = (int) (Math.random() * 7999) + 1000;
-      	randString = (int) (Math.random() * codeString.length());
+        rand = r.nextInt(99999);
+      	randString =  r.nextInt(codeString.length()-1);
         timestamp += Long.toString(System.currentTimeMillis());
         timerand = parseInt(timestamp.substring(timestamp.length() - 5, timestamp.length()));
         Code = (int) (timerand + rand);
         evCode = "" + Character.toString(codeString.charAt(randString)) + Code;
         if(evCode.length()<6){
-            int fixCode = (int) (Math.random()*10);
+            int fixCode = r.nextInt(9);
             evCode += Long.toString(fixCode);
         }else if(evCode.length()>6){
             evCode = evCode.substring(0,7);

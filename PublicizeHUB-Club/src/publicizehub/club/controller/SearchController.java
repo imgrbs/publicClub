@@ -159,7 +159,6 @@ public class SearchController {
             
             if(result!=null){
                 if(result.next()==false){
-                    temp = "nullEventThatNoMeaning";
                     search.setText("");
                     alert.setTitle("Warning!");
                     alert.setHeaderText("ขออภัย");
@@ -173,7 +172,6 @@ public class SearchController {
                 }
             }
         } catch(SQLException e){
-            temp = "nullEventThatNoMeaning";
             LOGGER.log(Level.SEVERE ," setSearch Bug !");
         }
 
