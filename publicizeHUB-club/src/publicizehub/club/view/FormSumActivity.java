@@ -16,7 +16,7 @@ public class FormSumActivity extends Application{
     @Override
 
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FormSumActivity.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ShowFeedback.fxml"));
         
         Scene scene = new Scene(root);
         

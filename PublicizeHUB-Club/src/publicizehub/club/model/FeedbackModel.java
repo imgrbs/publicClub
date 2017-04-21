@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package publicizehub.club.model;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import javax.swing.*;
-import publicizehub.club.controller.FeedbackController;
 import publicizehub.club.controller.FormSumActivityController;
 
 /**
@@ -130,38 +123,33 @@ public class FeedbackModel {
 
             e.printStackTrace();
         }
-
         cb.logout();
     }
 
-    /*
+    
     //ดึงข้อมูลหลังคำนวณจาก tb_feedback
-    public void selectValueFeedback() {
+    public ResultSet selectValueFeedback(int eventId) {
         PreparedStatement ps = null;
-        PreparedStatement ps2 = null;
-        ResultSet result, result2;
-        //String evId = "";
+        ResultSet result = null;
         cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
         try {
             ps = cb.getConnect().prepareStatement("SELECT * FROM tb_feedback where evId = ?");
 
-            //ps.setInt(1, 200);  //ให้แสดงชื่อตาม id 
+            ps.setInt(1, eventId);  //ให้แสดงชื่อตาม id 
             result = ps.executeQuery();
-            while (result.last()) {
-                String tempSum = result.getInt("sumQ1") + "   " + result.getInt("sumQ2") + "  " + result.getInt("sumQ3") + "   " + result.getInt("sumQ4")
-                        + "   " + result.getInt("sumQ5") + "   " + result.getInt("sumQ6") + "   " + result.getInt("sumQ7") + "   " + result.getInt("sumQ8")
-                        + "   " + result.getInt("sumQ9") + "   " + result.getInt("sumQ10");
-                String tempSetSum = result.getInt("setSumQ1") + "   " + result.getInt("setSumQ2");
-                String tempNumPeple = result.getString("stdEstimated");
-            }
+//            if (result.next()) {
+//                String tempSum = result.getInt("sumQ1") + "   " + result.getInt("sumQ2") + "  " + result.getInt("sumQ3") + "   " + result.getInt("sumQ4")
+//                        + "   " + result.getInt("sumQ5") + "   " + result.getInt("sumQ6") + "   " + result.getInt("sumQ7") + "   " + result.getInt("sumQ8")
+//                        + "   " + result.getInt("sumQ9") + "   " + result.getInt("sumQ10");
+//                String tempSetSum = result.getInt("setSumQ1") + "   " + result.getInt("setSumQ2");
+//                String tempNumPeple = result.getString("stdEstimated");
+//            }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             e.printStackTrace();
         }
-
-        cb.logout();
+        return result;
     }
-*/
+
     public void insertToLog(int eventId, long stdId) {
         ResultSet log = null;
         cb.connecting();

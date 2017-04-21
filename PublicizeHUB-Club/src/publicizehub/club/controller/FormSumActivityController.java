@@ -1,5 +1,6 @@
 package publicizehub.club.controller;
 
+import com.jfoenix.controls.JFXTreeTableView;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -10,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.TreeTableColumn;
 import javafx.stage.Stage;
 
 /**
@@ -20,34 +21,37 @@ import javafx.stage.Stage;
  */
 public class FormSumActivityController implements Initializable {
 
-    @FXML
-    private Label evName;
 
     @FXML
     private BarChart<?, ?> feedbackChart;
 
     @FXML
-    private Label numPepleRegis;
+    private Label numberBuy;
 
     @FXML
-    private Label numPepleJoin;
+    private Label numberJoin;
 
     @FXML
-    private TableColumn<?, ?> stdName;
+    private Label evName;
 
     @FXML
-    private TableColumn<?, ?> stdSurname;
+    private JFXTreeTableView<?> tableStd;
 
     @FXML
-    private TableColumn<?, ?> department;
+    private TreeTableColumn<?, ?> stdName;
 
     @FXML
-    private TableColumn<?, ?> regisDate;
+    private TreeTableColumn<?, ?> stdSurname;
 
     @FXML
-    private TableColumn<?, ?> joinDate;
+    private TreeTableColumn<?, ?> stdDepart;
 
-//    FeedbackModel fbm = new FeedbackModel();
+    @FXML
+    private TreeTableColumn<?, ?> stdBuy;
+
+    @FXML
+    private TreeTableColumn<?, ?> stdCheckin;
+
     int[] averQ = new int[10];
     
     public FormSumActivityController() {
@@ -57,12 +61,10 @@ public class FormSumActivityController implements Initializable {
     @FXML
        public void setValueAver(){
         for (int i = 0; i < averQ.length; i++) {
-            averQ[i] = -1;
+            averQ[i] = 0;
         }
     }
     
-    
-    /*method คำนวณหาค่าเฉลี่ยแต่ละข้อ(10 ข้อ) และเฉลี่ยรวมชุดคำถามที่ 1,2*/
     public void calculateFeedback(int evId, long stdId, int numPeple, int sumQ1,
             int sumQ2, int sumQ3, int sumQ4, int sumQ5, int sumQ6, int sumQ7,
             int sumQ8, int sumQ9, int sumQ10) {
@@ -105,6 +107,7 @@ public class FormSumActivityController implements Initializable {
     public void setFeedbackChart() {
         XYChart.Series setl = new XYChart.Series<>();
         setl.getData().add(new XYChart.Data("Q1", averQ[0]));
+        System.out.println(averQ[0]);
         setl.getData().add(new XYChart.Data("Q2", averQ[1]));
         setl.getData().add(new XYChart.Data("Q3", averQ[2]));
         setl.getData().add(new XYChart.Data("Q4", averQ[3]));
@@ -131,7 +134,7 @@ public class FormSumActivityController implements Initializable {
     public void callFeedback(){
         Stage stage= new Stage();
         Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/FormSumActivity.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ShowFeedback.fxml"));     
         try{
             root = (Parent)fxmlLoader.load(); 
         }
@@ -139,6 +142,7 @@ public class FormSumActivityController implements Initializable {
             e.printStackTrace();
         }
         FormSumActivityController controller = fxmlLoader.<FormSumActivityController>getController();
+        controller.setFeedbackChart();
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    
