@@ -44,63 +44,50 @@ public class FeedbackModel {
         cb.logout();
     }
 
-    public void setSumQ() {
+    
+    public ResultSet getSumQ(int evId) {
         PreparedStatement ps = null;
-        PreparedStatement ps2 = null;
-        ResultSet result, result2;
-        cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
-        int sumQ1 = 0;
-        int sumQ2 = 0;
-        int sumQ3 = 0;
-        int sumQ4 = 0;
-        int sumQ5 = 0;
-        int sumQ6 = 0;
-        int sumQ7 = 0;
-        int sumQ8 = 0;
-        int sumQ9 = 0;
-        int sumQ10 = 0;
-        int numPeple = 0;
-        int evId = 10048;
-        long stdId = 59130500045L;
+        ResultSet result = null;
+        cb.connecting();
 
         try {
-            ps = cb.getConnect().prepareStatement("SELECT * FROM std_feedback"); //ดึงค่าจาก std_feedback
-            ps2 = cb.getConnect().prepareStatement("SELECT COUNT(*) number FROM std_feedback");//คำสั่งดูจำนวน row ทั้งหมด (จำนวนคน)
+            ps = cb.getConnect().prepareStatement("SELECT * FROM std_feedback where evId = ?"); //ดึงค่าจาก std_feedback
+            ps.setInt(1, evId); 
             result = ps.executeQuery();
-            result2 = ps2.executeQuery();
-
-            result2.next();
-            numPeple = result2.getInt("number");
-
-            while (result.next()) {
             
-                evId = result.getInt("evId");
-                stdId = result.getLong("stdId");
-                sumQ1 += result.getInt("sumQ1");
-                sumQ2 += result.getInt("sumQ2");
-                sumQ3 += result.getInt("sumQ3");
-                sumQ4 += result.getInt("sumQ4");
-                sumQ5 += result.getInt("sumQ5");
-                sumQ6 += result.getInt("sumQ6");
-                sumQ7 += result.getInt("sumQ7");
-                sumQ8 += result.getInt("sumQ8");
-                sumQ9 += result.getInt("sumQ9");
-                sumQ10 += result.getInt("sumQ10");
-
-                /*ส่งค่าไป method calculateFeedback เพื่อคำนวณหาค่าเฉลี่ย*/
-                fsc.calculateFeedback(evId,stdId,numPeple,sumQ1,sumQ2,sumQ3,sumQ4,sumQ5, sumQ6,sumQ7, sumQ8,sumQ9,sumQ10);
-                
-            }
-
-       
-           
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             e.printStackTrace();
         }
 
         cb.logout();
+        return result;
+
     }
+
+    public int numPeople(int evId) {
+        PreparedStatement ps = null;
+        int numPeple = 0;
+        ResultSet result = null;
+        cb.connecting();
+
+        try {
+            ps = cb.getConnect().prepareStatement("SELECT COUNT(*) number FROM std_feedback where evId = ?");//คำสั่งดูจำนวน row ทั้งหมด (จำนวนคน)
+            ps.setInt(1, evId); 
+            result = ps.executeQuery();
+            numPeple = result.getInt("number");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            e.printStackTrace();
+        }
+
+        cb.logout();
+        return numPeple;
+
+    }
+
+
 
     //method รับค่าหลังคำนวณเสร็จแล้วส่งข้อมูลหลังคำนวณไป tb_feedback
     public void insertAvgrValue(int evId, int numPeple, int averQ1, int averQ2, int averQ3,

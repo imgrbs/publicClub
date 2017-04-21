@@ -36,24 +36,11 @@ public class FeedbackController {
 
     }
        //method ให้กดปุ่มแล้วคำนวณส่งค่าไป tb_feedback
-       public void AverSum(){
-           
-          fbm.setSumQ();
-        
-       }
-       
-   
-    /*
-    public void getArrayList(ArrayList<FeedbackStd> myArrList) {
-        FeedbackStd[] fb = new FeedbackStd[myArrList.size()];
-
-        int i;
-        for (i = 0; i < fb.length; i++) {
-            fb[i] = myArrList.get(i);
-           
-            
-        }
-    }
-     */
-    
+//       public void AverSum(){
+//           
+//          fbm.setSumQ();
+//        
+//       }
+     
+  
 }
