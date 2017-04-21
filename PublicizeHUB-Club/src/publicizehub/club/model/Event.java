@@ -1,17 +1,20 @@
 package publicizehub.club.model;
 
-import java.sql.Date;
 import java.sql.*;
 import java.text.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import javax.swing.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import publicizehub.club.controller.FormSumActivityController;
 /**
  *
  * @author ImagineRabbits
  */
 public class Event {
-    ConnectionBuilder cb = new ConnectionBuilder();
+    
+    private static final Logger LOGGER = Logger.getLogger( FormSumActivityController.class.getName() );
+    private final ConnectionBuilder cb = new ConnectionBuilder();
     
     private long stdId;
     private String evName; 
@@ -29,10 +32,10 @@ public class Event {
     private int evId;
     
     
-    SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
     
-    PreparedStatement ps;
-    ResultSet rs;
+    private PreparedStatement ps;
+    private ResultSet rs;
 
     public Event() {
     }
@@ -58,16 +61,12 @@ public class Event {
                     Time evTime, Time evEndTime, int evType, int evId) {
         this.evName = evName;
         this.evDescrip = evDescrip;
-        try{
-            this.evDate = evDate.toLocalDate();
-            this.evEndDate = evEndDate.toLocalDate();
-            this.evStartRegis = evStartRegis.toLocalDate();
-            this.evEndFeedback = evEndFeedback.toLocalDate();
-            this.evTime = evTime.toLocalTime();
-            this.evEndTime = evEndTime.toLocalTime();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        this.evDate = evDate.toLocalDate();
+        this.evEndDate = evEndDate.toLocalDate();
+        this.evStartRegis = evStartRegis.toLocalDate();
+        this.evEndFeedback = evEndFeedback.toLocalDate();
+        this.evTime = evTime.toLocalTime();
+        this.evEndTime = evEndTime.toLocalTime();
         this.evPlace = evPlace;
         this.evTicket = evTicket;
         this.evType = evType;
@@ -79,16 +78,12 @@ public class Event {
                     Time evTime, Time evEndTime, int evType, int evId) {
         this.evName = evName;
         this.evDescrip = evDescrip;
-        try{
-            this.evDate = evDate.toLocalDate();
-            this.evEndDate = evEndDate.toLocalDate();
-            this.evStartRegis = evStartRegis.toLocalDate();
-            this.evEndFeedback = evEndFeedback.toLocalDate();
-            this.evTime = evTime.toLocalTime();
-            this.evEndTime = evEndTime.toLocalTime();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        this.evDate = evDate.toLocalDate();
+        this.evEndDate = evEndDate.toLocalDate();
+        this.evStartRegis = evStartRegis.toLocalDate();
+        this.evEndFeedback = evEndFeedback.toLocalDate();
+        this.evTime = evTime.toLocalTime();
+        this.evEndTime = evEndTime.toLocalTime();
         this.currentMember = currentMember;
         this.evPlace = evPlace;
         this.evTicket = evTicket;
@@ -100,19 +95,14 @@ public class Event {
                     LocalTime evTime, LocalTime evEndTime, int evType, int evId) {
         this.evName = evName;
         this.evDescrip = evDescrip;
-        try{
-            this.evDate = evDate;
-            this.evEndDate = evEndDate;
-            this.evStartRegis = evStartRegis;
-            this.evEndFeedback = evEndFeedback;
-            this.evTime = evTime;
-            this.evEndTime = evEndTime;
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        this.evDate = evDate;
+        this.evEndDate = evEndDate;
+        this.evStartRegis = evStartRegis;
+        this.evEndFeedback = evEndFeedback;
+        this.evTime = evTime;
+        this.evEndTime = evEndTime;
         this.evPlace = evPlace;
         this.evTicket = evTicket;
-        this.currentMember = currentMember;
         this.evType = evType;
         this.evId = evId;
     }
@@ -229,35 +219,27 @@ public class Event {
         this.evId = evId;
     }
     
-    /* รับค่าที่ประมวลผลแล้วจาก Controller เพื่อ ส่งไป Database
-    โดยใช้คำสั่ง SQL และ ประมวลผลคำสั่งโดย 
-    การสร้าง Statement และเรียกใช้ method */
     public void createEvent(Event thisEvent) {
-        cb.connecting(); // Connect ไป Database ผ่าน Connection Builder
-        Statement s = null; // สร้างตัวแปร Statement
+        cb.connecting();
+        Statement s = null;
         try {
-            s = cb.getConnect().createStatement();  // สร้าง Statement
-            // SQL Insert (คำสัง SQL)
+            s = cb.getConnect().createStatement();
             String sql = "INSERT INTO tb_event"
                     + "(evName,evDescrip,evStartDate,evEndDate,evStartRegis,evEndFeedback,evTime,evEndTime,evPlace,evTicket,evType,stdId) "
                     + "VALUES ('"  + thisEvent.getEvName() + "','" + thisEvent.getEvDescrip() + "','"+ thisEvent.getEvDate() + "','"+ thisEvent.getEvEndDate() + "','" +thisEvent.getEvStartRegis() + "','"+thisEvent.getEvEndFeedback() + "','" + thisEvent.getEvTime() + "','"
                     + thisEvent.getEvEndTime() + "','" + thisEvent.getEvPlace() + "','" + thisEvent.getEvTicket() + "','" + thisEvent.getEvType() + "','" + thisEvent.getStdId() + "') ";
-            s.executeUpdate(sql); // ส่งข้อมูลไป Database
-        } 
-        /* ดัก SQLException และ Exception ปกติ */
+            s.executeUpdate(sql);
+        }
         catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"createEvent : SQLException Bug !");
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"createEvent : Exception Bug !");
         }
-        cb.logout(); // ปิดการ connection กับ database
+        cb.logout();
     }
     
     public void updateEvent(Event event){
-        // update
         System.out.println(event.getEvId());
         cb.connecting();
         String command;
@@ -270,46 +252,34 @@ public class Event {
                     + "evTicket = '"+event.getEvTicket()+"' , evType = '"+event.getEvType()+"' "
                     + "where evId = "+event.getEvId();
             ps = cb.getConnect().prepareStatement(command); 
-            System.out.println(event.getEvId());
-            System.out.println("Before Update");
             ps.executeUpdate();
-            System.out.println("Success Update");
         }
         catch(SQLException ex){
-            ex.printStackTrace();
-            System.out.println("SQL ERROR at updateEvent()");
+            LOGGER.log(Level.SEVERE ,"updateEvent : SQLException Bug !");
         }catch(Exception e){
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"updateEvent : Exception Bug !");
         }
         cb.logout();
     }
     
     public void DeleteEvent(int deleteId){
-        System.out.println("Call deleteEv");
         String command;
         PreparedStatement s;
         cb.connecting();
         try{
             command ="DELETE FROM tb_event WHERE evId = ?";
-            System.out.println("DelID "+deleteId);
-            System.out.println(command);
             s = cb.getConnect().prepareStatement(command);
             s.setInt(1,deleteId);
-            
             s.executeUpdate();
-            System.out.println("Delete Success");
         }
         catch(NullPointerException e){
-            e.printStackTrace();
-            System.out.println("NullPointerException");
+            LOGGER.log(Level.SEVERE ,"DeleteEvent : NullPointerException Bug !");
         }
         catch(SQLException e){
-            e.printStackTrace();
-            System.out.println("SQLException! - event");
+            LOGGER.log(Level.SEVERE ,"DeleteEvent : SQLException Bug !");
         }
         catch(Exception e){
-            e.printStackTrace();
-            System.out.println("EXCEPTION - event");
+            LOGGER.log(Level.SEVERE ,"DeleteEvent : Exception Bug !");
         }
         finally{
             cb.logout();
@@ -323,12 +293,10 @@ public class Event {
             rs = ps.executeQuery();
         }
         catch(SQLException e){
-            e.printStackTrace();
-            System.out.println("SQL ผิดพลาด");
+            LOGGER.log(Level.SEVERE ,"getEvent : SQLException Bug !");
         }
         catch(Exception e){
-            e.printStackTrace();
-            System.out.println("getEvent() Exception!");
+            LOGGER.log(Level.SEVERE ,"getEvent : Exception Bug !");
         }
         return rs;
     }
@@ -341,12 +309,10 @@ public class Event {
             rs = ps.executeQuery();
         }
         catch(SQLException e){
-            e.printStackTrace();
-            System.out.println("SQLException at getSelect()");
+            LOGGER.log(Level.SEVERE ,"getSelect int : SQLException Bug !");
         }
         catch(Exception e){
-            e.printStackTrace();
-            System.out.println("Exception at getSelect()");
+            LOGGER.log(Level.SEVERE ,"getSelect int : Exception Bug !");
         }
         return rs;
     }
@@ -359,12 +325,10 @@ public class Event {
             rs = ps.executeQuery();
         }
         catch(SQLException e){
-            e.printStackTrace();
-            System.out.println("SQLException at getSelect()");
+            LOGGER.log(Level.SEVERE ,"getSelect long : SQLException Bug !");
         }
         catch(Exception e){
-            e.printStackTrace();
-            System.out.println("Exception at getSelect()");
+            LOGGER.log(Level.SEVERE ,"getSelect long : Exception Bug !");
         }
         return rs;
     }
@@ -376,12 +340,10 @@ public class Event {
             ps.executeUpdate();
         }
         catch(SQLException e){
-            e.printStackTrace();
-            System.out.println("SQLException at getSelect()");
+            LOGGER.log(Level.SEVERE ,"updateCurrentMember long : SQLException Bug !");
         }
         catch(Exception e){
-            e.printStackTrace();
-            System.out.println("Exception at getSelect()");
+            LOGGER.log(Level.SEVERE ,"updateCurrentMember long : Exception Bug !");
         }
         return rs;
     }

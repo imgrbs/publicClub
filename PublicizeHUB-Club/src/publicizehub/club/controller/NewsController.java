@@ -48,7 +48,7 @@ public class NewsController {
             root = (Parent)fxmlLoader.load(); 
         }
         catch(IOException e){
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"root : callAddNews Bug !");
         }
         NewsController controller = fxmlLoader.<NewsController>getController();
         controller.submit.setOnAction(new EventHandler<javafx.event.ActionEvent>() {

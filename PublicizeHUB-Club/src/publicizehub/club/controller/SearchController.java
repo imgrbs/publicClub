@@ -1,5 +1,6 @@
 package publicizehub.club.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,18 +18,23 @@ import javafx.stage.Stage;
 import publicizehub.club.model.Search;
 import publicizehub.club.model.ConnectionBuilder;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.EventHandler;
 
 /**
  *
  * @author Imagine
  */
-public class SearchController implements Initializable {
-    ConnectionBuilder cb = new ConnectionBuilder();
-    JoinController jc = new JoinController();
-    DetailController dc = new DetailController();
-    Search s = new Search();
-    Alert alert = new Alert(AlertType.WARNING);
+public class SearchController {
+    private static final Logger LOGGER = Logger.getLogger( FormSumActivityController.class.getName() );
+    private ConnectionBuilder cb = new ConnectionBuilder();
+    private JoinController jc = new JoinController();
+    private DetailController dc = new DetailController();
+    private Search s = new Search();
+    private Alert alert = new Alert(AlertType.WARNING);
+    
     @FXML
     private Label label;
     @FXML
@@ -74,15 +80,10 @@ public class SearchController implements Initializable {
         try{
             this.search.setText(search);
         }
-        catch(Exception e){
-            e.printStackTrace();
+            catch(Exception e){
+                LOGGER.log(Level.SEVERE ," setSearch Bug !");
         }
     }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
     
     @FXML
     public void addEventToPane(String eventName,int eventId) {
@@ -175,11 +176,10 @@ public class SearchController implements Initializable {
                     }
                 }
             }
-        } catch(Exception e){
+        } catch(SQLException e){
             temp = "nullEventThatNoMeaning";
+            LOGGER.log(Level.SEVERE ," setSearch Bug !");
         }
-        
-        System.out.println(temp);
 
         cb.logout();
     }
@@ -192,8 +192,8 @@ public class SearchController implements Initializable {
         try{
             root = (Parent)fxmlLoader.load(); 
         }
-        catch(Exception e){
-            e.printStackTrace();
+        catch(IOException e){
+            LOGGER.log(Level.SEVERE ,"root : checkSearchEvType Bug !");
         }
         SearchController controller = fxmlLoader.<SearchController>getController();
         controller.setCheckEvType(getCheckEvType());
@@ -202,7 +202,7 @@ public class SearchController implements Initializable {
             stage.setScene(scene);    
         }
         catch(Exception e){
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"setScene : checkSearchEvType Bug !");
         }
         stage.show();
     }
@@ -221,8 +221,8 @@ public class SearchController implements Initializable {
         try{
             root = (Parent)fxmlLoader.load(); 
         }
-        catch(Exception e){
-            e.printStackTrace();
+        catch(IOException e){
+            LOGGER.log(Level.SEVERE ,"root : callSearch Bug !");
         }
         SearchController controller = fxmlLoader.<SearchController>getController();
         controller.setText(text);
@@ -232,7 +232,7 @@ public class SearchController implements Initializable {
             stage.setScene(scene);    
         }
         catch(Exception e){
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"stage : setScene Bug !");
         }
         stage.show();
     }
@@ -244,8 +244,8 @@ public class SearchController implements Initializable {
         try{
             root = (Parent)fxmlLoader.load(); 
         }
-        catch(Exception e){
-            e.printStackTrace();
+        catch(IOException e){
+            LOGGER.log(Level.SEVERE ,"root : callSearch Bug !");
         }
         SearchController controller = fxmlLoader.<SearchController>getController();
         controller.setCheckEvType(evType);
@@ -255,7 +255,7 @@ public class SearchController implements Initializable {
             stage.setScene(scene);    
         }
         catch(Exception e){
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"stage : callSearch Bug !");
         }
         stage.show();
     }

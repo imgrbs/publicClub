@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -14,6 +16,7 @@ import javafx.beans.property.StringProperty;
  * @author budsagorn_ss
  */
 public class Person extends RecursiveTreeObject<Person> {
+    private static final Logger LOGGER = Logger.getLogger( GenerateCode.class.getName() );
     private ConnectionBuilder cb = new ConnectionBuilder();
     
     private StringProperty stdId;
@@ -130,7 +133,7 @@ public class Person extends RecursiveTreeObject<Person> {
             rs = ps.executeQuery();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"getProfile : getProfile Failed");
         }
         return rs;
     }

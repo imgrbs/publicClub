@@ -4,12 +4,15 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author budsagorn_ss
  */
 public class FeedbackModel {
+    private static final Logger LOGGER = Logger.getLogger( GenerateCode.class.getName() );
     private ConnectionBuilder cb = new ConnectionBuilder();
     
     public void insertValue(int evId, long stdId, int valueRadio1, int valueRadio2, int valueRadio3,
@@ -29,7 +32,7 @@ public class FeedbackModel {
             s.executeUpdate(sql);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"insertValue : insertValue Failed");
         }
         cb.logout();
     }
@@ -46,7 +49,7 @@ public class FeedbackModel {
             result = ps.executeQuery();
             
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"getSumQ : getSumQ Failed");
         }
 
         return result;
@@ -65,7 +68,7 @@ public class FeedbackModel {
             if(result.next()) numPeople = result.getInt("total");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"numPeople : numPeople Failed");
         }
 
         cb.logout();
@@ -87,7 +90,7 @@ public class FeedbackModel {
             s.executeUpdate(sql);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"insertAvgrValue : insertAvgrValue Failed");
         }
         cb.logout();
     }
@@ -101,7 +104,7 @@ public class FeedbackModel {
             ps.setInt(1, eventId);
             result = ps.executeQuery();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"selectValueFeedback : selectValueFeedback Failed");
         }
         return result;
     }
@@ -115,7 +118,7 @@ public class FeedbackModel {
                     + +stdId + "','" + LocalDate.now() + "','" + timeFormat.format(LocalTime.now()) + "')");
             ps.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"insertToLog : insertToLog Failed");
         }
     }
 
@@ -128,7 +131,7 @@ public class FeedbackModel {
             ps.setLong(2, stdId);
             log = ps.executeQuery();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"getFormLog : getFormLog Failed");
         }
         return log;
     }
@@ -145,7 +148,7 @@ public class FeedbackModel {
             if(result.next()) numPeople = result.getInt("total");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"getStdBuy : getStdBuy Failed");
         }
         cb.logout();
         return numPeople;
@@ -164,7 +167,7 @@ public class FeedbackModel {
             if(result.next()) numPeople = result.getInt("total");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"getStdJoin : getStdJoin Failed");
         }
         cb.logout();
         return numPeople;
@@ -180,7 +183,7 @@ public class FeedbackModel {
             rs = ps.executeQuery();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"getStdFormLog : getStdFormLog Failed");
         }
         return rs;
     }

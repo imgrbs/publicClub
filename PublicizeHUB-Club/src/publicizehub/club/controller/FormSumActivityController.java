@@ -288,7 +288,7 @@ public class FormSumActivityController  implements Initializable  {
                 }
             }
         }catch(SQLException e){
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"setPersons : setPersons Failed");
         }
         cb.logout();
     }
