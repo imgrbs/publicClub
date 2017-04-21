@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package publicizehub.club.model;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import javax.swing.*;
-import publicizehub.club.controller.FeedbackController;
 import publicizehub.club.controller.FormSumActivityController;
 
 /**
@@ -23,7 +16,6 @@ public class FeedbackModel {
 
     ConnectionBuilder cb = new ConnectionBuilder();
     ArrayList<FeedbackStd> myArrList = new ArrayList<FeedbackStd>();
-    FormSumActivityController fsc = new FormSumActivityController();
 
     //method รับค่าจาก class FormEvaluationsController เพื่อจะส่งค่าเข้า DB
     public void insertValue(int evId, long stdId, int valueRadio1, int valueRadio2, int valueRadio3,
@@ -51,63 +43,48 @@ public class FeedbackModel {
         cb.logout();
     }
 
-    public void setSumQ() {
+    
+    public ResultSet getSumQ(int evId) {
         PreparedStatement ps = null;
-        PreparedStatement ps2 = null;
-        ResultSet result, result2;
-        cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
-        int sumQ1 = 0;
-        int sumQ2 = 0;
-        int sumQ3 = 0;
-        int sumQ4 = 0;
-        int sumQ5 = 0;
-        int sumQ6 = 0;
-        int sumQ7 = 0;
-        int sumQ8 = 0;
-        int sumQ9 = 0;
-        int sumQ10 = 0;
-        int numPeple = 0;
-        int evId = 10048;
-        long stdId = 59130500045L;
+        ResultSet result = null;
+        cb.connecting();
 
         try {
-            ps = cb.getConnect().prepareStatement("SELECT * FROM std_feedback"); //ดึงค่าจาก std_feedback
-            ps2 = cb.getConnect().prepareStatement("SELECT COUNT(*) number FROM std_feedback");//คำสั่งดูจำนวน row ทั้งหมด (จำนวนคน)
+            ps = cb.getConnect().prepareStatement("SELECT * FROM std_feedback where evId = ?"); //ดึงค่าจาก std_feedback
+            ps.setInt(1, evId); 
             result = ps.executeQuery();
-            result2 = ps2.executeQuery();
-
-            result2.next();
-            numPeple = result2.getInt("number");
-
-            while (result.next()) {
             
-                evId = result.getInt("evId");
-                stdId = result.getLong("stdId");
-                sumQ1 += result.getInt("sumQ1");
-                sumQ2 += result.getInt("sumQ2");
-                sumQ3 += result.getInt("sumQ3");
-                sumQ4 += result.getInt("sumQ4");
-                sumQ5 += result.getInt("sumQ5");
-                sumQ6 += result.getInt("sumQ6");
-                sumQ7 += result.getInt("sumQ7");
-                sumQ8 += result.getInt("sumQ8");
-                sumQ9 += result.getInt("sumQ9");
-                sumQ10 += result.getInt("sumQ10");
-
-                /*ส่งค่าไป method calculateFeedback เพื่อคำนวณหาค่าเฉลี่ย*/
-                fsc.calculateFeedback(evId,stdId,numPeple,sumQ1,sumQ2,sumQ3,sumQ4,sumQ5, sumQ6,sumQ7, sumQ8,sumQ9,sumQ10);
-                
-            }
-
-       
-           
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             e.printStackTrace();
         }
 
-        cb.logout();
+        return result;
+
     }
+
+    public int numPeople(int evId) {
+        PreparedStatement ps = null;
+        int numPeople = 1;
+        cb.connecting();
+
+        ResultSet result = null;
+        try {
+            ps = cb.getConnect().prepareStatement("SELECT COUNT(*) AS total FROM std_feedback where evId = ?");//คำสั่งดูจำนวน row ทั้งหมด (จำนวนคน)
+            ps.setInt(1, evId); 
+            result = ps.executeQuery();
+            if(result.next()) numPeople = result.getInt("total");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        cb.logout();
+        return numPeople;
+
+    }
+
+
 
     //method รับค่าหลังคำนวณเสร็จแล้วส่งข้อมูลหลังคำนวณไป tb_feedback
     public void insertAvgrValue(int evId, int numPeple, int averQ1, int averQ2, int averQ3,
@@ -130,38 +107,26 @@ public class FeedbackModel {
 
             e.printStackTrace();
         }
-
         cb.logout();
     }
 
-    /*
+    
     //ดึงข้อมูลหลังคำนวณจาก tb_feedback
-    public void selectValueFeedback() {
+    public ResultSet selectValueFeedback(int eventId) {
         PreparedStatement ps = null;
-        PreparedStatement ps2 = null;
-        ResultSet result, result2;
-        //String evId = "";
+        ResultSet result = null;
         cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
         try {
             ps = cb.getConnect().prepareStatement("SELECT * FROM tb_feedback where evId = ?");
 
-            //ps.setInt(1, 200);  //ให้แสดงชื่อตาม id 
+            ps.setInt(1, eventId);  //ให้แสดงชื่อตาม id 
             result = ps.executeQuery();
-            while (result.last()) {
-                String tempSum = result.getInt("sumQ1") + "   " + result.getInt("sumQ2") + "  " + result.getInt("sumQ3") + "   " + result.getInt("sumQ4")
-                        + "   " + result.getInt("sumQ5") + "   " + result.getInt("sumQ6") + "   " + result.getInt("sumQ7") + "   " + result.getInt("sumQ8")
-                        + "   " + result.getInt("sumQ9") + "   " + result.getInt("sumQ10");
-                String tempSetSum = result.getInt("setSumQ1") + "   " + result.getInt("setSumQ2");
-                String tempNumPeple = result.getString("stdEstimated");
-            }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             e.printStackTrace();
         }
-
-        cb.logout();
+        return result;
     }
-*/
+
     public void insertToLog(int eventId, long stdId) {
         ResultSet log = null;
         cb.connecting();
@@ -189,4 +154,44 @@ public class FeedbackModel {
         return log;
     }
 
+    public int getStdBuy(int evId){
+        PreparedStatement ps = null;
+        int numPeople = 1;
+        cb.connecting();
+
+        ResultSet result = null;
+        try {
+            ps = cb.getConnect().prepareStatement("SELECT COUNT(*) AS total FROM logJoining where evId = ?");//คำสั่งดูจำนวน row ทั้งหมด (จำนวนคน)
+            ps.setInt(1, evId); 
+            result = ps.executeQuery();
+            if(result.next()) numPeople = result.getInt("total");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        cb.logout();
+        return numPeople;
+    }
+    
+    public int getStdJoin(int evId){
+        PreparedStatement ps = null;
+        int numPeople = 1;
+        cb.connecting();
+
+        ResultSet result = null;
+        try {
+            ps = cb.getConnect().prepareStatement("SELECT COUNT(*) AS total FROM logJoining where evId = ? and statusCheckIn = ?");//คำสั่งดูจำนวน row ทั้งหมด (จำนวนคน)
+            ps.setInt(1, evId); 
+            ps.setInt(2, 1);
+            result = ps.executeQuery();
+            if(result.next()) numPeople = result.getInt("total");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        cb.logout();
+        return numPeople;
+    }
 }

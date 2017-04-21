@@ -1,6 +1,8 @@
 package publicizehub.club.controller;
 
+import com.jfoenix.controls.JFXTreeTableView;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +12,11 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.TreeTableColumn;
 import javafx.stage.Stage;
+import publicizehub.club.model.ConnectionBuilder;
+import publicizehub.club.model.Event;
+import publicizehub.club.model.FeedbackModel;
 
 /**
  * FXML Controller class
@@ -19,90 +24,192 @@ import javafx.stage.Stage;
  * @author budsagorn_ss
  */
 public class FormSumActivityController implements Initializable {
-
-    @FXML
-    private Label evName;
+    private ConnectionBuilder cb = new ConnectionBuilder();
+    private FeedbackModel fbm = new FeedbackModel();
+    
+    private int eventId;
 
     @FXML
     private BarChart<?, ?> feedbackChart;
 
     @FXML
-    private Label numPepleRegis;
+    private Label numberBuy;
 
     @FXML
-    private Label numPepleJoin;
+    private Label numberJoin;
 
     @FXML
-    private TableColumn<?, ?> stdName;
+    private Label evName;
 
     @FXML
-    private TableColumn<?, ?> stdSurname;
+    private JFXTreeTableView<?> tableStd;
 
     @FXML
-    private TableColumn<?, ?> department;
+    private TreeTableColumn<?, ?> stdName;
 
     @FXML
-    private TableColumn<?, ?> regisDate;
+    private TreeTableColumn<?, ?> stdSurname;
 
     @FXML
-    private TableColumn<?, ?> joinDate;
+    private TreeTableColumn<?, ?> stdDepart;
 
-//    FeedbackModel fbm = new FeedbackModel();
-    int[] averQ = new int[10];
-    
+    @FXML
+    private TreeTableColumn<?, ?> stdBuy;
+
+    @FXML
+    private TreeTableColumn<?, ?> stdCheckin;
+
+    public FeedbackModel getFbm() {
+        return fbm;
+    }
+
+    public void setFbm(FeedbackModel fbm) {
+        this.fbm = fbm;
+    }
+
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
+
     public FormSumActivityController() {
-        setValueAver();
-    }
-
-    @FXML
-       public void setValueAver(){
-        for (int i = 0; i < averQ.length; i++) {
-            averQ[i] = -1;
-        }
-    }
-    
-    
-    /*method คำนวณหาค่าเฉลี่ยแต่ละข้อ(10 ข้อ) และเฉลี่ยรวมชุดคำถามที่ 1,2*/
-    public void calculateFeedback(int evId, long stdId, int numPeple, int sumQ1,
-            int sumQ2, int sumQ3, int sumQ4, int sumQ5, int sumQ6, int sumQ7,
-            int sumQ8, int sumQ9, int sumQ10) {
-
-        averQ[0] = sumQ1 / numPeple;
-        averQ[1] = sumQ2 / numPeple;
-        averQ[2] = sumQ3 / numPeple;
-        averQ[3] = sumQ4 / numPeple;
-        averQ[4] = sumQ5 / numPeple;
-        averQ[5] = sumQ6 / numPeple;
-        averQ[6] = sumQ7 / numPeple;
-        averQ[7] = sumQ8 / numPeple;
-        averQ[8] = sumQ9 / numPeple;
-        averQ[9] = sumQ10 / numPeple;
-
-        //คิด % แต่ละข้อโดยแบ่งเป็น 2 ชุด 
-        double x = 0.2;
-        int percentQ1 = (int) (averQ[0] * x);
-        int percentQ2 = (int) (averQ[1] * x);
-        int percentQ3 = (int) (averQ[2] * x);
-        int percentQ4 = (int) (averQ[3] * x);
-        int percentQ5 = (int) (averQ[4] * x);
         
-        int percentQ6 = (int) (averQ[5] * x);
-        int percentQ7 = (int) (averQ[6] * x);
-        int percentQ8 = (int) (averQ[7]* x);
-        int percentQ9 = (int) (averQ[8] * x);
-        int percentQ10 = (int) (averQ[9] * x);
+    }
 
-        int setSumQ1 = (int) (percentQ1 + percentQ2 + percentQ3 + percentQ4 + percentQ5);
-        int setSumQ2 = (int) (percentQ6 + percentQ7 + percentQ8 + percentQ9 + percentQ10);
+    public Label getNumberBuy() {
+        return numberBuy;
+    }
 
-        //ส่งค่ากลับไป model เพื่อเอาค่าไปเก็บไว้ใน DB
-//        fbm.insertAvgrValue(evId, numPeple, averQ[0], averQ[1], averQ[2], averQ[3], averQ[4], averQ[5],
-//                averQ[6], averQ[7], averQ[8], averQ[9], setSumQ1, setSumQ2);
+    public void setNumberBuy(Label numberBuy) {
+        this.numberBuy = numberBuy;
+    }
+
+    public Label getNumberJoin() {
+        return numberJoin;
+    }
+
+    public void setNumberJoin(Label numberJoin) {
+        this.numberJoin = numberJoin;
+    }
+
+    public Label getEvName() {
+        return evName;
+    }
+
+    public void setEvName(Label evName) {
+        this.evName = evName;
+    }
+
+    public TreeTableColumn<?, ?> getStdName() {
+        return stdName;
+    }
+
+    public void setStdName(TreeTableColumn<?, ?> stdName) {
+        this.stdName = stdName;
+    }
+
+    public TreeTableColumn<?, ?> getStdSurname() {
+        return stdSurname;
+    }
+
+    public void setStdSurname(TreeTableColumn<?, ?> stdSurname) {
+        this.stdSurname = stdSurname;
+    }
+
+    public TreeTableColumn<?, ?> getStdDepart() {
+        return stdDepart;
+    }
+
+    public void setStdDepart(TreeTableColumn<?, ?> stdDepart) {
+        this.stdDepart = stdDepart;
+    }
+
+    public TreeTableColumn<?, ?> getStdBuy() {
+        return stdBuy;
+    }
+
+    public void setStdBuy(TreeTableColumn<?, ?> stdBuy) {
+        this.stdBuy = stdBuy;
+    }
+
+    public TreeTableColumn<?, ?> getStdCheckin() {
+        return stdCheckin;
+    }
+
+    public void setStdCheckin(TreeTableColumn<?, ?> stdCheckin) {
+        this.stdCheckin = stdCheckin;
+    }
+
+    public void calculateFeedback(int evId) {
+        
+        int[] averQ = new int[10];
+        ResultSet result = null;
+        result = fbm.getSumQ(evId);
+        
+        int numPeople = 1;
+        numPeople = fbm.numPeople(evId);
+        
+        int setSumQ1 = 0;
+        int setSumQ2 = 0;
+        
+        try {
+            while (result.next()) {
+                averQ[0] += result.getInt("sumQ1");
+                averQ[1] += result.getInt("sumQ2");
+                averQ[2] += result.getInt("sumQ3");
+                averQ[3] += result.getInt("sumQ4");
+                averQ[4] += result.getInt("sumQ5");
+                averQ[5] += result.getInt("sumQ6");
+                averQ[6] += result.getInt("sumQ7");
+                averQ[7] += result.getInt("sumQ8");
+                averQ[8] += result.getInt("sumQ9");
+                averQ[9] += result.getInt("sumQ10");
+            }
+            cb.logout();
+
+            averQ[0] /= numPeople;
+            averQ[1] /= numPeople;
+            averQ[2] /= numPeople;
+            averQ[3] /= numPeople;
+            averQ[4] /= numPeople;
+            averQ[5] /= numPeople;
+            averQ[6] /= numPeople;
+            averQ[7] /= numPeople;
+            averQ[8] /= numPeople;
+            averQ[9] /= numPeople;
+
+            //คิด % แต่ละข้อโดยแบ่งเป็น 2 ชุด 
+            double x = 0.2;
+            int percentQ1 = (int) (averQ[0] * x);
+            int percentQ2 = (int) (averQ[1] * x);
+            int percentQ3 = (int) (averQ[2] * x);
+            int percentQ4 = (int) (averQ[3] * x);
+            int percentQ5 = (int) (averQ[4] * x);
+
+            int percentQ6 = (int) (averQ[5] * x);
+            int percentQ7 = (int) (averQ[6] * x);
+            int percentQ8 = (int) (averQ[7] * x);
+            int percentQ9 = (int) (averQ[8] * x);
+            int percentQ10 = (int) (averQ[9] * x);
+
+            setSumQ1 = (int) (percentQ1 + percentQ2 + percentQ3 + percentQ4 + percentQ5);
+            setSumQ2 = (int) (percentQ6 + percentQ7 + percentQ8 + percentQ9 + percentQ10);
+            
+            fbm.insertAvgrValue(evId, numPeople, averQ[0], averQ[1], averQ[2], averQ[3], averQ[4], averQ[5],
+                            averQ[6], averQ[7], averQ[8], averQ[9], setSumQ1, setSumQ2);
+            setFeedbackChart(averQ);
+        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //set ค่าที่จะโชว์กราฟ
     @FXML
-    public void setFeedbackChart() {
+    public void setFeedbackChart(int averQ[]) {
         XYChart.Series setl = new XYChart.Series<>();
         setl.getData().add(new XYChart.Data("Q1", averQ[0]));
         setl.getData().add(new XYChart.Data("Q2", averQ[1]));
@@ -116,37 +223,43 @@ public class FormSumActivityController implements Initializable {
         setl.getData().add(new XYChart.Data("Q10", averQ[9]));
         feedbackChart.getData().addAll(setl);
     }
-
-    
-    @FXML
-    public void showFeedbackChart(){
-        this.setFeedbackChart();
-    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
-    public void callFeedback(){
-        Stage stage= new Stage();
-        Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/FormSumActivity.fxml"));     
-        try{
-            root = (Parent)fxmlLoader.load(); 
-        }
-        catch(Exception e){
+
+    public void callFeedback(Event event) {
+//        this.eventId=evId;
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ShowFeedback.fxml"));
+        try {
+            root = (Parent) fxmlLoader.load();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         FormSumActivityController controller = fxmlLoader.<FormSumActivityController>getController();
-        Scene scene = new Scene(root); 
+        ResultSet rs = null;
+        rs = controller.getFbm().selectValueFeedback(getEventId());
+        controller.getEvName().setText(event.getEvName());
+        controller.getNumberBuy().setText(""+getFbm().getStdBuy(event.getEvId()));
+        controller.getNumberJoin().setText(""+getFbm().getStdJoin(event.getEvId()));
         try{
-            stage.setScene(scene);    
+            if(!rs.next()){
+                controller.calculateFeedback(event.getEvId());
+                rs = controller.getFbm().selectValueFeedback(event.getEvId());
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
-        catch(Exception e){
+        Scene scene = new Scene(root);
+        try {
+            stage.setScene(scene);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         stage.show();
     }
-       
+
 }
