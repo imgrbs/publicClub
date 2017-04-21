@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package publicizehub.club.controller;
 
 import com.jfoenix.controls.*;
@@ -20,9 +15,13 @@ import javafx.stage.Stage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import publicizehub.club.model.ConnectionBuilder;
+import publicizehub.club.model.GenerateCode;
 import publicizehub.club.model.News;
 
 /**
@@ -30,9 +29,10 @@ import publicizehub.club.model.News;
  * @author JIL
  */
 public class NewsController {
-    News nw = new News();
-    ArrayList<String> myArrList = new ArrayList<String>();
-    ConnectionBuilder cb = new ConnectionBuilder();
+    private static final Logger LOGGER = Logger.getLogger( GenerateCode.class.getName() );
+    private News nw = new News();
+    private ArrayList<String> myArrList = new ArrayList<>();
+    private ConnectionBuilder cb = new ConnectionBuilder();
     
     @FXML
     private JFXTextArea textNews;
@@ -47,7 +47,7 @@ public class NewsController {
         try{
             root = (Parent)fxmlLoader.load(); 
         }
-        catch(Exception e){
+        catch(IOException e){
             e.printStackTrace();
         }
         NewsController controller = fxmlLoader.<NewsController>getController();
@@ -62,7 +62,7 @@ public class NewsController {
             stage.setScene(scene);    
         }
         catch(Exception e){
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"callAddNews : callAddNews Bug !");
         }
         stage.show();
     }
@@ -81,13 +81,15 @@ public class NewsController {
             warning.setHeaderText("ยืนยันการเพิ่มข่าว");
             warning.setContentText("ยืนยันความถูกต้องและต้องการเพิ่มข่าว?");
             Optional<ButtonType> result = warning.showAndWait();
-            if (result.get() == ButtonType.OK){
-                nw.toInsertNews(text);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success!");
-                alert.setHeaderText("เพิ่มข่าวสำเร็จแล้ว");
-                alert.showAndWait();
-                textNews.setText("");
+            if(result.isPresent()){
+                if (result.get() == ButtonType.OK){
+                    nw.toInsertNews(text);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success!");
+                    alert.setHeaderText("เพิ่มข่าวสำเร็จแล้ว");
+                    alert.showAndWait();
+                    textNews.setText("");
+                }
             }
         }
         
@@ -102,7 +104,7 @@ public class NewsController {
                 items.add(news.getString("content"));
             }
         }catch(SQLException e){
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"addNewsToList : addNewsToList Bug !");
         }
         list.setItems(items);
 

@@ -5,23 +5,20 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author ImagineRabbits
  */
 public class GenerateCode {
-
+    private static final Logger LOGGER = Logger.getLogger( GenerateCode.class.getName() );
     ConnectionBuilder cb = new ConnectionBuilder();
     Event ev = new Event();
-    private int rand;
-    private int randString;
-    private String timestamp = "";
-    private int timerand;
-    private int Code;
     private String codeString ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private long stdId = 59130500012l;
-    private int evId = 10051;
+    private long stdId;
+    private int evId;
     private String evCode = "";
 
     public String getEvCode() {
@@ -36,21 +33,22 @@ public class GenerateCode {
         this.evId = evId;
     }
 
-    public int getCode() {
-        return Code;
-    }
 
     public void generateCode() {
+        int rand;
+        int randString;
+        int timerand;
+        String timestamp = "";
+        int Code;
         rand = (int) (Math.random() * 7999) + 1000;
       	randString = (int) (Math.random() * codeString.length());
-        timestamp += System.currentTimeMillis();
+        timestamp += Long.toString(System.currentTimeMillis());
         timerand = parseInt(timestamp.substring(timestamp.length() - 5, timestamp.length()));
         Code = (int) (timerand + rand);
-        System.out.println(codeString.charAt(randString)+"" + Code);
-        evCode = "" + codeString.charAt(randString) + Code;
+        evCode = "" + Character.toString(codeString.charAt(randString)) + Code;
         if(evCode.length()<6){
             int fixCode = (int) (Math.random()*10);
-            evCode += fixCode;
+            evCode += Long.toString(fixCode);
         }else if(evCode.length()>6){
             evCode = evCode.substring(0,7);
         }
@@ -64,7 +62,9 @@ public class GenerateCode {
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
         try {
             if(checkMember.next()){
-                if (checkMember.getInt("currentMember") < checkMember.getInt("evTicket")) {
+                int member = checkMember.getInt("currentMember");
+                int chckTicket = checkMember.getInt("evTicket");
+                if ( member < chckTicket) {
                     int updateMember = checkMember.getInt("currentMember")+1;
                     ev.updateCurrentMember(updateMember, eventId);
                     cb.connecting();
@@ -77,14 +77,8 @@ public class GenerateCode {
                             + this.evCode + "','"
                             + LocalDate .now() + "','"
                             + timeFormat.format(LocalTime.now()) + "') ";
-                    try {
-                        ps = cb.getConnect().prepareStatement(sql);
-                        ps.executeUpdate();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    ps = cb.getConnect().prepareStatement(sql);
+                    ps.executeUpdate();
                     ps = cb.getConnect().prepareStatement("INSERT into logJoining (stdId,evId,evCode,status,dateBuyTicket,timestamp) "
                                                   + "VALUES ('"+this.stdId+"','"+
                                                     this.evId+"','"+
@@ -96,7 +90,7 @@ public class GenerateCode {
                 }
             }
         }catch(SQLException e){
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"pushCode : pushCode Bug !");
         }
         cb.logout();
     }

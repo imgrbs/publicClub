@@ -1,5 +1,6 @@
 package publicizehub.club.view;
 
+import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -13,31 +14,30 @@ import publicizehub.club.controller.MainController;
  * @author ImagineRabbits
  */
 public class DriverPublicizeHUB extends Application  {
+    private Stage thisStage;
+    
     @Override
     public void start(Stage stage) throws Exception {
-        
-        FXMLLoader loader =  new FXMLLoader(getClass().getResource("FeedGui.fxml"));  
-        MainController controller=null;
+        thisStage = stage;
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource("FeedGui.fxml")); 
         Parent root = null;
         try{
-            stage = new Stage();
+            thisStage = new Stage();
             root = (Parent)loader.load(); 
-            controller = loader.<MainController>getController();
         }
-        catch(Exception e){
+        catch(IOException e){
             e.printStackTrace();
         }
+        MainController controller = loader.<MainController>getController();
         controller.getEvent();
         controller.setUserData(controller.getLi().getStdId(),controller.getLi().getName()+" "+controller.getLi().getSurname());
-        
         controller.getNc().addNewsToList(controller.getNewsList());
-        controller.setThisStage(stage);
-       
+        controller.setThisStage(thisStage);
         Scene scene = new Scene(root);
         
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
+        thisStage.setScene(scene);
+        thisStage.centerOnScreen();
+        thisStage.show();
     }
 
     /**
