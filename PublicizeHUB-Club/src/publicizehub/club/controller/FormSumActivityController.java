@@ -195,18 +195,12 @@ public class FormSumActivityController  implements Initializable  {
         }
         FormSumActivityController controller = fxmlLoader.<FormSumActivityController>getController();
         ResultSet rs;
-        rs = controller.getFbm().selectValueFeedback(getEventId());
+        rs = controller.getFbm().selectValueFeedback(event.getEvId());
         controller.getEvName().setText(event.getEvName());
         controller.getNumberBuy().setText(""+getFbm().getStdBuy(event.getEvId()));
         controller.getNumberJoin().setText(""+getFbm().getStdJoin(event.getEvId()));
         controller.setPersons(event.getEvId());
-        try{
-            if(!rs.next()){
-                controller.calculateFeedback(event.getEvId());
-            }
-        }catch(SQLException e){
-            LOGGER.log(Level.SEVERE ,"call Controller : callFeedback Bug !");
-        }
+        controller.checkFeedback(rs,event.getEvId());
         Scene scene = new Scene(root);
         try {
             stage.setScene(scene);
@@ -299,5 +293,28 @@ public class FormSumActivityController  implements Initializable  {
             e.printStackTrace();
         }
         cb.logout();
+    }
+    
+    public void checkFeedback(ResultSet rs,int evId){
+        try{
+            if(!(rs.next())){
+                calculateFeedback(evId);
+            }else{
+                int[] averQ = new int[10];
+                averQ[0] += rs.getInt("sumQ1");
+                averQ[1] += rs.getInt("sumQ2");
+                averQ[2] += rs.getInt("sumQ3");
+                averQ[3] += rs.getInt("sumQ4");
+                averQ[4] += rs.getInt("sumQ5");
+                averQ[5] += rs.getInt("sumQ6");
+                averQ[6] += rs.getInt("sumQ7");
+                averQ[7] += rs.getInt("sumQ8");
+                averQ[8] += rs.getInt("sumQ9");
+                averQ[9] += rs.getInt("sumQ10");
+                setFeedbackChart(averQ);
+            }
+        }catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"call Controller : callFeedback Bug !");
+        }
     }
 }
