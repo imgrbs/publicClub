@@ -133,7 +133,7 @@ public class EventController {
                 evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent evt) {
-                        fsa.callFeedback();
+                        fsa.callFeedback(event);
                     }
                 });           
             }

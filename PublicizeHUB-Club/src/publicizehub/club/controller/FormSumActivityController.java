@@ -3,7 +3,6 @@ package publicizehub.club.controller;
 import com.jfoenix.controls.JFXTreeTableView;
 import java.net.URL;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +14,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeTableColumn;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
+import publicizehub.club.model.ConnectionBuilder;
+import publicizehub.club.model.Event;
 import publicizehub.club.model.FeedbackModel;
 
 /**
@@ -24,8 +24,10 @@ import publicizehub.club.model.FeedbackModel;
  * @author budsagorn_ss
  */
 public class FormSumActivityController implements Initializable {
-
-    FeedbackModel fbm = new FeedbackModel();
+    private ConnectionBuilder cb = new ConnectionBuilder();
+    private FeedbackModel fbm = new FeedbackModel();
+    
+    private int eventId;
 
     @FXML
     private BarChart<?, ?> feedbackChart;
@@ -57,65 +59,127 @@ public class FormSumActivityController implements Initializable {
     @FXML
     private TreeTableColumn<?, ?> stdCheckin;
 
-    int[] averQ = new int[10];
+    public FeedbackModel getFbm() {
+        return fbm;
+    }
+
+    public void setFbm(FeedbackModel fbm) {
+        this.fbm = fbm;
+    }
+
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
 
     public FormSumActivityController() {
-        setValueAver();
+        
     }
 
-    @FXML
-    public void setValueAver() {
-        for (int i = 0; i < averQ.length; i++) {
-            averQ[i] = 0;
-        }
+    public Label getNumberBuy() {
+        return numberBuy;
     }
 
-    public void calculateFeedback(int evId) throws SQLException {
+    public void setNumberBuy(Label numberBuy) {
+        this.numberBuy = numberBuy;
+    }
 
+    public Label getNumberJoin() {
+        return numberJoin;
+    }
+
+    public void setNumberJoin(Label numberJoin) {
+        this.numberJoin = numberJoin;
+    }
+
+    public Label getEvName() {
+        return evName;
+    }
+
+    public void setEvName(Label evName) {
+        this.evName = evName;
+    }
+
+    public TreeTableColumn<?, ?> getStdName() {
+        return stdName;
+    }
+
+    public void setStdName(TreeTableColumn<?, ?> stdName) {
+        this.stdName = stdName;
+    }
+
+    public TreeTableColumn<?, ?> getStdSurname() {
+        return stdSurname;
+    }
+
+    public void setStdSurname(TreeTableColumn<?, ?> stdSurname) {
+        this.stdSurname = stdSurname;
+    }
+
+    public TreeTableColumn<?, ?> getStdDepart() {
+        return stdDepart;
+    }
+
+    public void setStdDepart(TreeTableColumn<?, ?> stdDepart) {
+        this.stdDepart = stdDepart;
+    }
+
+    public TreeTableColumn<?, ?> getStdBuy() {
+        return stdBuy;
+    }
+
+    public void setStdBuy(TreeTableColumn<?, ?> stdBuy) {
+        this.stdBuy = stdBuy;
+    }
+
+    public TreeTableColumn<?, ?> getStdCheckin() {
+        return stdCheckin;
+    }
+
+    public void setStdCheckin(TreeTableColumn<?, ?> stdCheckin) {
+        this.stdCheckin = stdCheckin;
+    }
+
+    public void calculateFeedback(int evId) {
+        
+        int[] averQ = new int[10];
         ResultSet result = null;
         result = fbm.getSumQ(evId);
         
-        int numPeople = 0;
+        int numPeople = 1;
         numPeople = fbm.numPeople(evId);
         
-        int sumQ1 = 0;
-        int sumQ2 = 0;
-        int sumQ3 = 0;
-        int sumQ4 = 0;
-        int sumQ5 = 0;
-        int sumQ6 = 0;
-        int sumQ7 = 0;
-        int sumQ8 = 0;
-        int sumQ9 = 0;
-        int sumQ10 = 0;
         int setSumQ1 = 0;
         int setSumQ2 = 0;
         
         try {
-   
             while (result.next()) {
-                sumQ1 += result.getInt("sumQ1");
-                sumQ2 += result.getInt("sumQ2");
-                sumQ3 += result.getInt("sumQ3");
-                sumQ4 += result.getInt("sumQ4");
-                sumQ5 += result.getInt("sumQ5");
-                sumQ6 += result.getInt("sumQ6");
-                sumQ7 += result.getInt("sumQ7");
-                sumQ8 += result.getInt("sumQ8");
-                sumQ9 += result.getInt("sumQ9");
-                sumQ10 += result.getInt("sumQ10");
+                averQ[0] += result.getInt("sumQ1");
+                averQ[1] += result.getInt("sumQ2");
+                averQ[2] += result.getInt("sumQ3");
+                averQ[3] += result.getInt("sumQ4");
+                averQ[4] += result.getInt("sumQ5");
+                averQ[5] += result.getInt("sumQ6");
+                averQ[6] += result.getInt("sumQ7");
+                averQ[7] += result.getInt("sumQ8");
+                averQ[8] += result.getInt("sumQ9");
+                averQ[9] += result.getInt("sumQ10");
             }
+            cb.logout();
 
-            averQ[0] = sumQ1 / numPeople;
-            averQ[1] = sumQ2 / numPeople;
-            averQ[2] = sumQ3 / numPeople;
-            averQ[3] = sumQ4 / numPeople;
-            averQ[4] = sumQ5 / numPeople;
-            averQ[5] = sumQ6 / numPeople;
-            averQ[6] = sumQ7 / numPeople;
-            averQ[7] = sumQ8 / numPeople;
-            averQ[8] = sumQ9 / numPeople;
-            averQ[9] = sumQ10 / numPeople;
+            averQ[0] /= numPeople;
+            averQ[1] /= numPeople;
+            averQ[2] /= numPeople;
+            averQ[3] /= numPeople;
+            averQ[4] /= numPeople;
+            averQ[5] /= numPeople;
+            averQ[6] /= numPeople;
+            averQ[7] /= numPeople;
+            averQ[8] /= numPeople;
+            averQ[9] /= numPeople;
 
             //คิด % แต่ละข้อโดยแบ่งเป็น 2 ชุด 
             double x = 0.2;
@@ -134,24 +198,20 @@ public class FormSumActivityController implements Initializable {
             setSumQ1 = (int) (percentQ1 + percentQ2 + percentQ3 + percentQ4 + percentQ5);
             setSumQ2 = (int) (percentQ6 + percentQ7 + percentQ8 + percentQ9 + percentQ10);
             
-            //ส่งค่ากลับไป model เพื่อเอาค่าไปเก็บไว้ใน DB
-             fbm.insertAvgrValue(evId, numPeople, averQ[0], averQ[1], averQ[2], averQ[3], averQ[4], averQ[5],
-                                averQ[6], averQ[7], averQ[8], averQ[9], setSumQ1, setSumQ2);
+            fbm.insertAvgrValue(evId, numPeople, averQ[0], averQ[1], averQ[2], averQ[3], averQ[4], averQ[5],
+                            averQ[6], averQ[7], averQ[8], averQ[9], setSumQ1, setSumQ2);
+            setFeedbackChart(averQ);
         
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             e.printStackTrace();
         }
-
-        
     }
 
     //set ค่าที่จะโชว์กราฟ
     @FXML
-    public void setFeedbackChart() {
+    public void setFeedbackChart(int averQ[]) {
         XYChart.Series setl = new XYChart.Series<>();
         setl.getData().add(new XYChart.Data("Q1", averQ[0]));
-        System.out.println(averQ[0]);
         setl.getData().add(new XYChart.Data("Q2", averQ[1]));
         setl.getData().add(new XYChart.Data("Q3", averQ[2]));
         setl.getData().add(new XYChart.Data("Q4", averQ[3]));
@@ -163,18 +223,14 @@ public class FormSumActivityController implements Initializable {
         setl.getData().add(new XYChart.Data("Q10", averQ[9]));
         feedbackChart.getData().addAll(setl);
     }
-
-    @FXML
-    public void showFeedbackChart() {
-        this.setFeedbackChart();
-    }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
 
-    public void callFeedback() {
+    public void callFeedback(Event event) {
+//        this.eventId=evId;
         Stage stage = new Stage();
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ShowFeedback.fxml"));
@@ -184,7 +240,19 @@ public class FormSumActivityController implements Initializable {
             e.printStackTrace();
         }
         FormSumActivityController controller = fxmlLoader.<FormSumActivityController>getController();
-        controller.setFeedbackChart();
+        ResultSet rs = null;
+        rs = controller.getFbm().selectValueFeedback(getEventId());
+        controller.getEvName().setText(event.getEvName());
+        controller.getNumberBuy().setText(""+getFbm().getStdBuy(event.getEvId()));
+        controller.getNumberJoin().setText(""+getFbm().getStdJoin(event.getEvId()));
+        try{
+            if(!rs.next()){
+                controller.calculateFeedback(event.getEvId());
+                rs = controller.getFbm().selectValueFeedback(event.getEvId());
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         Scene scene = new Scene(root);
         try {
             stage.setScene(scene);

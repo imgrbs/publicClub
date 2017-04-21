@@ -370,7 +370,7 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
         fbm.insertValue(this.evId, this.stdId, valueRadio[0], valueRadio[1], 
                 valueRadio[2], valueRadio[3], valueRadio[4],valueRadio[5], 
                 valueRadio[6], valueRadio[7], valueRadio[8], valueRadio[9]);
-        fbm.setSumQ();
+//        fbm.setSumQ();
     }
 
  
