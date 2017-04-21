@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import java.lang.String?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.SearchController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.FormEvaluationsController">
    <children>
       <FlowPane alignment="CENTER" layoutX="18.0" layoutY="20.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -21,18 +22,13 @@
                         <String fx:value="formName" />
                         <String fx:value="quark" />
                      </styleClass></Label>
-                  <Label fx:id="evName" layoutX="504.0" layoutY="38.0" prefHeight="45.0" prefWidth="139.0" text="BrownBag #2.0">
+                  <Label fx:id="evName" alignment="CENTER_RIGHT" layoutX="422.0" layoutY="30.0" prefHeight="45.0" prefWidth="214.0" text="BrownBag #2.0">
                      <styleClass>
                         <String fx:value="formEvName" />
                         <String fx:value="quark" />
                      </styleClass></Label>
                   <Line endX="510.0" layoutX="129.0" layoutY="80.0" startX="-100.0" />
                   <Line endX="510.0" layoutX="134.0" layoutY="499.0" startX="-100.0" />
-                  <Button fx:id="confirmBtn" layoutX="290.0" layoutY="517.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" text="ยืนยัน">
-                     <styleClass>
-                        <String fx:value="accepBtn" />
-                        <String fx:value="quark" />
-                     </styleClass></Button>
                   <Text fill="#0d0c0c" layoutX="31.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ความคิดเห็นเกี่ยวกับการจัดกิจกรรม">
                      <styleClass>
                         <String fx:value="formSetQName" />
@@ -106,63 +102,99 @@
                      </styleClass>
                   </Label>
                   <Text fill="#686666" layoutX="453.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" styleClass="quark" text="ดีมาก   ดี   ปานกลาง พอใช้  ปรับปรุง" wrappingWidth="188.9999942779541" />
-                  <RadioButton fx:id="Q1_N1_5" layoutX="450.0" layoutY="148.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5" />
-                  <RadioButton fx:id="Q1_N2_5" layoutX="450.0" layoutY="178.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5" />
-                  <RadioButton fx:id="Q1_N3_5" layoutX="450.0" layoutY="208.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5" />
-                  <RadioButton fx:id="Q1_N4_5" layoutX="450.0" layoutY="238.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5" />
-                  <RadioButton fx:id="Q1_N5_5" layoutX="450.0" layoutY="268.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5" />
-                  <RadioButton fx:id="Q1_N1_4" layoutX="488.0" layoutY="148.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" />
-                  <RadioButton fx:id="Q1_N2_4" layoutX="488.0" layoutY="178.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" />
-                  <RadioButton fx:id="Q1_N3_5" layoutX="488.0" layoutY="208.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" />
-                  <RadioButton fx:id="Q1_N4_5" layoutX="488.0" layoutY="238.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" />
-                  <RadioButton fx:id="Q1_N5_4" layoutX="488.0" layoutY="268.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" />
-                  <RadioButton fx:id="Q1_N1_3" layoutX="523.0" layoutY="148.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" />
-                  <RadioButton fx:id="Q1_N2_3" layoutX="523.0" layoutY="178.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" />
-                  <RadioButton fx:id="Q1_N3_3" layoutX="523.0" layoutY="208.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" />
-                  <RadioButton fx:id="Q1_N4_3" layoutX="523.0" layoutY="238.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" />
-                  <RadioButton fx:id="Q1_N5_3" layoutX="523.0" layoutY="268.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" />
-                  <RadioButton fx:id="Q1_N1_2" layoutX="560.0" layoutY="148.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" />
-                  <RadioButton fx:id="Q1_N2_2" layoutX="560.0" layoutY="178.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" />
-                  <RadioButton fx:id="Q1_N3_2" layoutX="560.0" layoutY="208.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" />
-                  <RadioButton fx:id="Q1_N4_2" layoutX="560.0" layoutY="238.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" />
-                  <RadioButton fx:id="Q1_N5_2" layoutX="560.0" layoutY="268.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" />
-                  <RadioButton fx:id="Q1_N1_1" layoutX="595.0" layoutY="148.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" />
-                  <RadioButton fx:id="Q1_N2_1" layoutX="595.0" layoutY="178.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" />
-                  <RadioButton fx:id="Q1_N3_1" layoutX="595.0" layoutY="208.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" />
-                  <RadioButton fx:id="Q1_N4_1" layoutX="595.0" layoutY="238.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" />
-                  <RadioButton fx:id="Q1_N5_1" layoutX="595.0" layoutY="268.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" />
+                  <RadioButton fx:id="Q1_N1_5" layoutX="450.0" layoutY="148.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="groupQ1" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="Q1_N2_5" layoutX="450.0" layoutY="178.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="groupQ2" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="Q1_N3_5" layoutX="450.0" layoutY="208.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="groupQ3" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="Q1_N4_5" layoutX="450.0" layoutY="238.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="groupQ4" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="Q1_N5_5" layoutX="450.0" layoutY="268.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="groupQ5" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="Q1_N1_4" layoutX="488.0" layoutY="148.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ1" />
+                  <RadioButton fx:id="Q1_N2_4" layoutX="488.0" layoutY="178.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ2" />
+                  <RadioButton fx:id="Q1_N3_4" layoutX="488.0" layoutY="208.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ3" />
+                  <RadioButton fx:id="Q1_N4_4" layoutX="488.0" layoutY="238.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ4" />
+                  <RadioButton fx:id="Q1_N5_4" layoutX="488.0" layoutY="268.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ5" />
+                  <RadioButton fx:id="Q1_N1_3" layoutX="523.0" layoutY="148.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" toggleGroup="$groupQ1" />
+                  <RadioButton fx:id="Q1_N2_3" layoutX="523.0" layoutY="178.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" toggleGroup="$groupQ2" />
+                  <RadioButton fx:id="Q1_N3_3" layoutX="523.0" layoutY="208.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" toggleGroup="$groupQ3" />
+                  <RadioButton fx:id="Q1_N4_3" layoutX="523.0" layoutY="238.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" toggleGroup="$groupQ4" />
+                  <RadioButton fx:id="Q1_N5_3" layoutX="523.0" layoutY="268.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" toggleGroup="$groupQ5" />
+                  <RadioButton fx:id="Q1_N1_2" layoutX="560.0" layoutY="148.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" toggleGroup="$groupQ1" />
+                  <RadioButton fx:id="Q1_N2_2" layoutX="560.0" layoutY="178.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" toggleGroup="$groupQ2" />
+                  <RadioButton fx:id="Q1_N3_2" layoutX="560.0" layoutY="208.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" toggleGroup="$groupQ3" />
+                  <RadioButton fx:id="Q1_N4_2" layoutX="560.0" layoutY="238.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" toggleGroup="$groupQ4" />
+                  <RadioButton fx:id="Q1_N5_2" layoutX="560.0" layoutY="268.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" toggleGroup="$groupQ5" />
+                  <RadioButton fx:id="Q1_N1_1" layoutX="595.0" layoutY="148.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" toggleGroup="$groupQ1" />
+                  <RadioButton fx:id="Q1_N2_1" layoutX="595.0" layoutY="178.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" toggleGroup="$groupQ2" />
+                  <RadioButton fx:id="Q1_N3_1" layoutX="595.0" layoutY="208.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" toggleGroup="$groupQ3" />
+                  <RadioButton fx:id="Q1_N4_1" layoutX="595.0" layoutY="238.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" toggleGroup="$groupQ4" />
+                  <RadioButton fx:id="Q1_N5_1" layoutX="595.0" layoutY="268.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" toggleGroup="$groupQ5" />
                   <Text fill="#686666" layoutX="453.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" styleClass="quark" text="ดีมาก   ดี   ปานกลาง พอใช้  ปรับปรุง" wrappingWidth="188.9999942779541" />
-                  <RadioButton fx:id="Q2_N1_5" layoutX="449.0" layoutY="339.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5" />
-                  <RadioButton fx:id="Q2_N2_5" layoutX="450.0" layoutY="369.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5" />
-                  <RadioButton fx:id="Q2_N3_5" layoutX="450.0" layoutY="399.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5" />
-                  <RadioButton fx:id="Q2_N4_5" layoutX="450.0" layoutY="429.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5" />
-                  <RadioButton fx:id="Q2_N5_5" layoutX="450.0" layoutY="459.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5" />
-                  <RadioButton fx:id="Q2_N1_4" layoutX="488.0" layoutY="339.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" />
-                  <RadioButton fx:id="Q2_N2_4" layoutX="488.0" layoutY="369.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" />
-                  <RadioButton fx:id="Q2_N3_4" layoutX="488.0" layoutY="399.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" />
-                  <RadioButton fx:id="Q2_N4_4" layoutX="488.0" layoutY="429.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" />
-                  <RadioButton fx:id="Q2_N5_4" layoutX="488.0" layoutY="459.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" />
-                  <RadioButton fx:id="Q2_N1_3" layoutX="523.0" layoutY="339.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" />
-                  <RadioButton fx:id="Q2_N2_3" layoutX="523.0" layoutY="369.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" />
-                  <RadioButton fx:id="Q2_N3_3" layoutX="523.0" layoutY="399.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" />
-                  <RadioButton fx:id="Q2_N4_3" layoutX="523.0" layoutY="429.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" />
-                  <RadioButton fx:id="Q2_N5_3" layoutX="523.0" layoutY="459.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" />
-                  <RadioButton fx:id="Q2_N1_2" layoutX="560.0" layoutY="339.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" />
-                  <RadioButton fx:id="Q2_N2_2" layoutX="560.0" layoutY="369.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" />
-                  <RadioButton fx:id="Q2_N3_2" layoutX="560.0" layoutY="399.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" />
-                  <RadioButton fx:id="Q2_N4_2" layoutX="560.0" layoutY="429.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" />
-                  <RadioButton fx:id="Q2_N5_2" layoutX="560.0" layoutY="459.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" />
-                  <RadioButton fx:id="Q2_N1_1" layoutX="595.0" layoutY="339.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" />
-                  <RadioButton fx:id="Q2_N2_1" layoutX="595.0" layoutY="369.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" />
-                  <RadioButton fx:id="Q2_N3_1" layoutX="595.0" layoutY="399.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" />
-                  <RadioButton fx:id="Q2_N4_1" layoutX="595.0" layoutY="429.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" />
-                  <RadioButton fx:id="Q2_N5_1" layoutX="595.0" layoutY="459.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" />
-                  <Button fx:id="cancelBtn" layoutX="356.0" layoutY="517.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" text="ยกเลิก">
+                  <RadioButton fx:id="Q2_N1_5" layoutX="449.0" layoutY="339.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="groupQ6" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="Q2_N2_5" layoutX="450.0" layoutY="369.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="groupQ7" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="Q2_N3_5" layoutX="450.0" layoutY="399.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="groupQ8" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="Q2_N4_5" layoutX="450.0" layoutY="429.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="groupQ9" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="Q2_N5_5" layoutX="450.0" layoutY="459.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="5">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="groupQ10" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="Q2_N1_4" layoutX="488.0" layoutY="339.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ6" />
+                  <RadioButton fx:id="Q2_N2_4" layoutX="488.0" layoutY="369.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ7" />
+                  <RadioButton fx:id="Q2_N3_4" layoutX="488.0" layoutY="399.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ8" />
+                  <RadioButton fx:id="Q2_N4_4" layoutX="488.0" layoutY="429.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ9" />
+                  <RadioButton fx:id="Q2_N5_4" layoutX="488.0" layoutY="459.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="4" toggleGroup="$groupQ10" />
+                  <RadioButton fx:id="Q2_N1_3" layoutX="523.0" layoutY="339.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" toggleGroup="$groupQ6" />
+                  <RadioButton fx:id="Q2_N2_3" layoutX="523.0" layoutY="369.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" toggleGroup="$groupQ7" />
+                  <RadioButton fx:id="Q2_N3_3" layoutX="523.0" layoutY="399.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" toggleGroup="$groupQ8" />
+                  <RadioButton fx:id="Q2_N4_3" layoutX="523.0" layoutY="429.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" toggleGroup="$groupQ9" />
+                  <RadioButton fx:id="Q2_N5_3" layoutX="523.0" layoutY="459.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="3" toggleGroup="$groupQ10" />
+                  <RadioButton fx:id="Q2_N1_2" layoutX="560.0" layoutY="339.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" toggleGroup="$groupQ6" />
+                  <RadioButton fx:id="Q2_N2_2" layoutX="560.0" layoutY="369.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" toggleGroup="$groupQ7" />
+                  <RadioButton fx:id="Q2_N3_2" layoutX="560.0" layoutY="399.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" toggleGroup="$groupQ8" />
+                  <RadioButton fx:id="Q2_N4_2" layoutX="560.0" layoutY="429.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" toggleGroup="$groupQ9" />
+                  <RadioButton fx:id="Q2_N5_2" layoutX="560.0" layoutY="459.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="2" toggleGroup="$groupQ10" />
+                  <RadioButton fx:id="Q2_N1_1" layoutX="595.0" layoutY="339.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" toggleGroup="$groupQ6" />
+                  <RadioButton fx:id="Q2_N2_1" layoutX="595.0" layoutY="369.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" toggleGroup="$groupQ7" />
+                  <RadioButton fx:id="Q2_N3_1" layoutX="595.0" layoutY="399.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" toggleGroup="$groupQ8" />
+                  <RadioButton fx:id="Q2_N4_1" layoutX="595.0" layoutY="429.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" toggleGroup="$groupQ9" />
+                  <RadioButton fx:id="Q2_N5_1" layoutX="595.0" layoutY="459.5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="1" toggleGroup="$groupQ10" />
+                  <JFXButton fx:id="confirmBtn" layoutX="232.0" layoutY="511.0" prefHeight="37.0" prefWidth="100.0" ripplerFill="WHITE" text="ยืนยัน">
                      <styleClass>
-                        <String fx:value="formCancelBtn" />
                         <String fx:value="quark" />
+                        <String fx:value="accepBtn" />
                      </styleClass>
-                  </Button>
+                  </JFXButton>
+                  <JFXButton fx:id="cancelBtn" layoutX="352.0" layoutY="511.0" prefHeight="37.0" prefWidth="100.0" text="ยกเลิก">
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="formCancelBtn" />
+                     </styleClass>
+                  </JFXButton>
                </children>
             </Pane>
          </children>

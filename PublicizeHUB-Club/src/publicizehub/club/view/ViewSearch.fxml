@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,11 +20,26 @@
                <children>
                   <Pane prefHeight="82.0" prefWidth="598.0">
                      <children>
-                        <TextField fx:id="search" layoutX="341.0" layoutY="26.0" onAction="#checkSearch" promptText="Search" />
-                        <Button layoutX="497.0" layoutY="22.0" mnemonicParsing="false" onAction="#checkSearch" prefHeight="32.0" prefWidth="81.0" styleClass="search-btn" text="Search">
+                        <TextField fx:id="search" layoutX="321.0" layoutY="25.0" onAction="#checkSearch" promptText="พิมพ์ชื่อกิจกรรมที่้ต้องการหา..">
+                           <font>
+                              <Font name="Quark-Bold" size="14.0" />
+                           </font></TextField>
+                        <Button fx:id="searchBtn" layoutX="497.0" layoutY="22.0" mnemonicParsing="false" onAction="#checkSearch" prefHeight="32.0" prefWidth="81.0" styleClass="search-btn" text="ค้นหา">
                            <font>
                               <Font name="Quark-Bold" size="14.0" />
                            </font></Button>
+                        <Label layoutX="24.0" layoutY="32.0" prefHeight="35.0" prefWidth="159.0" text="ค้นหากิจกรรม :">
+                           <styleClass>
+                              <String fx:value="formName" />
+                              <String fx:value="quark" />
+                           </styleClass>
+                        </Label>
+                        <Label fx:id="eventType" layoutX="183.0" layoutY="32.0" prefHeight="30.0" prefWidth="57.0" text="ค่าย">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="formName" />
+                           </styleClass>
+                        </Label>
                      </children>
                   </Pane>
                </children>

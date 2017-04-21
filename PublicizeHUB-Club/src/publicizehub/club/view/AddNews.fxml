@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.NewsController">
+   <children>
+      <FlowPane alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="357.0" prefWidth="562.0" styleClass="detailPane">
+               <children>
+                  <Label contentDisplay="CENTER" layoutX="84.0" layoutY="15.0" prefHeight="44.0" prefWidth="205.0" text="เพิ่มข่าวกิจกรรมใหม่">
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="formName" />
+                     </styleClass>
+                  </Label>
+                  <JFXTextArea fx:id="textNews" focusColor="#ff9900" layoutX="25.0" layoutY="62.0" prefHeight="223.0" prefWidth="513.0" promptText="  พิมพ์ข้อความ..">
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="newsText" />
+                     </styleClass>
+                  </JFXTextArea>
+                  <JFXButton fx:id="submit" layoutX="426.0" layoutY="305.0" prefHeight="25.0" prefWidth="112.0" ripplerFill="#ffaf36" text="ยืนยัน">
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="addNewsBtn" />
+                     </styleClass>
+                  </JFXButton>
+                  <ImageView fitHeight="38.0" fitWidth="40.0" layoutX="38.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../css/images/logo.png" />
+                     </image>
+                  </ImageView>
+               </children></Pane>
+         </children>
+      </FlowPane>
+   </children>
+</AnchorPane>

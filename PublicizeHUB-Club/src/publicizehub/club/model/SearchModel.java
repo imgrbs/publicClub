@@ -6,13 +6,13 @@ import java.sql.*;
  *
  * @author ImagineRabbits
  */
-public class Search {
+public class SearchModel {
     
     ConnectionBuilder cb = new ConnectionBuilder();
     PreparedStatement ps = null;
     ResultSet rs = null;
     
-    public Search() {
+    public SearchModel() {
     }
     
     public ResultSet resultSearch(String wording){

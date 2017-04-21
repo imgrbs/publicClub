@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package publicizehub.club.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -17,23 +10,23 @@ import static java.lang.Long.parseLong;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import javafx.scene.control.Button;
 import publicizehub.club.model.ConnectionBuilder;
-import publicizehub.club.model.Event;
+import publicizehub.club.model.EventModel;
 
 /**
  * FXML Controller class
  *
  * @author JIL
  */
-public class ProfileController implements Initializable {
-    Event ev = new Event();
+public class ProfileController {
+    EventModel ev = new EventModel();
     ConnectionBuilder cb = new ConnectionBuilder();
+    
     JoinController jc = new JoinController();
     DetailController dc = new DetailController();
     EventController ec = new EventController();
     
-//    Date d = new Date();
+    private long stdId;
     
     private Stage mainStage;
     private Stage thisStage;
@@ -46,6 +39,7 @@ public class ProfileController implements Initializable {
     private Label labelDepartment;
     @FXML
     private Label labelEvName;
+    
     @FXML
     private VBox listEventBox1 = new VBox();
     @FXML
@@ -54,14 +48,7 @@ public class ProfileController implements Initializable {
     @FXML
     private Button backBtn;
     
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
+    
     public void setLabelId(String labelId) {
         this.labelId.setText(labelId);
     }
@@ -90,7 +77,13 @@ public class ProfileController implements Initializable {
         this.thisStage = thisStage;
     }
 
-    
+    public long getStdId() {
+        return stdId;
+    }
+
+    public void setStdId(long stdId) {
+        this.stdId = stdId;
+    }
     
     @FXML
     public void getEventToProfile(){
@@ -114,34 +107,38 @@ public class ProfileController implements Initializable {
 
     public void setEventToGui(int eventId){
         ResultSet findStd = ev.getSelect(eventId);
+        EventModel event = null;
         try{
             if(findStd.next()){
-                LocalDate ld = LocalDate.parse(""+findStd.getString("evEndDate"));
-                if(ld.compareTo(LocalDate.now())>-1){
-                    ec.addEventToPresentPane(""+findStd.getString("evName"),findStd.getInt("evId"),this.listEventBox1,true);
-                }
-                else {
-                    ec.addEventToPresentPane(""+findStd.getString("evName"),findStd.getInt("evId"),this.listEventBox2,false);
-                    while(findStd.next()){
-                        ld = LocalDate.parse(""+findStd.getString("evEndDate"));
-                        if(ld.compareTo(LocalDate.now())>-1){
-                            ec.addEventToPresentPane(""+findStd.getString("evName"),findStd.getInt("evId"),this.listEventBox1,true);
-                        }
-                        else {
-                            ec.addEventToPresentPane(""+findStd.getString("evName"),findStd.getInt("evId"),this.listEventBox2,false);
-                        }
-                    }
-                }
+                event = new EventModel(findStd.getString("evName"),
+                findStd.getString("evDescrip"),findStd.getDate("evStartDate"),
+                findStd.getDate("evEndDate"),findStd.getDate("evStartRegis"),
+                findStd.getDate("evEndFeedback"),findStd.getString("evPlace"),
+                findStd.getInt("evTicket"),findStd.getInt("currentMember"),
+                findStd.getTime("evTime"),findStd.getTime("evEndTime"),
+                findStd.getInt("evType"),findStd.getInt("evId")
+                );
             }
         }catch(SQLException e){
             e.printStackTrace();
         }
+        ec.setStdId(getStdId());
+        LocalDate ld = LocalDate.parse(""+event.getEvEndDate());
+        if(ld.compareTo(LocalDate.now())>-1){ 
+            ec.addEventToPresentPane(event,this.listEventBox1,true,true); 
+        }
+        else {
+            ec.addEventToPresentPane(event,this.listEventBox2,false,true);
+        }
     }
     
+    /* Method สำหรับ เปลี่ยน Stage */
     public void callMain(){
         System.out.println("callMain() WORK");
-        mainStage.show();
-        thisStage.close();
+        mainStage.show(); // แสดง Stage หลัก ( Main )
+        thisStage.close(); // ปิด Stage ปัจจุบัน ( Profile )
     }
+    
+
     
 }

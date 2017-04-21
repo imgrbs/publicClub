@@ -14,9 +14,8 @@ import publicizehub.club.controller.LoginController;
  *
  * @author JIL
  */
-public class Join {
+public class JoinModel {
     private ConnectionBuilder cb = new ConnectionBuilder();
-    private String cont;
     LoginController li = new LoginController();
     PreparedStatement ps;
     ResultSet rs;

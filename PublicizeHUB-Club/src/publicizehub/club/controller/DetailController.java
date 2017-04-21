@@ -13,10 +13,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-import publicizehub.club.model.Event;
+import publicizehub.club.model.EventModel;
+import publicizehub.club.view.ListPerson;
 
 public class DetailController {
-    private Event ev = new Event();
+    private EventModel ev = new EventModel();
 
     @FXML
     private Label evName;
@@ -64,7 +65,7 @@ public class DetailController {
         try{
             if(rs.next()){
                 controller.setEvName(rs.getString("evName"));
-                controller.setEvDate(rs.getString("evDate"));
+                controller.setEvDate(rs.getString("evStartDate"));
                 controller.setEvPlace(rs.getString("evPlace"));
                 controller.setEvDescrip(rs.getString("evDescrip"));
             }
@@ -82,4 +83,34 @@ public class DetailController {
         stage.show();
     }
     
+        @FXML
+    public void callDetail(EventModel event){
+        Stage stage= new Stage();
+        Parent root=null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Detail.fxml"));     
+        try{
+            root = (Parent)fxmlLoader.load(); 
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        DetailController controller = fxmlLoader.<DetailController>getController();
+        controller.setEvName(event.getEvName());
+        controller.setEvDate(event.getEvDate()+"");
+        controller.setEvPlace(event.getEvPlace());
+        controller.setEvDescrip(event.getEvDescrip());
+        Scene scene = new Scene(root); 
+        try{
+            stage.setScene(scene);    
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        stage.show();
+    }
+    
+    public void callListPerson(){
+        ListPerson lp = new ListPerson();
+        lp.setVisible(true);
+    }
 }

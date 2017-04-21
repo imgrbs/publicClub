@@ -40,7 +40,6 @@ public class ListPerson extends javax.swing.JFrame {
         listPerson1 = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 0));

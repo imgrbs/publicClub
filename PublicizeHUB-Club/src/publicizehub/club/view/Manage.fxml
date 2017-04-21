@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXScrollPane?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import java.lang.String?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bodyManager" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.ProfileController">
+<AnchorPane id="bodyManager" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.ManageController">
    <children>
       <BorderPane layoutX="10.0" layoutY="14.0" prefHeight="573.0" prefWidth="745.0">
          <center>
@@ -27,8 +28,8 @@
                         <JFXTabPane layoutY="229.0" prefHeight="298.0" prefWidth="649.0" style="jfx-tab-pane-color: #fff;" styleClass="quark">
                            <tabs>
                               <Tab fx:id="presentTab" style="-fx-background-color: #E7560C;" text="กิจกรรมที่ยังไม่จบ">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="728.0">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="728.0">
                                        <children>
                                           <JFXScrollPane prefHeight="234.0" prefWidth="649.0">
                                              <children>
@@ -41,11 +42,11 @@
                                           </JFXScrollPane>
                                        </children>
                                     </AnchorPane>
-                                 </content>
+                                </content>
                               </Tab>
                               <Tab fx:id="pastTab" style="-fx-background-color: #E7560C;" text="กิจกรรมที่จบแล้ว">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
                                           <JFXScrollPane prefHeight="234.0" prefWidth="649.0">
                                              <children>
@@ -58,11 +59,11 @@
                                           </JFXScrollPane>
                                        </children>
                                     </AnchorPane>
-                                 </content>
+                                </content>
                               </Tab>
                            </tabs>
                         </JFXTabPane>
-                        <Label layoutX="8.0" layoutY="198.0" prefHeight="33.0" prefWidth="443.0" text="*หากข้อมูลผิดพลาดหรือต้องการแก้ไขข้อมูลโปรดแจ้งผู้ดูแลระบบ" textFill="#d74949">
+                        <Label layoutX="8.0" layoutY="198.0" prefHeight="33.0" prefWidth="399.0" text="*หากข้อมูลผิดพลาดหรือต้องการแก้ไขข้อมูลโปรดแจ้งผู้ดูแลระบบ" textFill="#d74949">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
@@ -89,7 +90,17 @@
                               <String fx:value="stdIdProfile" />
                            </styleClass>
                         </Label>
-                        <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="77.0" styleClass="userTag" text="User" />
+                        <JFXButton fx:id="createEventBtn" layoutX="529.0" layoutY="195.0" onAction="#callCreateEvent" prefHeight="30.0" prefWidth="113.0" ripplerFill="#ffaf2e" text="สร้างกิจกรรม">
+                           <styleClass>
+                              <String fx:value="addEventManage" />
+                              <String fx:value="quark" />
+                           </styleClass></JFXButton>
+                        <JFXButton fx:id="addNewsBtn" layoutX="416.0" layoutY="195.0" onAction="#callAddNews" prefHeight="30.0" prefWidth="113.0" ripplerFill="#ff81c8" text="เพิ่มข่าวกิจกรรม">
+                           <styleClass>
+                              <String fx:value="addNewsManage" />
+                              <String fx:value="quark" />
+                           </styleClass></JFXButton>
+                        <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="77.0" styleClass="adminTag" text="Admin" />
                      </children>
                   </Pane>
                </children>

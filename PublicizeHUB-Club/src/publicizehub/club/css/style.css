@@ -47,7 +47,7 @@
 .boxEv{
     -fx-background-radius: 8;
     -fx-background-color: #ffffff;
-    -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
+    -fx-effect: dropshadow(three-pass-box, #C3C3C3  , 15, 0, 0, 1);
 }
 .menubtn{
     -fx-background-color: white;
@@ -69,26 +69,52 @@
     -fx-cursor: hand;
 }
 .joinbtnSearch{
-    -fx-font-family:'ThaiSansNeueRegular';
+    -fx-font-family:'Quark';
     -fx-background-color: #e7560c;
     -fx-text-fill:white;
     -fx-cursor: hand;
     -fx-font-size: 15px;
+    -fx-font-weight: bold;
     -fx-pref-width: 80px;
 }
-
 .joinbtnSearch:hover{
     -fx-background-color: #F9AD87;
 }
+.joinBtnProfile{
+    -fx-font-family:'Quark';
+    -fx-background-color: #e7560c;
+    -fx-text-fill:white;
+    -fx-cursor: hand;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-pref-width: 130px;
+}
+
+.joinBtnProfile:hover{
+    -fx-background-color: #F9AD87;
+}
 .detailbtnSearch{
-    -fx-font-family:'ThaiSansNeueRegular';
+    -fx-font-family:'Quark';
     -fx-background-color: #d3d3d3;
     -fx-text-fill: #4d4d4d;
     -fx-cursor: hand;
-    -fx-font-size: 15px;
-    -fx-pref-width: 80px;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-pref-width: 90px;
 }
 .detailbtnSearch:hover{
+    -fx-background-color: #ECECEC;
+}
+.detailbtnProfile{
+    -fx-font-family:'Quark';
+    -fx-background-color: #d3d3d3;
+    -fx-text-fill: #4d4d4d;
+    -fx-cursor: hand;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-pref-width: 130px;
+}
+.detailbtnProfile:hover{
     -fx-background-color: #ECECEC;
 }
 .evaluationbtn{
@@ -168,9 +194,28 @@
     -fx-text-fill: white;
     -fx-effect: dropshadow(three-pass-box, #B70D5D, 0, 0, 0, 4);
 }
+.labelNameSearch{
+    -fx-padding: 30px 0px 0px 50px;
+    -fx-font-size: 26px;
+    -fx-text-fill: #000000;
+}
 .submitBtn:pressed{
     -fx-effect: dropshadow(three-pass-box, #B70D5D, 0, 0, 0, 0);
     -fx-translate-y: 5;
+}
+.addNewsBtn{
+    -fx-effect: dropshadow(three-pass-box, #B3430A, 0, 0, 0, 4);
+    -fx-background-color: #E7560C;
+    -fx-text-fill: #fff;
+    -fx-font-size: 17px;
+    -fx-background-radius: 14px;
+}
+.addNewsBtn:pressed{
+    -fx-effect: dropshadow(three-pass-box, #B3430A, 0, 0, 0, 0);
+    -fx-translate-y: 5;
+}
+.newsText{
+    -fx-font-size: 23px; 
 }
 .checkInBody{
     -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
@@ -180,9 +225,10 @@
     -fx-effect: dropshadow(three-pass-box, #9F870A, 0, 0, 0, 5);
 }
 .unjoin{
-    -fx-font-family:'ThaiSansNeueRegular';
+    -fx-font-family:'Quark';
     -fx-background-color:  #F82222;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 17px;
     -fx-cursor: hand;
 }
 .unjoin:hover{
@@ -202,7 +248,7 @@
     -fx-text-fill: #DB9B64;
 }
 .listJoinBtn{
-    -fx-font-size: 20px;
+    -fx-font-size: 17px;
     -fx-background-color: #EF4C1E;
     -fx-text-fill: #fff;
     -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
@@ -235,14 +281,16 @@
 .formCancelBtn{
     -fx-cursor: hand;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 15px;
+    -fx-background-radius: 8px;
     -fx-background-color: #e11c1c;
-    -fx-font-size: 13px;
 }
 .accepBtn{
     -fx-cursor: hand;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 15px;
     -fx-background-color: #4F8900;
-    -fx-font-size: 13px;
+    -fx-background-radius: 8px;
   
 }
 .tabPane{
@@ -259,7 +307,7 @@
     -fx-font-size: 40px;
 }
 .warningProfile{
-    -fx-font-size: 20px;
+    -fx-font-size: 17px;
 }
 .insertEventSize{
 	-fx-font-size: 45px;
@@ -284,9 +332,77 @@
 }
 .editIcon{
 	-fx-background-color: none;
-	-fx-background-image: url('images/editt.png');
+	-fx-background-image: url('images/edit.png');
 	-fx-background-repeat: no-repeat;
+    -fx-background-size: 103% 100%;
 	-fx-background-width: 64px;
 	-fx-background-height: 64px;
 	
+}
+
+.formSumName{
+    -fx-font-size: 25px;
+}
+
+.formSumActi{
+     -fx-font-size: 30px;
+}
+.nameNumber{
+    -fx-font-size: 33px;
+}
+.tabelView{
+    -fx-font-size: 14px;
+}
+
+.manageHead{
+    -fx-font-size: 35px;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 2px 0; 
+    -fx-border-color: #CDCDCD;
+}
+
+.addNewsManage{
+    -fx-background-color: #E21586;
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-text-fill: #fff;
+    -fx-font-size: 15px;
+}
+
+.addEventManage{
+    -fx-background-color: #E74A00;
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-text-fill: #fff;
+    -fx-font-size: 15px;
+}
+
+.adminTag{
+    -fx-background-color: #ff3860;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #fff;
+}
+.userTag{
+    -fx-background-color: #00d1b2;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #fff;
+}
+/* Customize JFoenix */
+/*.headers-region */
+.tab-label{
+    -fx-font-family:'Quark';
+}
+.jfx-tab-pane .tab-header-area .tab-header-background{
+    -fx-background-color : #E76427;
+}
+.cancelbtn{
+    -fx-background-color: white;
+    -fx-text-fill: #4d4d4d;
+    -fx-cursor: hand;
+}
+.confirmBtn{
+    -fx-background-color: #EF4C1E;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+.confirmBtn:hover{
+    -fx-background-color: #FF6A40;
 }

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.EditEventController">
+   <children>
+      <FlowPane layoutX="59.0" layoutY="50.0" prefHeight="400.0" prefWidth="895.0" styleClass="bodyOnlyColor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <BorderPane prefHeight="600.0" prefWidth="800.0">
+               <center>
+                  <Pane prefHeight="417.0" prefWidth="672.0" styleClass="detailPane" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="40.0" layoutY="20.0" text="ชื่อกิจกรรม :">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                           </styleClass>
+                        </Label>
+                        <Label layoutX="40.0" layoutY="62.0" text="รายละเอียด :">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                           </styleClass>
+                        </Label>
+                        <Label layoutX="40.0" layoutY="183.0" text="วันจัดกิจกรรม :">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                           </styleClass>
+                        </Label>
+                        <Label layoutX="350.0" layoutY="183.0" text="วันสิ้นสุดกิจกรรม :">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                           </styleClass>
+                        </Label>
+                        <Label layoutX="40.0" layoutY="236.0" text="เวลาเริ่มกิจกรรม :">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                           </styleClass>
+                        </Label>
+                        <Label layoutX="350.0" layoutY="236.0" text="เวลาสิ้นสุดกิจกรรม :">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                           </styleClass>
+                        </Label>
+                        <Label layoutX="40.0" layoutY="287.0" text="สถานที่ :">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                           </styleClass>
+                        </Label>
+                        <Label layoutX="350.0" layoutY="287.0" text="จำนวนบัตร :">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                           </styleClass>
+                        </Label>
+                        <ComboBox id="ticket" fx:id="ticket" layoutX="451.0" layoutY="284.0" onHiding="#checkCustomize" prefHeight="27.0" prefWidth="173.0" promptText="เลือกจำนวนบัตร" visibleRowCount="12">
+                           <styleClass>
+                              <String fx:value="white" />
+                              <String fx:value="dropshadow" />
+                              <String fx:value="quark" />
+                           </styleClass>
+                        </ComboBox>
+                        <Label layoutX="40.0" layoutY="391.0" text="ประเภทกิจกรรม :">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                           </styleClass>
+                        </Label>
+                        <JFXTimePicker fx:id="startTime" defaultColor="#dd721a" layoutX="160.0" layoutY="224.0" prefHeight="38.0" prefWidth="171.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="formEvName" />
+                           </styleClass>
+                        </JFXTimePicker>
+                        <JFXTimePicker fx:id="endTime" defaultColor="#dd721a" layoutX="480.0" layoutY="224.0" prefHeight="38.0" prefWidth="173.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="formEvName" />
+                              <String fx:value="quark" />
+                           </styleClass>
+                        </JFXTimePicker>
+                        <JFXDatePicker fx:id="startDate" defaultColor="#dd721a" editable="false" layoutX="160.0" layoutY="169.0" prefHeight="28.0" prefWidth="173.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="formEvName" />
+                           </styleClass>
+                        </JFXDatePicker>
+                        <JFXDatePicker fx:id="endDate" defaultColor="#dd721a" editable="false" layoutX="480.0" layoutY="169.0" prefHeight="28.0" prefWidth="173.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="formEvName" />
+                           </styleClass>
+                        </JFXDatePicker>
+                        <JFXTextField fx:id="eventName" focusColor="#dd721a" layoutX="160.0" layoutY="8.0" prefHeight="25.0" prefWidth="404.0">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="formEvName" />
+                           </styleClass>
+                        </JFXTextField>
+                        <JFXTextArea fx:id="description" focusColor="#dd721a" layoutX="160.0" layoutY="62.0" prefHeight="90.0" prefWidth="400.0">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="formEvName" />
+                           </styleClass>
+                        </JFXTextArea>
+                        <JFXTextField fx:id="place" focusColor="#dd721a" layoutX="102.0" layoutY="278.0" prefHeight="38.0" prefWidth="181.0">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="formEvName" />
+                           </styleClass>
+                        </JFXTextField>
+                        <JFXRadioButton fx:id="camp" layoutX="153.0" layoutY="391.0" text="ค่าย">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="formEvName" />
+                           </styleClass>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="type" />
+                           </toggleGroup>
+                        </JFXRadioButton>
+                        <JFXRadioButton fx:id="seminar" layoutX="221.0" layoutY="391.0" text="สัมมนา" toggleGroup="$type">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="formEvName" />
+                           </styleClass>
+                        </JFXRadioButton>
+                        <JFXRadioButton fx:id="other" layoutX="306.0" layoutY="391.0" text="อื่นๆ" toggleGroup="$type">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="formEvName" />
+                           </styleClass>
+                        </JFXRadioButton>
+                        <Label layoutX="37.0" layoutY="352.0" text="วันเปิดรับสมัคร :">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                           </styleClass>
+                        </Label>
+                        <JFXDatePicker fx:id="startRegis" defaultColor="#dd721a" editable="false" layoutX="160.0" layoutY="332.0" prefHeight="40.0" prefWidth="173.0">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="formEvName" />
+                           </styleClass></JFXDatePicker>
+                     </children>
+                  </Pane>
+               </center>
+               <bottom>
+                  <Pane prefHeight="64.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <JFXButton fx:id="confirmBtn" layoutX="289.0" layoutY="12.0" onAction="#clickConfirm" prefHeight="35.0" prefWidth="100.0" text="ยืนยัน" textFill="WHITE">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                              <String fx:value="confirmBtn" />
+                              <String fx:value="dropshadow" />
+                           </styleClass>
+                        </JFXButton>
+                        <JFXButton fx:id="cancelBtn" layoutX="418.0" layoutY="12.0" onAction="#closeStage" prefHeight="31.0" prefWidth="101.0" text="ยกเลิก">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="warningProfile" />
+                              <String fx:value="cancelbtn" />
+                              <String fx:value="dropshadow" />
+                           </styleClass>
+                        </JFXButton>
+                     </children></Pane>
+               </bottom>
+               <top>
+                  <Pane prefHeight="105.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="524.0" layoutY="25.0" styleClass="insertEventSize" text="Edit Event" />
+                        <Pane layoutX="464.0" layoutY="32.0" prefHeight="53.0" prefWidth="52.0" styleClass="editIcon" />
+                     </children>
+                  </Pane>
+               </top>
+               <left>
+                  <Pane prefHeight="414.0" prefWidth="60.0" BorderPane.alignment="CENTER" />
+               </left>
+               <right>
+                  <Pane prefHeight="414.0" prefWidth="68.0" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+         </children>
+      </FlowPane>
+   </children>
+</AnchorPane>

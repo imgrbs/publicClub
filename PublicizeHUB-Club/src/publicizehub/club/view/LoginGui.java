@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package publicizehub.club.view;
 
 import javafx.application.Application;
@@ -16,10 +11,11 @@ import javafx.stage.Stage;
  *
  * @author budsagorn_ss
  */
-public class ShowFeedback extends Application {
+public class LoginGui extends Application {
+    
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ShoeFeedback.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("LoginGui.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -34,5 +30,4 @@ public class ShowFeedback extends Application {
         launch(args);
     }
     
-
 }

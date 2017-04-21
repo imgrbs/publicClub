@@ -1,6 +1,5 @@
 package publicizehub.club.controller;
 
-import java.sql.ResultSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -10,23 +9,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import publicizehub.club.view.*;
+
+import java.sql.ResultSet;
+import publicizehub.club.model.ConnectionBuilder;
 
 /**
  *
  * @author ImagineRabbits
  */
 public class MainController {
+    private ConnectionBuilder cb = new ConnectionBuilder();
     private LoginController li = new LoginController();
-
-    public LoginController getLi() {
-        return li;
-    }
-    
-    SearchController sc = new SearchController();
-    JoinController jc = new JoinController();
-    DetailController dc = new DetailController();
-    ResultSet rs = null;
+    private ManageController mc = new ManageController();
+    private SearchController sc = new SearchController();
+    private JoinController jc = new JoinController();
+    private DetailController dc = new DetailController();
+    private NewsController nc = new NewsController();
+    private ResultSet rs = null;
 
     private Stage thisStage;
     
@@ -38,21 +37,38 @@ public class MainController {
 
     @FXML
     private Label labelEvMain1;
+    
     @FXML
     private Label labelEvMain2;
+    
     @FXML
     private Button joinEvMain1;
+    
     @FXML
     private Button joinEvMain2;
+    
     @FXML
     private Button detailEv1;
+    
     @FXML
     private Button detailEv2;
+    
     @FXML
     private Button manageBtn;
+    
     @FXML
     private ImageView managePic;
+    
+    @FXML
+    private TextField searchfield;
+    
+    @FXML
+    private ListView<String> newsList;
 
+    public LoginController getLi() {
+        return li;
+    }
+    
     public Stage getThisStage() {
         return thisStage;
     }
@@ -69,15 +85,39 @@ public class MainController {
     public void setUserData(long stdId,String stdName){
         this.stdId.setText(""+stdId);
         this.stdName.setText(""+stdName);
+        if(this.getLi().getStatus()==1){
+            this.setManageDisable();
+        }
     }
 
-    @FXML
-    TextField searchfield;
+    public NewsController getNc() {
+        return nc;
+    }
 
+    public void setNc(NewsController nc) {
+        this.nc = nc;
+    }
+
+    public ListView<String> getNewsList() {
+        return newsList;
+    }
+
+    public void setNewsList(ListView<String> newsList) {
+        this.newsList = newsList;
+    }
+
+    public MainController() {
+     try{
+         cb.connecting();
+     }finally{
+         cb.logout();
+     }
+    }
+    
     @FXML
     protected void callProfile() {
-        Stage stage= new Stage();
-        Parent root=null;
+        Stage stage = new Stage();
+        Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Profile.fxml"));     
         try{
             root = (Parent)fxmlLoader.load(); 
@@ -86,6 +126,7 @@ public class MainController {
             e.printStackTrace();
         }
         ProfileController controller = fxmlLoader.<ProfileController>getController();
+        controller.setStdId(getLi().getStdId());
         controller.setLabelDepartment(li.getDepartment());
         controller.setLabelId(""+li.getStdId());
         controller.setLabelName(li.getName()+" "+li.getSurname());
@@ -102,22 +143,32 @@ public class MainController {
         stage.show();
         thisStage.close();
     }
-
+    
     @FXML
-    protected void callSearchText() {
-        System.out.println(searchfield.getText());
+    protected void callSearchCamp() {
+        System.out.println("callSearchCamp");
+//        sc.setCheckEvType(0);
+//        try {
+//            sc.checkSearchEvType();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        sc.callSearch(0);
+        searchfield.setText("");
     }
-
+    
     @FXML
-    protected void callSearchEvent() {
-        System.out.println("callCampEvent");
-        sc.setCheckEvType(0);
-        try {
-            sc.checkSearchEvType();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Exception callCampEvent");
-        }
+    protected void callSearchSeminar() {
+        System.out.println("callSearchSeminar");
+        sc.callSearch(1);
+        searchfield.setText("");
+    }
+    
+    @FXML
+    protected void callSearchOther() {
+        System.out.println("callCampOther");
+        sc.callSearch(2);
+        searchfield.setText("");
     }
 
 
@@ -171,4 +222,16 @@ public class MainController {
         }
     }
     
+    @FXML
+    public void callManage(){
+        mc.callManage(thisStage);
+    }
+    
+    @FXML
+    public void sentToSearch(){
+        String text = searchfield.getText();
+        System.out.println(text);
+        sc.callSearch(text);
+        searchfield.setText("");
+    }
 }
