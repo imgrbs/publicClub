@@ -11,7 +11,7 @@ import publicizehub.club.controller.FormSumActivityController;
  *
  * @author ImagineRabbits
  */
-public class Event {
+public class EventModel {
     
     private static final Logger LOGGER = Logger.getLogger( FormSumActivityController.class.getName() );
     private final ConnectionBuilder cb = new ConnectionBuilder();
@@ -37,10 +37,10 @@ public class Event {
     private PreparedStatement ps;
     private ResultSet rs;
 
-    public Event() {
+    public EventModel() {
     }
 
-    public Event(long stdId, String evName, String evDescrip, LocalDate evDate, LocalDate evEndDate, LocalDate evStartRegis,
+    public EventModel(long stdId, String evName, String evDescrip, LocalDate evDate, LocalDate evEndDate, LocalDate evStartRegis,
             LocalDate evEndFeedback, String evPlace, int evTicket, LocalTime evTime, LocalTime evEndTime, int evType) {
         this.stdId = stdId;
         this.evName = evName;
@@ -56,7 +56,7 @@ public class Event {
         this.evType = evType;
     }
     
-    public Event(String evName, String evDescrip, Date evDate, Date evEndDate, Date evStartRegis, 
+    public EventModel(String evName, String evDescrip, Date evDate, Date evEndDate, Date evStartRegis, 
                     Date evEndFeedback, String evPlace, int evTicket, 
                     Time evTime, Time evEndTime, int evType, int evId) {
         this.evName = evName;
@@ -73,7 +73,7 @@ public class Event {
         this.evId = evId;
     }
     
-    public Event(String evName, String evDescrip, Date evDate, Date evEndDate, Date evStartRegis, 
+    public EventModel(String evName, String evDescrip, Date evDate, Date evEndDate, Date evStartRegis, 
                     Date evEndFeedback, String evPlace, int evTicket,int currentMember,
                     Time evTime, Time evEndTime, int evType, int evId) {
         this.evName = evName;
@@ -90,7 +90,7 @@ public class Event {
         this.evType = evType;
         this.evId = evId;
     }
-    public Event(String evName, String evDescrip, LocalDate evDate, LocalDate evEndDate, LocalDate evStartRegis, 
+    public EventModel(String evName, String evDescrip, LocalDate evDate, LocalDate evEndDate, LocalDate evStartRegis, 
                     LocalDate evEndFeedback, String evPlace, int evTicket, 
                     LocalTime evTime, LocalTime evEndTime, int evType, int evId) {
         this.evName = evName;
@@ -219,7 +219,7 @@ public class Event {
         this.evId = evId;
     }
     
-    public void createEvent(Event thisEvent) {
+    public void createEvent(EventModel thisEvent) {
         cb.connecting();
         Statement s = null;
         try {
@@ -239,7 +239,7 @@ public class Event {
         cb.logout();
     }
     
-    public void updateEvent(Event event){
+    public void updateEvent(EventModel event){
         System.out.println(event.getEvId());
         cb.connecting();
         String command;

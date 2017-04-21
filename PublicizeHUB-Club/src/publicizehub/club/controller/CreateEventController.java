@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import com.jfoenix.controls.*;
 
 
-import publicizehub.club.model.Event;
+import publicizehub.club.model.EventModel;
 
 /**
  * FXML Controller class
@@ -24,8 +24,8 @@ import publicizehub.club.model.Event;
  * @author JIL
  */
 public class CreateEventController implements Initializable {
-    Event e = new Event();
-    Event thisEvent = null;
+    EventModel e = new EventModel();
+    EventModel thisEvent = null;
     
     LoginController lc = new LoginController();
     
@@ -98,7 +98,7 @@ public class CreateEventController implements Initializable {
 
     @FXML
     public void setAllValue(){
-        thisEvent = new Event(stdId,eventName.getText(),description.getText(),startDate.getValue(),endDate.getValue(),
+        thisEvent = new EventModel(stdId,eventName.getText(),description.getText(),startDate.getValue(),endDate.getValue(),
             startRegis.getValue(),startRegis.getValue().plusDays(15),place.getText(),Integer.parseInt(ticket.getValue()),
             startTime.getValue(),endTime.getValue(),evType);
     }

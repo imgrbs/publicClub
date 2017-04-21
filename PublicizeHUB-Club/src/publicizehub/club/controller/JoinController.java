@@ -22,8 +22,8 @@ import publicizehub.club.model.*;
 public class JoinController {
     private static final Logger LOGGER = Logger.getLogger( FormSumActivityController.class.getName() );
     private final LoginController li = new LoginController();
-    private final Join jn = new Join();
-    private final Event ev = new Event();
+    private final JoinModel jn = new JoinModel();
+    private final EventModel ev = new EventModel();
     
     private Alert comfirm = new Alert(Alert.AlertType.CONFIRMATION);
     private Alert warning = new Alert(Alert.AlertType.ERROR);

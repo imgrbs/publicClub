@@ -22,7 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.GenerateCode;
-import publicizehub.club.model.News;
+import publicizehub.club.model.NewsModel;
 
 /**
  *
@@ -30,7 +30,7 @@ import publicizehub.club.model.News;
  */
 public class NewsController {
     private static final Logger LOGGER = Logger.getLogger( GenerateCode.class.getName() );
-    private News nw = new News();
+    private NewsModel nw = new NewsModel();
     private ArrayList<String> myArrList = new ArrayList<>();
     private ConnectionBuilder cb = new ConnectionBuilder();
     

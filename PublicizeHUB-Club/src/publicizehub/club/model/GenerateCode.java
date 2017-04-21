@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class GenerateCode {
     private static final Logger LOGGER = Logger.getLogger( GenerateCode.class.getName() );
     ConnectionBuilder cb = new ConnectionBuilder();
-    Event ev = new Event();
+    EventModel ev = new EventModel();
     private String codeString ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private long stdId;
     private int evId;

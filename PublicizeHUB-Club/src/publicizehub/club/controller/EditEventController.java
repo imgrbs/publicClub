@@ -11,7 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
-import publicizehub.club.model.Event;
+import publicizehub.club.model.EventModel;
 
 /**
  * FXML Controller class
@@ -19,10 +19,10 @@ import publicizehub.club.model.Event;
  * @author JIL
  */
 public class EditEventController{
-    private Event ev = new Event();
+    private EventModel ev = new EventModel();
     private LoginController lc = new LoginController();
    
-    private Event thisEvent;
+    private EventModel thisEvent;
     
     private int resultType;
     
@@ -46,11 +46,11 @@ public class EditEventController{
         this.stdId = stdId;
     }
 
-    public Event getThisEvent() {
+    public EventModel getThisEvent() {
         return thisEvent;
     }
 
-    public void setThisEvent(Event thisEvent) {
+    public void setThisEvent(EventModel thisEvent) {
         this.thisEvent = thisEvent;
     }
     
@@ -205,7 +205,7 @@ public class EditEventController{
     }
     
     @FXML
-    public void callEditEvent(Event event){
+    public void callEditEvent(EventModel event){
         Stage stage= new Stage();
         Parent root=null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/EditEvent.fxml"));     
@@ -249,7 +249,7 @@ public class EditEventController{
     }
     
     public void setValueToObj(){
-        this.thisEvent = new Event(eventName.getText(),description.getText(),startDate.getValue(),
+        this.thisEvent = new EventModel(eventName.getText(),description.getText(),startDate.getValue(),
                           endDate.getValue(),startRegis.getValue(),endDate.getValue().plusDays(15),
                           place.getText(),Integer.parseInt(ticket.getValue()),startTime.getValue(),
                           endTime.getValue(),typeResult(),this.thisEvent.getEvId());

@@ -13,11 +13,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-import publicizehub.club.model.Event;
+import publicizehub.club.model.EventModel;
 import publicizehub.club.view.ListPerson;
 
 public class DetailController {
-    private Event ev = new Event();
+    private EventModel ev = new EventModel();
 
     @FXML
     private Label evName;
@@ -84,7 +84,7 @@ public class DetailController {
     }
     
         @FXML
-    public void callDetail(Event event){
+    public void callDetail(EventModel event){
         Stage stage= new Stage();
         Parent root=null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Detail.fxml"));     

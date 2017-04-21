@@ -2,5 +2,5 @@ organization=sit-kmutt
 projectKey=sit:PublicizeClub
 serverUrl=https://sonarqube.com
 dashboardUrl=https://sonarqube.com/dashboard/index/sit:PublicizeClub
-ceTaskId=AVuRsem3w9EEY8hE9hRF
-ceTaskUrl=https://sonarqube.com/api/ce/task?id=AVuRsem3w9EEY8hE9hRF
+ceTaskId=AVuR2_URhe72D0A0Y-Qa
+ceTaskUrl=https://sonarqube.com/api/ce/task?id=AVuR2_URhe72D0A0Y-Qa

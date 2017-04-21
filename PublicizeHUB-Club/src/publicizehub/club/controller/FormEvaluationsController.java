@@ -20,14 +20,14 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import publicizehub.club.model.ConnectionBuilder;
-import publicizehub.club.model.Event;
+import publicizehub.club.model.EventModel;
 import publicizehub.club.model.FeedbackModel;
 
 
 public class FormEvaluationsController implements Initializable {  // JavaFX บังคับ implement Method ของ JavaFX
 
     ConnectionBuilder cb = new ConnectionBuilder(); // Model Class สำหรับ Connect กับ DB
-    Event ev = new Event(); // Model Class ของ Event ( ดึงข้อมูล Event จาก DB )
+    EventModel ev = new EventModel(); // Model Class ของ Event ( ดึงข้อมูล Event จาก DB )
 
     private int evId = 10048;
     private long stdId = 59130500012L;
@@ -49,6 +49,22 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
     //สร้างตัวแปร valueRadio array ที่มี type int เพื่อไว้เก็บค่าสำหรับค่าคำตอบของคำถาม 10 ข้อ
     int[] valueRadio = new int[10];
 
+    public int getEvId() {
+        return evId;
+    }
+
+    public void setEvId(int evId) {
+        this.evId = evId;
+    }
+
+    public long getStdId() {
+        return stdId;
+    }
+
+    public void setStdId(long stdId) {
+        this.stdId = stdId;
+    }
+    
      /* ตัวแปรของ JavaFX ที่อิงกับไฟล์ .fxml จะต้องพิมพ์ @FXML กำกับเสมอ */
     @FXML
     private Label evName;
@@ -367,14 +383,14 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
 
     //method ส่งค่าไปที่ model
     public void sentValue() {
-        fbm.insertValue(this.evId, this.stdId, valueRadio[0], valueRadio[1], 
+        fbm.insertValue(evId, stdId, valueRadio[0], valueRadio[1], 
                 valueRadio[2], valueRadio[3], valueRadio[4],valueRadio[5], 
                 valueRadio[6], valueRadio[7], valueRadio[8], valueRadio[9]);
 //        fbm.setSumQ();
     }
 
  
-    public void callEvaluation(Event event, long stdId) {
+    public void callEvaluation(EventModel event, long stdId) {
 //        ResultSet rs = ev.getSelect(eventId);
         Stage stage = new Stage();
         Parent root = null;
@@ -386,7 +402,8 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
             e.printStackTrace();
         }
         FormEvaluationsController controller = fxmlLoader.<FormEvaluationsController>getController();
-
+        controller.setEvId(event.getEvId());
+        controller.setStdId(stdId);
         Scene scene = new Scene(root);
         try {
             stage.setScene(scene);

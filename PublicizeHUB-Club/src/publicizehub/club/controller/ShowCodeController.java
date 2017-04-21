@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import publicizehub.club.model.GenerateCode;
-import publicizehub.club.model.Join;
+import publicizehub.club.model.JoinModel;
 
 /**
  *
@@ -20,7 +20,7 @@ import publicizehub.club.model.Join;
  */
 public class ShowCodeController {
     private static final Logger LOGGER = Logger.getLogger( GenerateCode.class.getName() );
-    private final Join j = new Join();
+    private final JoinModel j = new JoinModel();
     private Alert comfirm = new Alert(Alert.AlertType.CONFIRMATION);
     private Alert success = new Alert(Alert.AlertType.INFORMATION);
     

@@ -194,6 +194,11 @@
     -fx-text-fill: white;
     -fx-effect: dropshadow(three-pass-box, #B70D5D, 0, 0, 0, 4);
 }
+.labelNameSearch{
+    -fx-padding: 30px 0px 0px 50px;
+    -fx-font-size: 26px;
+    -fx-text-fill: #000000;
+}
 .submitBtn:pressed{
     -fx-effect: dropshadow(three-pass-box, #B70D5D, 0, 0, 0, 0);
     -fx-translate-y: 5;

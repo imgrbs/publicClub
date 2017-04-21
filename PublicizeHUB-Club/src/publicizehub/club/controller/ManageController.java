@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import publicizehub.club.model.Event;
+import publicizehub.club.model.EventModel;
 import static java.lang.Long.parseLong;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +25,7 @@ public class ManageController {
     private LoginController li = new LoginController();
     private EventController ec = new EventController();
     
-    private Event ev = new Event();
+    private EventModel ev = new EventModel();
     
     private Stage mainStage;
     private Stage thisStage;
@@ -148,10 +148,10 @@ public class ManageController {
 
     public void setEventToGui(int eventId){
         ResultSet findStd = ev.getSelect(eventId);
-        Event event = null;
+        EventModel event = null;
         try{
             if(findStd.next()){
-                event = new Event(findStd.getString("evName"),
+                event = new EventModel(findStd.getString("evName"),
                 findStd.getString("evDescrip"),findStd.getDate("evStartDate"),
                 findStd.getDate("evEndDate"),findStd.getDate("evStartRegis"),
                 findStd.getDate("evEndFeedback"),findStd.getString("evPlace"),

@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import publicizehub.club.model.ConnectionBuilder;
-import publicizehub.club.model.Event;
+import publicizehub.club.model.EventModel;
 
 /**
  * FXML Controller class
@@ -19,7 +19,7 @@ import publicizehub.club.model.Event;
  * @author JIL
  */
 public class ProfileController {
-    Event ev = new Event();
+    EventModel ev = new EventModel();
     ConnectionBuilder cb = new ConnectionBuilder();
     
     JoinController jc = new JoinController();
@@ -107,10 +107,10 @@ public class ProfileController {
 
     public void setEventToGui(int eventId){
         ResultSet findStd = ev.getSelect(eventId);
-        Event event = null;
+        EventModel event = null;
         try{
             if(findStd.next()){
-                event = new Event(findStd.getString("evName"),
+                event = new EventModel(findStd.getString("evName"),
                 findStd.getString("evDescrip"),findStd.getDate("evStartDate"),
                 findStd.getDate("evEndDate"),findStd.getDate("evStartRegis"),
                 findStd.getDate("evEndFeedback"),findStd.getString("evPlace"),

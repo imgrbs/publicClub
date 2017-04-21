@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author JIL
  */
-public class News {
+public class NewsModel {
     private ConnectionBuilder cb = new ConnectionBuilder();
     private String cont;
     PreparedStatement ps;
@@ -24,7 +24,7 @@ public class News {
     
     //ArrayList<String> myArrList = new ArrayList<String>();
     
-    public News() {
+    public NewsModel() {
     }
 
     public String getContent() {

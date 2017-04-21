@@ -1,11 +1,8 @@
 package publicizehub.club.controller;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
@@ -15,7 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import publicizehub.club.model.Search;
+import publicizehub.club.model.SearchModel;
 import publicizehub.club.model.ConnectionBuilder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +29,7 @@ public class SearchController {
     private ConnectionBuilder cb = new ConnectionBuilder();
     private JoinController jc = new JoinController();
     private DetailController dc = new DetailController();
-    private Search s = new Search();
+    private SearchModel s = new SearchModel();
     private Alert alert = new Alert(AlertType.WARNING);
     
     @FXML
@@ -116,9 +113,8 @@ public class SearchController {
         p.setStyle("-fx-background-color: #" + "ffffff" + ";" +
                    "-fx-background-radius: 10px;" +
                    "-fx-effect: dropshadow(three-pass-box, #4d4d4d, 5, 0, 0, 1);");
-        l.setStyle("-fx-padding: 30px 0px 0px 50px;"+
-                   "-fx-font-size: 30px;"+
-                   "-fx-text-fill: #000000;");
+        l.getStyleClass().add("labelNameSearch");;
+        l.getStyleClass().add("quark");;
         p.setPrefSize(480,150);
         buttonBox.getChildren().add(p);
     }

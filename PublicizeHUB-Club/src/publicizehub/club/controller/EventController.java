@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import publicizehub.club.model.ConnectionBuilder;
-import publicizehub.club.model.Event;
+import publicizehub.club.model.EventModel;
 import publicizehub.club.model.FeedbackModel;
 import publicizehub.club.view.CheckIn;
 
@@ -32,7 +32,7 @@ public class EventController {
     private long stdId;
 
     private ConnectionBuilder cb = new ConnectionBuilder();
-    private Event ev = new Event();
+    private EventModel ev = new EventModel();
     private FeedbackModel fbm = new FeedbackModel();
 
 
@@ -53,7 +53,7 @@ public class EventController {
     }
     
     
-    public void addEventToPresentPane(Event event,VBox listEventBox,boolean evaluation,boolean checkTypeGui) {
+    public void addEventToPresentPane(EventModel event,VBox listEventBox,boolean evaluation,boolean checkTypeGui) {
         String presentText = "ตรวจสอบโค้ด";
         String presentDetail = "รายละเอียด";
         String evaluaText = "ประเมิณกิจกรรม";
@@ -92,18 +92,13 @@ public class EventController {
                 joinbtn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent evt) {
-//                        ee.setThisEvent(event);
                         ee.callEditEvent(event); 
                     }
                 });
                 detailbtn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent evt) {
-//                        ci.callCheckIn(event.getEvId());
-                        CheckIn ci = new CheckIn();
-                        ci.setEvId(event.getEvId());
-
-                        ci.setVisible(true);
+                        ci.callCheckIn(event.getEvId());
                     }
                 });
             }
@@ -146,9 +141,8 @@ public class EventController {
         p.setStyle("-fx-background-color: #" + "ffffff" + ";" +
                    "-fx-background-radius: 10px;" +
                    "-fx-effect: dropshadow(three-pass-box, #4d4d4d, 5, 0, 0, 1);");
-        labelEvName.setStyle("-fx-padding: 30px 0px 0px 50px;"+
-                   "-fx-font-size: 30px;"+
-                   "-fx-text-fill: #000000;");
+        labelEvName.getStyleClass().add("labelNameSearch");
+        labelEvName.getStyleClass().add("quark");
         p.setPrefSize(480,150);
         listEventBox.getChildren().add(p);
     }

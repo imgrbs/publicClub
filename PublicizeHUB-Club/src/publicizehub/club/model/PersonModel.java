@@ -15,7 +15,7 @@ import javafx.beans.property.StringProperty;
  *
  * @author budsagorn_ss
  */
-public class Person extends RecursiveTreeObject<Person> {
+public class PersonModel extends RecursiveTreeObject<PersonModel> {
     private static final Logger LOGGER = Logger.getLogger( GenerateCode.class.getName() );
     private ConnectionBuilder cb = new ConnectionBuilder();
     
@@ -28,10 +28,10 @@ public class Person extends RecursiveTreeObject<Person> {
     private StringProperty dateBuyTicket;
     private StringProperty timestamp;
 
-    public Person() {
+    public PersonModel() {
     }
 
-    public Person(String stdId, String stdName, String stdSurname, String department, 
+    public PersonModel(String stdId, String stdName, String stdSurname, String department, 
         int statusEvaluation, int statusCheckIn, Date dateBuyTicket, Time timestamp) {
         this.stdId = new SimpleStringProperty(stdId);
         this.stdName =  new SimpleStringProperty(stdName);

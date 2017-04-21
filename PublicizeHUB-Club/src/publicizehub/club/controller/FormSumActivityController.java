@@ -27,9 +27,9 @@ import java.util.ResourceBundle;
 import java.io.IOException;
 import java.net.URL;
 import publicizehub.club.model.ConnectionBuilder;
-import publicizehub.club.model.Event;
+import publicizehub.club.model.EventModel;
 import publicizehub.club.model.FeedbackModel;
-import publicizehub.club.model.Person;
+import publicizehub.club.model.PersonModel;
 
 /**
  * FXML Controller class
@@ -41,9 +41,9 @@ public class FormSumActivityController  implements Initializable  {
 
     private ConnectionBuilder cb = new ConnectionBuilder();
     private FeedbackModel fbm = new FeedbackModel();
-    private Person person = new Person();
+    private PersonModel person = new PersonModel();
     
-    private ObservableList<Person> Persons = FXCollections.observableArrayList();
+    private ObservableList<PersonModel> Persons = FXCollections.observableArrayList();
     
     private int eventId;
 
@@ -60,7 +60,7 @@ public class FormSumActivityController  implements Initializable  {
     private Label evName;
 
     @FXML
-    private JFXTreeTableView<Person> tableStd;
+    private JFXTreeTableView<PersonModel> tableStd;
 
     public FeedbackModel getFbm() {
         return fbm;
@@ -182,7 +182,7 @@ public class FormSumActivityController  implements Initializable  {
         feedbackChart.getData().addAll(setl);
     }
 
-    public void callFeedback(Event event) {
+    public void callFeedback(EventModel event) {
         Stage stage = new Stage();
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ShowFeedback.fxml"));
@@ -211,64 +211,64 @@ public class FormSumActivityController  implements Initializable  {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
-        JFXTreeTableColumn<Person, String> stdId = new JFXTreeTableColumn<>("รหัสนักศึกษา");
+        JFXTreeTableColumn<PersonModel, String> stdId = new JFXTreeTableColumn<>("รหัสนักศึกษา");
         stdId.setPrefWidth(105);
-        stdId.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+        stdId.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PersonModel,String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Person, String> param) {
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<PersonModel, String> param) {
                 return param.getValue().getValue().getStdId();
             }
         });
-        JFXTreeTableColumn<Person, String> name = new JFXTreeTableColumn<>("ชื่อ");
+        JFXTreeTableColumn<PersonModel, String> name = new JFXTreeTableColumn<>("ชื่อ");
         name.setPrefWidth(75);
-        name.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+        name.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PersonModel,String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Person, String> param) {
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<PersonModel, String> param) {
                 return param.getValue().getValue().getStdName();
             }
         });
-        JFXTreeTableColumn<Person, String> surName = new JFXTreeTableColumn<>("นามสกุล");
+        JFXTreeTableColumn<PersonModel, String> surName = new JFXTreeTableColumn<>("นามสกุล");
         surName.setPrefWidth(110);
-        surName.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+        surName.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PersonModel,String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Person, String> param) {
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<PersonModel, String> param) {
                 return param.getValue().getValue().getStdSurname();
             }
         });
-        JFXTreeTableColumn<Person, String> department = new JFXTreeTableColumn<>("คณะ");
+        JFXTreeTableColumn<PersonModel, String> department = new JFXTreeTableColumn<>("คณะ");
         department.setPrefWidth(160);
-        department.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+        department.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PersonModel,String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Person, String> param) {
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<PersonModel, String> param) {
                 return param.getValue().getValue().getDepartment();
             }
         });
-        JFXTreeTableColumn<Person, String> joinEvent = new JFXTreeTableColumn<>("วันที่จอง");
+        JFXTreeTableColumn<PersonModel, String> joinEvent = new JFXTreeTableColumn<>("วันที่จอง");
         joinEvent.setPrefWidth(90);
-        joinEvent.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+        joinEvent.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PersonModel,String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Person, String> param) {
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<PersonModel, String> param) {
                 return param.getValue().getValue().getDateBuyTicket();
             }
         });
-        JFXTreeTableColumn<Person, String> checkIn = new JFXTreeTableColumn<>("เช็คอิน");
+        JFXTreeTableColumn<PersonModel, String> checkIn = new JFXTreeTableColumn<>("เช็คอิน");
         checkIn.setPrefWidth(75);
-        checkIn.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+        checkIn.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PersonModel,String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Person, String> param) {
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<PersonModel, String> param) {
                 return param.getValue().getValue().getStatusCheckIn();
             }
         });
-        JFXTreeTableColumn<Person, String> evaluation = new JFXTreeTableColumn<>("ประเมิณ");
+        JFXTreeTableColumn<PersonModel, String> evaluation = new JFXTreeTableColumn<>("ประเมิณ");
         evaluation.setPrefWidth(81);
-        evaluation.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+        evaluation.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PersonModel,String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Person, String> param) {
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<PersonModel, String> param) {
                 return param.getValue().getValue().getStatusEvaluation();
             }
         });
         
-        final TreeItem<Person> root = new RecursiveTreeItem<Person>(Persons, RecursiveTreeObject::getChildren);
+        final TreeItem<PersonModel> root = new RecursiveTreeItem<PersonModel>(Persons, RecursiveTreeObject::getChildren);
         tableStd.getColumns().setAll(stdId,name,surName,department,joinEvent,checkIn,evaluation);
         tableStd.setRoot(root);
         tableStd.setShowRoot(false);
@@ -282,7 +282,7 @@ public class FormSumActivityController  implements Initializable  {
                 long stdId = rs.getLong("stdId");
                 selectName = person.getProfile(stdId);
                 if(selectName.next()){
-                    Persons.add(new Person((stdId+""),selectName.getString("stdName"),selectName.getString("stdSurname")
+                    Persons.add(new PersonModel((stdId+""),selectName.getString("stdName"),selectName.getString("stdSurname")
                             ,selectName.getString("department"),rs.getInt("status"),rs.getInt("statusCheckIn")
                             ,rs.getDate("dateBuyTicket"),rs.getTime("timestamp")));
                 }
