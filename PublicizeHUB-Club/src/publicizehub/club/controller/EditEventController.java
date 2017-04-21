@@ -24,13 +24,15 @@ import publicizehub.club.model.Event;
  *
  * @author JIL
  */
-public class EditEventController implements Initializable {
-    Event ev = new Event();
-    TableEvent te = new TableEvent();
-    LoginController lc = new LoginController();
-    int resultType=2;
+public class EditEventController{
+    private Event ev = new Event();
+    private TableEvent te = new TableEvent();
+    private LoginController lc = new LoginController();
    
     private Event thisEvent;
+    
+    private int resultType;
+    
     private long stdId=lc.getStdId();
     
     private Stage thisStage;
@@ -41,9 +43,6 @@ public class EditEventController implements Initializable {
 
     public void setThisStage(Stage thisStage) {
         this.thisStage = thisStage;
-    }
-    
-    public EditEventController() {
     }
     
     public long getStdId() {
@@ -179,8 +178,10 @@ public class EditEventController implements Initializable {
             warning.setHeaderText("คุณยังไม่ได้แก้ไขกิจกรรม");
             warning.setContentText("ยืนยันที่จะไม่แก้ไขใช่หรือไม่");
             Optional<ButtonType> result = warning.showAndWait();
-            if(result.get() == ButtonType.OK){
-                thisStage.close();
+            if(result.isPresent()){
+                if(result.get() == ButtonType.OK){
+                    thisStage.close();
+                }
             }
         }else{
             warning = new Alert(Alert.AlertType.CONFIRMATION);
@@ -188,28 +189,22 @@ public class EditEventController implements Initializable {
             warning.setHeaderText("แก้ไขข้อมูลกิจกรรม");
             warning.setContentText("ยืนยันที่จะแก้ไขข้อมูลกิจกรรม");
             Optional<ButtonType> result = warning.showAndWait();
-            if(result.get() == ButtonType.OK){
-                setValueToObj();
-                ev.updateEvent(thisEvent);
-                warning = new Alert(Alert.AlertType.INFORMATION);
-                warning.setTitle("Success!");
-                warning.setHeaderText("แก้ไขข้อมูล");
-                warning.setContentText("แก้ไขข้อมูลสำเร็จแล้ว !");
-                warning.showAndWait();
-                thisStage.close();
+            if(result.isPresent()){
+                if(result.get() == ButtonType.OK){
+                    setValueToObj();
+                    ev.updateEvent(thisEvent);
+                    warning = new Alert(Alert.AlertType.INFORMATION);
+                    warning.setTitle("Success!");
+                    warning.setHeaderText("แก้ไขข้อมูล");
+                    warning.setContentText("แก้ไขข้อมูลสำเร็จแล้ว !");
+                    warning.showAndWait();
+                    thisStage.close();
+                }
             }
         }
-        resetEvent(this.thisEvent);
+//        resetEvent(this.thisEvent);
         setAllValue();
     } 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-//        setValueToCombobox();
-//        showValue();
-    }    
     
     @FXML
     public void closeStage(){
@@ -267,7 +262,7 @@ public class EditEventController implements Initializable {
                           endTime.getValue(),typeResult(),this.thisEvent.getEvId());
     }
     
-    public void resetEvent(Event event){
+    /*public void resetEvent(Event event){
         ResultSet rs = ev.getSelect(thisEvent.getEvId());
         try{
             if(rs.next()){
@@ -282,5 +277,5 @@ public class EditEventController implements Initializable {
         }catch(SQLException e){
             e.printStackTrace();
         }
-    }
+    }*/
 }

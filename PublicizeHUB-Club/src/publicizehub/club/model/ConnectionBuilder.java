@@ -12,12 +12,10 @@ public class ConnectionBuilder {
     private PreparedStatement ps = null;
     private ResultSet result;
     
-    private String account = "?user=public-1&password=public&characterEncoding=UTF-8";
-    
     public void connecting(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://10.4.56.11/publicClub" + account);
+            connect = DriverManager.getConnection("jdbc:mysql://10.4.56.11/publicClub?user=public-1&password=public&characterEncoding=UTF-8");
         }
         catch(SQLException e){
             e.printStackTrace();

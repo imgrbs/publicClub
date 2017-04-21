@@ -1,31 +1,51 @@
 package publicizehub.club.controller;
 
+import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
-import java.net.URL;
-import java.sql.ResultSet;
-import java.util.ResourceBundle;
+import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.scene.control.TreeTableColumn;
 import javafx.stage.Stage;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TreeTableColumn;
+import javafx.util.Callback;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TreeItem;
+
+import java.util.logging.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.Event;
 import publicizehub.club.model.FeedbackModel;
+import publicizehub.club.model.Person;
 
 /**
  * FXML Controller class
  *
  * @author budsagorn_ss
  */
-public class FormSumActivityController implements Initializable {
+public class FormSumActivityController  implements Initializable  {
+    private static final Logger LOGGER = Logger.getLogger( FormSumActivityController.class.getName() );
+
     private ConnectionBuilder cb = new ConnectionBuilder();
     private FeedbackModel fbm = new FeedbackModel();
+    private Person person = new Person();
+    
+    private ObservableList<Person> Persons = FXCollections.observableArrayList();
     
     private int eventId;
 
@@ -42,22 +62,7 @@ public class FormSumActivityController implements Initializable {
     private Label evName;
 
     @FXML
-    private JFXTreeTableView<?> tableStd;
-
-    @FXML
-    private TreeTableColumn<?, ?> stdName;
-
-    @FXML
-    private TreeTableColumn<?, ?> stdSurname;
-
-    @FXML
-    private TreeTableColumn<?, ?> stdDepart;
-
-    @FXML
-    private TreeTableColumn<?, ?> stdBuy;
-
-    @FXML
-    private TreeTableColumn<?, ?> stdCheckin;
+    private JFXTreeTableView<Person> tableStd;
 
     public FeedbackModel getFbm() {
         return fbm;
@@ -73,10 +78,6 @@ public class FormSumActivityController implements Initializable {
 
     public void setEventId(int eventId) {
         this.eventId = eventId;
-    }
-
-    public FormSumActivityController() {
-        
     }
 
     public Label getNumberBuy() {
@@ -103,57 +104,16 @@ public class FormSumActivityController implements Initializable {
         this.evName = evName;
     }
 
-    public TreeTableColumn<?, ?> getStdName() {
-        return stdName;
-    }
-
-    public void setStdName(TreeTableColumn<?, ?> stdName) {
-        this.stdName = stdName;
-    }
-
-    public TreeTableColumn<?, ?> getStdSurname() {
-        return stdSurname;
-    }
-
-    public void setStdSurname(TreeTableColumn<?, ?> stdSurname) {
-        this.stdSurname = stdSurname;
-    }
-
-    public TreeTableColumn<?, ?> getStdDepart() {
-        return stdDepart;
-    }
-
-    public void setStdDepart(TreeTableColumn<?, ?> stdDepart) {
-        this.stdDepart = stdDepart;
-    }
-
-    public TreeTableColumn<?, ?> getStdBuy() {
-        return stdBuy;
-    }
-
-    public void setStdBuy(TreeTableColumn<?, ?> stdBuy) {
-        this.stdBuy = stdBuy;
-    }
-
-    public TreeTableColumn<?, ?> getStdCheckin() {
-        return stdCheckin;
-    }
-
-    public void setStdCheckin(TreeTableColumn<?, ?> stdCheckin) {
-        this.stdCheckin = stdCheckin;
-    }
-
     public void calculateFeedback(int evId) {
-        
         int[] averQ = new int[10];
-        ResultSet result = null;
+        ResultSet result;
         result = fbm.getSumQ(evId);
         
-        int numPeople = 1;
+        int numPeople;
         numPeople = fbm.numPeople(evId);
         
-        int setSumQ1 = 0;
-        int setSumQ2 = 0;
+        int setSumQ1;
+        int setSumQ2;
         
         try {
             while (result.next()) {
@@ -169,7 +129,9 @@ public class FormSumActivityController implements Initializable {
                 averQ[9] += result.getInt("sumQ10");
             }
             cb.logout();
-
+            if(numPeople<=0){
+                numPeople=1;
+            }
             averQ[0] /= numPeople;
             averQ[1] /= numPeople;
             averQ[2] /= numPeople;
@@ -181,7 +143,6 @@ public class FormSumActivityController implements Initializable {
             averQ[8] /= numPeople;
             averQ[9] /= numPeople;
 
-            //คิด % แต่ละข้อโดยแบ่งเป็น 2 ชุด 
             double x = 0.2;
             int percentQ1 = (int) (averQ[0] * x);
             int percentQ2 = (int) (averQ[1] * x);
@@ -202,12 +163,11 @@ public class FormSumActivityController implements Initializable {
                             averQ[6], averQ[7], averQ[8], averQ[9], setSumQ1, setSumQ2);
             setFeedbackChart(averQ);
         
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE ," calculateFeedback Bug !");
         }
     }
 
-    //set ค่าที่จะโชว์กราฟ
     @FXML
     public void setFeedbackChart(int averQ[]) {
         XYChart.Series setl = new XYChart.Series<>();
@@ -223,43 +183,121 @@ public class FormSumActivityController implements Initializable {
         setl.getData().add(new XYChart.Data("Q10", averQ[9]));
         feedbackChart.getData().addAll(setl);
     }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
 
     public void callFeedback(Event event) {
-//        this.eventId=evId;
         Stage stage = new Stage();
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ShowFeedback.fxml"));
         try {
             root = (Parent) fxmlLoader.load();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE ,"root : callFeedback Bug !");
         }
         FormSumActivityController controller = fxmlLoader.<FormSumActivityController>getController();
-        ResultSet rs = null;
+        ResultSet rs;
         rs = controller.getFbm().selectValueFeedback(getEventId());
         controller.getEvName().setText(event.getEvName());
         controller.getNumberBuy().setText(""+getFbm().getStdBuy(event.getEvId()));
         controller.getNumberJoin().setText(""+getFbm().getStdJoin(event.getEvId()));
+        controller.setPersons(event.getEvId());
         try{
             if(!rs.next()){
                 controller.calculateFeedback(event.getEvId());
-                rs = controller.getFbm().selectValueFeedback(event.getEvId());
             }
-        }catch(Exception e){
-            e.printStackTrace();
+        }catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"call Controller : callFeedback Bug !");
         }
         Scene scene = new Scene(root);
         try {
             stage.setScene(scene);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"setScene : callFeedback Bug !");
         }
         stage.show();
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        
+        JFXTreeTableColumn<Person, String> stdId = new JFXTreeTableColumn<>("รหัสนักศึกษา");
+        stdId.setPrefWidth(105);
+        stdId.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Person, String> param) {
+                return param.getValue().getValue().getStdId();
+            }
+        });
+        JFXTreeTableColumn<Person, String> name = new JFXTreeTableColumn<>("ชื่อ");
+        name.setPrefWidth(75);
+        name.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Person, String> param) {
+                return param.getValue().getValue().getStdName();
+            }
+        });
+        JFXTreeTableColumn<Person, String> surName = new JFXTreeTableColumn<>("นามสกุล");
+        surName.setPrefWidth(110);
+        surName.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Person, String> param) {
+                return param.getValue().getValue().getStdSurname();
+            }
+        });
+        JFXTreeTableColumn<Person, String> department = new JFXTreeTableColumn<>("คณะ");
+        department.setPrefWidth(160);
+        department.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Person, String> param) {
+                return param.getValue().getValue().getDepartment();
+            }
+        });
+        JFXTreeTableColumn<Person, String> joinEvent = new JFXTreeTableColumn<>("วันที่จอง");
+        joinEvent.setPrefWidth(90);
+        joinEvent.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Person, String> param) {
+                return param.getValue().getValue().getDateBuyTicket();
+            }
+        });
+        JFXTreeTableColumn<Person, String> checkIn = new JFXTreeTableColumn<>("เช็คอิน");
+        checkIn.setPrefWidth(75);
+        checkIn.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Person, String> param) {
+                return param.getValue().getValue().getStatusCheckIn();
+            }
+        });
+        JFXTreeTableColumn<Person, String> evaluation = new JFXTreeTableColumn<>("ประเมิณ");
+        evaluation.setPrefWidth(81);
+        evaluation.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Person, String> param) {
+                return param.getValue().getValue().getStatusEvaluation();
+            }
+        });
+        
+        final TreeItem<Person> root = new RecursiveTreeItem<Person>(Persons, RecursiveTreeObject::getChildren);
+        tableStd.getColumns().setAll(stdId,name,surName,department,joinEvent,checkIn,evaluation);
+        tableStd.setRoot(root);
+        tableStd.setShowRoot(false);
+    }
+    
+    public void setPersons(int eventId){
+        ResultSet rs = fbm.getStdFormLog(eventId);
+        ResultSet selectName;
+        try{
+            while(rs.next()){
+                long stdId = rs.getLong("stdId");
+                selectName = person.getProfile(stdId);
+                if(selectName.next()){
+                    Persons.add(new Person((stdId+""),selectName.getString("stdName"),selectName.getString("stdSurname")
+                            ,selectName.getString("department"),rs.getInt("status"),rs.getInt("statusCheckIn")
+                            ,rs.getDate("dateBuyTicket"),rs.getTime("timestamp")));
+                }
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        cb.logout();
+    }
 }
