@@ -112,13 +112,7 @@ public class ManageController {
             System.out.println("ERROR at callManage");
         }
         ManageController controller = fxmlLoader.<ManageController>getController();
-        controller.setStdId(getLi().getStdId());
-        controller.setLabelDepartment(li.getDepartment());
-        controller.setLabelId(""+li.getStdId());
-        controller.setLabelName(li.getName()+" "+li.getSurname());
-        controller.getEventToProfile();
-        controller.setMainStage(mainStage);
-        controller.setThisStage(stage);
+        controller.setStdId(li.getStdId());
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    
@@ -148,7 +142,7 @@ public class ManageController {
     public void setEventToGui(int eventId){
         ResultSet findStd = ev.getSelect(eventId);
         EventModel event = null;
-        String tempDate="";
+        LocalDate tempDate;
         try{
             if(findStd.next()){
                 event = new EventModel(findStd.getString("evName"),
@@ -159,19 +153,19 @@ public class ManageController {
                 findStd.getTime("evTime"),findStd.getTime("evEndTime"),
                 findStd.getInt("evType"),findStd.getInt("evId")
                 );
-            tempDate += event.getEvEndDate();
+                tempDate = event.getEvEndDate(); //ดึงเวลาที่จบแล้วเก็บไว้
+                ec.setStdId(getStdId());
+                if(tempDate.compareTo(LocalDate.now())>-1){ 
+                    ec.addEventToPane(event,this.listEventBox1,true,false); 
+                }
+                else {
+                    ec.addEventToPane(event,this.listEventBox2,false,false);
+                }
             }
         }catch(SQLException e){
             System.out.println("ERROR at setEventToGui");
         }
-        ec.setStdId(getStdId());
-        LocalDate ld = LocalDate.parse(tempDate);
-        if(ld.compareTo(LocalDate.now())>-1){ 
-            ec.addEventToPresentPane(event,this.listEventBox1,true,false); 
-        }
-        else {
-            ec.addEventToPresentPane(event,this.listEventBox2,false,false);
-        }
+        
     }
     
     @FXML

@@ -53,7 +53,7 @@ public class EventController {
     }
     
     
-    public void addEventToPresentPane(EventModel event,VBox listEventBox,boolean evaluation,boolean checkTypeGui) {
+    public void addEventToPane(EventModel event,VBox listEventBox,boolean evaluation,boolean checkTypeGui) {
         String presentText = "ตรวจสอบโค้ด";
         String presentDetail = "รายละเอียด";
         String evaluaText = "ประเมิณกิจกรรม";
