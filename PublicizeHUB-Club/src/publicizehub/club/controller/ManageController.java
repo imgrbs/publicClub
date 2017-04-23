@@ -128,7 +128,6 @@ public class ManageController {
         }
         stage.show();
         mainStage.close();
-        
     }
     
     @FXML

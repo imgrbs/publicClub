@@ -5,7 +5,6 @@
  */
 package publicizehub.club.model;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +12,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -20,6 +20,7 @@ import java.util.logging.Level;
  * @author JIL
  */
 public class CheckInModel {
+    private static final Logger LOGGER = Logger.getLogger( GenerateCode.class.getName() );
     ConnectionBuilder cb = new ConnectionBuilder();
     private long stdId;
     private int evId;
