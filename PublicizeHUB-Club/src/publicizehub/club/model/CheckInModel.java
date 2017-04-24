@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  * @author JIL
  */
 public class CheckInModel {
-    private static final Logger LOGGER = Logger.getLogger( GenerateCode.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger( CheckInModel.class.getName() );
     ConnectionBuilder cb = new ConnectionBuilder();
     private long stdId;
     private int evId;
