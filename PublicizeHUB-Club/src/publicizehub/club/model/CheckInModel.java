@@ -83,11 +83,11 @@ public class CheckInModel {
     }
     
     
-    public ResultSet getSelect(int evId){
+    public ResultSet getSelect(String evCode){
         cb.connecting();
         try{
-            ps = cb.getConnect().prepareStatement("SELECT * FROM generatecode where evId = ?");
-            ps.setInt(1,evId);
+            ps = cb.getConnect().prepareStatement("SELECT * FROM generatecode where evCode = ?");
+            ps.setString(1,evCode);
             rs = ps.executeQuery();
         }
         catch(SQLException e){
@@ -115,7 +115,7 @@ public class CheckInModel {
         return rs;
     }
     
-    public void keepDataCheckIn(CheckInModel check){
+    public void sentLogCheckin(CheckInModel check){
         cb.connecting();
         Statement s = null;
         try {

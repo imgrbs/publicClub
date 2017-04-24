@@ -1,5 +1,8 @@
 package publicizehub.club.controller;
 
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,17 +12,16 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import publicizehub.club.model.CheckInModel;
+import publicizehub.club.model.EventModel;
 
 /**
  *
@@ -31,6 +33,8 @@ public class CheckInController implements Initializable{
     private ListView<String> listName;
     @FXML
     private TextField insertCode;
+    @FXML
+    private Label eventName;
     private long stdId;
     private int eventId;
     CheckInModel cm = null;
@@ -53,7 +57,7 @@ public class CheckInController implements Initializable{
     }
     
     @FXML
-    public void callCheckIn(int evId){
+    public void callCheckIn(EventModel event){
         Stage stage= new Stage();
         Parent root=null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/CheckIn.fxml"));     
@@ -63,10 +67,13 @@ public class CheckInController implements Initializable{
         catch(Exception e){
             e.printStackTrace();
         }
-            setEventId(evId);          
-            System.out.println("callCheckin : "+eventId);
+                      
+        CheckInController controller = fxmlLoader.<CheckInController>getController();
+        controller.setEventId(event.getEvId());
+        controller.eventName.setText(event.getEvName());
+        
+        System.out.println("callCheckin : "+event.getEvId());
             
-//        CheckInController controller = fxmlLoader.<CheckInController>getController();
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    
@@ -78,8 +85,10 @@ public class CheckInController implements Initializable{
     }
     @FXML
     public void clickConfirm(){
+        
+        System.out.println(getEventId());
         Alert warning = null;
-        System.out.println("clickConfirm eventId : "+eventId);
+        System.out.println("clickConfirm eventId : "+getEventId());
         warning = new Alert(Alert.AlertType.CONFIRMATION);
         warning.setTitle("Information!");
         warning.setHeaderText("ยืนยันที่จะลงทะเบียนผู้เข้าร่วมกิจกรรม?");
@@ -87,28 +96,37 @@ public class CheckInController implements Initializable{
         if (result.isPresent()) {
             if (result.get() == ButtonType.OK) {
                 System.out.println("clickConfirm eventId : "+eventId);
-                checkCode(getEventId());
+                checkCode(insertCode.getText());
                 addNameToList(stdId);
-                setValue(stdId,ci.getEvId());
-                ci.updateStatusCheckIn(insertCode.getText(),stdId,eventId);
-                ci.keepDataCheckIn(cm); 
+//                setValue(stdId,ci.getEvId());
+//                ci.updateStatusCheckIn(insertCode.getText(),stdId,eventId);
+                //ci.keepDataCheckIn(cm); 
                 System.out.println("Everything is Finished!");               
-                /*warning = new Alert(Alert.AlertType.INFORMATION);
+                warning = new Alert(Alert.AlertType.INFORMATION);
                 warning.setTitle("Success!");
                 warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
-                warning.showAndWait();*/
+                warning.showAndWait();
             }
         }
         
     }
     @FXML
-    public void checkCode(int evId){
-        ResultSet rs = ci.getSelect(evId);
-        System.out.println("checkCode : "+evId);
+    public void checkCode(String evCode){
+        ResultSet rs = ci.getSelect(evCode);
+        System.out.println("checkCode : "+evCode);
         try{
-            while(rs.next()){
+            if(rs.next()){
                 setStdId(rs.getLong("stdId"));
-                System.out.println("checkCode std = "+stdId);
+                System.out.println("checkCode std = "+getStdId());
+                setValue(getStdId(),getEventId());
+            // METHOD ส่ง LOG Checkin
+                ci.sentLogCheckin(cm);
+            // Update statusCheckin ใน logJoining
+                ci.updateStatusCheckIn(insertCode.getText(),getStdId(),getEventId());
+            // เพิ่มคนใน List
+                addNameToList(getStdId());
+            // ลบ GEN CODE
+                
                 
             }
         }catch(SQLException e){

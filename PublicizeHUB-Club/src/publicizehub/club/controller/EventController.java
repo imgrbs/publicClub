@@ -98,7 +98,7 @@ public class EventController {
                 detailbtn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent evt) {
-                        ci.callCheckIn(event.getEvId());
+                        ci.callCheckIn(event);
                     }
                 });
             }
