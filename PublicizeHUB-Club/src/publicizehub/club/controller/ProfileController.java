@@ -123,10 +123,10 @@ public class ProfileController {
                 ld = event.getEvEndDate();
                 ec.setStdId(getStdId());
                 if(ld.compareTo(LocalDate.now())>-1){ 
-                    ec.addEventToPane(event,this.listEventBox1,true,true); 
+                    ec.addEventToPresentPane(event,this.listEventBox1,true,true); 
                 }
                 else {
-                    ec.addEventToPane(event,this.listEventBox2,false,true);
+                    ec.addEventToPresentPane(event,this.listEventBox2,false,true);
                 }
             }
         }catch(SQLException e){
