@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -101,11 +102,16 @@ public class NewsController {
         ResultSet news = nw.getNews();
         try{
             while(news.next()){
-              String temp = news.getString("datestamp")+" | "+news.getString("timestamp")+"   "+news.getString("content");
+                //if(news.getString("datestamp").compareTo(LocalDate.now()+"")>=-10){
+                    System.out.println(news.getString("datestamp").compareTo(LocalDate.now()+""));
+                    String times = news.getString("timestamp").substring(0,5);
+                    String temp = news.getString("datestamp")+" | "+ times +"   "+news.getString("content");
+                    items.add(0,temp);
                 
-                items.add(temp);
-
             }
+
+         
+    
         }catch(SQLException e){
             LOGGER.log(Level.SEVERE ,"addNewsToList : addNewsToList Bug !");
         }
