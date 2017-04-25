@@ -21,6 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import publicizehub.club.model.CheckInModel;
+import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.EventModel;
 
 /**
@@ -29,6 +30,8 @@ import publicizehub.club.model.EventModel;
  */
 public class CheckInController implements Initializable{
     CheckInModel cim = new CheckInModel();
+    ConnectionBuilder cb = new ConnectionBuilder();
+    ObservableList<String> items =FXCollections.observableArrayList();
     @FXML
     private ListView<String> listName;
     @FXML
@@ -71,7 +74,7 @@ public class CheckInController implements Initializable{
         CheckInController controller = fxmlLoader.<CheckInController>getController();
         controller.setEventId(event.getEvId());
         controller.eventName.setText(event.getEvName());
-        
+        //addNameToList(event.getEvId());
         System.out.println("callCheckin : "+event.getEvId());
             
         Scene scene = new Scene(root); 
@@ -97,15 +100,16 @@ public class CheckInController implements Initializable{
             if (result.get() == ButtonType.OK) {
                 System.out.println("clickConfirm eventId : "+eventId);
                 checkCode(insertCode.getText());
-                addNameToList(stdId);
+                
+//                addNameToList(stdId);
 //                setValue(stdId,ci.getEvId());
 //                ci.updateStatusCheckIn(insertCode.getText(),stdId,eventId);
-                //ci.keepDataCheckIn(cm); 
-                System.out.println("Everything is Finished!");               
-                warning = new Alert(Alert.AlertType.INFORMATION);
-                warning.setTitle("Success!");
-                warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
-                warning.showAndWait();
+//                ci.sentLogCheckin(cm); 
+//                System.out.println("Everything is Finished!");               
+//                warning = new Alert(Alert.AlertType.INFORMATION);
+//                warning.setTitle("Success!");
+//                warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
+//                warning.showAndWait();
             }
         }
         
@@ -114,6 +118,7 @@ public class CheckInController implements Initializable{
     public void checkCode(String evCode){
         ResultSet rs = ci.getSelect(evCode);
         System.out.println("checkCode : "+evCode);
+        Alert warning = null;
         try{
             if(rs.next()){
                 setStdId(rs.getLong("stdId"));
@@ -125,24 +130,30 @@ public class CheckInController implements Initializable{
                 ci.updateStatusCheckIn(insertCode.getText(),getStdId(),getEventId());
             // เพิ่มคนใน List
                 addNameToList(getStdId());
-            // ลบ GEN CODE
-                
-                
+            // ลบ GEN CODE    
+                ci.DeleteCode(insertCode.getText());
+            }else{
+                warning = new Alert(Alert.AlertType.INFORMATION);
+                warning.setTitle("รหัสไม่ถูกต้อง!");
+                warning.setHeaderText("รหัสที่กรอกมาไม่ถูกต้อง โปรดตรวจสอบอีกครั้ง");
+                warning.showAndWait(); 
             }
         }catch(SQLException e){
             System.out.println("SQL Exception");
         }
+        cb.logout();
     }
     @FXML
     public void addNameToList(long stdId){
         ResultSet rs = ci.getName(stdId);
         System.out.println("addNameToList : "+stdId);
         System.out.println("addNameToList : "+insertCode.getText());
-        ObservableList<String> items =FXCollections.observableArrayList();
+        
         try{
             while(rs.next()){
                 String name = rs.getString("stdName");
-                items.add(stdId+"\t"+name);
+                String surname = rs.getString("stdSurname");
+                items.add(stdId+"\t"+name+" "+surname);
                 System.out.println("addNameToList name = "+name);
                 System.out.println("addNameToList : "+insertCode.getText());
             }
@@ -150,7 +161,30 @@ public class CheckInController implements Initializable{
         }catch(SQLException e){
             System.out.println("SQL Exception");
         }
+        
     }
+    
+    /*@FXML
+    public void addNameToList(int evId){
+        ResultSet rs = ci.getChecedName(evId);
+        System.out.println("addNameToList : "+stdId);
+        System.out.println("addNameToList : "+insertCode.getText());
+        
+        try{
+            while(rs.next()){
+                String name = rs.getString("stdName");
+                String surname = rs.getString("stdSurname");
+                items.add(stdId+"\t"+name+" "+surname);
+                System.out.println("addNameToList name = "+name);
+                System.out.println("addNameToList : "+insertCode.getText());
+            }
+            listName.setItems(items);
+        }catch(SQLException e){
+            System.out.println("SQL Exception");
+        }
+        cb.logout();
+    }*/
+    
     @FXML
     public void setValue(long stdId,int eventId){
         cm = new CheckInModel(stdId, eventId, insertCode.getText(), LocalDate.now(), LocalTime.now());
