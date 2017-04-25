@@ -71,6 +71,7 @@ public class ProfileController {
 
     public void setMainStage(Stage mainStage) {
         this.mainStage = mainStage;
+        mainStage.setTitle("PublicizeHUB");   
     }
 
     public Stage getThisStage() {
@@ -88,6 +89,8 @@ public class ProfileController {
     public void setStdId(long stdId) {
         this.stdId = stdId;
     }
+    
+    
     
     @FXML
     public void getEventToProfile(){

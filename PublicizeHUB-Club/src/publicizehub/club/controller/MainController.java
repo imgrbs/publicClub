@@ -28,7 +28,7 @@ public class MainController {
     private ResultSet rs = null;
 
     private Stage thisStage;
-    
+        
     @FXML
     private Label stdId;
 
@@ -65,6 +65,8 @@ public class MainController {
     @FXML
     private ListView<String> newsList;
 
+    
+    
     public LoginController getLi() {
         return li;
     }
@@ -75,6 +77,7 @@ public class MainController {
 
     public void setThisStage(Stage thisStage) {
         this.thisStage = thisStage;
+        thisStage.setTitle("PublicizeHUB");   
     }
     
     public void setManageDisable(){
@@ -227,6 +230,7 @@ public class MainController {
         mc.callManage(thisStage);
     }
     
+    
     @FXML
     public void sentToSearch(){
         String text = searchfield.getText();
@@ -234,4 +238,6 @@ public class MainController {
         sc.callSearch(text);
         searchfield.setText("");
     }
+    
+   
 }

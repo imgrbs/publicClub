@@ -19,6 +19,8 @@ import publicizehub.club.view.ListPerson;
 public class DetailController {
     private EventModel ev = new EventModel();
 
+    private Stage thisStage;
+    
     @FXML
     private Label evName;
 
@@ -48,6 +50,11 @@ public class DetailController {
     }
     
     
+    
+    public void setThisStage(Stage thisStage) {
+        this.thisStage = thisStage;
+        thisStage.setTitle("PublicizeHUB");   
+    }
 
     @FXML
     public void callDetail(int eventId){
@@ -99,6 +106,7 @@ public class DetailController {
         controller.setEvDate(event.getEvDate()+"");
         controller.setEvPlace(event.getEvPlace());
         controller.setEvDescrip(event.getEvDescrip());
+        controller.setThisStage(thisStage);
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    
