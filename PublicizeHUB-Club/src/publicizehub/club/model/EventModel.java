@@ -333,6 +333,22 @@ public class EventModel {
         return rs;
     }
     
+    public ResultSet getEventByStdId(long stdId){
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_event where stdId = ?");
+            ps.setLong(1,stdId);
+            rs = ps.executeQuery();
+        }
+        catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"getSelect long : SQLException Bug !");
+        }
+        catch(Exception e){
+            LOGGER.log(Level.SEVERE ,"getSelect long : Exception Bug !");
+        }
+        return rs;
+    }
+    
     public ResultSet updateCurrentMember(int updateMember,int evId){
         cb.connecting();
         try{

@@ -116,7 +116,8 @@ public class ManageController {
         controller.setLabelDepartment(li.getDepartment());
         controller.setLabelId(""+li.getStdId());
         controller.setLabelName(li.getName()+" "+li.getSurname());
-        controller.getEventToProfile();
+//        controller.getEventToProfile();
+        controller.setEventToGui(li.getStdId());
         controller.setMainStage(mainStage);
         controller.setThisStage(stage);
         Scene scene = new Scene(root); 
@@ -145,12 +146,11 @@ public class ManageController {
         }
     }
 
-    public void setEventToGui(int eventId){
-        ResultSet findStd = ev.getSelect(eventId);
-        EventModel event = null;
-        String tempDate="";
+    public void setEventToGui(long stdId){
+        ResultSet findStd = ev.getEventByStdId(stdId);
+        EventModel event;
         try{
-            if(findStd.next()){
+            while(findStd.next()){
                 event = new EventModel(findStd.getString("evName"),
                 findStd.getString("evDescrip"),findStd.getDate("evStartDate"),
                 findStd.getDate("evEndDate"),findStd.getDate("evStartRegis"),
@@ -159,19 +159,19 @@ public class ManageController {
                 findStd.getTime("evTime"),findStd.getTime("evEndTime"),
                 findStd.getInt("evType"),findStd.getInt("evId")
                 );
-            tempDate += event.getEvEndDate();
+                LocalDate ld = findStd.getDate("evEndDate").toLocalDate();
+                if(ld.compareTo(LocalDate.now())>-1){ 
+                    ec.addEventToPresentPane(event,this.listEventBox1,true,false); 
+                }
+                else {
+                    ec.addEventToPresentPane(event,this.listEventBox2,false,false);
+                }
             }
         }catch(SQLException e){
+            e.printStackTrace();
             System.out.println("ERROR at setEventToGui");
         }
-        ec.setStdId(getStdId());
-        LocalDate ld = LocalDate.parse(tempDate);
-        if(ld.compareTo(LocalDate.now())>-1){ 
-            ec.addEventToPresentPane(event,this.listEventBox1,true,false); 
-        }
-        else {
-            ec.addEventToPresentPane(event,this.listEventBox2,false,false);
-        }
+//        ec.setStdId(getStdId());
     }
     
     @FXML
