@@ -102,12 +102,15 @@ public class NewsController {
         ResultSet news = nw.getNews();
         try{
             while(news.next()){
-                //if(news.getString("datestamp").compareTo(LocalDate.now()+"")>=-10){
-                    System.out.println(news.getString("datestamp").compareTo(LocalDate.now()+""));
+                               
+            if( ((LocalDate.now()).compareTo(news.getDate("datestamp").toLocalDate().plusDays(10))<1) && 
+                  ((LocalDate.now()).compareTo(news.getDate("datestamp").toLocalDate().minusDays(10)) > -1)){
+                    
+               // System.out.println(news.getString("datestamp").compareTo(LocalDate.now()+""));
                     String times = news.getString("timestamp").substring(0,5);
-                    String temp = news.getString("datestamp")+" | "+ times +"   "+news.getString("content");
+                    String temp = news.getDate("datestamp")+" | "+ times +"   "+news.getString("content");
                     items.add(0,temp);
-                
+                }
             }
 
          
