@@ -136,8 +136,9 @@ public class CheckInModel {
     public void updateStatusCheckIn(String evCode,long stdId,int evId){
         cb.connecting();
         String command;
+        System.out.println("evCode : "+evCode+"stdId : "+stdId+"evId : "+evId);
         try {
-            command = "UPDATE logJoining set statusCheckIn = '1' where stdId = "+stdId+"and evId="+evId+"and evCode="+evCode;
+            command = "UPDATE logJoining set statusCheckIn = '1' where stdId = '"+stdId+"' and evId='"+evId+"' and evCode='"+evCode+"'";
             ps = cb.getConnect().prepareStatement(command); 
             ps.executeUpdate();
         }
@@ -147,6 +148,45 @@ public class CheckInModel {
             
         }
         cb.logout();
+    }
+    
+    public void DeleteCode(String evCode){
+        String command;
+        PreparedStatement s;
+        cb.connecting();
+        try{
+            command ="DELETE FROM generatecode WHERE evCode = ?";
+            s = cb.getConnect().prepareStatement(command);
+            s.setString(1,evCode);
+            s.executeUpdate();
+        }
+        catch(NullPointerException e){
+            LOGGER.log(Level.SEVERE ,"DeleteEvent : NullPointerException Bug !");
+        }
+        catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"DeleteEvent : SQLException Bug !");
+        }
+        catch(Exception e){
+            LOGGER.log(Level.SEVERE ,"DeleteEvent : Exception Bug !");
+        }
+        finally{
+            cb.logout();
+        }
+    }
+    public ResultSet getChecedName(int evId){
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("SELECT * FROM logCheckIn where evId = ?");
+            ps.setInt(1,evId);
+            rs = ps.executeQuery();
+        }
+        catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"getName long : SQLException Bug !");
+        }
+        catch(Exception e){
+            LOGGER.log(Level.SEVERE ,"getName long : SQLException Bug !");
+        }
+        return rs;
     }
     
 }
