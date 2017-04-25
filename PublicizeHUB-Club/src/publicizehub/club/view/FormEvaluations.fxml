@@ -17,7 +17,7 @@
          <children>
             <Pane prefHeight="562.0" prefWidth="673.0" style="-fx-background-color: #fff;" styleClass="formBg">
                <children>
-                  <Label layoutX="31.0" layoutY="30.0" prefHeight="45.0" prefWidth="181.0" text="ประเมิณกิจกรรม">
+                  <Label layoutX="31.0" layoutY="30.0" prefHeight="45.0" prefWidth="181.0" text="ประเมินกิจกรรม">
                      <styleClass>
                         <String fx:value="formName" />
                         <String fx:value="quark" />
