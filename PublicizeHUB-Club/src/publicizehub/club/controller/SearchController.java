@@ -16,6 +16,7 @@ import publicizehub.club.model.SearchModel;
 import publicizehub.club.model.ConnectionBuilder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.EventHandler;
@@ -165,9 +166,16 @@ public class SearchController {
                     alert.setContentText("ไม่มีกิจกรรมที่คุณค้นหา..");
                     alert.showAndWait();
                 } else {
-                    addEventToPane(result.getString("evName"),result.getInt("evId"));
-                    while(result.next()){
+                    LocalDate tempDate = result.getDate("evEndDate").toLocalDate();
+                        System.out.println(LocalDate.now().compareTo(tempDate));
+                    if(tempDate.compareTo(LocalDate.now())>-1){
                         addEventToPane(result.getString("evName"),result.getInt("evId"));
+                    }
+                    while(result.next()){
+                        tempDate = result.getDate("evEndDate").toLocalDate();
+                        if(tempDate.compareTo(LocalDate.now())>-1){
+                            addEventToPane(result.getString("evName"),result.getInt("evId"));
+                        }
                     }
                 }
             }
