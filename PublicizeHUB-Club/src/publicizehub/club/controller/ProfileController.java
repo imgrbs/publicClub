@@ -12,6 +12,9 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.EventModel;
 
@@ -26,6 +29,7 @@ public class ProfileController {
     EventModel ev = new EventModel();
     ConnectionBuilder cb = new ConnectionBuilder();
     
+    LoginController li = new LoginController();
     JoinController jc = new JoinController();
     DetailController dc = new DetailController();
     EventController ec = new EventController();
@@ -34,6 +38,7 @@ public class ProfileController {
     
     private Stage mainStage;
     private Stage thisStage;
+    private Scene thisScene;
     
     @FXML
     private Label labelId;
@@ -51,7 +56,14 @@ public class ProfileController {
     
     @FXML
     private Button backBtn;
-    
+
+    public Scene getThisScene() {
+        return thisScene;
+    }
+
+    public void setThisScene(Scene thisScene) {
+        this.thisScene = thisScene;
+    }
     
     public void setLabelId(String labelId) {
         this.labelId.setText(labelId);
@@ -70,8 +82,7 @@ public class ProfileController {
     }
 
     public void setMainStage(Stage mainStage) {
-        this.mainStage = mainStage;
-        mainStage.setTitle("PublicizeHUB");   
+        this.mainStage = mainStage; 
     }
 
     public Stage getThisStage() {
@@ -138,11 +149,42 @@ public class ProfileController {
         
     }
     
+    @FXML
     public void callMain(){
+        mainStage.setScene(thisScene);    
         mainStage.show();
-        thisStage.close(); 
+//        thisStage.close();
     }
     
-
+    @FXML
+    public void callProfile(Stage mainStage,Scene tempScene){
+//        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Profile.fxml"));     
+        try{
+            root = (Parent)fxmlLoader.load(); 
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        ProfileController controller = fxmlLoader.<ProfileController>getController();
+        controller.setStdId(li.getStdId());
+        controller.setLabelDepartment(li.getDepartment());
+        controller.setLabelId(""+li.getStdId());
+        controller.setLabelName(li.getName()+" "+li.getSurname());
+        controller.getEventToProfile();
+//        controller.setMainStage(thisStage);
+        controller.setMainStage(mainStage);
+//        controller.setThisStage(stage);
+        controller.setThisScene(tempScene);
+        Scene scene = new Scene(root); 
+        try{
+            mainStage.setScene(scene);    
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        mainStage.show();
+    }
     
 }

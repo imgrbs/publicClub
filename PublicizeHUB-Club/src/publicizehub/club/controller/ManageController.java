@@ -29,6 +29,7 @@ public class ManageController {
     
     private Stage mainStage;
     private Stage thisStage;
+    private Scene thisScene;
     
     private long stdId;
     
@@ -88,6 +89,16 @@ public class ManageController {
     public void setThisStage(Stage thisStage) {
         this.thisStage = thisStage;
     }
+
+    public Scene getThisScene() {
+        return thisScene;
+    }
+
+    public void setThisScene(Scene thisScene) {
+        this.thisScene = thisScene;
+    }
+    
+    
     
     @FXML
     public void callAddNews(){
@@ -96,13 +107,14 @@ public class ManageController {
     
     @FXML
     public void callMain(){
+        mainStage.setScene(thisScene);    
         mainStage.show();
-        thisStage.close();
+//        thisStage.close();
     }
     
     @FXML
-    public void callManage(Stage mainStage){
-        Stage stage = new Stage();
+    public void callManage(Stage mainStage,Scene tempScene){
+//        Stage stage = new Stage();
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Manage.fxml"));     
         try{
@@ -116,19 +128,18 @@ public class ManageController {
         controller.setLabelDepartment(li.getDepartment());
         controller.setLabelId(""+li.getStdId());
         controller.setLabelName(li.getName()+" "+li.getSurname());
-//        controller.getEventToProfile();
         controller.setEventToGui(li.getStdId());
         controller.setMainStage(mainStage);
-        controller.setThisStage(stage);
+//        controller.setThisStage(stage);
+        controller.setThisScene(tempScene);
         Scene scene = new Scene(root); 
         try{
-            stage.setScene(scene);    
+            mainStage.setScene(scene);    
         }
         catch(Exception e){
             System.out.println("ERROR at callManage");
         }
-        stage.show();
-        mainStage.close();
+        mainStage.show();
     }
     
     @FXML
@@ -168,10 +179,8 @@ public class ManageController {
                 }
             }
         }catch(SQLException e){
-            e.printStackTrace();
             System.out.println("ERROR at setEventToGui");
         }
-//        ec.setStdId(getStdId());
     }
     
     @FXML

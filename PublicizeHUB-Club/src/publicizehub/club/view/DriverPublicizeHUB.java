@@ -34,6 +34,7 @@ public class DriverPublicizeHUB extends Application  {
         controller.getNc().addNewsToList(controller.getNewsList());
         controller.setThisStage(thisStage);
         Scene scene = new Scene(root);
+        controller.setThisScene(scene);
         
         thisStage.setScene(scene);
         thisStage.centerOnScreen();

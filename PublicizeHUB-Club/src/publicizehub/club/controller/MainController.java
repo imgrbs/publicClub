@@ -20,15 +20,25 @@ import publicizehub.club.model.ConnectionBuilder;
 public class MainController {
     private ConnectionBuilder cb = new ConnectionBuilder();
     private LoginController li = new LoginController();
+    private ProfileController pc = new ProfileController();
     private ManageController mc = new ManageController();
     private SearchController sc = new SearchController();
     private JoinController jc = new JoinController();
     private DetailController dc = new DetailController();
     private NewsController nc = new NewsController();
     private ResultSet rs = null;
-
+    
     private Stage thisStage;
-        
+    private Scene thisScene;
+
+    public Scene getThisScene() {
+        return thisScene;
+    }
+
+    public void setThisScene(Scene thisScene) {
+        this.thisScene = thisScene;
+    }
+    
     @FXML
     private Label stdId;
 
@@ -77,7 +87,7 @@ public class MainController {
 
     public void setThisStage(Stage thisStage) {
         this.thisStage = thisStage;
-        thisStage.setTitle("PublicizeHUB");   
+//        thisStage.setTitle("PublicizeHUB");   
     }
     
     public void setManageDisable(){
@@ -119,32 +129,7 @@ public class MainController {
     
     @FXML
     protected void callProfile() {
-        Stage stage = new Stage();
-        Parent root = null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Profile.fxml"));     
-        try{
-            root = (Parent)fxmlLoader.load(); 
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        ProfileController controller = fxmlLoader.<ProfileController>getController();
-        controller.setStdId(getLi().getStdId());
-        controller.setLabelDepartment(li.getDepartment());
-        controller.setLabelId(""+li.getStdId());
-        controller.setLabelName(li.getName()+" "+li.getSurname());
-        controller.getEventToProfile();
-        controller.setMainStage(thisStage);
-        controller.setThisStage(stage);
-        Scene scene = new Scene(root); 
-        try{
-            stage.setScene(scene);    
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        stage.show();
-        thisStage.close();
+        pc.callProfile(thisStage,this.thisScene);
     }
     
     @FXML
@@ -227,7 +212,7 @@ public class MainController {
     
     @FXML
     public void callManage(){
-        mc.callManage(thisStage);
+        mc.callManage(thisStage,this.thisScene);
     }
     
     
