@@ -101,7 +101,10 @@ public class NewsController {
         ResultSet news = nw.getNews();
         try{
             while(news.next()){
-                items.add(news.getString("content"));
+              String temp = news.getString("datestamp")+" | "+news.getString("timestamp")+"   "+news.getString("content");
+                
+                items.add(temp);
+
             }
         }catch(SQLException e){
             LOGGER.log(Level.SEVERE ,"addNewsToList : addNewsToList Bug !");
