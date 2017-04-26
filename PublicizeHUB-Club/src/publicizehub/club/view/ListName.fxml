@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="publicizehub.club.view.ListNameController">
+   <children>
+      <Pane layoutX="34.0" layoutY="31.0" prefHeight="540.0" prefWidth="734.0" style="-fx-background-color: #fff;" styleClass="formBg">
+         <children>
+            <Label layoutX="42.0" layoutY="27.0" text="รายชื่อคนที่จองกิจกรรม">
+               <styleClass>
+                  <String fx:value="quark" />
+                  <String fx:value="formName" />
+               </styleClass>
+            </Label>
+            <ListView fx:id="listName" layoutX="42.0" layoutY="75.0" prefHeight="391.0" prefWidth="651.0" />
+            <Label fx:id="evName" layoutX="547.0" layoutY="27.0" prefHeight="39.0" prefWidth="138.0" text="IT 3K ครั้งที่ 13">
+               <styleClass>
+                  <String fx:value="formEvName" />
+                  <String fx:value="quark" />
+               </styleClass>
+            </Label>
+            <Button fx:id="closeBtn" layoutX="622.0" layoutY="488.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="63.0" styleClass="formCancelBtn" text="close" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
