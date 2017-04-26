@@ -42,6 +42,7 @@ public class ProfileController {
     
     private Stage mainStage;
     private Scene mainScene;
+    private Parent tempRoot;
     
     
     @FXML
@@ -61,6 +62,14 @@ public class ProfileController {
     @FXML
     private Button backBtn;
 
+    public Parent getTempRoot() {
+        return tempRoot;
+    }
+
+    public void setTempRoot(Parent tempRoot) {
+        this.tempRoot = tempRoot;
+    }
+    
     public Scene getMainScene() {
         return mainScene;
     }
@@ -154,14 +163,14 @@ public class ProfileController {
         
     }
     
-    @FXML
     public void callMain(){
-        mainStage.setScene(mainScene);
+        mainScene.setRoot(tempRoot);
     }
     
     @FXML
-    public void callProfile(Stage mainStage,Scene scene,LoginModel prof){
+    public void callProfile(Stage mainStage,Scene mainScene,LoginModel prof){
         FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/Profile.fxml")); 
+
         Parent root = null;
         try{
             root = (Parent)loader.load();
@@ -170,14 +179,18 @@ public class ProfileController {
             e.printStackTrace();
         }
         ProfileController controller = loader.<ProfileController>getController();
-//        controller.setMainStage(mainStage);
-//        controller.setMainScene(scene);
+        /* SET root to scene ! */
+        controller.setMainStage(mainStage);
+        controller.setMainScene(mainScene);
+        controller.setTempRoot(mainScene.getRoot());
+        
         controller.getEventToProfile();
         controller.setProfile(prof);
         controller.setLabelId(prof.getStdId()+"");
         controller.setLabelName(prof.getName());
         controller.setLabelDepartment(prof.getDepartment());
-        scene.setRoot(root);
+        
+        mainScene.setRoot(root);
     }
     
 }

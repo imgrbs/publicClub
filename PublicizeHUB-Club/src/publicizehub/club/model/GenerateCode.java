@@ -51,7 +51,8 @@ public class GenerateCode {
         if(evCode.length()<6){
             int fixCode = r.nextInt(9);
             evCode += Long.toString(fixCode);
-        }else if(evCode.length()>6){
+        }
+        if(evCode.length()>6){
             evCode = evCode.substring(0,7);
         }
         
