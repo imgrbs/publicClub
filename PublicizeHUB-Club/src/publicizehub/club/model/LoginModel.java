@@ -2,37 +2,33 @@ package publicizehub.club.model;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
  * @author budsagorn_ss
  */
 public class LoginModel {
-    
-     ConnectionBuilder cb = new ConnectionBuilder();
-     
-     public boolean isLogin(long stdId,String password) throws Exception {
+
+    ConnectionBuilder cb = new ConnectionBuilder();
+    private static final Logger LOGGER = Logger.getLogger(LoginModel.class.getName());
+
+    public ResultSet selectLogin(long stdId) {
         PreparedStatement ps = null;
-        ResultSet result;
-        String evId = "";
+        ResultSet result = null;
         cb.connecting(); //เรียกใช้ method connecting()เพื่อ connect database
         try {
-            ps = cb.getConnect().prepareStatement("SELECT * FROM username where stdId = ? and password = ?");
-            ps.setLong(1,stdId);
-            ps.setString(1,password);
+            ps = cb.getConnect().prepareStatement("SELECT * FROM students where std_id=? ");
+            ps.setLong(1, stdId );
             result = ps.executeQuery();
-            
-            if(result.next()){
-                return true;
-            } else 
-                return false;
-            
-        } catch (Exception e) {
-           return false;
-            
-        }       
-     
-     }
+
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "selectLogin : selectLogin Failed");
+        }
+        return result;
+    }
+    
 }
