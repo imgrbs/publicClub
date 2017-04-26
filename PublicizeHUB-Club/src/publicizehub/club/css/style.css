@@ -64,6 +64,13 @@
 .menubtn:hover{
     -fx-background-color: #e4e4e4;
 }
+.font-signin{
+    -fx-font-size: 20px;
+}
+.font-error{
+    -fx-text-fill: red;
+    -fx-font-size: 15px;
+}
 .rec-btn{
     -fx-font-size:15px;
 }

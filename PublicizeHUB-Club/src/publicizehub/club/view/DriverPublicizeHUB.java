@@ -30,7 +30,7 @@ public class DriverPublicizeHUB extends Application  {
         }
         MainController controller = loader.<MainController>getController();
         controller.getEvent();
-        controller.setUserData(controller.getLi().getStdId(),controller.getLi().getName()+" "+controller.getLi().getSurname());
+        controller.setUserData(controller.getLi().getStdId(),controller.getLi().getName());
         controller.getNc().addNewsToList(controller.getNewsList());
         controller.setThisStage(thisStage);
         Scene scene = new Scene(root);

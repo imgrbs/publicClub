@@ -1,5 +1,6 @@
 package publicizehub.club.controller;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.sql.ResultSet;
 import publicizehub.club.model.ConnectionBuilder;
+import publicizehub.club.model.LoginModel;
 
 /**
  *
@@ -28,6 +30,8 @@ public class MainController {
     private NewsController nc = new NewsController();
     private ResultSet rs = null;
     
+    private LoginModel profile;
+    
     private Stage thisStage;
     private Scene thisScene;
 
@@ -38,6 +42,16 @@ public class MainController {
     public void setThisScene(Scene thisScene) {
         this.thisScene = thisScene;
     }
+
+    public LoginModel getProfile() {
+        return profile;
+    }
+
+    public void setProfile(LoginModel profile) {
+        this.profile = profile;
+    }
+    
+    
     
     @FXML
     private Label stdId;
@@ -128,8 +142,8 @@ public class MainController {
     }
     
     @FXML
-    protected void callProfile() {
-        pc.callProfile(thisStage,this.thisScene);
+    public void callProfile() {
+        pc.callProfile(thisStage,thisScene,getProfile());
     }
     
     @FXML
@@ -224,5 +238,29 @@ public class MainController {
         searchfield.setText("");
     }
     
+    
+    public void callMain(Stage stage,Scene scene,LoginModel prof) throws Exception {
+//        thisStage = stage;
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/FeedGui.fxml")); 
+        
+        try{
+//            thisStage = new Stage();
+            Parent root = (Parent)loader.load();
+            scene.setRoot(root);
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        MainController controller = loader.<MainController>getController();
+        controller.setProfile(prof);
+        controller.getEvent();
+        controller.setUserData(controller.getProfile().getStdId(),controller.getProfile().getName());
+        controller.getNc().addNewsToList(controller.getNewsList());
+        controller.setThisStage(thisStage);
+        controller.setThisScene(scene);        
+//        stage.setScene(scene);
+//        stage.centerOnScreen();
+//        stage.show();
+    }
    
 }

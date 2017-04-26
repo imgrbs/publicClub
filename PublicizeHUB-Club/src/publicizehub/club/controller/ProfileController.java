@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.EventModel;
+import publicizehub.club.model.LoginModel;
 
 /**
  * FXML Controller class
@@ -26,10 +27,11 @@ import publicizehub.club.model.EventModel;
 public class ProfileController {
     
     private static final Logger LOGGER = Logger.getLogger( FormSumActivityController.class.getName() );
-    EventModel ev = new EventModel();
+    private EventModel ev = new EventModel();
+    private LoginModel li;
+    
     ConnectionBuilder cb = new ConnectionBuilder();
     
-    LoginController li = new LoginController();
     JoinController jc = new JoinController();
     DetailController dc = new DetailController();
     EventController ec = new EventController();
@@ -38,7 +40,9 @@ public class ProfileController {
     
     private Stage mainStage;
     private Stage thisStage;
+    private Scene mainScene;
     private Scene thisScene;
+    
     
     @FXML
     private Label labelId;
@@ -56,6 +60,14 @@ public class ProfileController {
     
     @FXML
     private Button backBtn;
+
+    public Scene getMainScene() {
+        return mainScene;
+    }
+
+    public void setMainScene(Scene mainScene) {
+        this.mainScene = mainScene;
+    }
 
     public Scene getThisScene() {
         return thisScene;
@@ -99,6 +111,14 @@ public class ProfileController {
 
     public void setStdId(long stdId) {
         this.stdId = stdId;
+    }
+
+    public LoginModel getLogin() {
+        return li;
+    }
+
+    public void setLogin(LoginModel login) {
+        this.li = login;
     }
     
     
@@ -152,39 +172,40 @@ public class ProfileController {
     @FXML
     public void callMain(){
         mainStage.setScene(thisScene);    
-        mainStage.show();
+//        mainStage.show();
 //        thisStage.close();
     }
     
     @FXML
-    public void callProfile(Stage mainStage,Scene tempScene){
+    public void callProfile(Stage mainStage,Scene tempScene,LoginModel profile){
 //        Stage stage = new Stage();
-        Parent root = null;
+//        Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Profile.fxml"));     
-        try{
-            root = (Parent)fxmlLoader.load(); 
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
         ProfileController controller = fxmlLoader.<ProfileController>getController();
-        controller.setStdId(li.getStdId());
-        controller.setLabelDepartment(li.getDepartment());
-        controller.setLabelId(""+li.getStdId());
-        controller.setLabelName(li.getName()+" "+li.getSurname());
-        controller.getEventToProfile();
-//        controller.setMainStage(thisStage);
-        controller.setMainStage(mainStage);
-//        controller.setThisStage(stage);
-        controller.setThisScene(tempScene);
-        Scene scene = new Scene(root); 
+        
+        controller.setMainScene(tempScene);
         try{
-            mainStage.setScene(scene);    
+            Parent root = (Parent)fxmlLoader.load(); 
+            tempScene.setRoot(root);
+            mainStage.setScene(tempScene);  
         }
         catch(Exception e){
             e.printStackTrace();
         }
-        mainStage.show();
+        
+        controller.setLogin(profile);
+        controller.setStdId(controller.getLogin().getStdId());
+        controller.setLabelDepartment(controller.getLogin().getDepartment());
+        controller.setLabelId(""+controller.getLogin().getStdId());
+        controller.setLabelName(controller.getLogin().getName());
+//        controller.getEventToProfile();
+
+//        controller.setMainStage(thisStage);
+//        controller.setThisScene(tempScene);
+//        controller.setMainStage(mainStage);
+//        controller.setThisStage(stage);
+//        Scene scene = new Scene(root);
+//        mainStage.show();
     }
     
 }
