@@ -29,10 +29,14 @@
                         <Font name="Quark-Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="stdName" alignment="CENTER" layoutX="24.0" layoutY="118.0" prefHeight="41.0" prefWidth="152.0" styleClass="quark" text="กีรติ เจียรจินดารัตน์">
+                  <Label fx:id="stdName" alignment="CENTER" layoutX="24.0" layoutY="118.0" prefHeight="41.0" prefWidth="152.0" text="กีรติ เจียรจินดารัตน์">
                      <font>
                         <Font name="Quark-Bold" size="22.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="stdNameFeed" />
+                     </styleClass>
                   </Label>
                   <Separator layoutY="153.0" prefHeight="44.0" prefWidth="200.0" />
                   <JFXRippler layoutY="175.0" prefHeight="49.0" prefWidth="201.0" ripplerFill="#ff7648">

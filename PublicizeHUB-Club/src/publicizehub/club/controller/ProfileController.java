@@ -1,20 +1,22 @@
 package publicizehub.club.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
+
+import java.io.IOException;
 import static java.lang.Long.parseLong;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.EventModel;
 import publicizehub.club.model.LoginModel;
@@ -28,7 +30,7 @@ public class ProfileController {
     
     private static final Logger LOGGER = Logger.getLogger( FormSumActivityController.class.getName() );
     private EventModel ev = new EventModel();
-    private LoginModel li;
+    private LoginModel profile;
     
     ConnectionBuilder cb = new ConnectionBuilder();
     
@@ -39,9 +41,7 @@ public class ProfileController {
     private long stdId;
     
     private Stage mainStage;
-    private Stage thisStage;
     private Scene mainScene;
-    private Scene thisScene;
     
     
     @FXML
@@ -69,13 +69,6 @@ public class ProfileController {
         this.mainScene = mainScene;
     }
 
-    public Scene getThisScene() {
-        return thisScene;
-    }
-
-    public void setThisScene(Scene thisScene) {
-        this.thisScene = thisScene;
-    }
     
     public void setLabelId(String labelId) {
         this.labelId.setText(labelId);
@@ -97,14 +90,6 @@ public class ProfileController {
         this.mainStage = mainStage; 
     }
 
-    public Stage getThisStage() {
-        return thisStage;
-    }
-
-    public void setThisStage(Stage thisStage) {
-        this.thisStage = thisStage;
-    }
-
     public long getStdId() {
         return stdId;
     }
@@ -113,12 +98,12 @@ public class ProfileController {
         this.stdId = stdId;
     }
 
-    public LoginModel getLogin() {
-        return li;
+    public LoginModel getProfile() {
+        return profile;
     }
 
-    public void setLogin(LoginModel login) {
-        this.li = login;
+    public void setProfile(LoginModel profile) {
+        this.profile = profile;
     }
     
     
@@ -171,41 +156,28 @@ public class ProfileController {
     
     @FXML
     public void callMain(){
-        mainStage.setScene(thisScene);    
-//        mainStage.show();
-//        thisStage.close();
+        mainStage.setScene(mainScene);
     }
     
     @FXML
-    public void callProfile(Stage mainStage,Scene tempScene,LoginModel profile){
-//        Stage stage = new Stage();
-//        Parent root = null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Profile.fxml"));     
-        ProfileController controller = fxmlLoader.<ProfileController>getController();
-        
-        controller.setMainScene(tempScene);
+    public void callProfile(Stage mainStage,Scene scene,LoginModel prof){
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/Profile.fxml")); 
+        Parent root = null;
         try{
-            Parent root = (Parent)fxmlLoader.load(); 
-            tempScene.setRoot(root);
-            mainStage.setScene(tempScene);  
+            root = (Parent)loader.load();
         }
-        catch(Exception e){
+        catch(IOException e){
             e.printStackTrace();
         }
-        
-        controller.setLogin(profile);
-        controller.setStdId(controller.getLogin().getStdId());
-        controller.setLabelDepartment(controller.getLogin().getDepartment());
-        controller.setLabelId(""+controller.getLogin().getStdId());
-        controller.setLabelName(controller.getLogin().getName());
-//        controller.getEventToProfile();
-
-//        controller.setMainStage(thisStage);
-//        controller.setThisScene(tempScene);
+        ProfileController controller = loader.<ProfileController>getController();
 //        controller.setMainStage(mainStage);
-//        controller.setThisStage(stage);
-//        Scene scene = new Scene(root);
-//        mainStage.show();
+//        controller.setMainScene(scene);
+        controller.getEventToProfile();
+        controller.setProfile(prof);
+        controller.setLabelId(prof.getStdId()+"");
+        controller.setLabelName(prof.getName());
+        controller.setLabelDepartment(prof.getDepartment());
+        scene.setRoot(root);
     }
     
 }

@@ -149,12 +149,6 @@ public class MainController {
     @FXML
     protected void callSearchCamp() {
         System.out.println("callSearchCamp");
-//        sc.setCheckEvType(0);
-//        try {
-//            sc.checkSearchEvType();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         sc.callSearch(0);
         searchfield.setText("");
     }
@@ -240,11 +234,9 @@ public class MainController {
     
     
     public void callMain(Stage stage,Scene scene,LoginModel prof) throws Exception {
-//        thisStage = stage;
         FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/FeedGui.fxml")); 
         
         try{
-//            thisStage = new Stage();
             Parent root = (Parent)loader.load();
             scene.setRoot(root);
         }
@@ -257,10 +249,7 @@ public class MainController {
         controller.setUserData(controller.getProfile().getStdId(),controller.getProfile().getName());
         controller.getNc().addNewsToList(controller.getNewsList());
         controller.setThisStage(thisStage);
-        controller.setThisScene(scene);        
-//        stage.setScene(scene);
-//        stage.centerOnScreen();
-//        stage.show();
+        controller.setThisScene(scene); 
     }
    
 }

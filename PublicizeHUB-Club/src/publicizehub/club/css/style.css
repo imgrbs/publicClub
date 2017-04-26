@@ -320,7 +320,10 @@
     -fx-font-size: 25px;
 }
 .stdNameProfile{
-    -fx-font-size: 40px;
+    -fx-font-size: 25px;
+}
+.stdNameFeed{
+    -fx-font-size: 20px;
 }
 .warningProfile{
     -fx-font-size: 17px;
