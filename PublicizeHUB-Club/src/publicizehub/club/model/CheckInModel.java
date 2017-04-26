@@ -102,7 +102,7 @@ public class CheckInModel {
     public ResultSet getName(long stdId){
         cb.connecting();
         try{
-            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_profile where stdId = ?");
+            ps = cb.getConnect().prepareStatement("SELECT * FROM students where std_id = ?");
             ps.setLong(1,stdId);
             rs = ps.executeQuery();
         }
@@ -150,7 +150,7 @@ public class CheckInModel {
         cb.logout();
     }
     
-    public void DeleteCode(String evCode){
+    public void deleteCode(String evCode){
         String command;
         PreparedStatement s;
         cb.connecting();
