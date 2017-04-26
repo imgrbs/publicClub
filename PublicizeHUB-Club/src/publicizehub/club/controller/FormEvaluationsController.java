@@ -431,7 +431,7 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
                     fbm.insertToLog(event.getEvId(), stdId);
                     Alert warning = new Alert(Alert.AlertType.INFORMATION);
                     warning.setTitle("Success !");
-                    warning.setHeaderText("ประเมิณสำเร็จ");
+                    warning.setHeaderText("ประเมินสำเร็จ");
                     warning.setContentText("ขอบคุณครับ");
                     warning.showAndWait();
                     stage.close();
