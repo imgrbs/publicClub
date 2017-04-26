@@ -64,6 +64,13 @@
 .menubtn:hover{
     -fx-background-color: #e4e4e4;
 }
+.font-signin{
+    -fx-font-size: 20px;
+}
+.font-error{
+    -fx-text-fill: red;
+    -fx-font-size: 15px;
+}
 .rec-btn{
     -fx-font-size:15px;
 }
@@ -313,7 +320,10 @@
     -fx-font-size: 25px;
 }
 .stdNameProfile{
-    -fx-font-size: 40px;
+    -fx-font-size: 25px;
+}
+.stdNameFeed{
+    -fx-font-size: 20px;
 }
 .warningProfile{
     -fx-font-size: 17px;

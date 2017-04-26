@@ -127,7 +127,7 @@ public class ManageController {
         controller.setStdId(getLi().getStdId());
         controller.setLabelDepartment(li.getDepartment());
         controller.setLabelId(""+li.getStdId());
-        controller.setLabelName(li.getName()+" "+li.getSurname());
+        controller.setLabelName(li.getName());
         controller.setEventToGui(li.getStdId());
         controller.setMainStage(mainStage);
 //        controller.setThisStage(stage);
