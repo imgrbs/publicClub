@@ -220,7 +220,7 @@ public class MainController {
     
     @FXML
     public void callManage(){
-        mc.callManage(thisStage,this.thisScene);
+        mc.callManage(thisStage,this.thisScene,getProfile());
     }
     
     
@@ -244,6 +244,10 @@ public class MainController {
             e.printStackTrace();
         }
         MainController controller = loader.<MainController>getController();
+        if(prof.getStatus()==0){
+            controller.manageBtn.setVisible(false);
+            controller.managePic.setVisible(false);
+        }
         controller.setProfile(prof);
         controller.getEvent();
         controller.setUserData(controller.getProfile().getStdId(),controller.getProfile().getName());
