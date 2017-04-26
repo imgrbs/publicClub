@@ -74,7 +74,8 @@ public class CheckInController implements Initializable{
         CheckInController controller = fxmlLoader.<CheckInController>getController();
         controller.setEventId(event.getEvId());
         controller.eventName.setText(event.getEvName());
-        //addNameToList(event.getEvId());
+        System.out.println(event.getEvId());
+        controller.addNameToListFirst(event.getEvId());
         System.out.println("callCheckin : "+event.getEvId());
             
         Scene scene = new Scene(root); 
@@ -101,15 +102,6 @@ public class CheckInController implements Initializable{
                 System.out.println("clickConfirm eventId : "+eventId);
                 checkCode(insertCode.getText());
                 
-//                addNameToList(stdId);
-//                setValue(stdId,ci.getEvId());
-//                ci.updateStatusCheckIn(insertCode.getText(),stdId,eventId);
-//                ci.sentLogCheckin(cm); 
-//                System.out.println("Everything is Finished!");               
-//                warning = new Alert(Alert.AlertType.INFORMATION);
-//                warning.setTitle("Success!");
-//                warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
-//                warning.showAndWait();
             }
         }
         
@@ -131,7 +123,12 @@ public class CheckInController implements Initializable{
             // เพิ่มคนใน List
                 addNameToList(getStdId());
             // ลบ GEN CODE    
-                ci.DeleteCode(insertCode.getText());
+                ci.deleteCode(insertCode.getText());
+            }else if(insertCode.getText().length()<6){
+                warning = new Alert(Alert.AlertType.INFORMATION);
+                warning.setTitle("รหัสไม่ถูกต้อง!");
+                warning.setHeaderText("รหัสที่กรอกมาไม่ครบ โปรดตรวจสอบอีกครั้ง");
+                warning.showAndWait(); 
             }else{
                 warning = new Alert(Alert.AlertType.INFORMATION);
                 warning.setTitle("รหัสไม่ถูกต้อง!");
@@ -151,30 +148,8 @@ public class CheckInController implements Initializable{
         
         try{
             while(rs.next()){
-                String name = rs.getString("stdName");
-                String surname = rs.getString("stdSurname");
-                items.add(stdId+"\t"+name+" "+surname);
-                System.out.println("addNameToList name = "+name);
-                System.out.println("addNameToList : "+insertCode.getText());
-            }
-            listName.setItems(items);
-        }catch(SQLException e){
-            System.out.println("SQL Exception");
-        }
-        
-    }
-    
-    /*@FXML
-    public void addNameToList(int evId){
-        ResultSet rs = ci.getChecedName(evId);
-        System.out.println("addNameToList : "+stdId);
-        System.out.println("addNameToList : "+insertCode.getText());
-        
-        try{
-            while(rs.next()){
-                String name = rs.getString("stdName");
-                String surname = rs.getString("stdSurname");
-                items.add(stdId+"\t"+name+" "+surname);
+                String name = rs.getString("std_name");               
+                items.add(stdId+"\t"+name);
                 System.out.println("addNameToList name = "+name);
                 System.out.println("addNameToList : "+insertCode.getText());
             }
@@ -183,7 +158,29 @@ public class CheckInController implements Initializable{
             System.out.println("SQL Exception");
         }
         cb.logout();
-    }*/
+    }
+    
+    @FXML
+    public void addNameToListFirst(int evId){
+        ResultSet rs = ci.getChecedName(evId);
+ 
+        try{
+            while(rs.next()){ 
+                long std_id = rs.getLong("stdId");
+                ResultSet getName = ci.getName(std_id);
+                while(getName.next()){
+                    String name = getName.getString("std_name");
+                    String data = std_id+"\t"+name;
+                    items.add(data);
+                }           
+            }
+            
+            listName.setItems(items);
+        }catch(SQLException e){
+            System.out.println("SQL Exception");
+        }
+        cb.logout();
+    }
     
     @FXML
     public void setValue(long stdId,int eventId){
