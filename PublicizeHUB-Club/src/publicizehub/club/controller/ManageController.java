@@ -14,6 +14,7 @@ import static java.lang.Long.parseLong;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import publicizehub.club.model.LoginModel;
 
 /**
  *
@@ -28,8 +29,8 @@ public class ManageController {
     private EventModel ev = new EventModel();
     
     private Stage mainStage;
-    private Stage thisStage;
-    private Scene thisScene;
+    private Scene mainScene;
+    private Parent tempRoot;
     
     private long stdId;
     
@@ -82,21 +83,22 @@ public class ManageController {
         this.mainStage = mainStage;
     }
 
-    public Stage getThisStage() {
-        return thisStage;
+    public Scene getMainScene() {
+        return mainScene;
     }
 
-    public void setThisStage(Stage thisStage) {
-        this.thisStage = thisStage;
+    public void setMainScene(Scene mainScene) {
+        this.mainScene = mainScene;
     }
 
-    public Scene getThisScene() {
-        return thisScene;
+    public Parent getTempRoot() {
+        return tempRoot;
     }
 
-    public void setThisScene(Scene thisScene) {
-        this.thisScene = thisScene;
+    public void setTempRoot(Parent tempRoot) {
+        this.tempRoot = tempRoot;
     }
+    
     
     
     
@@ -107,13 +109,11 @@ public class ManageController {
     
     @FXML
     public void callMain(){
-        mainStage.setScene(thisScene);    
-        mainStage.show();
-//        thisStage.close();
+        mainScene.setRoot(tempRoot);
     }
     
     @FXML
-    public void callManage(Stage mainStage,Scene tempScene){
+    public void callManage(Stage mainStage,Scene tempScene,LoginModel prof){
 //        Stage stage = new Stage();
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Manage.fxml"));     
@@ -124,22 +124,15 @@ public class ManageController {
             System.out.println("ERROR at callManage");
         }
         ManageController controller = fxmlLoader.<ManageController>getController();
-        controller.setStdId(getLi().getStdId());
-        controller.setLabelDepartment(li.getDepartment());
-        controller.setLabelId(""+li.getStdId());
-        controller.setLabelName(li.getName());
-        controller.setEventToGui(li.getStdId());
+        controller.setStdId(prof.getStdId());
+        controller.setLabelDepartment(prof.getDepartment());
+        controller.setLabelId(""+prof.getStdId());
+        controller.setLabelName(prof.getName());
+        controller.setEventToGui(prof.getStdId());
         controller.setMainStage(mainStage);
-//        controller.setThisStage(stage);
-        controller.setThisScene(tempScene);
-        Scene scene = new Scene(root); 
-        try{
-            mainStage.setScene(scene);    
-        }
-        catch(Exception e){
-            System.out.println("ERROR at callManage");
-        }
-        mainStage.show();
+        controller.setMainScene(tempScene);
+        controller.setTempRoot(tempScene.getRoot());
+        tempScene.setRoot(root);
     }
     
     @FXML
