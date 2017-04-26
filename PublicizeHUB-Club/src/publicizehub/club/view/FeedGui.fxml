@@ -24,12 +24,12 @@
          <left>
             <Pane id="menu" prefHeight="600.0" prefWidth="200.0" styleClass="menu" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="stdId" layoutX="40.0" layoutY="96.0" prefHeight="42.0" prefWidth="120.0" text="59130500007">
+                  <Label fx:id="stdId" layoutX="40.0" layoutY="96.0" prefHeight="42.0" prefWidth="120.0" styleClass="quark" text="59130500007">
                      <font>
                         <Font name="Quark-Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="stdName" alignment="CENTER" layoutX="24.0" layoutY="118.0" prefHeight="41.0" prefWidth="152.0" text="กีรติ เจียรจินดารัตน์">
+                  <Label fx:id="stdName" alignment="CENTER" layoutX="24.0" layoutY="118.0" prefHeight="41.0" prefWidth="152.0" styleClass="quark" text="กีรติ เจียรจินดารัตน์">
                      <font>
                         <Font name="Quark-Bold" size="22.0" />
                      </font>
@@ -47,6 +47,8 @@
                            <styleClass>
                               <String fx:value="profilebtn" />
                               <String fx:value="menubtn" />
+                              <String fx:value="quark" />
+                              <String fx:value="font-menu" />
                            </styleClass>
                            <opaqueInsets>
                               <Insets />
@@ -64,9 +66,11 @@
                      <styleClass>
                         <String fx:value="managebtn" />
                         <String fx:value="menubtn" />
+                        <String fx:value="quark" />
+                        <String fx:value="font-menu" />
                      </styleClass>
                   </Button>
-                  <Separator layoutY="300.0" prefHeight="44.0" prefWidth="200.0" />
+                  <Separator layoutY="300.0" mouseTransparent="true" prefHeight="44.0" prefWidth="200.0" />
                   <Label layoutX="81.0" layoutY="4.0" prefHeight="46.0" prefWidth="119.0" text="KMUTT" textFill="#cd4d28">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
@@ -77,23 +81,33 @@
                         <Font name="Quark-Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Button fx:id="seminarBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="369.0" mnemonicParsing="false" onAction="#callSearchSeminar" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="สัมมนา">
+                  <Button fx:id="seminarBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="369.0" mnemonicParsing="false" onAction="#callSearchSeminar" prefHeight="47.0" prefWidth="200.0" text="สัมมนา">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <styleClass>
+                        <String fx:value="menubtn" />
+                        <String fx:value="quark" />
+                        <String fx:value="font-menu" />
+                     </styleClass>
                   </Button>
-                  <Button fx:id="otherBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="416.0" mnemonicParsing="false" onAction="#callSearchOther" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="อื่นๆ">
+                  <Button fx:id="otherBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="416.0" mnemonicParsing="false" onAction="#callSearchOther" prefHeight="47.0" prefWidth="200.0" text="อื่นๆ">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <styleClass>
+                        <String fx:value="menubtn" />
+                        <String fx:value="quark" />
+                        <String fx:value="font-menu" />
+                     </styleClass>
                   </Button>
-                  <Separator layoutY="441.0" prefHeight="44.0" prefWidth="200.0" />
+                  <Separator layoutY="441.0" mouseTransparent="true" prefHeight="44.0" prefWidth="200.0" />
                   <ImageView fitHeight="78.0" fitWidth="62.0" layoutX="9.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../css/images/logo.png" />
@@ -109,13 +123,18 @@
                         <Image url="@../css/images/school-material.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="campBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="322.0" mnemonicParsing="false" onAction="#callSearchCamp" prefHeight="47.0" prefWidth="200.0" styleClass="menubtn" text="ค่าย">
+                  <Button fx:id="campBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="322.0" mnemonicParsing="false" onAction="#callSearchCamp" prefHeight="47.0" prefWidth="200.0" text="ค่าย">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <styleClass>
+                        <String fx:value="menubtn" />
+                        <String fx:value="quark" />
+                        <String fx:value="font-menu" />
+                     </styleClass>
                   </Button>
                </children>
             </Pane>
@@ -127,18 +146,23 @@
                      <right>
                         <Pane prefHeight="66.0" prefWidth="422.0" BorderPane.alignment="CENTER">
                            <children>
-                              <TextField fx:id="searchfield" layoutX="47.0" layoutY="20.0" onAction="#sentToSearch" prefHeight="19.0" prefWidth="213.0" promptText="พิมพ์ชื่อกิจกรรมที่ต้องหาค้นหา..">
+                              <TextField fx:id="searchfield" layoutX="47.0" layoutY="20.0" onAction="#sentToSearch" prefHeight="19.0" prefWidth="213.0" promptText="พิมพ์ชื่อกิจกรรมที่ต้องหาค้นหา.." styleClass="quark">
                                  <font>
                                     <Font name="Quark-Bold" size="14.0" />
                                  </font>
                               </TextField>
-                              <Button fx:id="searchbtn" layoutX="271.0" layoutY="20.0" mnemonicParsing="false" onAction="#sentToSearch" prefHeight="32.0" prefWidth="78.0" styleClass="search-btn" stylesheets="@../css/style.css" text="ค้นหา">
+                              <Button fx:id="searchbtn" layoutX="271.0" layoutY="20.0" mnemonicParsing="false" onAction="#sentToSearch" prefHeight="32.0" prefWidth="78.0" stylesheets="@../css/style.css" text="ค้นหา">
                                  <font>
                                     <Font name="Quark-Bold" size="14.0" />
                                  </font>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
+                                 <styleClass>
+                                    <String fx:value="search-btn" />
+                                    <String fx:value="quark" />
+                                    <String fx:value="rec-btn" />
+                                 </styleClass>
                               </Button>
                            </children>
                         </Pane>
@@ -156,20 +180,34 @@
                                        <children>
                                           <Pane layoutX="-3.0" layoutY="26.0" prefHeight="149.0" prefWidth="252.0" styleClass="boxEv" stylesheets="@../css/style.css">
                                              <children>
-                                                <Label fx:id="labelEvMain1" layoutX="15.0" layoutY="10.0" prefHeight="20.0" prefWidth="192.0" text="IT 3K ครั้งที่13">
+                                                <Label fx:id="labelEvMain1" layoutX="16.0" layoutY="14.0" prefHeight="20.0" prefWidth="192.0" text="IT 3K ครั้งที่13">
                                                    <font>
                                                       <Font name="ThaiSans Neue Regular" size="35.0" />
                                                    </font>
+                                                   <styleClass>
+                                                      <String fx:value="quark" />
+                                                      <String fx:value="rec-name" />
+                                                   </styleClass>
                                                 </Label>
-                                                <Button fx:id="joinEvMain1" layoutX="72.0" layoutY="106.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="79.0" styleClass="joinbtn" text="เข้าร่วม">
+                                                <Button fx:id="joinEvMain1" layoutX="72.0" layoutY="106.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="79.0" text="เข้าร่วม">
                                                    <font>
                                                       <Font name="Quark-Bold" size="15.0" />
                                                    </font>
+                                                   <styleClass>
+                                                      <String fx:value="joinbtn" />
+                                                      <String fx:value="quark" />
+                                                      <String fx:value="rec-btn" />
+                                                   </styleClass>
                                                 </Button>
-                                                <Button fx:id="detailEv1" layoutX="156.0" layoutY="106.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="82.0" styleClass="detailbtn" text="รายละเอียด">
+                                                <Button fx:id="detailEv1" layoutX="156.0" layoutY="106.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="82.0" text="รายละเอียด">
                                                    <font>
                                                       <Font name="Quark-Bold" size="15.0" />
                                                    </font>
+                                                   <styleClass>
+                                                      <String fx:value="detailbtn" />
+                                                      <String fx:value="quark" />
+                                                      <String fx:value="rec-btn" />
+                                                   </styleClass>
                                                 </Button>
                                              </children>
                                           </Pane>
@@ -183,16 +221,30 @@
                                                    <font>
                                                       <Font name="ThaiSans Neue Regular" size="35.0" />
                                                    </font>
+                                                   <styleClass>
+                                                      <String fx:value="quark" />
+                                                      <String fx:value="rec-name" />
+                                                   </styleClass>
                                                 </Label>
-                                                <Button fx:id="joinEvMain2" layoutX="80.0" layoutY="102.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="79.0" styleClass="joinbtn" text="เข้าร่วม">
+                                                <Button fx:id="joinEvMain2" layoutX="80.0" layoutY="102.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="79.0" text="เข้าร่วม">
                                                    <font>
                                                       <Font name="Quark-Bold" size="15.0" />
                                                    </font>
+                                                   <styleClass>
+                                                      <String fx:value="joinbtn" />
+                                                      <String fx:value="quark" />
+                                                      <String fx:value="rec-btn" />
+                                                   </styleClass>
                                                 </Button>
-                                                <Button fx:id="detailEv2" layoutX="164.0" layoutY="102.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="82.0" styleClass="detailbtn" text="รายละเอียด">
+                                                <Button fx:id="detailEv2" layoutX="164.0" layoutY="102.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="82.0" text="รายละเอียด">
                                                    <font>
                                                       <Font name="Quark-Bold" size="15.0" />
                                                    </font>
+                                                   <styleClass>
+                                                      <String fx:value="detailbtn" />
+                                                      <String fx:value="quark" />
+                                                      <String fx:value="rec-btn" />
+                                                   </styleClass>
                                                 </Button>
                                              </children>
                                           </Pane>
@@ -211,7 +263,7 @@
                            <children>
                               <Pane prefHeight="21.0" prefWidth="600.0">
                                  <children>
-                                    <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="-2.0" prefHeight="41.0" prefWidth="147.0" text="กิจกรรมแนะนำ" textFill="#cd4d28">
+                                    <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="-2.0" prefHeight="41.0" prefWidth="147.0" styleClass="quark" text="กิจกรรมแนะนำ" textFill="#cd4d28">
                                        <font>
                                           <Font name="ThaiSans Neue Regular" size="31.0" />
                                        </font>
@@ -228,12 +280,16 @@
                      <children>
                         <Pane prefHeight="260.0" prefWidth="600.0">
                            <children>
-                              <Label layoutX="22.0" layoutY="14.0" prefHeight="41.0" prefWidth="147.0" text="ข่าวใหม่" textFill="#cd4d28">
+                              <Label layoutX="22.0" layoutY="14.0" prefHeight="41.0" prefWidth="147.0" styleClass="quark" text="ข่าวใหม่" textFill="#cd4d28">
                                  <font>
                                     <Font name="ThaiSans Neue Regular" size="31.0" />
                                  </font>
                               </Label>
-                              <ListView fx:id="newsList" layoutX="22.0" layoutY="55.0" prefHeight="235.0" prefWidth="556.0" />
+                              <ListView fx:id="newsList" layoutX="22.0" layoutY="55.0" prefHeight="235.0" prefWidth="556.0">
+                                 <styleClass>
+                                    <String fx:value="quark" />
+                                    <String fx:value="rec-btn" />
+                                 </styleClass></ListView>
                            </children>
                         </Pane>
                      </children>

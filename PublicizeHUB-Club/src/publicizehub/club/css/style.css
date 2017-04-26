@@ -31,6 +31,12 @@
     -fx-background-position: top;
     -fx-background-repeat: no-repeat;
 }
+.font-menu{
+    -fx-font-size: 20px;
+}
+.rec-name{
+    -fx-font-size: 25px;
+}
 .search-btn{
     -fx-background-color: #e7560c;
     -fx-text-fill: #ffffff;
@@ -57,6 +63,9 @@
 }
 .menubtn:hover{
     -fx-background-color: #e4e4e4;
+}
+.rec-btn{
+    -fx-font-size:15px;
 }
 .joinbtn{
     -fx-background-color: #e7560c;
