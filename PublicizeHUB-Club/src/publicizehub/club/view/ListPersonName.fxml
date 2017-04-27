@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="publicizehub.club.view.ListNameController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.view.ListPersonController">
    <children>
       <Pane layoutX="34.0" layoutY="31.0" prefHeight="540.0" prefWidth="734.0" style="-fx-background-color: #fff;" styleClass="formBg">
          <children>
@@ -19,7 +18,7 @@
                </styleClass>
             </Label>
             <ListView fx:id="listName" layoutX="42.0" layoutY="75.0" prefHeight="391.0" prefWidth="651.0" />
-            <Label fx:id="evName" layoutX="547.0" layoutY="27.0" prefHeight="39.0" prefWidth="138.0" text="IT 3K ครั้งที่ 13">
+            <Label fx:id="show_evName" layoutX="547.0" layoutY="27.0" prefHeight="39.0" prefWidth="138.0" text="IT 3K ครั้งที่ 13">
                <styleClass>
                   <String fx:value="formEvName" />
                   <String fx:value="quark" />

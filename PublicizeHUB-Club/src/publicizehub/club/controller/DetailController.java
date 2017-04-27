@@ -6,10 +6,13 @@ package publicizehub.club.controller;
  */
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
@@ -18,8 +21,20 @@ import publicizehub.club.view.ListPerson;
 
 public class DetailController {
     private EventModel ev = new EventModel();
+    private ListPersonController lpc = new ListPersonController();
 
     private Stage thisStage;
+    private int eventId;
+
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
+    
+    
     
     @FXML
     private Label evName;
@@ -32,6 +47,9 @@ public class DetailController {
 
     @FXML
     private TextArea evDescrip;
+    
+    @FXML
+    private Button showName;
 
     public void setEvName(String evName) {
         this.evName.setText(evName);
@@ -49,7 +67,9 @@ public class DetailController {
         this.evDescrip.setText(evDescrip);
     }
     
-    
+        public Stage getThisStage() {
+        return thisStage;
+    }
     
     public void setThisStage(Stage thisStage) {
         this.thisStage = thisStage;
@@ -69,17 +89,25 @@ public class DetailController {
             e.printStackTrace();
         }
         DetailController controller = fxmlLoader.<DetailController>getController();
+            controller.setEventId(eventId);
         try{
             if(rs.next()){
                 controller.setEvName(rs.getString("evName"));
                 controller.setEvDate(rs.getString("evStartDate"));
                 controller.setEvPlace(rs.getString("evPlace"));
                 controller.setEvDescrip(rs.getString("evDescrip"));
+                
             }
         }
         catch(SQLException e){
             e.printStackTrace();
         }
+        /*showName.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent evt) {
+                        lpc.callListPerson(eventId);
+                    }
+                }); */
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    
@@ -117,8 +145,8 @@ public class DetailController {
         stage.show();
     }
     
-    public void callListPerson(){
-        ListPerson lp = new ListPerson();
-        lp.setVisible(true);
+    public void callListPerso(){
+        lpc.callListPerson(eventId);
     }
+    
 }

@@ -165,10 +165,10 @@ public class ManageController {
                 );
                 LocalDate ld = findStd.getDate("evEndDate").toLocalDate();
                 if(ld.compareTo(LocalDate.now())>-1){ 
-                    ec.addEventToPresentPane(event,this.listEventBox1,true,false); 
+                    //ec.addEventToPresentPane(event,this.listEventBox1,true,false); 
                 }
                 else {
-                    ec.addEventToPresentPane(event,this.listEventBox2,false,false);
+                    //ec.addEventToPresentPane(event,this.listEventBox2,false,false);
                 }
             }
         }catch(SQLException e){
