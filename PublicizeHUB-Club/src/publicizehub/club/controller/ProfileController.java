@@ -11,7 +11,6 @@ import javafx.scene.layout.VBox;
 
 
 import java.io.IOException;
-import static java.lang.Long.parseLong;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -119,8 +118,10 @@ public class ProfileController {
     
     @FXML
     public void getEventToProfile(){
-        ResultSet rs = ev.getSelect(parseLong(this.labelId.getText()));
+        ResultSet rs = ev.getSelect(getProfile().getStdId());
         cb.logout();
+        
+        System.out.println(getProfile().getStdId() + " 125 Profilecontroller");
         try{
             if(rs.next()){
                 setEventToGui(rs.getInt("evId"));
@@ -149,7 +150,9 @@ public class ProfileController {
                 findStd.getInt("evType"),findStd.getInt("evId")
                 );
                 ld = event.getEvEndDate();
-                ec.setStdId(getStdId());
+                
+                System.out.println(getProfile().getStdId() + " 155 profilecontroller");
+                ec.setStdId(profile.getStdId());
                 if(ld.compareTo(LocalDate.now())>-1){ 
                     ec.addEventToPresentPane(event,this.listEventBox1,true,true); 
                 }
@@ -183,9 +186,11 @@ public class ProfileController {
         controller.setMainStage(mainStage);
         controller.setMainScene(mainScene);
         controller.setTempRoot(mainScene.getRoot());
-        
-        controller.getEventToProfile();
         controller.setProfile(prof);
+        controller.setStdId(prof.getStdId());
+//        controller
+        controller.getEventToProfile();
+        System.out.println(controller.getProfile().getStdId() + " 193 ProfileController");
         controller.setLabelId(prof.getStdId()+"");
         controller.setLabelName(prof.getName());
         controller.setLabelDepartment(prof.getDepartment());

@@ -144,27 +144,26 @@ public class MainController {
     @FXML
     public void callProfile() {
         pc.callProfile(thisStage,thisScene,getProfile());
+        System.out.println(getProfile().getStdId() + " 147 Maincontroller");
     }
     
     @FXML
     protected void callSearchCamp() {
-        System.out.println("callSearchCamp");
-        sc.callSearch(0);
-        searchfield.setText("");
+        sc.callSearch(0,getProfile());
+        searchfield.clear();
     }
     
     @FXML
     protected void callSearchSeminar() {
-        System.out.println("callSearchSeminar");
-        sc.callSearch(1);
-        searchfield.setText("");
+        sc.callSearch(1,getProfile());
+        searchfield.clear();
     }
     
     @FXML
     protected void callSearchOther() {
         System.out.println("callCampOther");
-        sc.callSearch(2);
-        searchfield.setText("");
+        sc.callSearch(2,getProfile());
+        searchfield.clear();
     }
 
 

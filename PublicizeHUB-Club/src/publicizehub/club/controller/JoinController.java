@@ -28,9 +28,29 @@ public class JoinController {
     private Alert comfirm = new Alert(Alert.AlertType.CONFIRMATION);
     private Alert warning = new Alert(Alert.AlertType.ERROR);
     
+    private long stdId;
+    
     private ConnectionBuilder cb = new ConnectionBuilder();
+
+    public JoinController() {
+    }
+
+    public JoinController(long stdId) {
+        this.stdId = stdId;
+    }
+
+    public long getStdId() {
+        return stdId;
+    }
+
+    public void setStdId(long stdId) {
+        this.stdId = stdId;
+    }
+    
+    
     
     public void toJoinEvent(int eventId){
+        System.out.println(getStdId());
         ResultSet rs = jn.getGenCode(eventId);
         long tempStdId=0;
         String tempEvCode="";
@@ -51,7 +71,7 @@ public class JoinController {
                         ResultSet checkTicket = ev.getSelect(eventId);
                         if(checkTicket.next()){
                             if(checkTicket.getInt("currentMember")<checkTicket.getInt("evTicket")){
-                                GenerateCode gc = new GenerateCode(li.getStdId(),eventId);
+                                GenerateCode gc = new GenerateCode(getStdId(),eventId);
                                 gc.pushCode(eventId);
                                 callShowCode(gc.getEvCode(),eventId);
                             }
@@ -93,5 +113,9 @@ public class JoinController {
             LOGGER.log(Level.SEVERE ,"stage : callShowCode Bug !");
         }
         stage.show();
+    }
+
+    void setStdId(LoginModel profile) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

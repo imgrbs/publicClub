@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -20,23 +19,23 @@ import publicizehub.club.model.LoginModel;
  *
  * @author JIL
  */
+public class LoginController {
 
-public class LoginController{
     private static final Logger LOGGER = Logger.getLogger(LoginModel.class.getName());
-   
+
     ConnectionBuilder cb = new ConnectionBuilder();
-    
+
     LoginModel lm = new LoginModel();
-    
+
     private long stdId;
     private String name;
     private String department;
     private int status;
     private boolean checkLogin = true;
-    
+
     private Stage thisStage;
     private Scene thisScene;
-    
+
     @FXML
     private TextField username;
 
@@ -51,11 +50,10 @@ public class LoginController{
 
     @FXML
     private Button registerBtn;
-    
-    
+
     public LoginController() {
     }
-    
+
     public long getStdId() {
         return stdId;
     }
@@ -79,7 +77,7 @@ public class LoginController{
     public void setDepartment(String department) {
         this.department = department;
     }
-    
+
     public int getStatus() {
         return status;
     }
@@ -108,57 +106,55 @@ public class LoginController{
         this.thisStage = thisStage;
     }
 
-    public void callLogin(){
-        Stage stage= new Stage();
-        Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/LoginGui.fxml"));     
-        try{
-            root = (Parent)fxmlLoader.load(); 
-        }
-        catch(IOException e){
+    public void callLogin() {
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/LoginGui.fxml"));
+        try {
+            root = (Parent) fxmlLoader.load();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         LoginController controller = fxmlLoader.<LoginController>getController();
-        Scene scene = new Scene(root); 
+        Scene scene = new Scene(root);
         controller.setThisStage(stage);
         controller.setThisScene(scene);
-        try{
-            stage.setScene(scene);    
-        }
-        catch(Exception e){
+        try {
+            stage.setScene(scene);
+        } catch (Exception e) {
             System.out.println("Exception");
         }
         stage.show();
     }
-    
+
     @FXML
-    public void getValue(){
+    public void getValue() {
         String tempUn = this.username.getText();
         String tempPw = this.password.getText();
-        if(tempUn!=null&&tempPw!=null){
-            if((tempUn.length()>5)||tempPw.length()>5){
+        if (tempUn != null && tempPw != null) {
+            if ((tempUn.length() > 5) || tempPw.length() > 5) {
                 this.username.clear();
                 this.password.clear();
                 try {
                     LoginModel profile = lm.login(tempUn, tempPw, warning);
-                    if(profile!=null){
-                        callMain(profile); 
+                    if (profile != null) {
+                        callMain(profile);
                     }
                 } catch (Exception e) {
-                    LOGGER.log(Level.SEVERE ,"getValue : getValue Failed");
+                    LOGGER.log(Level.SEVERE, "getValue : getValue Failed");
                 }
-            }else {
+            } else {
                 warning.setText("กรุณากรอก Username และ Password ให้ถูกต้อง");
             }
-        }
-        else {
+        } else {
             warning.setText("กรุณากรอก Username และ Password");
         }
     }
-    
+
+
     @FXML
-    public void callMain(LoginModel prof){
+    public void callMain(LoginModel prof) {
         this.name = prof.getName();
         this.department = prof.getDepartment();
         this.status = prof.getStatus();
@@ -166,7 +162,7 @@ public class LoginController{
         MainController mc = new MainController();
         mc.setProfile(prof);
         try {
-            mc.callMain(thisStage,thisScene, prof);
+            mc.callMain(thisStage, thisScene, prof);
         } catch (Exception ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }

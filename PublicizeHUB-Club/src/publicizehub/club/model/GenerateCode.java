@@ -53,7 +53,7 @@ public class GenerateCode {
             evCode += Long.toString(fixCode);
         }
         if(evCode.length()>6){
-            evCode = evCode.substring(0,7);
+            evCode = evCode.substring(0,6);
         }
         
     }

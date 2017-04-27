@@ -73,8 +73,6 @@ public class LoginModel {
         this.status = status;
     }
     
-    private final static String ldapURI = "ldap://10.1.130.12:389/ou=people,ou=st,dc=kmutt,dc=ac,dc=th";
-    private final static String contextFactory = "com.sun.jndi.ldap.LdapCtxFactory";
     
     public ResultSet selectLogin(long stdId) {
         PreparedStatement ps;
@@ -90,11 +88,13 @@ public class LoginModel {
         }
         return result;
     }
-    
+    private final static String ldapURI = "ldap://10.1.130.12:389/ou=people,ou=st,dc=kmutt,dc=ac,dc=th";
+    private final static String contextFactory = "com.sun.jndi.ldap.LdapCtxFactory";
+
     private static DirContext ldapContext () throws Exception {
-		Hashtable<String,String> env = new Hashtable <String,String>();
-		return ldapContext(env);
-	}
+            Hashtable<String,String> env = new Hashtable <String,String>();
+            return ldapContext(env);
+    }
 
     private static DirContext ldapContext (Hashtable <String,String>env) throws Exception {
             env.put(Context.INITIAL_CONTEXT_FACTORY, contextFactory);
@@ -103,7 +103,7 @@ public class LoginModel {
             return ctx;
     }
 
-    private static String getUid (String user , Label welcome) throws Exception {
+    public static String getUid (String user , Label welcome) throws Exception {
             DirContext ctx = ldapContext();
 
             String filter = "(uid=" + user + ")";
@@ -116,59 +116,64 @@ public class LoginModel {
                     SearchResult result = (SearchResult) answer.next();
 
                     Attributes attrs = result.getAttributes();
-                        System.out.println(attrs);
+//                    System.out.println(attrs);
 //                    String tempName = attrs.get("cn")+"";
 //                    welcome.setText("Hi , " + tempName.substring(4));
 
                     dn = result.getNameInNamespace();
             }
             else {
-                    dn = null;
-                    welcome.setText("Error Valid username , password");
+                dn = null;
+                welcome.setText("Error username หรือ password ผิด");
             }
             answer.close();
             return dn;
     }
 
-    private static boolean checkId (String dn, String password) throws Exception {
+    public static boolean checkId (String dn, String password) throws Exception {
             Hashtable<String,String> env = new Hashtable <String,String>();
-            env.put(Context.SECURITY_AUTHENTICATION, "none");
+            env.put(Context.SECURITY_AUTHENTICATION, "simple");
             env.put(Context.SECURITY_PRINCIPAL, dn);
             env.put(Context.SECURITY_CREDENTIALS, password);
 
             try {
-                    ldapContext(env);
+                ldapContext(env);
             }
             catch (javax.naming.AuthenticationException e) {
-                    return false;
+                return false;
             }
             return true;
     }
         
-    public LoginModel login (String name , String pw,Label welcome) throws Exception{
-        LoginModel profile = null;
-        String un[] = new String[2];
-        if(name!=null && pw!=null){
-            un[0] = name;
-            un[1] = pw;
+
+    public LoginModel login(String name, String password,Label welcome) throws Exception {
+        LoginModel lm = null;
+        String username = "";
+        if (name != null) {
+            username = name;
         }
-        if (checkId( un[0], un[1] )&&un[1].length()>5) {
-            String dn = getUid( un[0] , welcome );
-            if ( dn != null ) {
-                long stdId = parseLong(un[0]);
-                ResultSet prof = selectLogin(stdId);
-                if(prof.next()){
-                    profile = new LoginModel(stdId,prof.getString("std_name"),
-                    prof.getString("std_faculty"),prof.getInt("std_status"));
+        String dn = getUid(username, welcome);
+
+        if (dn != null) {
+            /* Found user - test password */
+            if (checkId(dn, password)) {
+                ResultSet rs = selectLogin(parseLong(name));
+                if(rs.next()){
+                    lm = new LoginModel(rs.getLong("std_id"), rs.getString("std_name"),
+                            rs.getString("std_faculty"),rs.getInt("std_status"));
                 }
+                System.out.println("user '" + username + "' authentication succeeded");
             } else {
-                    welcome.setText( "invalid username or password" );
+                System.out.println("user '" + username + "' authentication failed");
+                welcome.setText("Error username หรือ password ผิด");
             }
         } else {
-                welcome.setText( "invalid username or password" );
+            welcome.setText("Error username หรือ password ผิด");
+            System.out.println("user '" + username + "' not found");
+//            System.exit(1);
         }
         
-        return profile;
+        return lm;
     }
     
 }

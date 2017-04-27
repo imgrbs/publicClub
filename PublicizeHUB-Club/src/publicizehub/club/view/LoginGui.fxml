@@ -31,8 +31,6 @@
                         <Image url="@../css/images/logo.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="username" layoutX="53.0" layoutY="283.0" onAction="#getValue" prefHeight="31.0" prefWidth="240.0" promptText="Username" styleClass="usernamefield" />
-                  <PasswordField fx:id="password" layoutX="54.0" layoutY="327.0" onAction="#getValue" prefHeight="31.0" prefWidth="239.0" promptText="Password" styleClass="passwordfield" />
                   <Label layoutX="82.0" layoutY="221.0" prefHeight="26.0" prefWidth="277.0" text="Sign in with KMUTT Account">
                      <font>
                         <Font name="ThaiSans Neue Bold" size="27.0" />
@@ -46,19 +44,22 @@
             </Pane>
          </center>
       </BorderPane>
-      <Pane mouseTransparent="true" pickOnBounds="false" prefHeight="600.0" prefWidth="800.0" styleClass="cover" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane pickOnBounds="false" prefHeight="600.0" prefWidth="800.0" styleClass="cover" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="warning" layoutX="456.0" layoutY="370.0" prefHeight="36.0" prefWidth="303.0">
+            <Label fx:id="warning" layoutX="456.0" layoutY="354.0" prefHeight="36.0" prefWidth="303.0">
                <styleClass>
                   <String fx:value="quark" />
                   <String fx:value="font-error" />
                </styleClass>
             </Label>
-            <Button fx:id="signinBtn" layoutX="456.0" layoutY="406.0" mnemonicParsing="false" onAction="#getValue" prefHeight="40.0" prefWidth="101.0" styleClass="loginBth" text="SIGN IN">
+            <Button fx:id="signinBtn" layoutX="456.0" layoutY="384.0" mnemonicParsing="false" onAction="#getValue" prefHeight="40.0" prefWidth="101.0" styleClass="loginBth" text="SIGN IN">
                <font>
                   <Font name="ThaiSans Neue Bold" size="20.0" />
                </font>
             </Button>
-         </children></Pane>
+            <TextField fx:id="username" layoutX="456.0" layoutY="276.0" onAction="#getValue" prefHeight="31.0" prefWidth="240.0" promptText="Username" styleClass="usernamefield" />
+            <PasswordField fx:id="password" layoutX="456.0" layoutY="319.0" onAction="#getValue" prefHeight="31.0" prefWidth="239.0" promptText="Password" styleClass="passwordfield" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
