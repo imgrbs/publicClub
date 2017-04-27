@@ -44,7 +44,7 @@ public class LoginModel {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = formatName(name);
     }
 
     public String getDepartment() {
@@ -68,12 +68,22 @@ public class LoginModel {
 
     public LoginModel(long stdId, String name, String department, int status) {
         this.stdId = stdId;
-        this.name = name;
+        this.name = formatName(name);
         this.department = department;
         this.status = status;
     }
     
-    
+    public String formatName(String name){
+        
+        int space = name.indexOf(" ");
+        String nameCut = name.substring(3,space).substring(1).toLowerCase();
+        nameCut = name.substring(3,space).substring(0,1) + nameCut;
+        String fullCut = name.substring(space+1,name.length()).substring(1).toLowerCase();
+        fullCut = name.substring(space+1,name.length()).substring(0, 1) + fullCut;
+        name = nameCut+" "+fullCut;
+        System.out.println(name);
+        return name;
+    }
     public ResultSet selectLogin(long stdId) {
         PreparedStatement ps;
         ResultSet result = null;

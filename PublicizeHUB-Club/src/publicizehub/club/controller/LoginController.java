@@ -152,7 +152,7 @@ public class LoginController {
         }
     }
 
-
+    
     @FXML
     public void callMain(LoginModel prof) {
         this.name = prof.getName();
@@ -167,4 +167,6 @@ public class LoginController {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
 }
