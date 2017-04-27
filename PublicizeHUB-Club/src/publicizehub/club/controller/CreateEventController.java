@@ -1,6 +1,8 @@
 package publicizehub.club.controller;
 
 
+import com.jfoenix.controls.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -13,7 +15,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import com.jfoenix.controls.*;
+
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 
 import publicizehub.club.model.EventModel;
@@ -24,6 +28,7 @@ import publicizehub.club.model.EventModel;
  * @author JIL
  */
 public class CreateEventController implements Initializable {
+    private static final Logger LOGGER = Logger.getLogger(EditEventController.class.getName());
     EventModel e = new EventModel();
     EventModel thisEvent = null;
     
@@ -31,7 +36,6 @@ public class CreateEventController implements Initializable {
     
     private int evType = -1;
     private long stdId=lc.getStdId();
-    boolean check=true;
     
     @FXML
     private Stage thisStage = null;
@@ -133,7 +137,7 @@ public class CreateEventController implements Initializable {
         Alert warning = null;
         evTypeResult();
         validateField();
-        if(this.check){
+        if(validateField()){
             warning = new Alert(Alert.AlertType.ERROR);
             warning.setTitle("Error!");
             warning.setHeaderText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
@@ -148,7 +152,11 @@ public class CreateEventController implements Initializable {
                     setAllValue();
                     e.createEvent(thisEvent);
                     warning = new Alert(Alert.AlertType.INFORMATION);
-                    setEmptyField();
+                    try{
+                        setEmptyField();
+                    }catch(NullPointerException e){
+                        LOGGER.log(Level.WARNING, "set NULL !",e);
+                    }
                     warning.setTitle("Success!");
                     warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
                     warning.showAndWait();
@@ -170,8 +178,8 @@ public class CreateEventController implements Initializable {
         try{
             root = (Parent)fxmlLoader.load(); 
         }
-        catch(Exception e){
-            e.printStackTrace();
+        catch(IOException e){
+            LOGGER.log(Level.WARNING, "root : Exception",e);
         }
         CreateEventController controller = fxmlLoader.<CreateEventController>getController();
         controller.setThisStage(stage);
@@ -187,7 +195,7 @@ public class CreateEventController implements Initializable {
     }
     
     @FXML
-    public void checkNumber(){
+    public void checkNumber(boolean check){
         Alert warning = null;
         for(int i=0;i<ticket.getValue().length();i++){
             if (ticket.getValue().charAt(i) < '0' || ticket.getValue().charAt(i) > '9') {
@@ -196,7 +204,7 @@ public class CreateEventController implements Initializable {
                 warning.setHeaderText("จำนวนบัตรไม่ถูกต้อง");
                 warning.setContentText("กรุณาใส่จำนวนบัตรให้ถูกต้อง (0-9)");
                 warning.showAndWait();
-                this.check=true;
+                check=true;
                 i=ticket.getValue().length();
                 ticket.setValue("");
             }
@@ -208,20 +216,26 @@ public class CreateEventController implements Initializable {
         getThisStage().close();
     }
     
-    public void validateField(){
+    public boolean validateField(){
+        boolean check = false;
         if(ticket.getValue()==null||ticket.getValue().equals("ระบุเอง")||ticket.getValue().equals("")||
            eventName.getText().equals("")||description.getText().equals("")||
            place.getText().equals("")||startRegis.getValue()==null||
            startDate.getValue()==null||endDate.getValue()==null||
            startTime.getValue()==null||endTime.getValue()==null||evType==-1){
-            this.check = true;
-        }else if(ticket.getValue()!=null) {
-                checkNumber();
+            check = true;
         }
+        if(ticket.getValue()!=null) {
+            checkNumber(check);
+            if(!check){
+                check = false;
+            }
+        }
+        return check;
     }
     
     public void setEmptyField(){
-        String customText="ระบุเอง";
+        String cusText="ระบุเอง";
         eventName.setText("");
         description.setText("");
         place.setText("");
@@ -232,12 +246,14 @@ public class CreateEventController implements Initializable {
             startTime.setValue(null);
             endTime.setValue(null);
         }catch(NullPointerException e){
-            System.out.println("Set Date Value = null : maybe BUG");
+            LOGGER.log(Level.WARNING, "set NULL !");
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING, "set NULL !");
         }
         evType=-1;
         camp.setSelected(false);
         seminar.setSelected(false);
         other.setSelected(false);
-        ticket.setValue(customText);
+        ticket.setValue(cusText);
     }
 }

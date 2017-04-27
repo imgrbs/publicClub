@@ -240,7 +240,6 @@ public class EventModel {
     }
     
     public void updateEvent(EventModel event){
-        System.out.println(event.getEvId());
         cb.connecting();
         String command;
         try {

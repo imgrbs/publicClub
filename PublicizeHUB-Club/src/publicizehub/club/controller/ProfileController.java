@@ -121,7 +121,6 @@ public class ProfileController {
         ResultSet rs = ev.getSelect(getProfile().getStdId());
         cb.logout();
         setStdId(getProfile().getStdId());
-        System.out.println(getProfile().getStdId() + " 125 Profilecontroller");
         try{
             if(rs.next()){
                 setEventToGui(rs.getInt("evId"));
@@ -151,7 +150,6 @@ public class ProfileController {
                 );
                 ld = event.getEvEndDate();
                 
-                System.out.println(getProfile().getStdId() + " 155 profilecontroller");
                 
                 if(ld.compareTo(LocalDate.now())>-1){
                     ec.addEventToPresentPane(getProfile(),event,this.listEventBox1,true,true); 
@@ -190,7 +188,6 @@ public class ProfileController {
         controller.setStdId(prof.getStdId());
 //        controller
         controller.getEventToProfile();
-        System.out.println(controller.getProfile().getStdId() + " 193 ProfileController");
         controller.setLabelId(prof.getStdId()+"");
         controller.setLabelName(prof.getName());
         controller.setLabelDepartment(prof.getDepartment());

@@ -21,7 +21,7 @@ import publicizehub.club.model.LoginModel;
  */
 public class LoginController {
 
-    private static final Logger LOGGER = Logger.getLogger(LoginModel.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
 
     ConnectionBuilder cb = new ConnectionBuilder();
 
@@ -113,7 +113,7 @@ public class LoginController {
         try {
             root = (Parent) fxmlLoader.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "root : callLogin Failed");
         }
 
         LoginController controller = fxmlLoader.<LoginController>getController();

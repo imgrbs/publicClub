@@ -15,6 +15,7 @@ import static java.lang.Long.parseLong;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.LoginModel;
 
 /**
@@ -27,6 +28,7 @@ public class ManageController {
     private LoginController li = new LoginController();
     private EventController ec = new EventController();
     
+    private ConnectionBuilder cb = new ConnectionBuilder();
     private EventModel ev = new EventModel();
     private LoginModel profile;
     
@@ -150,6 +152,7 @@ public class ManageController {
     @FXML
     public void getEventToProfile(){
         ResultSet rs = ev.getSelect(parseLong(this.labelId.getText()));
+        cb.logout();
         try{
             if(rs.next()){
                 setEventToGui(rs.getInt("evId"));
@@ -160,6 +163,7 @@ public class ManageController {
         }catch(SQLException e){
             System.out.println("ERROR at getEventToProfile");
         }
+        cb.logout();
     }
 
     public void setEventToGui(long stdId){
