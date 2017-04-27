@@ -20,12 +20,12 @@ public class JoinModel {
     PreparedStatement ps;
     ResultSet rs;
     
-    public ResultSet getGenCode(int eventId){
+    public ResultSet getGenCode(int eventId,long stdId){
         cb.connecting();
         try {
             ps = cb.getConnect().prepareStatement("SELECT * FROM generatecode where evId = ? and stdId = ?");
             ps.setInt(1, eventId);
-            ps.setLong(2, li.getStdId());
+            ps.setLong(2, stdId);
             rs = ps.executeQuery();
             
         } catch(SQLException e){
@@ -40,7 +40,7 @@ public class JoinModel {
     }
     
     public void deleteCode(String evCode,int eventId){
-        getGenCode(eventId);
+//        getGenCode(eventId);
         cb.connecting();
         try{
             ps = cb.getConnect().prepareStatement("UPDATE logJoining set status = '1' where evCode = ?");

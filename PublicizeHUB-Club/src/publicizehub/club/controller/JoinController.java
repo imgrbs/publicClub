@@ -51,14 +51,14 @@ public class JoinController {
     
     public void toJoinEvent(int eventId){
         System.out.println(getStdId());
-        ResultSet rs = jn.getGenCode(eventId);
+        ResultSet rs = jn.getGenCode(eventId,getStdId());
         long tempStdId=0;
         String tempEvCode="";
         try {
             if(rs.next()) {
                 tempStdId = rs.getLong("stdId");
                 tempEvCode = rs.getString("evCode");
-                if(li.getStdId()==tempStdId){
+                if(getStdId()==tempStdId){
                     callShowCode(tempEvCode,eventId);
                 }             
             }else{                    

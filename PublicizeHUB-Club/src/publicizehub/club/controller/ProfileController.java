@@ -120,7 +120,7 @@ public class ProfileController {
     public void getEventToProfile(){
         ResultSet rs = ev.getSelect(getProfile().getStdId());
         cb.logout();
-        
+        setStdId(getProfile().getStdId());
         System.out.println(getProfile().getStdId() + " 125 Profilecontroller");
         try{
             if(rs.next()){
@@ -152,12 +152,12 @@ public class ProfileController {
                 ld = event.getEvEndDate();
                 
                 System.out.println(getProfile().getStdId() + " 155 profilecontroller");
-                ec.setStdId(profile.getStdId());
-                if(ld.compareTo(LocalDate.now())>-1){ 
-                    ec.addEventToPresentPane(event,this.listEventBox1,true,true); 
+                
+                if(ld.compareTo(LocalDate.now())>-1){
+                    ec.addEventToPresentPane(getProfile(),event,this.listEventBox1,true,true); 
                 }
-                else {
-                    ec.addEventToPresentPane(event,this.listEventBox2,false,true);
+                else {   
+                    ec.addEventToPresentPane(getProfile(),event,this.listEventBox2,false,true);
                 }
             }
         }catch(SQLException e){
