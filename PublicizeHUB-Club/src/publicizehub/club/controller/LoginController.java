@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -133,17 +134,26 @@ public class LoginController{
     
     @FXML
     public void getValue(){
-        String username = this.username.getText();
+        String tempUn = this.username.getText();
         String tempPw = this.password.getText();
-        this.username.setText("");
-        this.password.setText("");
-        try {
-            LoginModel profile = lm.login(username, tempPw, warning);
-            if(profile!=null){
-                callMain(profile); 
+        if(tempUn!=null&&tempPw!=null){
+            if((tempUn.length()>5)||tempPw.length()>5){
+                this.username.clear();
+                this.password.clear();
+                try {
+                    LoginModel profile = lm.login(tempUn, tempPw, warning);
+                    if(profile!=null){
+                        callMain(profile); 
+                    }
+                } catch (Exception e) {
+                    LOGGER.log(Level.SEVERE ,"getValue : getValue Failed");
+                }
+            }else {
+                warning.setText("กรุณากรอก Username และ Password ให้ถูกต้อง");
             }
-        } catch (Exception ex) {
-            LOGGER.log(Level.SEVERE ,"getValue : getValue Failed");
+        }
+        else {
+            warning.setText("กรุณากรอก Username และ Password");
         }
     }
     

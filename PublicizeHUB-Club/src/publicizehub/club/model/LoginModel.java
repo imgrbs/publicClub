@@ -116,9 +116,9 @@ public class LoginModel {
                     SearchResult result = (SearchResult) answer.next();
 
                     Attributes attrs = result.getAttributes();
-//                        System.out.println(attrs);
-                    String tempName = attrs.get("cn")+"";
-                    welcome.setText("Hi , " + tempName.substring(4));
+                        System.out.println(attrs);
+//                    String tempName = attrs.get("cn")+"";
+//                    welcome.setText("Hi , " + tempName.substring(4));
 
                     dn = result.getNameInNamespace();
             }
@@ -145,21 +145,21 @@ public class LoginModel {
             return true;
     }
         
-    public LoginModel login (String name , String password,Label welcome) throws Exception{
+    public LoginModel login (String name , String pw,Label welcome) throws Exception{
         LoginModel profile = null;
-        String username = "";
-        if(name!=null){
-            username = name;
+        String un[] = new String[2];
+        if(name!=null && pw!=null){
+            un[0] = name;
+            un[1] = pw;
         }
-        String dn = getUid( username , welcome );
-
-        if (dn != null) {
-            if ( checkId( dn, password ) ) {
-                long stdId = parseLong(username);
+        if (checkId( un[0], un[1] )&&un[1].length()>5) {
+            String dn = getUid( un[0] , welcome );
+            if ( dn != null ) {
+                long stdId = parseLong(un[0]);
                 ResultSet prof = selectLogin(stdId);
                 if(prof.next()){
                     profile = new LoginModel(stdId,prof.getString("std_name"),
-                            prof.getString("std_faculty"),prof.getInt("std_status"));
+                    prof.getString("std_faculty"),prof.getInt("std_status"));
                 }
             } else {
                     welcome.setText( "invalid username or password" );
@@ -167,6 +167,7 @@ public class LoginModel {
         } else {
                 welcome.setText( "invalid username or password" );
         }
+        
         return profile;
     }
     
