@@ -144,7 +144,6 @@ public class MainController {
     @FXML
     public void callProfile() {
         pc.callProfile(thisStage,thisScene,getProfile());
-        System.out.println(getProfile().getStdId() + " 147 Maincontroller");
     }
     
     @FXML
@@ -161,7 +160,6 @@ public class MainController {
     
     @FXML
     protected void callSearchOther() {
-        System.out.println("callCampOther");
         sc.callSearch(2,getProfile());
         searchfield.clear();
     }
@@ -219,7 +217,7 @@ public class MainController {
     
     @FXML
     public void callManage(){
-        mc.callManage(thisStage,this.thisScene,getProfile());
+        mc.callManage(thisStage,thisScene,getProfile());
     }
     
     

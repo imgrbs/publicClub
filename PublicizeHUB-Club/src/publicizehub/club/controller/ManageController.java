@@ -1,6 +1,7 @@
 package publicizehub.club.controller;
 
 import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,6 +28,7 @@ public class ManageController {
     private EventController ec = new EventController();
     
     private EventModel ev = new EventModel();
+    private LoginModel profile;
     
     private Stage mainStage;
     private Scene mainScene;
@@ -55,6 +57,16 @@ public class ManageController {
         this.li = li;
     }
 
+    public LoginModel getProfile() {
+        return profile;
+    }
+
+    public void setProfile(LoginModel profile) {
+        this.profile = profile;
+    }
+
+    
+    
     public long getStdId() {
         return stdId;
     }
@@ -114,16 +126,16 @@ public class ManageController {
     
     @FXML
     public void callManage(Stage mainStage,Scene tempScene,LoginModel prof){
-//        Stage stage = new Stage();
-        Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Manage.fxml"));     
+        Parent root = null;
         try{
             root = (Parent)fxmlLoader.load(); 
         }
-        catch(Exception e){
+        catch(IOException e){
             System.out.println("ERROR at callManage");
         }
         ManageController controller = fxmlLoader.<ManageController>getController();
+        controller.setProfile(prof);
         controller.setStdId(prof.getStdId());
         controller.setLabelDepartment(prof.getDepartment());
         controller.setLabelId(""+prof.getStdId());
@@ -165,10 +177,10 @@ public class ManageController {
                 );
                 LocalDate ld = findStd.getDate("evEndDate").toLocalDate();
                 if(ld.compareTo(LocalDate.now())>-1){ 
-                    //ec.addEventToPresentPane(event,this.listEventBox1,true,false); 
+                    ec.addEventToPresentPane(getProfile(),event,this.listEventBox1,true,false); 
                 }
                 else {
-                    //ec.addEventToPresentPane(event,this.listEventBox2,false,false);
+                    ec.addEventToPresentPane(getProfile(),event,this.listEventBox2,false,false);
                 }
             }
         }catch(SQLException e){
