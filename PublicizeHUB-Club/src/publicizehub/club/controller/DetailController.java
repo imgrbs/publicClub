@@ -4,12 +4,15 @@ package publicizehub.club.controller;
  *
  * @author ImagineRabbits
  */
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -90,6 +93,7 @@ public class DetailController {
         }
         DetailController controller = fxmlLoader.<DetailController>getController();
             controller.setEventId(eventId);
+            System.out.println(eventId);
         try{
             if(rs.next()){
                 controller.setEvName(rs.getString("evName"));
@@ -102,12 +106,7 @@ public class DetailController {
         catch(SQLException e){
             e.printStackTrace();
         }
-        /*showName.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent evt) {
-                        lpc.callListPerson(eventId);
-                    }
-                }); */
+        
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    

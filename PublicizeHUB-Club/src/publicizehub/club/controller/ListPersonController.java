@@ -2,8 +2,10 @@ package publicizehub.club.controller;
 
 //import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -85,26 +88,36 @@ public class ListPersonController {
     public void callListPerson(int evId){
         //ListPerson lp = new ListPerson();
         //lp.setVisible(true);
+        System.out.println("callListPerson : เข้าอยู่จ้า");
         Stage stage= new Stage();
         Parent root=null;
-        ResultSet rs = evm.getEvent();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ListPersonName.fxml"));     
+        ResultSet rs = evm.getSelect(evId);
+        System.out.println("callListPerson : ผ่าน getSelect");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ListPersonName.fxml"));  
+        System.out.println("callListPerson : ผ่านFXML");
         try{
-           root = (Parent)fxmlLoader.load(); 
+            System.out.println("callListPerson : เข้าtry root");
+            root = (Parent)fxmlLoader.load(); 
+           
         }
         catch(Exception e){
-            e.printStackTrace();
+            System.out.println("555555555555555555555555555555555555555555");
         }
         ListPersonController controller = fxmlLoader.<ListPersonController>getController();
 
         try{
             if(rs.next()){
-                controller.show_evName.setText(rs.getString("evName"));
-                controller.setEvId(rs.getInt("evId"));
+                System.out.println("callListPerson : "+rs.getString("evName"));
+                //controller.show_evName.setText(rs.getString("evName"));
+                System.out.println("--");
+                //controller.setEvId(rs.getInt("evId"));
+                System.out.println("---");
+                //controller.showPersonName(rs.getInt("evId"));
+                System.out.println("----");
             }
         } catch (SQLException se){
             System.out.println("SQL Exception");
-        }
+        } 
         
         Scene scene = new Scene(root); 
         
@@ -138,7 +151,7 @@ public class ListPersonController {
         cb.logout();
        
     }
-       
+  
    
 
 }
