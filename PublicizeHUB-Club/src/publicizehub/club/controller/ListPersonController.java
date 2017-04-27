@@ -86,47 +86,30 @@ public class ListPersonController {
 
     @FXML
     public void callListPerson(int evId){
-        //ListPerson lp = new ListPerson();
-        //lp.setVisible(true);
-        System.out.println("callListPerson : เข้าอยู่จ้า");
         Stage stage= new Stage();
         Parent root=null;
-        ResultSet rs = evm.getSelect(evId);
-        System.out.println("callListPerson : ผ่าน getSelect");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ListPersonName.fxml"));  
-        System.out.println("callListPerson : ผ่านFXML");
         try{
-            System.out.println("callListPerson : เข้าtry root");
             root = (Parent)fxmlLoader.load(); 
            
         }
-        catch(Exception e){
-            System.out.println("555555555555555555555555555555555555555555");
+        catch(IOException e){
+            e.printStackTrace();
         }
         ListPersonController controller = fxmlLoader.<ListPersonController>getController();
 
         try{
+            ResultSet rs = evm.getSelect(evId);
             if(rs.next()){
-                System.out.println("callListPerson : "+rs.getString("evName"));
-                //controller.show_evName.setText(rs.getString("evName"));
-                System.out.println("--");
-                //controller.setEvId(rs.getInt("evId"));
-                System.out.println("---");
-                //controller.showPersonName(rs.getInt("evId"));
-                System.out.println("----");
+                controller.show_evName.setText(rs.getString("evName"));
+                controller.setEvId(rs.getInt("evId"));
+                controller.showPersonName(rs.getInt("evId"));
             }
         } catch (SQLException se){
             System.out.println("SQL Exception");
         } 
-        
         Scene scene = new Scene(root); 
-        
-        try{
-            stage.setScene(scene);    
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        stage.setScene(scene);
         stage.show();
     }    
     

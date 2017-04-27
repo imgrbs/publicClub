@@ -56,4 +56,35 @@ public class JoinModel {
         cb.logout();
     }
     
+    public int getCurrentMember(int evId){
+        int member = 0;
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("SELECT currentMember FROM tb_event where evId = ?");
+            ps.setInt(1, evId);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                member = rs.getInt("currentMember");
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        cb.logout();
+        return member;
+    }
+    
+    public void updateCurrentMember(int evId, int member){
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("UPDATE tb_event set currentMember = '"+ member +"' where evId = ?");
+            ps.setInt(1, evId);
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        cb.logout();
+    }
+    
 }
