@@ -61,8 +61,17 @@
     -fx-background-position: left;
     -fx-background-repeat: no-repeat;
 }
+.logoutbtn{
+    -fx-background-color: #f86d6d;
+    -fx-background-size: 20%;
+    -fx-background-position: left;
+    -fx-background-repeat: no-repeat;
+}
 .menubtn:hover{
     -fx-background-color: #e4e4e4;
+}
+.logoutbtn:hover{
+    -fx-background-color: #ff9090;
 }
 .font-signin{
     -fx-font-size: 20px;
@@ -327,6 +336,9 @@
 }
 .warningProfile{
     -fx-font-size: 17px;
+}
+.font-logout{
+    -fx-font-size: 12px;
 }
 .insertEventSize{
 	-fx-font-size: 45px;

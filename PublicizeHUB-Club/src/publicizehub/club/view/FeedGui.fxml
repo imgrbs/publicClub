@@ -41,7 +41,7 @@
                   <Separator layoutY="153.0" prefHeight="44.0" prefWidth="200.0" />
                   <JFXRippler layoutY="175.0" prefHeight="49.0" prefWidth="201.0" ripplerFill="#ff7648">
                      <children>
-                        <Button fx:id="proileBtn" alignment="CENTER" mnemonicParsing="false" onAction="#callProfile" prefHeight="47.0" prefWidth="200.0" text="     ข้อมูลส่วนตัว">
+                        <Button fx:id="proileBtn" alignment="CENTER" mnemonicParsing="false" onAction="#callProfile" prefHeight="47.0" prefWidth="199.0" text="     ข้อมูลส่วนตัว">
                            <font>
                               <Font name="Quark-Bold" size="20.0" />
                            </font>
@@ -60,7 +60,7 @@
                         </Button>
                      </children>
                   </JFXRippler>
-                  <Button fx:id="manageBtn" alignment="CENTER" layoutX="1.0" layoutY="224.0" mnemonicParsing="false" onAction="#callManage" prefHeight="43.0" prefWidth="200.0" text="       จัดการกิจกรรม">
+                  <Button fx:id="manageBtn" alignment="CENTER" layoutX="1.0" layoutY="224.0" mnemonicParsing="false" onAction="#callManage" prefHeight="44.0" prefWidth="199.0" text="       จัดการกิจกรรม">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -70,6 +70,14 @@
                      <styleClass>
                         <String fx:value="managebtn" />
                         <String fx:value="menubtn" />
+                        <String fx:value="quark" />
+                        <String fx:value="font-menu" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutY="268.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="200.0" text="Log out" textFill="#f2f2f2">
+                     <styleClass>
+                        <String fx:value="managebtn" />
+                        <String fx:value="logoutbtn" />
                         <String fx:value="quark" />
                         <String fx:value="font-menu" />
                      </styleClass>
