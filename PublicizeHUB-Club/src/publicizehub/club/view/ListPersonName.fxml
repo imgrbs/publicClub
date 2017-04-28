@@ -17,19 +17,24 @@
                </styleClass>
             </Label>
             <ListView fx:id="listName" layoutX="42.0" layoutY="75.0" prefHeight="391.0" prefWidth="651.0" />
-            <Label fx:id="show_evName" alignment="CENTER_RIGHT" layoutX="433.0" layoutY="27.0" prefHeight="39.0" prefWidth="252.0" text="IT 3K ครั้งที่ 13">
+            <Label fx:id="show_evName" alignment="CENTER_RIGHT" layoutX="433.0" layoutY="27.0" prefHeight="39.0" prefWidth="252.0" text="IT 3K ครั้งที่ 13" textFill="#d3631c">
                <styleClass>
+                  <String fx:value="formName" />
+                  <String fx:value="quark" />
+               </styleClass>
+            </Label>
+            <Label layoutX="408.0" layoutY="472.0" prefHeight="30.0" prefWidth="161.0" text="จำนวนคนจองกิจกรรม :">
+               <styleClass>
+                  <String fx:value="quark" />
                   <String fx:value="formEvName" />
-                  <String fx:value="quark" />
                </styleClass>
             </Label>
-            <Label layoutX="527.0" layoutY="466.0" prefHeight="30.0" prefWidth="118.0" text="จำนวนคนจองกิจกรรม :">
+            <Label fx:id="numOfTicket" alignment="CENTER_RIGHT" layoutX="554.0" layoutY="472.0" prefHeight="30.0" prefWidth="134.0" text="99999/99999">
                <styleClass>
                   <String fx:value="quark" />
-                  <String fx:value="rec-btn" />
+                  <String fx:value="formEvName" />
                </styleClass>
             </Label>
-            <Label fx:id="numOfTicket" layoutX="644.0" layoutY="472.0" prefHeight="23.0" prefWidth="60.0" styleClass="quark" text="100/1000" />
          </children>
       </Pane>
    </children>
