@@ -147,8 +147,8 @@ public class PersonModel extends RecursiveTreeObject<PersonModel> {
         PreparedStatement ps;
         cb.connecting();
         try {
-            ps = cb.getConnect().prepareStatement("SELECT * FROM logJoining where evId = ?");
-            ps.setLong(1, evId);
+            ps = cb.getConnect().prepareStatement("SELECT * FROM generatecode where evId = ?");
+            ps.setInt(1, evId);
             result = ps.executeQuery();
 
         } catch (SQLException e) {
