@@ -362,4 +362,42 @@ public class EventModel {
         }
         return rs;
     }
+    
+     //เอาจำนวนคนที่กด join event ไปโชว์ตอนแสดงรายชื่อ ex. จำนวนคนที่จอง 10/x คน
+    public int JoinTicket(int evId){
+        PreparedStatement ps = null;
+        int numJoinTicket = 0;
+        cb.connecting();
+        ResultSet result;
+        try {
+            ps = cb.getConnect().prepareStatement("SELECT COUNT(*) AS total FROM generatecode where evId = ?");//คำสั่งดูจำนวน row ทั้งหมด (จำนวนคน)
+            ps.setInt(1, evId); 
+            result = ps.executeQuery();
+            if(result.next()) numJoinTicket = result.getInt("total");
+
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE ,"JoinTicket : JoinTicket Failed");
+        }
+//        cb.logout();        
+        return numJoinTicket;
+    } 
+    
+    //เอาจำนวน ticket ไปโชว์ตอนแสดงรายชื่อ ex. จำนวนคนที่จอง 10/x คน
+    public ResultSet getTicket(int evId){
+        PreparedStatement ps = null;
+        cb.connecting();
+        ResultSet result;
+        try {
+            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_event where evId = ?");
+            ps.setInt(1, evId); 
+            rs = ps.executeQuery();
+            
+
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE ,"getTicket : getTicket Failed");
+        }
+        
+    
+        return rs;
+    } 
 }
