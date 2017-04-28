@@ -148,7 +148,6 @@ public class SearchController {
     
     @FXML
     public void checkSearch(){
-        System.out.println(profile.getStdId());
         ResultSet result=null;
         buttonBox.getChildren().clear();
         String temp = search.getText();

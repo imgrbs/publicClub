@@ -82,7 +82,8 @@ public class ListPersonController {
     private Label show_evName;
 
     @FXML
-    private Button closeBtn;
+    private Label numOfTicket;
+
 
     @FXML
     public void callListPerson(int evId){
@@ -97,7 +98,7 @@ public class ListPersonController {
             e.printStackTrace();
         }
         ListPersonController controller = fxmlLoader.<ListPersonController>getController();
-
+        controller.showTicket(evId);
         try{
             ResultSet rs = evm.getSelect(evId);
             if(rs.next()){
@@ -115,7 +116,7 @@ public class ListPersonController {
     
     public void showPersonName(int evId) {
          ResultSet rs = psm.getListPerson(evId);
- 
+         
         try{
             while(rs.next()){ 
                 long std_id = rs.getLong("stdId");
@@ -134,10 +135,32 @@ public class ListPersonController {
         cb.logout();
        
     }
+    
+    public void showTicket(int evId){
+        int numJoinTicket = evm.JoinTicket(evId);
+        cb.logout();
+        ResultSet rs = evm.getTicket(evId);
+        
+        try{
+            if (rs.next()){
+                String getTicket = ""+rs.getInt("evTicket");
+                String showTicket = numJoinTicket + " / " + getTicket;    
+                System.out.println(showTicket);
+                numOfTicket.setText(showTicket);
+            }
+        }catch(SQLException e){
+            System.out.println("SQL Exception : showTicket");
+            e.printStackTrace();
+        }
+        cb.logout();
+        
+        }
+        
+    }
   
    
 
-}
+
 
 
 
