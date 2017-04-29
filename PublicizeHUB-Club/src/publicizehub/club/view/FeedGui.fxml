@@ -17,19 +17,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane accessibleText="TEST" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f1e7e5;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.MainController">
+<AnchorPane accessibleText="TEST" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f1e7e5;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.MainController">
    <children>
       <Pane prefHeight="600.0" prefWidth="800.0" styleClass="body" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <BorderPane layoutX="-456.0" layoutY="28.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
             <Pane id="menu" prefHeight="600.0" prefWidth="200.0" styleClass="menu" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="stdId" layoutX="40.0" layoutY="96.0" prefHeight="42.0" prefWidth="120.0" styleClass="quark" text="59130500007">
+                  <Label fx:id="stdId" layoutX="40.0" layoutY="89.0" prefHeight="42.0" prefWidth="120.0" styleClass="quark" text="59130500007">
                      <font>
                         <Font name="Quark-Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="stdName" alignment="CENTER" layoutX="24.0" layoutY="118.0" prefHeight="41.0" prefWidth="152.0" text="กีรติ เจียรจินดารัตน์">
+                  <Label fx:id="stdName" alignment="CENTER" layoutX="1.0" layoutY="118.0" prefHeight="41.0" prefWidth="198.0" text="กีรติ เจียรจินดารัตน์">
                      <font>
                         <Font name="Quark-Bold" size="22.0" />
                      </font>
@@ -74,12 +74,12 @@
                         <String fx:value="font-menu" />
                      </styleClass>
                   </Button>
-                  <Button layoutY="268.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="200.0" text="Log out" textFill="#f2f2f2">
+                  <Button layoutX="72.0" layoutY="287.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Log out" textFill="#f2f2f2">
                      <styleClass>
                         <String fx:value="managebtn" />
                         <String fx:value="logoutbtn" />
                         <String fx:value="quark" />
-                        <String fx:value="font-menu" />
+                        <String fx:value="font-logout" />
                      </styleClass>
                   </Button>
                   <Separator layoutY="300.0" mouseTransparent="true" prefHeight="44.0" prefWidth="200.0" />
@@ -119,7 +119,7 @@
                         <String fx:value="font-menu" />
                      </styleClass>
                   </Button>
-                  <Separator layoutY="441.0" mouseTransparent="true" prefHeight="44.0" prefWidth="200.0" />
+                  <Separator layoutY="547.0" mouseTransparent="true" prefHeight="44.0" prefWidth="200.0" />
                   <ImageView fitHeight="78.0" fitWidth="62.0" layoutX="9.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../css/images/logo.png" />
