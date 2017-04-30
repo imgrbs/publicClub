@@ -31,7 +31,7 @@ public class LoginGui extends Application {
         LoginController controller = fxmlLoader.<LoginController>getController();
         Scene scene = new Scene(root);
         controller.setThisScene(scene);
-        
+        stage.setTitle("PublicizeHUB - Club");
         stage.setScene(scene);
         stage.show();
     }

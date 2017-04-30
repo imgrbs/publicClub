@@ -137,30 +137,38 @@ public class CreateEventController implements Initializable {
     public void clickConfirm(){
         Alert warning = null;
         evTypeResult();
-        validateField();
-        if(validateField()){
+        if(eventName.getText().length()<5 || 
+           description.getText().length()<25 || 
+           place.getText().length()<5){
             warning = new Alert(Alert.AlertType.ERROR);
             warning.setTitle("Error!");
-            warning.setHeaderText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
-            warning.showAndWait();            
-        }else if(validateDate()){
-            warning = new Alert(Alert.AlertType.CONFIRMATION);
-            warning.setTitle("Information!");
-            warning.setHeaderText("ยืนยันที่จะสร้างกิจกรรม");
-            Optional<ButtonType> result = warning.showAndWait();
-            if(result.isPresent()){
-                if(result.get() == ButtonType.OK){
-                    setAllValue();
-                    e.createEvent(thisEvent);
-                    warning = new Alert(Alert.AlertType.INFORMATION);
-                    try{
-                        setEmptyField();
-                    }catch(NullPointerException e){
-                        LOGGER.log(Level.WARNING, "set NULL !",e);
+            warning.setHeaderText("ชื่อกิจกรรมต้องมีความยาว 5 ตัวอักษรขึ้นไป!");
+            warning.showAndWait();    
+        }else {
+            if(validateField()){
+                warning = new Alert(Alert.AlertType.ERROR);
+                warning.setTitle("Error!");
+                warning.setHeaderText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
+                warning.showAndWait();            
+            }else if(validateDate()){
+                warning = new Alert(Alert.AlertType.CONFIRMATION);
+                warning.setTitle("Information!");
+                warning.setHeaderText("ยืนยันที่จะสร้างกิจกรรม");
+                Optional<ButtonType> result = warning.showAndWait();
+                if(result.isPresent()){
+                    if(result.get() == ButtonType.OK){
+                        setAllValue();
+                        e.createEvent(thisEvent);
+                        warning = new Alert(Alert.AlertType.INFORMATION);
+                        try{
+                            setEmptyField();
+                        }catch(NullPointerException e){
+                            LOGGER.log(Level.WARNING, "set NULL !",e);
+                        }
+                        warning.setTitle("Success!");
+                        warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
+                        warning.showAndWait();
                     }
-                    warning.setTitle("Success!");
-                    warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
-                    warning.showAndWait();
                 }
             }
         }
@@ -265,7 +273,6 @@ public class CreateEventController implements Initializable {
         LocalDate dateStart = startDate.getValue();
         LocalDate dateEnd = endDate.getValue();
         if(dateRegis!=null && dateStart != null && dateEnd !=null){
-            System.out.println(dateStart.compareTo(dateEnd));
             if(dateRegis.compareTo(dateStart)>=0 || 
                dateRegis.compareTo(LocalDate.now())<0 ||
                dateRegis.compareTo(dateEnd)>=0){

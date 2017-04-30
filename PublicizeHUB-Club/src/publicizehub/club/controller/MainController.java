@@ -233,7 +233,6 @@ public class MainController {
     public void callMain(Stage stage,Scene scene,LoginModel prof) throws Exception {
         FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/FeedGui.fxml")); 
         Parent root = null;
-        stage.setTitle("PublicizeHUB");
         try{
             root = (Parent)loader.load();
             scene.setRoot(root);
