@@ -119,6 +119,6 @@ public class NewsController {
             LOGGER.log(Level.SEVERE ,"addNewsToList : addNewsToList Bug !");
         }
         list.setItems(items);
-
+        cb.logout();
     }
 }

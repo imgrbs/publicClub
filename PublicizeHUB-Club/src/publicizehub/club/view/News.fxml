@@ -17,7 +17,7 @@
                <center>
                   <Pane prefHeight="200.0" prefWidth="200.0" styleClass="detailPane" BorderPane.alignment="CENTER">
                      <children>
-                        <ListView fx:id="listNews" layoutX="30.0" layoutY="68.0" prefHeight="340.0" prefWidth="600.0" />
+                        <ListView fx:id="listNews" layoutX="30.0" layoutY="68.0" prefHeight="340.0" prefWidth="600.0" styleClass="quark" />
                         <Label layoutX="35.0" layoutY="21.0" text="ข่าวใหม่">
                            <styleClass>
                               <String fx:value="quark" />
@@ -49,7 +49,7 @@
                <bottom>
                   <Pane prefHeight="67.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                      <children>
-                        <JFXButton fx:id="loginBtn" buttonType="RAISED" layoutX="549.0" layoutY="20.0" prefHeight="36.0" prefWidth="179.0" text="Login with KMUTT Account">
+                        <JFXButton fx:id="loginBtn" buttonType="RAISED" layoutX="549.0" layoutY="20.0" onAction="#callLogin" prefHeight="36.0" prefWidth="179.0" text="Login with KMUTT Account">
                            <styleClass>
                               <String fx:value="confirmBtn" />
                               <String fx:value="dropshadow" />

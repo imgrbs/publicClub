@@ -7,19 +7,23 @@ package publicizehub.club.view;
 import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import publicizehub.club.controller.FirstNewsController;
 
 
 /**
  *
- * @author budsagorn_ss
+ * @author Mujill
  */
 public class News extends Application {
     
+    @FXML
+    private ListView<String> listNews;
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = null;
@@ -35,6 +39,7 @@ public class News extends Application {
         FirstNewsController controller = fxmlLoader.<FirstNewsController>getController();
         Scene scene = new Scene(root);
         controller.setThisScene(scene);
+        
         
         stage.setScene(scene);
         stage.show();
