@@ -136,19 +136,19 @@ public class CreateEventController implements Initializable {
     
     @FXML
     public void clickConfirm(){
-        Alert warning = null; // สร้าง Alert ของ JavaFX
-        evTypeResult(); // เช็คว่า Radio ปุ่มไหนเลือกจะ เซ็ต event Type ค่านั้น
-        if(eventName.getText().length()<5 || 
+        Alert warning = null; 
+        evTypeResult(); 
+        if(eventName.getText().length()<5 ||
            description.getText().length()<25 || 
-           place.getText().length()<5 ||
-           eventName.getText().length()>255 || 
-           description.getText().length()>500 || 
-           place.getText().length()>255){
-            warning = new Alert(Alert.AlertType.ERROR);
+           place.getText().length()<5 || 
+           eventName.getText().length()>125 || 
+           description.getText().length()>500 ||
+           place.getText().length()>150){
+            warning = new Alert(Alert.AlertType.ERROR); 
             warning.setTitle("Error!");
             warning.setHeaderText("ความยาวน้อยไป หรือมากเกินไป");
             warning.setContentText("ชื่อกิจกรรม , รายละเอียด และ สถานที่ มีความยาวตัวอักษรน้อยเกินไป หรือมากเกินไป");
-            warning.showAndWait();    
+            warning.showAndWait();
         }else {
             if(validateField()){
                 warning = new Alert(Alert.AlertType.ERROR);
@@ -156,24 +156,23 @@ public class CreateEventController implements Initializable {
                 warning.setHeaderText("กรอกข้อมูลไม่ครบ");
                 warning.setContentText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
                 warning.showAndWait();            
-            }else if(validateDate()){
-                
-                if(validateTime()){
+            }else if(validateDate()){ 
+                if(validateTime()){ 
                     warning = new Alert(Alert.AlertType.CONFIRMATION);
                     warning.setTitle("Information!");
-                    warning.setHeaderText("ยืนยันที่จะสร้างกิจกรรม");
-                    warning.setContentText("ข้อมูลถูกต้องครบถ้วนแล้ว ยืนยันที่จะสร้าง?");
+                    warning.setHeaderText("ยืนยันที่จะสร้างกิจกรรม"); 
+                    warning.setContentText("ข้อมูลถูกต้องครบถ้วนแล้ว ยืนยันที่จะสร้าง?"); 
                     Optional<ButtonType> result = warning.showAndWait();
                     if(result.isPresent()){
                         if(result.get() == ButtonType.OK){
                             setAllValue();
-                            e.createEvent(thisEvent);
-                            warning = new Alert(Alert.AlertType.INFORMATION);
+                            e.createEvent(thisEvent); 
                             try{
                                 setEmptyField();
                             }catch(NullPointerException e){
-                                LOGGER.log(Level.WARNING, "set NULL !",e);
+                                LOGGER.log(Level.WARNING, "set NULL !");
                             }
+                            warning = new Alert(Alert.AlertType.INFORMATION);
                             warning.setTitle("Success!");
                             warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
                             warning.showAndWait();
@@ -217,16 +216,22 @@ public class CreateEventController implements Initializable {
     @FXML
     public void checkNumber(boolean check){
         Alert warning = null;
-        for(int i=0;i<ticket.getValue().length();i++){
-            if (ticket.getValue().charAt(i) < '0' || ticket.getValue().charAt(i) > '9') {
-                warning = new Alert(Alert.AlertType.WARNING);
-                warning.setTitle("Error!");
-                warning.setHeaderText("จำนวนบัตรไม่ถูกต้อง");
-                warning.setContentText("กรุณาใส่จำนวนบัตรให้ถูกต้อง (0-9)");
-                warning.showAndWait();
-                check=true;
-                i=ticket.getValue().length();
+        warning = new Alert(Alert.AlertType.WARNING);
+        warning.setTitle("Error!");
+        if(ticket.getValue().length()<=5){ 
+            for(int i=0;i<ticket.getValue().length();i++){
+                if (ticket.getValue().charAt(i) < '0' || ticket.getValue().charAt(i) > '9') {
+                    check=false;
+                    warning.setHeaderText("จำนวนบัตรไม่ถูกต้อง");
+                    warning.setContentText("กรุณาใส่จำนวนบัตรให้ถูกต้อง (0-9)");
+                    warning.showAndWait();
+                    break;
+                }
             }
+        }else {
+            warning.setHeaderText("จำนวนบัตรไม่ถูกต้อง");
+            warning.setContentText("กรุณาใส่จำนวนบัตรให้ถูกต้อง");
+            warning.showAndWait();
         }
     }
                 
@@ -246,9 +251,6 @@ public class CreateEventController implements Initializable {
         }
         if(ticket.getValue()!=null) {
             checkNumber(check);
-            if(!check){
-                check = false;
-            }
         }
         return check;
     }
