@@ -18,7 +18,8 @@ public class LoginGui extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginGui.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginGui.fxml"));    
+        stage.setTitle("Login");
         try{
             root = (Parent)fxmlLoader.load(); 
         }
@@ -30,7 +31,7 @@ public class LoginGui extends Application {
         LoginController controller = fxmlLoader.<LoginController>getController();
         Scene scene = new Scene(root);
         controller.setThisScene(scene);
-        
+        stage.setTitle("PublicizeHUB - Club");
         stage.setScene(scene);
         stage.show();
     }

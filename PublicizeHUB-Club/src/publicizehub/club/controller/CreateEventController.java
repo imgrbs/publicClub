@@ -4,6 +4,8 @@ package publicizehub.club.controller;
 import com.jfoenix.controls.*;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -134,33 +136,50 @@ public class CreateEventController implements Initializable {
     
     @FXML
     public void clickConfirm(){
-        Alert warning = null;
-        evTypeResult();
-        validateField();
-        if(validateField()){
-            warning = new Alert(Alert.AlertType.ERROR);
+        Alert warning = null; 
+        evTypeResult(); 
+        if(eventName.getText().length()<5 ||
+           description.getText().length()<25 || 
+           place.getText().length()<5 || 
+           eventName.getText().length()>125 || 
+           description.getText().length()>500 ||
+           place.getText().length()>150){
+            warning = new Alert(Alert.AlertType.ERROR); 
             warning.setTitle("Error!");
-            warning.setHeaderText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
-            warning.showAndWait();            
-        }else{
-            warning = new Alert(Alert.AlertType.CONFIRMATION);
-            warning.setTitle("Information!");
-            warning.setHeaderText("ยืนยันที่จะสร้างกิจกรรม");
-            Optional<ButtonType> result = warning.showAndWait();
-            if(result.isPresent()){
-                if(result.get() == ButtonType.OK){
-                    setAllValue();
-                    e.createEvent(thisEvent);
-                    warning = new Alert(Alert.AlertType.INFORMATION);
-                    try{
-                        setEmptyField();
-                    }catch(NullPointerException e){
-                        LOGGER.log(Level.WARNING, "set NULL !",e);
+            warning.setHeaderText("ความยาวน้อยไป หรือมากเกินไป");
+            warning.setContentText("ชื่อกิจกรรม , รายละเอียด และ สถานที่ มีความยาวตัวอักษรน้อยเกินไป หรือมากเกินไป");
+            warning.showAndWait();
+        }else {
+            if(validateField()){
+                warning = new Alert(Alert.AlertType.ERROR);
+                warning.setTitle("Error!");
+                warning.setHeaderText("กรอกข้อมูลไม่ครบ");
+                warning.setContentText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
+                warning.showAndWait();            
+            }else if(validateDate()){ 
+                if(validateTime()){ 
+                    warning = new Alert(Alert.AlertType.CONFIRMATION);
+                    warning.setTitle("Information!");
+                    warning.setHeaderText("ยืนยันที่จะสร้างกิจกรรม"); 
+                    warning.setContentText("ข้อมูลถูกต้องครบถ้วนแล้ว ยืนยันที่จะสร้าง?"); 
+                    Optional<ButtonType> result = warning.showAndWait();
+                    if(result.isPresent()){
+                        if(result.get() == ButtonType.OK){
+                            setAllValue();
+                            e.createEvent(thisEvent); 
+                            try{
+                                setEmptyField();
+                            }catch(NullPointerException e){
+                                LOGGER.log(Level.WARNING, "set NULL !");
+                            }
+                            warning = new Alert(Alert.AlertType.INFORMATION);
+                            warning.setTitle("Success!");
+                            warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
+                            warning.showAndWait();
+                        }
                     }
-                    warning.setTitle("Success!");
-                    warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
-                    warning.showAndWait();
                 }
+                
             }
         }
     }
@@ -197,17 +216,22 @@ public class CreateEventController implements Initializable {
     @FXML
     public void checkNumber(boolean check){
         Alert warning = null;
-        for(int i=0;i<ticket.getValue().length();i++){
-            if (ticket.getValue().charAt(i) < '0' || ticket.getValue().charAt(i) > '9') {
-                warning = new Alert(Alert.AlertType.WARNING);
-                warning.setTitle("Error!");
-                warning.setHeaderText("จำนวนบัตรไม่ถูกต้อง");
-                warning.setContentText("กรุณาใส่จำนวนบัตรให้ถูกต้อง (0-9)");
-                warning.showAndWait();
-                check=true;
-                i=ticket.getValue().length();
-                ticket.setValue("");
+        warning = new Alert(Alert.AlertType.WARNING);
+        warning.setTitle("Error!");
+        if(ticket.getValue().length()<=5){ 
+            for(int i=0;i<ticket.getValue().length();i++){
+                if (ticket.getValue().charAt(i) < '0' || ticket.getValue().charAt(i) > '9') {
+                    check=false;
+                    warning.setHeaderText("จำนวนบัตรไม่ถูกต้อง");
+                    warning.setContentText("กรุณาใส่จำนวนบัตรให้ถูกต้อง (0-9)");
+                    warning.showAndWait();
+                    break;
+                }
             }
+        }else {
+            warning.setHeaderText("จำนวนบัตรไม่ถูกต้อง");
+            warning.setContentText("กรุณาใส่จำนวนบัตรให้ถูกต้อง");
+            warning.showAndWait();
         }
     }
                 
@@ -227,9 +251,6 @@ public class CreateEventController implements Initializable {
         }
         if(ticket.getValue()!=null) {
             checkNumber(check);
-            if(!check){
-                check = false;
-            }
         }
         return check;
     }
@@ -255,5 +276,72 @@ public class CreateEventController implements Initializable {
         seminar.setSelected(false);
         other.setSelected(false);
         ticket.setValue(cusText);
+    }
+    
+    public boolean validateDate(){
+        boolean check = false;
+        Alert warning = new Alert(Alert.AlertType.ERROR);
+        warning.setHeaderText("Error !");
+        LocalDate dateRegis = startRegis.getValue();
+        LocalDate dateStart = startDate.getValue();
+        LocalDate dateEnd = endDate.getValue();
+        if(dateRegis!=null && dateStart != null && dateEnd !=null){
+            if(dateRegis.compareTo(dateStart)>=0 || 
+               dateRegis.compareTo(LocalDate.now())<0 ||
+               dateRegis.compareTo(dateEnd)>=0){
+                warning.setContentText("กรุณาใส่วันสมัครให้น้อยกว่าหรือเท่ากับวันเริ่มกิจกรรม , มากกว่าหรือเท่ากับวันปัจจุบัน และน้อยกว่าวันจบกิจกรรม");
+                warning.showAndWait();
+            }else if(dateStart.compareTo(dateEnd)>0){
+                warning.setContentText("กรุณาใส่วันเริ่มกิจกรรม ให้น้อยกว่าหรือเท่ากับ วันจบกิจกรรม");
+                warning.showAndWait();
+            } else {
+                check = true;
+            }
+        }
+        return check;
+    }
+    
+    public boolean validateTime(){
+        boolean check = false;
+        Alert warning = new Alert(Alert.AlertType.ERROR);
+        warning.setHeaderText("Error !");
+        LocalDate dateStart = startDate.getValue();
+        LocalDate dateEnd = endDate.getValue();
+        LocalTime timeStart = startTime.getValue();
+        LocalTime timeEnd = endTime.getValue();
+        LocalTime tempTime = startTime.getValue().plusMinutes(30);
+        LocalTime time20PM = LocalTime.of(20, 0, 0);
+        LocalTime time05AM = LocalTime.of(5, 0, 0);
+        if(dateStart.compareTo(dateEnd)==0){
+            if(timeStart.compareTo(time20PM)<=0&&
+               timeStart.compareTo(time05AM)>=0&&
+               timeEnd.compareTo(time20PM)<=0&&
+               timeEnd.compareTo(time05AM)>=0){
+                if(timeStart.compareTo(timeEnd)>-1){
+                    warning.setContentText("กรุณาใส่กรุณาใส่เวลาให้ถูกต้อง");
+                    warning.showAndWait();
+                }else if(timeEnd.compareTo(tempTime)<0){
+                    warning.setContentText("กรุณาใส่กรุณาจบกิจกรรมอย่างน้อย 30 นาทีขึ้นไป");
+                    warning.showAndWait();
+                }else {
+                    check = true;
+                }
+            }else{
+                warning.setContentText("กรุณาใส่กรุณาใส่เวลาให้ถูกต้อง");
+                warning.showAndWait();
+            }
+            
+        }else {
+            if(timeStart.compareTo(time20PM)<=0&&
+               timeStart.compareTo(time05AM)>=0&&
+               timeEnd.compareTo(time20PM)<=0&&
+               timeEnd.compareTo(time05AM)>=0){
+                check = true;
+            }else{
+                warning.setContentText("กรุณาใส่กรุณาใส่เวลาให้ถูกต้อง");
+                warning.showAndWait();
+            }
+        }
+        return check;
     }
 }

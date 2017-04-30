@@ -89,8 +89,7 @@ public class MainController {
     @FXML
     private ListView<String> newsList;
 
-    
-    
+        
     public LoginController getLi() {
         return li;
     }
@@ -101,7 +100,7 @@ public class MainController {
 
     public void setThisStage(Stage thisStage) {
         this.thisStage = thisStage;
-//        thisStage.setTitle("PublicizeHUB");   
+        //thisStage.setTitle("PublicizeHUB");   
     }
     
     public void setManageDisable(){
@@ -228,13 +227,14 @@ public class MainController {
         sc.callSearch(text);
         searchfield.setText("");
     }
+  
     
     
     public void callMain(Stage stage,Scene scene,LoginModel prof) throws Exception {
         FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/FeedGui.fxml")); 
-        
+        Parent root = null;
         try{
-            Parent root = (Parent)loader.load();
+            root = (Parent)loader.load();
             scene.setRoot(root);
         }
         catch(IOException e){
