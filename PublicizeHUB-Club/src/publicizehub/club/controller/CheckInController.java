@@ -63,7 +63,8 @@ public class CheckInController implements Initializable{
     public void callCheckIn(EventModel event){
         Stage stage= new Stage();
         Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/CheckIn.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/CheckIn.fxml")); 
+
         try{
             root = (Parent)fxmlLoader.load(); 
         }

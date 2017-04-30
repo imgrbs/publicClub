@@ -18,7 +18,8 @@ public class LoginGui extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginGui.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginGui.fxml"));    
+        stage.setTitle("Login");
         try{
             root = (Parent)fxmlLoader.load(); 
         }

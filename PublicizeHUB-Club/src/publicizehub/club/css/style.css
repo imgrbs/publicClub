@@ -24,6 +24,12 @@
     -fx-background-position: bottom;
 	
 }
+.bodyOnlyNews{
+    -fx-background-image: url('images/bg-news.png');
+    -fx-background-size: 100%;
+    -fx-background-position: bottom;
+	
+}
 .menu{
     -fx-background-image: url('images/head-menu-01.png');
     -fx-background-color: white;
@@ -365,7 +371,7 @@
 	-fx-background-color: none;
 	-fx-background-image: url('images/edit.png');
 	-fx-background-repeat: no-repeat;
-    -fx-background-size: 103% 100%;
+        -fx-background-size: 103% 100%;
 	-fx-background-width: 64px;
 	-fx-background-height: 64px;
 	
@@ -374,6 +380,7 @@
 .formSumName{
     -fx-font-size: 25px;
 }
+
 
 .formSumActi{
      -fx-font-size: 30px;
@@ -436,4 +443,13 @@
 }
 .confirmBtn:hover{
     -fx-background-color: #FF6A40;
+}
+.iconLogo{
+	-fx-background-color: none;
+	-fx-background-image: url('images/logo.png');
+	-fx-background-repeat: no-repeat;
+        -fx-background-size: 103% 100%;
+	-fx-background-width: 64px;
+	-fx-background-height: 64px;
+	
 }
