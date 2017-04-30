@@ -142,7 +142,7 @@ public class CreateEventController implements Initializable {
            place.getText().length()<5){
             warning = new Alert(Alert.AlertType.ERROR);
             warning.setTitle("Error!");
-            warning.setHeaderText("ชื่อกิจกรรมต้องมีความยาว 5 ตัวอักษรขึ้นไป!");
+            warning.setHeaderText("ชื่อกิจกรรม , รายละเอียด และ สถานที่ มีความยาวตัวอักษรน้อยเกินไป");
             warning.showAndWait();    
         }else {
             if(validateField()){
