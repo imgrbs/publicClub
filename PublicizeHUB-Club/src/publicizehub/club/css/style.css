@@ -24,12 +24,24 @@
     -fx-background-position: bottom;
 	
 }
+.bodyOnlyNews{
+    -fx-background-image: url('images/bg-news.png');
+    -fx-background-size: 100%;
+    -fx-background-position: bottom;
+	
+}
 .menu{
     -fx-background-image: url('images/head-menu-01.png');
     -fx-background-color: white;
     -fx-background-size: 100%;
     -fx-background-position: top;
     -fx-background-repeat: no-repeat;
+}
+.font-menu{
+    -fx-font-size: 20px;
+}
+.rec-name{
+    -fx-font-size: 25px;
 }
 .search-btn{
     -fx-background-color: #e7560c;
@@ -55,8 +67,27 @@
     -fx-background-position: left;
     -fx-background-repeat: no-repeat;
 }
+.logoutbtn{
+    -fx-background-color: #f86d6d;
+    -fx-background-size: 20%;
+    -fx-background-position: left;
+    -fx-background-repeat: no-repeat;
+}
 .menubtn:hover{
     -fx-background-color: #e4e4e4;
+}
+.logoutbtn:hover{
+    -fx-background-color: #ff9090;
+}
+.font-signin{
+    -fx-font-size: 20px;
+}
+.font-error{
+    -fx-text-fill: red;
+    -fx-font-size: 15px;
+}
+.rec-btn{
+    -fx-font-size:15px;
 }
 .joinbtn{
     -fx-background-color: #e7560c;
@@ -304,10 +335,16 @@
     -fx-font-size: 25px;
 }
 .stdNameProfile{
-    -fx-font-size: 40px;
+    -fx-font-size: 25px;
+}
+.stdNameFeed{
+    -fx-font-size: 20px;
 }
 .warningProfile{
     -fx-font-size: 17px;
+}
+.font-logout{
+    -fx-font-size: 12px;
 }
 .insertEventSize{
 	-fx-font-size: 45px;
@@ -334,7 +371,7 @@
 	-fx-background-color: none;
 	-fx-background-image: url('images/edit.png');
 	-fx-background-repeat: no-repeat;
-    -fx-background-size: 103% 100%;
+        -fx-background-size: 103% 100%;
 	-fx-background-width: 64px;
 	-fx-background-height: 64px;
 	
@@ -343,6 +380,7 @@
 .formSumName{
     -fx-font-size: 25px;
 }
+
 
 .formSumActi{
      -fx-font-size: 30px;
@@ -405,4 +443,13 @@
 }
 .confirmBtn:hover{
     -fx-background-color: #FF6A40;
+}
+.iconLogo{
+	-fx-background-color: none;
+	-fx-background-image: url('images/logo.png');
+	-fx-background-repeat: no-repeat;
+        -fx-background-size: 103% 100%;
+	-fx-background-width: 64px;
+	-fx-background-height: 64px;
+	
 }

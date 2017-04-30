@@ -1,7 +1,10 @@
 package publicizehub.club.controller;
 
 
+import com.jfoenix.controls.*;
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,7 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import com.jfoenix.controls.*;
+
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 
 import publicizehub.club.model.EventModel;
@@ -24,6 +29,7 @@ import publicizehub.club.model.EventModel;
  * @author JIL
  */
 public class CreateEventController implements Initializable {
+    private static final Logger LOGGER = Logger.getLogger(EditEventController.class.getName());
     EventModel e = new EventModel();
     EventModel thisEvent = null;
     
@@ -31,8 +37,6 @@ public class CreateEventController implements Initializable {
     
     private int evType = -1;
     private long stdId=lc.getStdId();
-    boolean check=true;
-    //String num[] = {"100","2","3","4","5","6","7","8","9","0"};
     
     @FXML
     private Stage thisStage = null;
@@ -133,25 +137,39 @@ public class CreateEventController implements Initializable {
     public void clickConfirm(){
         Alert warning = null;
         evTypeResult();
-        validateField();
-        if(this.check){
+        if(eventName.getText().length()<5 || 
+           description.getText().length()<25 || 
+           place.getText().length()<5){
             warning = new Alert(Alert.AlertType.ERROR);
             warning.setTitle("Error!");
-            warning.setHeaderText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
-            warning.showAndWait();            
-        }else{
-            warning = new Alert(Alert.AlertType.CONFIRMATION);
-            warning.setTitle("Information!");
-            warning.setHeaderText("ยืนยันที่จะสร้างกิจกรรม");
-            Optional<ButtonType> result = warning.showAndWait();
-            if(result.get() == ButtonType.OK){
-                setAllValue();
-                e.createEvent(thisEvent);
-                warning = new Alert(Alert.AlertType.INFORMATION);
-                setEmptyField();
-                warning.setTitle("Success!");
-                warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
-                warning.showAndWait();
+            warning.setHeaderText("ชื่อกิจกรรม , รายละเอียด และ สถานที่ มีความยาวตัวอักษรน้อยเกินไป");
+            warning.showAndWait();    
+        }else {
+            if(validateField()){
+                warning = new Alert(Alert.AlertType.ERROR);
+                warning.setTitle("Error!");
+                warning.setHeaderText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
+                warning.showAndWait();            
+            }else if(validateDate()){
+                warning = new Alert(Alert.AlertType.CONFIRMATION);
+                warning.setTitle("Information!");
+                warning.setHeaderText("ยืนยันที่จะสร้างกิจกรรม");
+                Optional<ButtonType> result = warning.showAndWait();
+                if(result.isPresent()){
+                    if(result.get() == ButtonType.OK){
+                        setAllValue();
+                        e.createEvent(thisEvent);
+                        warning = new Alert(Alert.AlertType.INFORMATION);
+                        try{
+                            setEmptyField();
+                        }catch(NullPointerException e){
+                            LOGGER.log(Level.WARNING, "set NULL !",e);
+                        }
+                        warning.setTitle("Success!");
+                        warning.setHeaderText("สร้างกิจกรรมสำเร็จ");
+                        warning.showAndWait();
+                    }
+                }
             }
         }
     }
@@ -169,8 +187,8 @@ public class CreateEventController implements Initializable {
         try{
             root = (Parent)fxmlLoader.load(); 
         }
-        catch(Exception e){
-            e.printStackTrace();
+        catch(IOException e){
+            LOGGER.log(Level.WARNING, "root : Exception",e);
         }
         CreateEventController controller = fxmlLoader.<CreateEventController>getController();
         controller.setThisStage(stage);
@@ -186,7 +204,7 @@ public class CreateEventController implements Initializable {
     }
     
     @FXML
-    public void checkNumber(){
+    public void checkNumber(boolean check){
         Alert warning = null;
         for(int i=0;i<ticket.getValue().length();i++){
             if (ticket.getValue().charAt(i) < '0' || ticket.getValue().charAt(i) > '9') {
@@ -195,7 +213,7 @@ public class CreateEventController implements Initializable {
                 warning.setHeaderText("จำนวนบัตรไม่ถูกต้อง");
                 warning.setContentText("กรุณาใส่จำนวนบัตรให้ถูกต้อง (0-9)");
                 warning.showAndWait();
-                this.check=true;
+                check=true;
                 i=ticket.getValue().length();
                 ticket.setValue("");
             }
@@ -207,18 +225,26 @@ public class CreateEventController implements Initializable {
         getThisStage().close();
     }
     
-    public void validateField(){
+    public boolean validateField(){
+        boolean check = false;
         if(ticket.getValue()==null||ticket.getValue().equals("ระบุเอง")||ticket.getValue().equals("")||
            eventName.getText().equals("")||description.getText().equals("")||
            place.getText().equals("")||startRegis.getValue()==null||
            startDate.getValue()==null||endDate.getValue()==null||
            startTime.getValue()==null||endTime.getValue()==null||evType==-1){
-            this.check = true;
-        }else if(ticket.getValue()!=null) checkNumber();
+            check = true;
+        }
+        if(ticket.getValue()!=null) {
+            checkNumber(check);
+            if(!check){
+                check = false;
+            }
+        }
+        return check;
     }
     
     public void setEmptyField(){
-        String customText="ระบุเอง";
+        String cusText="ระบุเอง";
         eventName.setText("");
         description.setText("");
         place.setText("");
@@ -229,12 +255,38 @@ public class CreateEventController implements Initializable {
             startTime.setValue(null);
             endTime.setValue(null);
         }catch(NullPointerException e){
-            System.out.println("Set Date Value = null : maybe BUG");
+            LOGGER.log(Level.WARNING, "set NULL !");
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING, "set NULL !");
         }
         evType=-1;
         camp.setSelected(false);
         seminar.setSelected(false);
         other.setSelected(false);
-        ticket.setValue(customText);
+        ticket.setValue(cusText);
+    }
+    
+    public boolean validateDate(){
+        boolean check = false;
+        Alert warning = new Alert(Alert.AlertType.ERROR);
+        LocalDate dateRegis = startRegis.getValue();
+        LocalDate dateStart = startDate.getValue();
+        LocalDate dateEnd = endDate.getValue();
+        if(dateRegis!=null && dateStart != null && dateEnd !=null){
+            if(dateRegis.compareTo(dateStart)>=0 || 
+               dateRegis.compareTo(LocalDate.now())<0 ||
+               dateRegis.compareTo(dateEnd)>=0){
+                warning.setHeaderText("Error !");
+                warning.setContentText("กรุณาใส่วันสมัครให้น้อยกว่าหรือเท่ากับวันเริ่มกิจกรรม , มากกว่าหรือเท่ากับวันปัจจุบัน และน้อยกว่าวันจบกิจกรรม");
+                warning.showAndWait();
+            }else if(dateStart.compareTo(dateEnd)>0){
+                warning.setHeaderText("Error !");
+                warning.setContentText("กรุณาใส่วันเริ่มกิจกรรม ให้น้อยกว่าหรือเท่ากับ วันจบกิจกรรม");
+                warning.showAndWait();
+            } else {
+                check = true;
+            }
+        }
+        return check;
     }
 }

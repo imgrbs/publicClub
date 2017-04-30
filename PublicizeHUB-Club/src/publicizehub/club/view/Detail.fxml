@@ -40,7 +40,7 @@
                         </Pane>
                      </children>
                   </FlowPane>
-                  <Button alignment="CENTER" layoutX="386.0" layoutY="320.0" mnemonicParsing="false" onAction="#callListPerson" prefHeight="22.0" prefWidth="170.0" text="รายชื่อคนจองกิจกรรม">
+                  <Button fx:id="showName" alignment="CENTER" layoutX="386.0" layoutY="320.0" mnemonicParsing="false" onAction="#callListPerso" prefHeight="22.0" prefWidth="170.0" text="รายชื่อคนจองกิจกรรม">
                      <styleClass>
                         <String fx:value="listJoinBtn" />
                         <String fx:value="quark" />

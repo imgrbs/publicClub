@@ -1,6 +1,7 @@
 package publicizehub.club.controller;
 
 import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +15,8 @@ import static java.lang.Long.parseLong;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import publicizehub.club.model.ConnectionBuilder;
+import publicizehub.club.model.LoginModel;
 
 /**
  *
@@ -25,10 +28,13 @@ public class ManageController {
     private LoginController li = new LoginController();
     private EventController ec = new EventController();
     
+    private ConnectionBuilder cb = new ConnectionBuilder();
     private EventModel ev = new EventModel();
+    private LoginModel profile;
     
     private Stage mainStage;
-    private Stage thisStage;
+    private Scene mainScene;
+    private Parent tempRoot;
     
     private long stdId;
     
@@ -53,6 +59,16 @@ public class ManageController {
         this.li = li;
     }
 
+    public LoginModel getProfile() {
+        return profile;
+    }
+
+    public void setProfile(LoginModel profile) {
+        this.profile = profile;
+    }
+
+    
+    
     public long getStdId() {
         return stdId;
     }
@@ -81,13 +97,24 @@ public class ManageController {
         this.mainStage = mainStage;
     }
 
-    public Stage getThisStage() {
-        return thisStage;
+    public Scene getMainScene() {
+        return mainScene;
     }
 
-    public void setThisStage(Stage thisStage) {
-        this.thisStage = thisStage;
+    public void setMainScene(Scene mainScene) {
+        this.mainScene = mainScene;
     }
+
+    public Parent getTempRoot() {
+        return tempRoot;
+    }
+
+    public void setTempRoot(Parent tempRoot) {
+        this.tempRoot = tempRoot;
+    }
+    
+    
+    
     
     @FXML
     public void callAddNews(){
@@ -96,44 +123,36 @@ public class ManageController {
     
     @FXML
     public void callMain(){
-        mainStage.show();
-        thisStage.close();
+        mainScene.setRoot(tempRoot);
     }
     
     @FXML
-    public void callManage(Stage mainStage){
-        Stage stage = new Stage();
-        Parent root = null;
+    public void callManage(Stage mainStage,Scene tempScene,LoginModel prof){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Manage.fxml"));     
+        Parent root = null;
         try{
             root = (Parent)fxmlLoader.load(); 
         }
-        catch(Exception e){
+        catch(IOException e){
             System.out.println("ERROR at callManage");
         }
         ManageController controller = fxmlLoader.<ManageController>getController();
-        controller.setStdId(getLi().getStdId());
-        controller.setLabelDepartment(li.getDepartment());
-        controller.setLabelId(""+li.getStdId());
-        controller.setLabelName(li.getName()+" "+li.getSurname());
-        controller.getEventToProfile();
+        controller.setProfile(prof);
+        controller.setStdId(prof.getStdId());
+        controller.setLabelDepartment(prof.getDepartment());
+        controller.setLabelId(""+prof.getStdId());
+        controller.setLabelName(prof.getName());
+        controller.setEventToGui(prof.getStdId());
         controller.setMainStage(mainStage);
-        controller.setThisStage(stage);
-        Scene scene = new Scene(root); 
-        try{
-            stage.setScene(scene);    
-        }
-        catch(Exception e){
-            System.out.println("ERROR at callManage");
-        }
-        stage.show();
-        mainStage.close();
-        
+        controller.setMainScene(tempScene);
+        controller.setTempRoot(tempScene.getRoot());
+        tempScene.setRoot(root);
     }
     
     @FXML
     public void getEventToProfile(){
         ResultSet rs = ev.getSelect(parseLong(this.labelId.getText()));
+        cb.logout();
         try{
             if(rs.next()){
                 setEventToGui(rs.getInt("evId"));
@@ -144,13 +163,14 @@ public class ManageController {
         }catch(SQLException e){
             System.out.println("ERROR at getEventToProfile");
         }
+        cb.logout();
     }
 
-    public void setEventToGui(int eventId){
-        ResultSet findStd = ev.getSelect(eventId);
-        EventModel event = null;
+    public void setEventToGui(long stdId){
+        ResultSet findStd = ev.getEventByStdId(stdId);
+        EventModel event;
         try{
-            if(findStd.next()){
+            while(findStd.next()){
                 event = new EventModel(findStd.getString("evName"),
                 findStd.getString("evDescrip"),findStd.getDate("evStartDate"),
                 findStd.getDate("evEndDate"),findStd.getDate("evStartRegis"),
@@ -159,23 +179,16 @@ public class ManageController {
                 findStd.getTime("evTime"),findStd.getTime("evEndTime"),
                 findStd.getInt("evType"),findStd.getInt("evId")
                 );
+                LocalDate ld = findStd.getDate("evEndDate").toLocalDate();
+                if(ld.compareTo(LocalDate.now())>-1){ 
+                    ec.addEventToPresentPane(getProfile(),event,this.listEventBox1,true,false); 
+                }
+                else {
+                    ec.addEventToPresentPane(getProfile(),event,this.listEventBox2,false,false);
+                }
             }
         }catch(SQLException e){
             System.out.println("ERROR at setEventToGui");
-        }
-        ec.setStdId(getStdId());
-        String tempDate="";
-        try{
-            tempDate += event.getEvEndDate();
-        }catch(NullPointerException e){
-            System.out.println("NullNullPointerException");
-        }
-        LocalDate ld = LocalDate.parse(tempDate);
-        if(ld.compareTo(LocalDate.now())>-1){ 
-            ec.addEventToPresentPane(event,this.listEventBox1,true,false); 
-        }
-        else {
-            ec.addEventToPresentPane(event,this.listEventBox2,false,false);
         }
     }
     

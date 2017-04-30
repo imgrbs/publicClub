@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,6 +29,7 @@ import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.EventModel;
 import publicizehub.club.model.FeedbackModel;
 import publicizehub.club.model.PersonModel;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -46,6 +46,8 @@ public class FormSumActivityController  implements Initializable  {
     private ObservableList<PersonModel> Persons = FXCollections.observableArrayList();
     
     private int eventId;
+    
+    private Stage thisStage;
 
     @FXML
     private BarChart<?, ?> feedbackChart;
@@ -102,6 +104,15 @@ public class FormSumActivityController  implements Initializable  {
         this.evName = evName;
     }
 
+    public Stage getThisStage() {
+        return thisStage;
+    }
+
+    public void setThisStage(Stage thisStage) {
+        this.thisStage = thisStage;
+        thisStage.setTitle("PublicizeHUB");   
+    }
+    
     public void calculateFeedback(int evId) {
         int[] averQ = new int[10];
         ResultSet result;
@@ -259,7 +270,7 @@ public class FormSumActivityController  implements Initializable  {
                 return param.getValue().getValue().getStatusCheckIn();
             }
         });
-        JFXTreeTableColumn<PersonModel, String> evaluation = new JFXTreeTableColumn<>("ประเมิณ");
+        JFXTreeTableColumn<PersonModel, String> evaluation = new JFXTreeTableColumn<>("ประเมิน");
         evaluation.setPrefWidth(81);
         evaluation.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PersonModel,String>, ObservableValue<String>>() {
             @Override

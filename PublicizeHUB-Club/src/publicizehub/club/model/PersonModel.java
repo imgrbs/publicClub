@@ -28,9 +28,12 @@ public class PersonModel extends RecursiveTreeObject<PersonModel> {
     private StringProperty dateBuyTicket;
     private StringProperty timestamp;
 
+   
+    
     public PersonModel() {
     }
 
+    
     public PersonModel(String stdId, String stdName, String stdSurname, String department, 
         int statusEvaluation, int statusCheckIn, Date dateBuyTicket, Time timestamp) {
         this.stdId = new SimpleStringProperty(stdId);
@@ -136,5 +139,21 @@ public class PersonModel extends RecursiveTreeObject<PersonModel> {
             LOGGER.log(Level.SEVERE ,"getProfile : getProfile Failed");
         }
         return rs;
+    }
+    
+    //ดึงข้อมูลจาก DB มาเพื่อโชว์รายชื่อคนจองกิจกรรม 
+    public ResultSet getListPerson(int evId){
+        ResultSet result = null;
+        PreparedStatement ps;
+        cb.connecting();
+        try {
+            ps = cb.getConnect().prepareStatement("SELECT * FROM generatecode where evId = ?");
+            ps.setInt(1, evId);
+            result = ps.executeQuery();
+
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE ,"getListPerson : getListPerson Failed");
+        }
+        return result;
     }
 }

@@ -17,13 +17,13 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.CreateEventController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.CreateEventController">
    <children>
-      <FlowPane layoutX="59.0" layoutY="50.0" prefHeight="400.0" prefWidth="895.0" styleClass="bodyOnlyColor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <FlowPane alignment="CENTER" layoutX="59.0" layoutY="50.0" prefHeight="400.0" prefWidth="895.0" styleClass="bodyOnlyColor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <BorderPane prefHeight="600.0" prefWidth="800.0">
                <center>
-                  <Pane prefHeight="414.0" prefWidth="757.0" styleClass="detailPane" BorderPane.alignment="CENTER">
+                  <Pane prefHeight="430.0" prefWidth="650.0" styleClass="detailPane" BorderPane.alignment="CENTER">
                      <children>
                         <Label layoutX="40.0" layoutY="21.0" text="ชื่อกิจกรรม :">
                            <styleClass>
@@ -210,7 +210,7 @@
                   </Pane>
                </center>
                <bottom>
-                  <Pane prefHeight="62.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                  <Pane prefHeight="76.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                      <children>
                         <JFXButton fx:id="confirmBtn" layoutX="294.0" layoutY="15.0" onAction="#clickConfirm" prefHeight="38.0" prefWidth="101.0" text="ยืนยัน" textFill="WHITE">
                            <styleClass>
@@ -231,7 +231,7 @@
                      </children></Pane>
                </bottom>
                <top>
-                  <Pane prefHeight="105.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                  <Pane prefHeight="91.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                      <children>
 
                         <Label layoutX="467.0" layoutY="25.0" styleClass="insertEventSize" text="Create Event" />

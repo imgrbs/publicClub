@@ -16,9 +16,11 @@ import publicizehub.club.model.SearchModel;
 import publicizehub.club.model.ConnectionBuilder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.EventHandler;
+import publicizehub.club.model.LoginModel;
 
 /**
  *
@@ -31,6 +33,8 @@ public class SearchController {
     private DetailController dc = new DetailController();
     private SearchModel s = new SearchModel();
     private Alert alert = new Alert(AlertType.WARNING);
+    
+    private LoginModel profile;
     
     @FXML
     private Label label;
@@ -49,6 +53,16 @@ public class SearchController {
         checkEvType=-1;
     }
 
+    public LoginModel getProfile() {
+        return profile;
+    }
+
+    public void setProfile(LoginModel profile) {
+        this.profile = profile;
+    }
+
+    
+    
     public String getText() {
         return text;
     }
@@ -81,9 +95,20 @@ public class SearchController {
                 LOGGER.log(Level.SEVERE ," setSearch Bug !");
         }
     }
+
+    public JoinController getJc() {
+        return jc;
+    }
+
+    public void setJc(JoinController jc) {
+        this.jc = jc;
+    }
+    
+    
     
     @FXML
     public void addEventToPane(String eventName,int eventId) {
+        System.out.println(profile.getStdId());
         Pane p = new Pane();
         l= new Label(eventName);
         Button joinbtn = new Button("เข้าร่วม");
@@ -100,7 +125,8 @@ public class SearchController {
         joinbtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent evt) {
-                jc.toJoinEvent(eventId);
+                getJc().setStdId(getProfile().getStdId());
+                getJc().toJoinEvent(eventId);
             }
         });
         detailbtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -159,21 +185,26 @@ public class SearchController {
             
             if(result!=null){
                 if(result.next()==false){
-                    temp = "nullEventThatNoMeaning";
                     search.setText("");
                     alert.setTitle("Warning!");
                     alert.setHeaderText("ขออภัย");
                     alert.setContentText("ไม่มีกิจกรรมที่คุณค้นหา..");
                     alert.showAndWait();
                 } else {
-                    addEventToPane(result.getString("evName"),result.getInt("evId"));
-                    while(result.next()){
+                    LocalDate tempDate = result.getDate("evEndDate").toLocalDate();
+                        System.out.println(LocalDate.now().compareTo(tempDate));
+                    if(tempDate.compareTo(LocalDate.now())>-1){
                         addEventToPane(result.getString("evName"),result.getInt("evId"));
+                    }
+                    while(result.next()){
+                        tempDate = result.getDate("evEndDate").toLocalDate();
+                        if(tempDate.compareTo(LocalDate.now())>-1){
+                            addEventToPane(result.getString("evName"),result.getInt("evId"));
+                        }
                     }
                 }
             }
         } catch(SQLException e){
-            temp = "nullEventThatNoMeaning";
             LOGGER.log(Level.SEVERE ," setSearch Bug !");
         }
 
@@ -233,7 +264,8 @@ public class SearchController {
         stage.show();
     }
     
-    public void callSearch(int evType){
+    public void callSearch(int evType,LoginModel prof){
+        System.out.println(prof.getStdId());
         Stage stage= new Stage();
         Parent root=null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));     
@@ -245,6 +277,7 @@ public class SearchController {
         }
         SearchController controller = fxmlLoader.<SearchController>getController();
         controller.setCheckEvType(evType);
+        controller.setProfile(prof);
         controller.checkSearch();
         Scene scene = new Scene(root); 
         try{

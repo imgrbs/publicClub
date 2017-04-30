@@ -1,7 +1,10 @@
 package publicizehub.club.controller;
 
 import com.jfoenix.controls.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,16 +21,18 @@ import publicizehub.club.model.EventModel;
  *
  * @author JIL
  */
-public class EditEventController{
+public class EditEventController {
+
+    private static final Logger LOGGER = Logger.getLogger(EditEventController.class.getName());
     private EventModel ev = new EventModel();
     private LoginController lc = new LoginController();
-   
+
     private EventModel thisEvent;
-    
+
     private int resultType;
-    
-    private long stdId=lc.getStdId();
-    
+
+    private long stdId = lc.getStdId();
+
     private Stage thisStage;
 
     public Stage getThisStage() {
@@ -37,7 +42,7 @@ public class EditEventController{
     public void setThisStage(Stage thisStage) {
         this.thisStage = thisStage;
     }
-    
+
     public long getStdId() {
         return stdId;
     }
@@ -53,9 +58,7 @@ public class EditEventController{
     public void setThisEvent(EventModel thisEvent) {
         this.thisEvent = thisEvent;
     }
-    
-    
-    
+
     @FXML
     private JFXTextField eventName;
     @FXML
@@ -86,104 +89,106 @@ public class EditEventController{
     private JFXButton confirmBtn;
     @FXML
     private JFXButton cancelBtn;
-    
+
     @FXML
-    public void showValue(){
-        eventName.setText(thisEvent.getEvName());        
-        startDate.setValue(thisEvent.getEvDate());        
-        endDate.setValue(thisEvent.getEvEndDate());        
+    public void showValue() {
+        eventName.setText(thisEvent.getEvName());
+        startDate.setValue(thisEvent.getEvDate());
+        endDate.setValue(thisEvent.getEvEndDate());
         startTime.setValue(thisEvent.getEvTime());
         endTime.setValue(thisEvent.getEvEndTime());
         startRegis.setValue(thisEvent.getEvStartRegis());
-        ticket.setValue(""+thisEvent.getEvTicket());
+        ticket.setValue("" + thisEvent.getEvTicket());
         description.setText(thisEvent.getEvDescrip());
         place.setText(thisEvent.getEvPlace());
         setType(thisEvent.getEvType());
     }
-    
+
     @FXML
-    public void setType(int evType){
-        if(evType==0){
+    public void setType(int evType) {
+        if (evType == 0) {
             camp.setSelected(true);
-        }else if(evType==1){
+        } else if (evType == 1) {
             seminar.setSelected(true);
-        }else
+        } else {
             other.setSelected(true);
+        }
     }
-    
+
     @FXML
-    public void setAllValue(){
+    public void setAllValue() {
         showValue();
         evTypeResult();
     }
-    
+
     @FXML
-    public void evTypeResult(){
-        int evType=-1;
-        if(camp.isSelected()){
-            evType=0;
-        }else if(seminar.isSelected()){
-            evType=1;
-        }else if(other.isSelected()){
-            evType=2;
+    public void evTypeResult() {
+        int evType = -1;
+        if (camp.isSelected()) {
+            evType = 0;
+        } else if (seminar.isSelected()) {
+            evType = 1;
+        } else if (other.isSelected()) {
+            evType = 2;
         }
         thisEvent.setEvType(evType);
     }
-    
+
     @FXML
-    public int typeResult(){
-        int result=2;
-        
-        if(camp.isSelected()){
-            
-            result= 0;
-        }else if(seminar.isSelected()){
-            
-            result=1;
-        }else if(other.isSelected()){
-            
-            result=2;
+    public int typeResult() {
+        int result = 2;
+
+        if (camp.isSelected()) {
+
+            result = 0;
+        } else if (seminar.isSelected()) {
+
+            result = 1;
+        } else if (other.isSelected()) {
+
+            result = 2;
         }
-        
+
         return result;
     }
+
     @FXML
-    public void checkCustomize(){
-        if(ticket.getValue().equals("ระบุเอง")){
-            ticket.setEditable(true);   
+    public void checkCustomize() {
+        if (ticket.getValue().equals("ระบุเอง")) {
+            ticket.setEditable(true);
             ticket.setValue("");
-        }else {
+        } else {
             ticket.setEditable(false);
         }
-    } 
-    
-    @FXML
-    public void setValueToCombobox(){
-        ticket.getItems().addAll("5","10","15","20","25","30","35","40","45","50","75","100","ระบุเอง");
     }
-    
+
     @FXML
-    public void clickConfirm(){
+    public void setValueToCombobox() {
+        ticket.getItems().addAll("5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "75", "100", "ระบุเอง");
+    }
+
+    @FXML
+    public void clickConfirm() {
         Alert warning = null;
-        if(checkEditEvent()){
+        if (checkEditEvent()) {
             warning = new Alert(Alert.AlertType.CONFIRMATION);
             warning.setTitle("ยืนยันการแก้ไข");
             warning.setHeaderText("คุณยังไม่ได้แก้ไขกิจกรรม");
             warning.setContentText("ยืนยันที่จะไม่แก้ไขใช่หรือไม่");
             Optional<ButtonType> result = warning.showAndWait();
-            if(result.isPresent()){
-                if(result.get() == ButtonType.OK){
+            if (result.isPresent()) {
+                if (result.get() == ButtonType.OK) {
                     thisStage.close();
                 }
             }
-        }else{
+        } else {
             warning = new Alert(Alert.AlertType.CONFIRMATION);
             warning.setTitle("ยืนยันการแก้ไข");
             warning.setHeaderText("แก้ไขข้อมูลกิจกรรม");
             warning.setContentText("ยืนยันที่จะแก้ไขข้อมูลกิจกรรม");
             Optional<ButtonType> result = warning.showAndWait();
-            if(result.isPresent()){
-                if(result.get() == ButtonType.OK){
+            if (result.isPresent()) {
+                if (result.get() == ButtonType.OK) {
                     setValueToObj();
                     ev.updateEvent(thisEvent);
                     warning = new Alert(Alert.AlertType.INFORMATION);
@@ -195,80 +200,96 @@ public class EditEventController{
                 }
             }
         }
-//        resetEvent(this.thisEvent);
-        setAllValue();
-    } 
-    
+        resetEvent(thisEvent);
+    }
+
     @FXML
-    public void closeStage(){
+    public void closeStage() {
         getThisStage().close();
     }
-    
+
     @FXML
-    public void callEditEvent(EventModel event){
-        Stage stage= new Stage();
-        Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/EditEvent.fxml"));     
-        try{
-            root = (Parent)fxmlLoader.load(); 
-        }
-        catch(Exception e){
+    public void callEditEvent(EventModel event) {
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/EditEvent.fxml"));
+        try {
+            root = (Parent) fxmlLoader.load();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         EditEventController controller = fxmlLoader.<EditEventController>getController();
         controller.setThisStage(stage);
-        controller.setThisEvent(event);
-        controller.setValueToCombobox();
+        controller.setThisEvent(controller.resetEvent(event));
         controller.showValue();
-        Scene scene = new Scene(root); 
-        try{
-            stage.setScene(scene);    
-        }
-        catch(Exception e){
+        controller.setValueToCombobox();
+        Scene scene = new Scene(root);
+        try {
+            stage.setScene(scene);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         stage.show();
     }
 
-  
     public boolean checkEditEvent() {
         boolean checkEdit = false;
-        if (getThisEvent().getEvName().equals(eventName.getText()) && 
-               getThisEvent().getEvDate().equals(startDate.getValue()) && 
-               getThisEvent().getEvEndDate().equals(endDate.getValue()) &&
-               getThisEvent().getEvTime().equals(startTime.getValue()) &&
-               getThisEvent().getEvEndTime().equals(endTime.getValue()) &&
-               getThisEvent().getEvStartRegis().equals(startRegis.getValue()) &&
-               (getThisEvent().getEvTicket()+"").equals(""+ticket.getValue()) &&
-               getThisEvent().getEvType() == typeResult() &&
-               getThisEvent().getEvDescrip().equalsIgnoreCase(description.getText()) &&
-               getThisEvent().getEvPlace().equalsIgnoreCase(place.getText())){
-            checkEdit = true;
+        if (getThisEvent().getEvName().equals(eventName.getText())
+                && getThisEvent().getEvDate().equals(startDate.getValue())) {
+            if (getThisEvent().getEvEndDate().equals(endDate.getValue())
+                    && getThisEvent().getEvTime().equals(startTime.getValue())) {
+                if (getThisEvent().getEvEndTime().equals(endTime.getValue())
+                        && getThisEvent().getEvStartRegis().equals(startRegis.getValue())) {
+                    if ((getThisEvent().getEvTicket() + "").equals("" + ticket.getValue())
+                            && getThisEvent().getEvType() == typeResult()
+                            && getThisEvent().getEvDescrip().equalsIgnoreCase(description.getText())) {
+                        if (getThisEvent().getEvPlace().equalsIgnoreCase(place.getText())) {
+                            checkEdit = true;
+                        }
+                    }
+
+                }
+            }
         }
         return checkEdit;
     }
-    
-    public void setValueToObj(){
-        this.thisEvent = new EventModel(eventName.getText(),description.getText(),startDate.getValue(),
-                          endDate.getValue(),startRegis.getValue(),endDate.getValue().plusDays(15),
-                          place.getText(),Integer.parseInt(ticket.getValue()),startTime.getValue(),
-                          endTime.getValue(),typeResult(),this.thisEvent.getEvId());
+
+    public void setValueToObj() {
+        thisEvent = new EventModel(eventName.getText(), description.getText(), startDate.getValue(),
+                endDate.getValue(), startRegis.getValue(), endDate.getValue().plusDays(15),
+                place.getText(), Integer.parseInt(ticket.getValue()), startTime.getValue(),
+                endTime.getValue(), typeResult(), this.thisEvent.getEvId());
     }
-    
-    /*public void resetEvent(Event event){
-        ResultSet rs = ev.getSelect(thisEvent.getEvId());
+
+    public EventModel resetEvent(EventModel event){
+        ResultSet rs = ev.getSelect(event.getEvId());
         try{
             if(rs.next()){
-                event = new Event(rs.getString("evName"),
+                event = new EventModel(rs.getString("evName"),
                 rs.getString("evDescrip"),rs.getDate("evStartDate"),
                 rs.getDate("evEndDate"),rs.getDate("evStartRegis"),
                 rs.getDate("evEndFeedback"),rs.getString("evPlace"),
                 rs.getInt("evTicket"),rs.getTime("evTime"),
                 rs.getTime("evEndTime"),rs.getInt("evType"),rs.getInt("evId")
                 );
+                setNewValue(event);
             }
         }catch(SQLException e){
             e.printStackTrace();
         }
-    }*/
+        return event;
+    }
+    
+    public void setNewValue(EventModel event){
+        eventName.setText(event.getEvName());
+        startDate.setValue(event.getEvDate());
+        endDate.setValue(event.getEvEndDate());
+        startTime.setValue(event.getEvTime());
+        endTime.setValue(event.getEvEndTime());
+        startRegis.setValue(event.getEvStartRegis());
+        ticket.setValue("" + event.getEvTicket());
+        description.setText(event.getEvDescrip());
+        place.setText(event.getEvPlace());
+        setType(event.getEvType());
+    }
 }

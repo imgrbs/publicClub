@@ -1,5 +1,6 @@
 package publicizehub.club.controller;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.sql.ResultSet;
 import publicizehub.club.model.ConnectionBuilder;
+import publicizehub.club.model.LoginModel;
 
 /**
  *
@@ -20,14 +22,36 @@ import publicizehub.club.model.ConnectionBuilder;
 public class MainController {
     private ConnectionBuilder cb = new ConnectionBuilder();
     private LoginController li = new LoginController();
+    private ProfileController pc = new ProfileController();
     private ManageController mc = new ManageController();
     private SearchController sc = new SearchController();
     private JoinController jc = new JoinController();
     private DetailController dc = new DetailController();
     private NewsController nc = new NewsController();
     private ResultSet rs = null;
-
+    
+    private LoginModel profile;
+    
     private Stage thisStage;
+    private Scene thisScene;
+
+    public Scene getThisScene() {
+        return thisScene;
+    }
+
+    public void setThisScene(Scene thisScene) {
+        this.thisScene = thisScene;
+    }
+
+    public LoginModel getProfile() {
+        return profile;
+    }
+
+    public void setProfile(LoginModel profile) {
+        this.profile = profile;
+    }
+    
+    
     
     @FXML
     private Label stdId;
@@ -65,6 +89,7 @@ public class MainController {
     @FXML
     private ListView<String> newsList;
 
+        
     public LoginController getLi() {
         return li;
     }
@@ -75,6 +100,7 @@ public class MainController {
 
     public void setThisStage(Stage thisStage) {
         this.thisStage = thisStage;
+        //thisStage.setTitle("PublicizeHUB");   
     }
     
     public void setManageDisable(){
@@ -115,60 +141,26 @@ public class MainController {
     }
     
     @FXML
-    protected void callProfile() {
-        Stage stage = new Stage();
-        Parent root = null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Profile.fxml"));     
-        try{
-            root = (Parent)fxmlLoader.load(); 
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        ProfileController controller = fxmlLoader.<ProfileController>getController();
-        controller.setStdId(getLi().getStdId());
-        controller.setLabelDepartment(li.getDepartment());
-        controller.setLabelId(""+li.getStdId());
-        controller.setLabelName(li.getName()+" "+li.getSurname());
-        controller.getEventToProfile();
-        controller.setMainStage(thisStage);
-        controller.setThisStage(stage);
-        Scene scene = new Scene(root); 
-        try{
-            stage.setScene(scene);    
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        stage.show();
-        thisStage.close();
+    public void callProfile() {
+        pc.callProfile(thisStage,thisScene,getProfile());
     }
     
     @FXML
     protected void callSearchCamp() {
-        System.out.println("callSearchCamp");
-//        sc.setCheckEvType(0);
-//        try {
-//            sc.checkSearchEvType();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        sc.callSearch(0);
-        searchfield.setText("");
+        sc.callSearch(0,getProfile());
+        searchfield.clear();
     }
     
     @FXML
     protected void callSearchSeminar() {
-        System.out.println("callSearchSeminar");
-        sc.callSearch(1);
-        searchfield.setText("");
+        sc.callSearch(1,getProfile());
+        searchfield.clear();
     }
     
     @FXML
     protected void callSearchOther() {
-        System.out.println("callCampOther");
-        sc.callSearch(2);
-        searchfield.setText("");
+        sc.callSearch(2,getProfile());
+        searchfield.clear();
     }
 
 
@@ -224,8 +216,9 @@ public class MainController {
     
     @FXML
     public void callManage(){
-        mc.callManage(thisStage);
+        mc.callManage(thisStage,thisScene,getProfile());
     }
+    
     
     @FXML
     public void sentToSearch(){
@@ -234,4 +227,30 @@ public class MainController {
         sc.callSearch(text);
         searchfield.setText("");
     }
+  
+    
+    
+    public void callMain(Stage stage,Scene scene,LoginModel prof) throws Exception {
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/FeedGui.fxml")); 
+        Parent root = null;
+        try{
+            root = (Parent)loader.load();
+            scene.setRoot(root);
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        MainController controller = loader.<MainController>getController();
+        if(prof.getStatus()==0){
+            controller.manageBtn.setVisible(false);
+            controller.managePic.setVisible(false);
+        }
+        controller.setProfile(prof);
+        controller.getEvent();
+        controller.setUserData(controller.getProfile().getStdId(),controller.getProfile().getName());
+        controller.getNc().addNewsToList(controller.getNewsList());
+        controller.setThisStage(thisStage);
+        controller.setThisScene(scene); 
+    }
+   
 }

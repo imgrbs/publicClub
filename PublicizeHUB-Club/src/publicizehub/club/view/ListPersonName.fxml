@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.ListPersonController">
+   <children>
+      <Pane layoutX="34.0" layoutY="31.0" prefHeight="533.0" prefWidth="734.0" style="-fx-background-color: #fff;" styleClass="formBg">
+         <children>
+            <Label layoutX="42.0" layoutY="27.0" text="รายชื่อคนที่จองกิจกรรม">
+               <styleClass>
+                  <String fx:value="quark" />
+                  <String fx:value="formName" />
+               </styleClass>
+            </Label>
+            <ListView fx:id="listName" layoutX="42.0" layoutY="75.0" prefHeight="391.0" prefWidth="651.0" />
+            <Label fx:id="show_evName" alignment="CENTER_RIGHT" layoutX="433.0" layoutY="27.0" prefHeight="39.0" prefWidth="252.0" text="IT 3K ครั้งที่ 13" textFill="#d3631c">
+               <styleClass>
+                  <String fx:value="formName" />
+                  <String fx:value="quark" />
+               </styleClass>
+            </Label>
+            <Label layoutX="408.0" layoutY="472.0" prefHeight="30.0" prefWidth="161.0" text="จำนวนคนจองกิจกรรม :">
+               <styleClass>
+                  <String fx:value="quark" />
+                  <String fx:value="formEvName" />
+               </styleClass>
+            </Label>
+            <Label fx:id="numOfTicket" alignment="CENTER_RIGHT" layoutX="554.0" layoutY="472.0" prefHeight="30.0" prefWidth="134.0" text="99999/99999">
+               <styleClass>
+                  <String fx:value="quark" />
+                  <String fx:value="formEvName" />
+               </styleClass>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

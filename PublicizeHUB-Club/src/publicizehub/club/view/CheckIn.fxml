@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="body" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.CheckInController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.CheckInController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -23,9 +23,9 @@
                               <Pane prefHeight="118.0" prefWidth="122.0" BorderPane.alignment="CENTER" />
                            </left>
                            <bottom>
-                              <Label alignment="BOTTOM_LEFT" prefHeight="54.0" prefWidth="164.0" text="CHECK IN" textFill="#4d4d4d" BorderPane.alignment="CENTER">
+                              <Label alignment="BOTTOM_LEFT" prefHeight="81.0" prefWidth="268.0" text="ลงทะเบียน" textFill="#4d4d4d" BorderPane.alignment="CENTER">
                                  <font>
-                                    <Font name="Quark-Bold" size="41.0" />
+                                    <Font name="Quark-Bold" size="52.0" />
                                  </font>
                               </Label>
                            </bottom>
@@ -34,8 +34,8 @@
                   </FlowPane>
                   <Pane prefHeight="120.0" prefWidth="425.0">
                      <children>
-                        <TextField layoutX="9.0" layoutY="88.0" prefHeight="36.0" prefWidth="227.0" promptText="Event Code" />
-                        <Button layoutX="243.0" layoutY="81.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="79.0" styleClass="submitBtn" stylesheets="@../css/style.css" text="ยืนยัน">
+                        <TextField fx:id="insertCode" layoutX="24.0" layoutY="69.0" prefHeight="36.0" prefWidth="227.0" promptText="Event Code" />
+                        <Button fx:id="confirmInsert" layoutX="258.0" layoutY="62.0" mnemonicParsing="false" onAction="#clickConfirm" prefHeight="38.0" prefWidth="79.0" styleClass="submitBtn" stylesheets="@../css/style.css" text="ยืนยัน">
                            <font>
                               <Font name="Quark-Bold" size="17.0" />
                            </font>
@@ -43,12 +43,12 @@
                               <!--<Cursor fx:constant="HAND" />-->
                            </cursor>
                         </Button>
-                        <Label layoutX="9.0" layoutY="43.0" prefHeight="30.0" prefWidth="129.0" style="-fx-text-fill: #CD4D28;" text="Event Name : ">
+                        <Label layoutX="24.0" layoutY="20.0" prefHeight="30.0" prefWidth="129.0" style="-fx-text-fill: #CD4D28;" text="Event Name : ">
                            <font>
                               <Font name="Quark-Bold" size="22.0" />
                            </font>
                         </Label>
-                        <Label alignment="BOTTOM_CENTER" layoutX="128.0" layoutY="18.0" prefHeight="59.0" prefWidth="199.0" style="-fx-text-fill: #CD4D28;" text="Brown Bag 2.0">
+                        <Label fx:id="eventName" alignment="BOTTOM_CENTER" layoutX="143.0" prefHeight="59.0" prefWidth="199.0" style="-fx-text-fill: #CD4D28;" text="Brown Bag 2.0">
                            <font>
                               <Font name="Quark-Bold" size="29.0" />
                            </font>
@@ -61,7 +61,7 @@
          <center>
             <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <ListView prefHeight="401.0" prefWidth="670.0" styleClass="checkInBody" />
+                  <ListView fx:id="listName" prefHeight="401.0" prefWidth="670.0" styleClass="checkInBody" />
                </children>
             </FlowPane>
          </center>

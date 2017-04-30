@@ -1,32 +1,59 @@
 package publicizehub.club.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import publicizehub.club.model.ConnectionBuilder;
+import publicizehub.club.model.LoginModel;
 
 /**
  *
  * @author JIL
  */
+public class LoginController {
 
-//จำลองเอาเด้อ
-public class LoginController{
-   
-    private long stdId = 59130500007l;
-    private String name = "กีรติ";
-    private String surname = "เจียรจินดารัตน์";
-    private String department = "Information Technnology";
-    private int status = 0;
+    private static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
+
+    ConnectionBuilder cb = new ConnectionBuilder();
+
+    LoginModel lm = new LoginModel();
+
+    private long stdId;
+    private String name;
+    private String department;
+    private int status;
     private boolean checkLogin = true;
 
-    
+    private Stage thisStage;
+    private Scene thisScene;
+
+    @FXML
+    private TextField username;
+
+    @FXML
+    private PasswordField password;
+
+    @FXML
+    private Label warning;
+
+    @FXML
+    private Button signinBtn;
+
+    @FXML
+    private Button registerBtn;
+
     public LoginController() {
     }
-    
+
     public long getStdId() {
         return stdId;
     }
@@ -41,14 +68,6 @@ public class LoginController{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 
     public String getDepartment() {
@@ -71,17 +90,83 @@ public class LoginController{
         return checkLogin;
     }
 
+    public Scene getThisScene() {
+        return thisScene;
+    }
+
+    public void setThisScene(Scene thisScene) {
+        this.thisScene = thisScene;
+    }
+
+    public Stage getThisStage() {
+        return thisStage;
+    }
+
+    public void setThisStage(Stage thisStage) {
+        this.thisStage = thisStage;
+    }
+
+    public void callLogin() {
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/LoginGui.fxml"));
+        //stage.setTitle("Login");
+        try {
+            root = (Parent) fxmlLoader.load();
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "root : callLogin Failed");
+        }
+
+        LoginController controller = fxmlLoader.<LoginController>getController();
+        Scene scene = new Scene(root);
+        controller.setThisStage(stage);
+        controller.setThisScene(scene);
+        try {
+            stage.setScene(scene);
+        } catch (Exception e) {
+            System.out.println("Exception");
+        }
+        stage.show();
+    }
+
+    @FXML
+    public void getValue() {
+        String tempUn = this.username.getText();
+        String tempPw = this.password.getText();
+        if (tempUn != null && tempPw != null) {
+            if ((tempUn.length() > 5) || tempPw.length() > 5) {
+                this.username.clear();
+                this.password.clear();
+                try {
+                    LoginModel profile = lm.login(tempUn, tempPw, warning);
+                    if (profile != null) {
+                        callMain(profile);
+                    }
+                } catch (Exception e) {
+                    LOGGER.log(Level.SEVERE, "getValue : getValue Failed");
+                }
+            } else {
+                warning.setText("กรุณากรอก Username และ Password ให้ถูกต้อง");
+            }
+        } else {
+            warning.setText("กรุณากรอก Username และ Password");
+        }
+    }
+
     
     @FXML
-    private TextField username;
-
-    @FXML
-    private PasswordField password;
-
-    @FXML
-    private Button signinBtn;
-
-    @FXML
-    private Button registerBtn;
+    public void callMain(LoginModel prof) {
+        this.name = prof.getName();
+        this.department = prof.getDepartment();
+        this.status = prof.getStatus();
+        this.stdId = prof.getStdId();
+        MainController mc = new MainController();
+        mc.setProfile(prof);
+        try {
+            mc.callMain(thisStage, thisScene, prof);
+        } catch (Exception ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }

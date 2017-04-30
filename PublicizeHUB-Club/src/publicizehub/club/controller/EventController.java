@@ -11,9 +11,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.EventModel;
 import publicizehub.club.model.FeedbackModel;
+import publicizehub.club.model.LoginModel;
 import publicizehub.club.view.CheckIn;
 
 /**
@@ -35,7 +37,16 @@ public class EventController {
     private EventModel ev = new EventModel();
     private FeedbackModel fbm = new FeedbackModel();
 
+    private Stage thisStage;
 
+    public JoinController getJc() {
+        return jc;
+    }
+
+    public void setJc(JoinController jc) {
+        this.jc = jc;
+    }
+    
     public void setEventType(int evType) {
         this.evType = evType;
     }
@@ -52,8 +63,12 @@ public class EventController {
         this.stdId = stdId;
     }
     
-    
-    public void addEventToPresentPane(EventModel event,VBox listEventBox,boolean evaluation,boolean checkTypeGui) {
+     public void setThisStage(Stage thisStage) {
+        this.thisStage = thisStage;
+        thisStage.setTitle("PublicizeHUB");   
+    }
+    public void addEventToPresentPane(LoginModel profile,EventModel event,VBox listEventBox,boolean evaluation,boolean checkTypeGui) {
+        getJc().setStdId(profile.getStdId());
         String presentText = "ตรวจสอบโค้ด";
         String presentDetail = "รายละเอียด";
         String evaluaText = "ประเมิณกิจกรรม";
@@ -79,7 +94,7 @@ public class EventController {
                 joinbtn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent evt) {
-                        jc.toJoinEvent(event.getEvId()); 
+                        getJc().toJoinEvent(event.getEvId()); 
                     }
                 });
                 detailbtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -98,7 +113,7 @@ public class EventController {
                 detailbtn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent evt) {
-                        ci.callCheckIn(event.getEvId());
+                        ci.callCheckIn(event);
                     }
                 });
             }

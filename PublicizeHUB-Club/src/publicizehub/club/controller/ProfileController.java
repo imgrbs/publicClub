@@ -1,17 +1,24 @@
 package publicizehub.club.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import static java.lang.Long.parseLong;
+
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.EventModel;
+import publicizehub.club.model.LoginModel;
 
 /**
  * FXML Controller class
@@ -19,7 +26,11 @@ import publicizehub.club.model.EventModel;
  * @author JIL
  */
 public class ProfileController {
-    EventModel ev = new EventModel();
+    
+    private static final Logger LOGGER = Logger.getLogger( FormSumActivityController.class.getName() );
+    private EventModel ev = new EventModel();
+    private LoginModel profile;
+    
     ConnectionBuilder cb = new ConnectionBuilder();
     
     JoinController jc = new JoinController();
@@ -29,7 +40,9 @@ public class ProfileController {
     private long stdId;
     
     private Stage mainStage;
-    private Stage thisStage;
+    private Scene mainScene;
+    private Parent tempRoot;
+    
     
     @FXML
     private Label labelId;
@@ -47,7 +60,23 @@ public class ProfileController {
     
     @FXML
     private Button backBtn;
+
+    public Parent getTempRoot() {
+        return tempRoot;
+    }
+
+    public void setTempRoot(Parent tempRoot) {
+        this.tempRoot = tempRoot;
+    }
     
+    public Scene getMainScene() {
+        return mainScene;
+    }
+
+    public void setMainScene(Scene mainScene) {
+        this.mainScene = mainScene;
+    }
+
     
     public void setLabelId(String labelId) {
         this.labelId.setText(labelId);
@@ -66,15 +95,7 @@ public class ProfileController {
     }
 
     public void setMainStage(Stage mainStage) {
-        this.mainStage = mainStage;
-    }
-
-    public Stage getThisStage() {
-        return thisStage;
-    }
-
-    public void setThisStage(Stage thisStage) {
-        this.thisStage = thisStage;
+        this.mainStage = mainStage; 
     }
 
     public long getStdId() {
@@ -84,23 +105,31 @@ public class ProfileController {
     public void setStdId(long stdId) {
         this.stdId = stdId;
     }
+
+    public LoginModel getProfile() {
+        return profile;
+    }
+
+    public void setProfile(LoginModel profile) {
+        this.profile = profile;
+    }
+    
+    
     
     @FXML
     public void getEventToProfile(){
-        System.out.println("Befor Get Event");
-        ResultSet rs = ev.getSelect(parseLong(this.labelId.getText()));
+        ResultSet rs = ev.getSelect(getProfile().getStdId());
         cb.logout();
-        System.out.println("After Get Event");
+        setStdId(getProfile().getStdId());
         try{
             if(rs.next()){
-                System.out.println("Event Come");
                 setEventToGui(rs.getInt("evId"));
                 while(rs.next()){
                     setEventToGui(rs.getInt("evId"));
                 }
             }
         }catch(SQLException e){
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE ,"SQLException : getEventToProfile Bug !");
         }
         cb.logout();
     }
@@ -108,6 +137,7 @@ public class ProfileController {
     public void setEventToGui(int eventId){
         ResultSet findStd = ev.getSelect(eventId);
         EventModel event = null;
+        LocalDate ld = null;
         try{
             if(findStd.next()){
                 event = new EventModel(findStd.getString("evName"),
@@ -118,27 +148,51 @@ public class ProfileController {
                 findStd.getTime("evTime"),findStd.getTime("evEndTime"),
                 findStd.getInt("evType"),findStd.getInt("evId")
                 );
+                ld = event.getEvEndDate();
+                
+                
+                if(ld.compareTo(LocalDate.now())>-1){
+                    ec.addEventToPresentPane(getProfile(),event,this.listEventBox1,true,true); 
+                }
+                else {   
+                    ec.addEventToPresentPane(getProfile(),event,this.listEventBox2,false,true);
+                }
             }
         }catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"SQLException : setEventToGui Bug !");
+        }
+        
+    }
+    
+    public void callMain(){
+        mainScene.setRoot(tempRoot);
+    }
+    
+    @FXML
+    public void callProfile(Stage mainStage,Scene mainScene,LoginModel prof){
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/Profile.fxml")); 
+
+        Parent root = null;
+        try{
+            root = (Parent)loader.load();
+        }
+        catch(IOException e){
             e.printStackTrace();
         }
-        ec.setStdId(getStdId());
-        LocalDate ld = LocalDate.parse(""+event.getEvEndDate());
-        if(ld.compareTo(LocalDate.now())>-1){ 
-            ec.addEventToPresentPane(event,this.listEventBox1,true,true); 
-        }
-        else {
-            ec.addEventToPresentPane(event,this.listEventBox2,false,true);
-        }
+        ProfileController controller = loader.<ProfileController>getController();
+        /* SET root to scene ! */
+        controller.setMainStage(mainStage);
+        controller.setMainScene(mainScene);
+        controller.setTempRoot(mainScene.getRoot());
+        controller.setProfile(prof);
+        controller.setStdId(prof.getStdId());
+//        controller
+        controller.getEventToProfile();
+        controller.setLabelId(prof.getStdId()+"");
+        controller.setLabelName(prof.getName());
+        controller.setLabelDepartment(prof.getDepartment());
+        
+        mainScene.setRoot(root);
     }
-    
-    /* Method สำหรับ เปลี่ยน Stage */
-    public void callMain(){
-        System.out.println("callMain() WORK");
-        mainStage.show(); // แสดง Stage หลัก ( Main )
-        thisStage.close(); // ปิด Stage ปัจจุบัน ( Profile )
-    }
-    
-
     
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -20,7 +21,7 @@
          <center>
             <Pane prefHeight="600.0" prefWidth="409.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="84.0" layoutY="186.0" prefHeight="54.0" prefWidth="272.0" text="KMUTT Publicize Hub" textFill="#eb5d35">
+                  <Label layoutX="84.0" layoutY="186.0" prefHeight="54.0" prefWidth="272.0" styleClass="quark" text="KMUTT Publicize Hub" textFill="#eb5d35">
                      <font>
                         <Font name="Quark-Bold" size="29.0" />
                      </font>
@@ -30,27 +31,35 @@
                         <Image url="@../css/images/logo.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="username" layoutX="53.0" layoutY="283.0" prefHeight="31.0" prefWidth="240.0" promptText="Username" styleClass="usernamefield" />
-                  <PasswordField fx:id="password" layoutX="54.0" layoutY="327.0" prefHeight="31.0" prefWidth="239.0" promptText="Password" styleClass="passwordfield" />
-                  <Button fx:id="signinBtn" layoutX="54.0" layoutY="379.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="101.0" styleClass="loginBth" text="SIGN IN">
-                     <font>
-                        <Font name="ThaiSans Neue Bold" size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="registerBtn" layoutX="174.0" layoutY="377.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="102.0" styleClass="registerBtn" text="REGISTER">
-                     <font>
-                        <Font name="ThaiSans Neue Bold" size="20.0" />
-                     </font>
-                  </Button>
                   <Label layoutX="82.0" layoutY="221.0" prefHeight="26.0" prefWidth="277.0" text="Sign in with KMUTT Account">
                      <font>
                         <Font name="ThaiSans Neue Bold" size="27.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="quark" />
+                        <String fx:value="font-signin" />
+                     </styleClass>
                   </Label>
                </children>
             </Pane>
          </center>
       </BorderPane>
-      <Pane mouseTransparent="true" pickOnBounds="false" prefHeight="600.0" prefWidth="800.0" styleClass="cover" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane pickOnBounds="false" prefHeight="600.0" prefWidth="800.0" styleClass="cover" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="warning" layoutX="456.0" layoutY="354.0" prefHeight="36.0" prefWidth="303.0">
+               <styleClass>
+                  <String fx:value="quark" />
+                  <String fx:value="font-error" />
+               </styleClass>
+            </Label>
+            <Button fx:id="signinBtn" layoutX="456.0" layoutY="384.0" mnemonicParsing="false" onAction="#getValue" prefHeight="40.0" prefWidth="101.0" styleClass="loginBth" text="SIGN IN">
+               <font>
+                  <Font name="ThaiSans Neue Bold" size="20.0" />
+               </font>
+            </Button>
+            <TextField fx:id="username" layoutX="456.0" layoutY="276.0" onAction="#getValue" prefHeight="31.0" prefWidth="240.0" promptText="Username" styleClass="usernamefield" />
+            <PasswordField fx:id="password" layoutX="456.0" layoutY="319.0" onAction="#getValue" prefHeight="31.0" prefWidth="239.0" promptText="Password" styleClass="passwordfield" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

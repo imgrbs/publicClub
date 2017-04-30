@@ -68,6 +68,8 @@ public class ShowCodeController {
         if(result.isPresent()){
             if (result.get() == ButtonType.OK){
                 j.deleteCode(codeText.getText(),getEventId());
+                int tempMember = j.getCurrentMember(getEventId())-1;
+                j.updateCurrentMember(getEventId(), tempMember);
                 success.setHeaderText("ยกเลิกการจอง");
                 success.setContentText("ยกเลิกการจอง สำเร็จแล้ว");
                 success.showAndWait();

@@ -5,8 +5,11 @@ package publicizehub.club.controller;
  * @author ImagineRabbits
  */
 import com.jfoenix.controls.JFXButton;
+import static com.sun.media.jfxmediaimpl.MediaUtils.warning;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -416,9 +420,7 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
         controller.confirmBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent evt) {
-                System.out.println("CLICK!");
                 controller.clickConfirm();
-                
                 /*เช็คว่าค่าของปุ่มทุกข้อมีค่าตามที่กดจริง หากลืมหรือไม่กดปุ่มที่ข้อไหนค่าก็จะเท่ากับ -1 ตามที่กำหนดไว้ตอนแรก
                 แต่หากกดครบทุกปุ่มก็หมายความว่า ประเมินสำเร็จแล้ว"*/
                 if (controller.valueRadio[0] != -1 && controller.valueRadio[1] != -1
@@ -426,23 +428,32 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
                         || controller.valueRadio[4] != -1 && controller.valueRadio[5] != -1
                         || controller.valueRadio[6] != -1 && controller.valueRadio[7] != -1
                         || controller.valueRadio[8] != -1 && controller.valueRadio[9] != -1) {
-                    controller.sentValue();
-                    System.out.println("SENT COMPLETE");
-                    fbm.insertToLog(event.getEvId(), stdId);
-                    Alert warning = new Alert(Alert.AlertType.INFORMATION);
-                    warning.setTitle("Success !");
-                    warning.setHeaderText("ประเมิณสำเร็จ");
-                    warning.setContentText("ขอบคุณครับ");
-                    warning.showAndWait();
-                    stage.close();
+                    Alert al =  new Alert(Alert.AlertType.CONFIRMATION);
+                    al.setHeaderText("ยืนยันการประเมิน");
+                    al.setContentText("ยืนยันคะแนนถูกต้องครบถ้วน");
+
+                    Optional<ButtonType> result = al.showAndWait();
+                    if(result.isPresent()){
+                        if(result.get() == ButtonType.OK){
+                            controller.sentValue();
+                            System.out.println("SENT COMPLETE");
+                            fbm.insertToLog(event.getEvId(), stdId);
+                            Alert warning = new Alert(Alert.AlertType.INFORMATION);
+                            warning.setTitle("Success !");
+                            warning.setHeaderText("ประเมินสำเร็จ");
+                            warning.setContentText("ขอบคุณครับ");
+                            warning.showAndWait();
+                            stage.close();
+                        }
+                    }
                     
-                    /*หากกดปุ่มไม่ครบ 10 ข้อ ก็จะมีหน้าต่างแจ้ง Error และบอกให้กรอกคะแนนให้ครบทุกข้อ*/
                 }else {
                     Alert warning = new Alert(Alert.AlertType.WARNING);
                     warning.setTitle("Error !");
                     warning.setHeaderText("กรุณาให้คะแนนให้ครบทุกข้อ");
                     warning.setContentText("ขออภัย, คุณให้คะแนนไม่ครบทุกข้อ");
                     warning.showAndWait();
+                    /*หากกดปุ่มไม่ครบ 10 ข้อ ก็จะมีหน้าต่างแจ้ง Error และบอกให้กรอกคะแนนให้ครบทุกข้อ*/
                 }
             }
         });
