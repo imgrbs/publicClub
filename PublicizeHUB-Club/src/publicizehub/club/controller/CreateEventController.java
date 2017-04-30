@@ -4,6 +4,7 @@ package publicizehub.club.controller;
 import com.jfoenix.controls.*;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -142,7 +143,7 @@ public class CreateEventController implements Initializable {
             warning.setTitle("Error!");
             warning.setHeaderText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
             warning.showAndWait();            
-        }else{
+        }else if(validateDate()){
             warning = new Alert(Alert.AlertType.CONFIRMATION);
             warning.setTitle("Information!");
             warning.setHeaderText("ยืนยันที่จะสร้างกิจกรรม");
@@ -255,5 +256,30 @@ public class CreateEventController implements Initializable {
         seminar.setSelected(false);
         other.setSelected(false);
         ticket.setValue(cusText);
+    }
+    
+    public boolean validateDate(){
+        boolean check = false;
+        Alert warning = new Alert(Alert.AlertType.ERROR);
+        LocalDate dateRegis = startRegis.getValue();
+        LocalDate dateStart = startDate.getValue();
+        LocalDate dateEnd = endDate.getValue();
+        if(dateRegis!=null && dateStart != null && dateEnd !=null){
+            System.out.println(dateStart.compareTo(dateEnd));
+            if(dateRegis.compareTo(dateStart)>=0 || 
+               dateRegis.compareTo(LocalDate.now())<0 ||
+               dateRegis.compareTo(dateEnd)>=0){
+                warning.setHeaderText("Error !");
+                warning.setContentText("กรุณาใส่วันสมัครให้น้อยกว่าหรือเท่ากับวันเริ่มกิจกรรม , มากกว่าหรือเท่ากับวันปัจจุบัน และน้อยกว่าวันจบกิจกรรม");
+                warning.showAndWait();
+            }else if(dateStart.compareTo(dateEnd)>0){
+                warning.setHeaderText("Error !");
+                warning.setContentText("กรุณาใส่วันเริ่มกิจกรรม ให้น้อยกว่าหรือเท่ากับ วันจบกิจกรรม");
+                warning.showAndWait();
+            } else {
+                check = true;
+            }
+        }
+        return check;
     }
 }
