@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bodyManager" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.ProfileController">
+<AnchorPane id="bodyManager" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.ProfileController">
    <children>
       <FlowPane alignment="CENTER" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -28,7 +28,7 @@
                            <children>
                               <JFXTabPane layoutY="229.0" prefHeight="298.0" prefWidth="672.0" style="jfx-tab-pane-color: #fff;" styleClass="quark">
                                  <tabs>
-                                    <Tab fx:id="presentTab" style="-fx-background-color: #E7560C;" text="กิจกรรมที่ยังไม่จบ">
+                                    <Tab fx:id="presentTab" style="-fx-background-color: #E7560C;" styleClass="handCursor" text="กิจกรรมที่ยังไม่จบ">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="728.0">
                                              <children>
@@ -45,7 +45,7 @@
                                           </AnchorPane>
                                        </content>
                                     </Tab>
-                                    <Tab fx:id="pastTab" style="-fx-background-color: #E7560C;" text="กิจกรรมที่จบแล้ว">
+                                    <Tab fx:id="pastTab" style="-fx-background-color: #E7560C;" styleClass="handCursor" text="กิจกรรมที่จบแล้ว">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.LoginController">
    <children>
       <BorderPane layoutX="107.0" layoutY="81.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -52,7 +52,7 @@
                   <String fx:value="font-error" />
                </styleClass>
             </Label>
-            <Button fx:id="signinBtn" layoutX="456.0" layoutY="384.0" mnemonicParsing="false" onAction="#getValue" prefHeight="40.0" prefWidth="101.0" styleClass="loginBth" text="SIGN IN">
+            <Button fx:id="signinBtn" layoutX="456.0" layoutY="384.0" mnemonicParsing="false" onAction="#getValue" prefHeight="31.0" prefWidth="103.0" styleClass="loginBtn" text="SIGN IN">
                <font>
                   <Font name="ThaiSans Neue Bold" size="20.0" />
                </font>

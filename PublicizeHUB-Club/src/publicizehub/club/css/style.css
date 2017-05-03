@@ -72,6 +72,7 @@
     -fx-background-size: 20%;
     -fx-background-position: left;
     -fx-background-repeat: no-repeat;
+    -fx-cursor: hand;
 }
 .menubtn:hover{
     -fx-background-color: #e4e4e4;
@@ -171,14 +172,20 @@
     -fx-background-size: 170%;
     -fx-background-repeat: no-repeat;
 }
-.loginBth{
+.loginBtn{
     -fx-background-color: #F10674;
     -fx-text-fill: #ffffff;
     -fx-background-radius: 7;
+    -fx-cursor: hand;
+    
 }
-.loginBth:hover{
+.loginBtn:hover{
     -fx-background-color: #FD268B;
 }
+.handCursor{
+    -fx-cursor: hand;
+}
+
 .registerBtn{
     -fx-background-color: #ffffff;
     -fx-background-radius: 7;
@@ -404,6 +411,7 @@
     -fx-background-radius: 10px 10px 0 0;
     -fx-text-fill: #fff;
     -fx-font-size: 15px;
+    -fx-cursor: hand;
 }
 
 .addEventManage{
@@ -411,6 +419,7 @@
     -fx-background-radius: 10px 10px 0 0;
     -fx-text-fill: #fff;
     -fx-font-size: 15px;
+    -fx-cursor: hand;
 }
 
 .adminTag{
