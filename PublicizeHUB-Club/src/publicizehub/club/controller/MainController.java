@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.sql.ResultSet;
+import java.util.Optional;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.LoginModel;
 
@@ -28,6 +29,7 @@ public class MainController {
     private JoinController jc = new JoinController();
     private DetailController dc = new DetailController();
     private NewsController nc = new NewsController();
+    private FirstNewsController fc = new FirstNewsController();
     private ResultSet rs = null;
     
     private LoginModel profile;
@@ -88,7 +90,9 @@ public class MainController {
     
     @FXML
     private ListView<String> newsList;
-
+    
+    @FXML
+    private Button logoutBtn;
         
     public LoginController getLi() {
         return li;
@@ -249,8 +253,25 @@ public class MainController {
         controller.getEvent();
         controller.setUserData(controller.getProfile().getStdId(),controller.getProfile().getName());
         controller.getNc().addNewsToList(controller.getNewsList());
-        controller.setThisStage(thisStage);
+        controller.setThisStage(stage);
         controller.setThisScene(scene); 
+    }
+    
+    @FXML
+    public void logout(){
+        Alert warning = null;
+        warning = new Alert(Alert.AlertType.CONFIRMATION);
+        warning.setTitle("Information!");
+        warning.setHeaderText("ยืนยันที่จะสร้างกิจกรรม"); 
+        warning.setContentText("ข้อมูลถูกต้องครบถ้วนแล้ว ยืนยันที่จะสร้าง?");
+        Optional<ButtonType> result = warning.showAndWait();
+        if(result.isPresent()){
+            if(result.get() == ButtonType.OK){
+                this.profile = null;
+                fc.callFirstNews();
+                getThisStage().close();
+            }
+        }
     }
    
 }

@@ -68,7 +68,7 @@ public class FirstNewsController implements Initializable {
     public void callFirstNews() {
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/LoginGui.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/News.fxml"));
         //stage.setTitle("Login");
         try {
             root = (Parent) fxmlLoader.load();
@@ -81,7 +81,7 @@ public class FirstNewsController implements Initializable {
         Scene scene = new Scene(root);
         controller.setThisStage(stage);
         controller.setThisScene(scene);
-        controller.addNewsToList(listNews);
+        controller.addNewsToList(controller.listNews);
         
         try {
             stage.setScene(scene);
@@ -92,7 +92,7 @@ public class FirstNewsController implements Initializable {
     }
     
     public void callLogin(){
-        li.callLogin();
+        li.callLogin(thisStage,thisScene);
     }
     //@FXML
     public void addNewsToList(ListView<String> list){

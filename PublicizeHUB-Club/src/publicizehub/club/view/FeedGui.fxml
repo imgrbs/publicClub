@@ -74,7 +74,7 @@
                         <String fx:value="font-menu" />
                      </styleClass>
                   </Button>
-                  <Button layoutX="72.0" layoutY="287.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Log out" textFill="#f2f2f2">
+                  <Button fx:id="logoutBtn" layoutX="72.0" layoutY="287.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="56.0" text="Log out" textFill="#f2f2f2">
                      <styleClass>
                         <String fx:value="managebtn" />
                         <String fx:value="logoutbtn" />

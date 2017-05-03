@@ -39,7 +39,7 @@ public class News extends Application {
         FirstNewsController controller = fxmlLoader.<FirstNewsController>getController();
         Scene scene = new Scene(root);
         controller.setThisScene(scene);
-        
+        controller.setThisStage(stage);
         
         stage.setScene(scene);
         stage.show();
