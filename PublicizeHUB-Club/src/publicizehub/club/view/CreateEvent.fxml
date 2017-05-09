@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
@@ -9,7 +10,6 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -52,7 +52,7 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="30.0" layoutY="316.0" text="เวลาเริ่มกิจกรรม :">
+                        <Label layoutX="31.0" layoutY="316.0" text="เวลาเริ่มกิจกรรม :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
@@ -77,21 +77,14 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <ComboBox id="ticket" fx:id="ticket" layoutX="436.0" layoutY="375.0" onHidden="#checkCustomize" prefHeight="27.0" prefWidth="173.0" promptText="เลือกจำนวนบัตร" visibleRowCount="12">
-                           <styleClass>
-                              <String fx:value="white" />
-                              <String fx:value="dropshadow" />
-                              <String fx:value="quark" />
-                           </styleClass>
-                        </ComboBox>
-                        <Label layoutX="343.0" layoutY="201.0" text="ประเภทกิจกรรม :">
+                        <Label layoutX="341.0" layoutY="201.0" text="ประเภทกิจกรรม :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
 
-                        <JFXTimePicker fx:id="startTime" defaultColor="#dd721a" layoutX="151.0" layoutY="309.0" prefHeight="38.0" prefWidth="171.0">
+                        <JFXTimePicker fx:id="startTime" defaultColor="#dd721a" layoutX="151.0" layoutY="309.0" prefHeight="38.0" prefWidth="170.0">
 
                         <!--<JFXTimePicker fx:id="startTime" defaultColor="#dd721a" layoutX="206.0" layoutY="242.0" prefHeight="28.0" prefWidth="173.0">-->
 
@@ -104,7 +97,7 @@
                            </styleClass>
                         </JFXTimePicker>
 
-                        <JFXTimePicker fx:id="endTime" defaultColor="#dd721a" layoutX="460.0" layoutY="309.0" prefHeight="38.0" prefWidth="173.0">
+                        <JFXTimePicker fx:id="endTime" defaultColor="#dd721a" layoutX="460.0" layoutY="309.0" prefHeight="38.0" prefWidth="171.0">
 
                         
 
@@ -117,7 +110,7 @@
                            </styleClass>
                         </JFXTimePicker>
 
-                        <JFXDatePicker fx:id="startDate" defaultColor="#dd721a" editable="false" layoutX="151.0" layoutY="253.0" prefHeight="28.0" prefWidth="173.0">
+                        <JFXDatePicker fx:id="startDate" defaultColor="#dd721a" editable="false" layoutX="151.0" layoutY="253.0" prefHeight="40.0" prefWidth="173.0">
 
                         
 
@@ -130,7 +123,7 @@
                            </styleClass>
                         </JFXDatePicker>
 
-                        <JFXDatePicker fx:id="endDate" defaultColor="#dd721a" editable="false" layoutX="461.0" layoutY="253.0" prefHeight="28.0" prefWidth="173.0">
+                        <JFXDatePicker fx:id="endDate" defaultColor="#dd721a" editable="false" layoutX="460.0" layoutY="253.0" prefHeight="28.0" prefWidth="174.0">
 
                         <!--<JFXDatePicker fx:id="endDate" defaultColor="#dd721a" editable="false" layoutX="510.0" layoutY="190.0" prefHeight="28.0" prefWidth="173.0">-->
 
@@ -162,7 +155,7 @@
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXTextArea>
-                        <JFXTextField fx:id="place" focusColor="#dd721a" layoutX="89.0" layoutY="362.0" prefHeight="38.0" prefWidth="186.0">
+                        <JFXTextField fx:id="place" focusColor="#dd721a" layoutX="90.0" layoutY="362.0" prefHeight="38.0" prefWidth="183.0">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
@@ -192,20 +185,21 @@
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXRadioButton>
-                        <Label layoutX="33.0" layoutY="208.0" text="วันเปิดรับสมัคร :">
+                        <Label layoutX="31.0" layoutY="208.0" text="วันเปิดรับสมัคร :">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
 
-                        <JFXDatePicker fx:id="startRegis" defaultColor="#dd721a" editable="false" layoutX="152.0" layoutY="195.0" prefHeight="40.0" prefWidth="173.0">
+                        <JFXDatePicker fx:id="startRegis" defaultColor="#dd721a" editable="false" layoutX="151.0" layoutY="195.0" prefHeight="40.0" prefWidth="173.0">
 
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
                            </styleClass></JFXDatePicker>
                         <Label fx:id="warnNum" layoutX="561.0" layoutY="287.0" prefHeight="21.0" prefWidth="83.0" styleClass="quark" textFill="#ff0909" />
+                        <JFXComboBox fx:id="ticket" focusColor="#dd721a" layoutX="430.0" layoutY="375.0" onHidden="#checkCustomize" prefHeight="25.0" prefWidth="153.0" />
                      </children>
                   </Pane>
                </center>

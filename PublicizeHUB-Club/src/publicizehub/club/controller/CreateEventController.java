@@ -56,7 +56,7 @@ public class CreateEventController implements Initializable {
     @FXML
     private JFXDatePicker startRegis;
     @FXML
-    private ComboBox<String> ticket;
+    private JFXComboBox<String> ticket;
     @FXML
     private ToggleGroup type;
 
