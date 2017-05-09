@@ -38,7 +38,10 @@
     -fx-background-repeat: no-repeat;
 }
 .font-menu{
-    -fx-font-size: 20px;
+    -fx-font-size: 19px;
+}
+.font-listEv{
+    -fx-font-size: 18px;
 }
 .rec-name{
     -fx-font-size: 25px;
