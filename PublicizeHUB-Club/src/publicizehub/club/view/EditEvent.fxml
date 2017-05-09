@@ -164,7 +164,7 @@
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
                            </styleClass></JFXDatePicker>
-                        <JFXComboBox fx:id="ticket" focusColor="#dd721a" layoutX="428.0" layoutY="286.0" onHidden="#checkCustomize" prefHeight="30.0" prefWidth="177.0">
+                        <JFXComboBox fx:id="ticket" editable="true" focusColor="#dd721a" layoutX="428.0" layoutY="286.0" onHidden="#checkCustomize" prefHeight="30.0" prefWidth="177.0">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="handCursor" />

@@ -102,6 +102,7 @@ public class EditEventController {
         description.setText(thisEvent.getEvDescrip());
         place.setText(thisEvent.getEvPlace());
         setType(thisEvent.getEvType()); 
+        //ticket.setEditable(false);
     }
 
     @FXML
@@ -165,6 +166,7 @@ public class EditEventController {
     @FXML
     public void setValueToCombobox() {
         ticket.getItems().addAll("5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "75", "100", "ระบุเอง");
+        ticket.setEditable(true);
     }
 
     @FXML
@@ -221,8 +223,9 @@ public class EditEventController {
         EditEventController controller = fxmlLoader.<EditEventController>getController();
         controller.setThisStage(stage);
         controller.setThisEvent(controller.resetEvent(event));
-        controller.showValue();
         controller.setValueToCombobox();
+        controller.showValue();
+        
         Scene scene = new Scene(root);
         try {
             stage.setScene(scene);
