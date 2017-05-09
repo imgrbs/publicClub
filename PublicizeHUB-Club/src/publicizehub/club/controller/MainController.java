@@ -262,8 +262,8 @@ public class MainController {
         Alert warning = null;
         warning = new Alert(Alert.AlertType.CONFIRMATION);
         warning.setTitle("Information!");
-        warning.setHeaderText("ยืนยันที่จะสร้างกิจกรรม"); 
-        warning.setContentText("ข้อมูลถูกต้องครบถ้วนแล้ว ยืนยันที่จะสร้าง?");
+        warning.setHeaderText("ยืนยันที่จะออกจากระบบ"); 
+        warning.setContentText("คุณแน่ใจที่จะออกจากระบบ ใช่หรือไม่?");
         Optional<ButtonType> result = warning.showAndWait();
         if(result.isPresent()){
             if(result.get() == ButtonType.OK){
