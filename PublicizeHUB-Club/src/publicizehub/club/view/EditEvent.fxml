@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
@@ -8,7 +9,6 @@
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import java.lang.String?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -72,13 +72,6 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <ComboBox id="ticket" fx:id="ticket" layoutX="451.0" layoutY="284.0" onHiding="#checkCustomize" prefHeight="27.0" prefWidth="173.0" promptText="เลือกจำนวนบัตร" visibleRowCount="12">
-                           <styleClass>
-                              <String fx:value="white" />
-                              <String fx:value="dropshadow" />
-                              <String fx:value="quark" />
-                           </styleClass>
-                        </ComboBox>
                         <Label layoutX="40.0" layoutY="391.0" text="ประเภทกิจกรรม :">
                            <styleClass>
                               <String fx:value="quark" />
@@ -171,6 +164,12 @@
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
                            </styleClass></JFXDatePicker>
+                        <JFXComboBox fx:id="ticket" focusColor="#dd721a" layoutX="428.0" layoutY="286.0" onHidden="#checkCustomize" prefHeight="30.0" prefWidth="177.0">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="handCursor" />
+                           </styleClass>
+                        </JFXComboBox>
                      </children>
                   </Pane>
                </center>

@@ -72,7 +72,7 @@ public class EditEventController {
     @FXML
     private JFXDatePicker startRegis;
     @FXML
-    private ComboBox<String> ticket;
+    private JFXComboBox<String> ticket;
     @FXML
     private ToggleGroup type;
     @FXML
@@ -101,7 +101,7 @@ public class EditEventController {
         ticket.setValue("" + thisEvent.getEvTicket());
         description.setText(thisEvent.getEvDescrip());
         place.setText(thisEvent.getEvPlace());
-        setType(thisEvent.getEvType());
+        setType(thisEvent.getEvType()); 
     }
 
     @FXML
