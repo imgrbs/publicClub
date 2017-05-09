@@ -231,6 +231,7 @@
     -fx-background-radius: 8;
     -fx-text-fill: white;
     -fx-effect: dropshadow(three-pass-box, #B70D5D, 0, 0, 0, 4);
+    -fx-cursor: hand;
 }
 .labelNameSearch{
     -fx-padding: 30px 0px 0px 50px;
