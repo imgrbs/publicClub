@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.EditEventController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.EditEventController">
    <children>
       <FlowPane layoutX="59.0" layoutY="50.0" prefHeight="400.0" prefWidth="895.0" styleClass="bodyOnlyColor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -159,7 +159,7 @@
                               <String fx:value="warningProfile" />
                            </styleClass>
                         </Label>
-                        <JFXDatePicker fx:id="startRegis" defaultColor="#dd721a" editable="false" layoutX="160.0" layoutY="194.0" prefHeight="40.0" prefWidth="173.0">
+                        <JFXDatePicker fx:id="startRegis" defaultColor="#dd721a" disable="true" editable="false" layoutX="160.0" layoutY="194.0" prefHeight="40.0" prefWidth="173.0">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formEvName" />
