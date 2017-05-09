@@ -173,7 +173,7 @@
                         <String fx:value="font-listEv" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="proileBtn" alignment="CENTER" layoutX="3.0" layoutY="174.0" mnemonicParsing="false" onAction="#callProfile" prefHeight="19.0" prefWidth="199.0" text="     ข้อมูลส่วนตัว">
+                  <Button fx:id="proileBtn" alignment="CENTER" layoutX="1.0" layoutY="173.0" mnemonicParsing="false" onAction="#callProfile" prefHeight="19.0" prefWidth="199.0" text="     ข้อมูลส่วนตัว">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
