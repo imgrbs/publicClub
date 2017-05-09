@@ -3,6 +3,8 @@ package publicizehub.club.controller;
 import com.jfoenix.controls.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Optional;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -30,6 +32,7 @@ public class EditEventController {
     private EventModel thisEvent;
 
     private int resultType;
+    private int evType = -1;
 
     private long stdId = lc.getStdId();
 
@@ -124,7 +127,6 @@ public class EditEventController {
 
     @FXML
     public void evTypeResult() {
-        int evType = -1;
         if (camp.isSelected()) {
             evType = 0;
         } else if (seminar.isSelected()) {
@@ -137,20 +139,14 @@ public class EditEventController {
 
     @FXML
     public int typeResult() {
-        int result = 2;
-
         if (camp.isSelected()) {
-
-            result = 0;
+            evType = 0;
         } else if (seminar.isSelected()) {
-
-            result = 1;
+            evType = 1;
         } else if (other.isSelected()) {
-
-            result = 2;
+            evType = 2;
         }
-
-        return result;
+        return evType;
     }
 
     @FXML
@@ -183,26 +179,133 @@ public class EditEventController {
                     thisStage.close();
                 }
             }
-        } else {
-            warning = new Alert(Alert.AlertType.CONFIRMATION);
-            warning.setTitle("ยืนยันการแก้ไข");
-            warning.setHeaderText("แก้ไขข้อมูลกิจกรรม");
-            warning.setContentText("ยืนยันที่จะแก้ไขข้อมูลกิจกรรม");
-            Optional<ButtonType> result = warning.showAndWait();
-            if (result.isPresent()) {
-                if (result.get() == ButtonType.OK) {
-                    setValueToObj();
-                    ev.updateEvent(thisEvent);
-                    warning = new Alert(Alert.AlertType.INFORMATION);
-                    warning.setTitle("Success!");
-                    warning.setHeaderText("แก้ไขข้อมูล");
-                    warning.setContentText("แก้ไขข้อมูลสำเร็จแล้ว !");
-                    warning.showAndWait();
-                    thisStage.close();
+        } else if(validateField()){
+            warning = new Alert(Alert.AlertType.ERROR);
+            warning.setTitle("Error!");
+            warning.setHeaderText("กรอกข้อมูลไม่ครบ");
+            warning.setContentText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
+            warning.showAndWait(); 
+        }else if(validateDate()){
+            if(validateTime()){
+                warning = new Alert(Alert.AlertType.CONFIRMATION);
+                warning.setTitle("ยืนยันการแก้ไข");
+                warning.setHeaderText("แก้ไขข้อมูลกิจกรรม");
+                warning.setContentText("ยืนยันที่จะแก้ไขข้อมูลกิจกรรม");
+                Optional<ButtonType> result = warning.showAndWait();
+                if (result.isPresent()) {
+                    if (result.get() == ButtonType.OK) {
+                        setValueToObj();
+                        ev.updateEvent(thisEvent);
+                        warning = new Alert(Alert.AlertType.INFORMATION);
+                        warning.setTitle("Success!");
+                        warning.setHeaderText("แก้ไขข้อมูล");
+                        warning.setContentText("แก้ไขข้อมูลสำเร็จแล้ว !");
+                        warning.showAndWait();
+                        thisStage.close();
+                    }
                 }
             }
         }
         resetEvent(thisEvent);
+    }
+
+    public boolean validateField(){
+        boolean check = false;
+        if(ticket.getValue()==null||ticket.getValue().equals("ระบุเอง")||ticket.getValue().equals("")||
+           eventName.getText().equals("")||description.getText().equals("")||
+           place.getText().equals("")||startRegis.getValue()==null||
+           startDate.getValue()==null||endDate.getValue()==null||
+           startTime.getValue()==null||endTime.getValue()==null||evType==-1){
+            check = true;
+        }
+        if(ticket.getValue()!=null) {
+            checkNumber(check);
+        }
+        return check;
+    }
+    
+    public boolean validateDate(){
+        boolean check = false;
+        Alert warning = new Alert(Alert.AlertType.ERROR);
+        warning.setHeaderText("Error !");
+        LocalDate dateRegis = startRegis.getValue();
+        LocalDate dateStart = startDate.getValue();
+        LocalDate dateEnd = endDate.getValue();
+        if(dateRegis!=null && dateStart != null && dateEnd !=null){
+            if(dateStart.compareTo(dateEnd)>0){
+                warning.setContentText("กรุณาใส่วันเริ่มกิจกรรม ให้น้อยกว่าหรือเท่ากับ วันจบกิจกรรม");
+                warning.showAndWait();
+            } else {
+                check = true;
+            }
+        }
+        return check;
+    }
+    
+    public boolean validateTime(){
+        boolean check = false;
+        Alert warning = new Alert(Alert.AlertType.ERROR);
+        warning.setHeaderText("Error !");
+        LocalDate dateStart = startDate.getValue();
+        LocalDate dateEnd = endDate.getValue();
+        LocalTime timeStart = startTime.getValue();
+        LocalTime timeEnd = endTime.getValue();
+        LocalTime tempTime = startTime.getValue().plusMinutes(30);
+        LocalTime time20PM = LocalTime.of(20, 0, 0);
+        LocalTime time05AM = LocalTime.of(5, 0, 0);
+        if(dateStart.compareTo(dateEnd)==0){
+            if(timeStart.compareTo(time20PM)<=0&&
+               timeStart.compareTo(time05AM)>=0&&
+               timeEnd.compareTo(time20PM)<=0&&
+               timeEnd.compareTo(time05AM)>=0){
+                if(timeStart.compareTo(timeEnd)>-1){
+                    warning.setContentText("กรุณาใส่กรุณาใส่เวลาให้ถูกต้อง");
+                    warning.showAndWait();
+                }else if(timeEnd.compareTo(tempTime)<0){
+                    warning.setContentText("กรุณาใส่กรุณาจบกิจกรรมอย่างน้อย 30 นาทีขึ้นไป");
+                    warning.showAndWait();
+                }else {
+                    check = true;
+                }
+            }else{
+                warning.setContentText("กรุณาใส่กรุณาใส่เวลาให้ถูกต้อง");
+                warning.showAndWait();
+            }
+            
+        }else {
+            if(timeStart.compareTo(time20PM)<=0&&
+               timeStart.compareTo(time05AM)>=0&&
+               timeEnd.compareTo(time20PM)<=0&&
+               timeEnd.compareTo(time05AM)>=0){
+                check = true;
+            }else{
+                warning.setContentText("กรุณาใส่กรุณาใส่เวลาให้ถูกต้อง");
+                warning.showAndWait();
+            }
+        }
+        return check;
+    }
+    
+    @FXML
+    public void checkNumber(boolean check){
+        Alert warning = null;
+        warning = new Alert(Alert.AlertType.WARNING);
+        warning.setTitle("Error!");
+        if(ticket.getValue().length()<=5){ 
+            for(int i=0;i<ticket.getValue().length();i++){
+                if (ticket.getValue().charAt(i) < '0' || ticket.getValue().charAt(i) > '9') {
+                    check=false;
+                    warning.setHeaderText("จำนวนบัตรไม่ถูกต้อง");
+                    warning.setContentText("กรุณาใส่จำนวนบัตรให้ถูกต้อง (0-9)");
+                    warning.showAndWait();
+                    break;
+                }
+            }
+        }else {
+            warning.setHeaderText("จำนวนบัตรไม่ถูกต้อง");
+            warning.setContentText("กรุณาใส่จำนวนบัตรให้ถูกต้อง");
+            warning.showAndWait();
+        }
     }
 
     @FXML
