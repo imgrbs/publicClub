@@ -299,6 +299,50 @@ public class EventModel {
         }
         return rs;
     }
+    public ResultSet getEventType(){
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("SELECT * FROM eventType");
+            rs = ps.executeQuery();
+        }
+        catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"getEvent : SQLException Bug !");
+        }
+        catch(Exception e){
+            LOGGER.log(Level.SEVERE ,"getEvent : Exception Bug !");
+        }
+        return rs;
+    }
+    public ResultSet getEventType(int evType){
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("SELECT * FROM eventType where typeValue=?");
+            ps.setInt(1,evType);
+            rs = ps.executeQuery();
+        }
+        catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"getEvent : SQLException Bug !");
+        }
+        catch(Exception e){
+            LOGGER.log(Level.SEVERE ,"getEvent : Exception Bug !");
+        }
+        return rs;
+    }
+    public ResultSet getEventType(String evType){
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("SELECT * FROM eventType where typeName=?");
+            ps.setString(1,evType);
+            rs = ps.executeQuery();
+        }
+        catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"getEvent : SQLException Bug !");
+        }
+        catch(Exception e){
+            LOGGER.log(Level.SEVERE ,"getEvent : Exception Bug !");
+        }
+        return rs;
+    }
     
     public ResultSet getSelect(int evId){
         cb.connecting();

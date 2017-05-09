@@ -5,7 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +18,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.EventModel;
 
 /**
@@ -28,11 +31,13 @@ public class EditEventController {
     private static final Logger LOGGER = Logger.getLogger(EditEventController.class.getName());
     private EventModel ev = new EventModel();
     private LoginController lc = new LoginController();
+    ConnectionBuilder cb = new ConnectionBuilder();
 
     private EventModel thisEvent;
 
     private int resultType;
     private int evType = -1;
+    private ArrayList typeList = new ArrayList<>();
 
     private long stdId = lc.getStdId();
 
@@ -83,6 +88,9 @@ public class EditEventController {
     @FXML
     private JFXTextField place;
     @FXML
+    private JFXComboBox<String> eventType;
+    
+    @FXML
     private JFXRadioButton camp;
     @FXML
     private JFXRadioButton seminar;
@@ -107,23 +115,46 @@ public class EditEventController {
         setType(thisEvent.getEvType()); 
         //ticket.setEditable(false);
     }
-
+    @FXML
+    public void setTypeToComboBox(){
+        ResultSet rs = ev.getEventType();
+        try{
+            while(rs.next()){ 
+                typeList.add(rs.getString("typeName"));
+            }
+            
+        }catch(SQLException sqe){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : SQLException",sqe);
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : Exception",e);
+        }
+        cb.logout();
+        System.out.println("Event Type : "+typeList);
+        eventType.getItems().addAll(typeList);
+    }
+    
     @FXML
     public void setType(int evType) {
-        if (evType == 0) {
-            camp.setSelected(true);
-        } else if (evType == 1) {
-            seminar.setSelected(true);
-        } else {
-            other.setSelected(true);
+        ResultSet rs = ev.getEventType(evType);
+        try{
+            while(rs.next()){
+                String evTypeText = rs.getString("typeName");
+                System.out.println("evTypeText : "+evTypeText);
+                eventType.setValue(evTypeText);
+            }
+        }catch(SQLException sqe){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : SQLException",sqe);
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : Exception",e);
         }
+        cb.logout();
     }
 
-    @FXML
+    /*@FXML
     public void setAllValue() {
         showValue();
         evTypeResult();
-    }
+    }*/
 
     @FXML
     public void evTypeResult() {
@@ -139,16 +170,25 @@ public class EditEventController {
 
     @FXML
     public int typeResult() {
-        if (camp.isSelected()) {
-            evType = 0;
-        } else if (seminar.isSelected()) {
-            evType = 1;
-        } else if (other.isSelected()) {
-            evType = 2;
+        int evType=0;
+        ResultSet rs = ev.getEventType(eventType.getValue());
+        System.out.println("eventType.getValue() : "+eventType.getValue());
+        try{
+            while(rs.next()){ 
+                evType = rs.getInt("typeValue");
+                System.out.println("evType : "+evType);
+            }
+            
+        }catch(SQLException sqe){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : SQLException",sqe);
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : Exception",e);
         }
+        cb.logout();
+        
         return evType;
     }
-
+    
     @FXML
     public void checkCustomize() {
         if (ticket.getValue().equals("ระบุเอง")) {
@@ -168,6 +208,7 @@ public class EditEventController {
     @FXML
     public void clickConfirm() {
         Alert warning = null;
+        getTypeFromCombo();
         if (checkEditEvent()) {
             warning = new Alert(Alert.AlertType.CONFIRMATION);
             warning.setTitle("ยืนยันการแก้ไข");
@@ -218,6 +259,7 @@ public class EditEventController {
            startTime.getValue()==null||endTime.getValue()==null||evType==-1){
             check = true;
         }
+        System.out.println("evType : "+evType);
         if(ticket.getValue()!=null) {
             checkNumber(check);
         }
@@ -307,7 +349,24 @@ public class EditEventController {
             warning.showAndWait();
         }
     }
-
+    @FXML
+    public void getTypeFromCombo(){
+        ResultSet rs = ev.getEventType(eventType.getValue());
+        System.out.println("eventType.getValue() : "+eventType.getValue());
+        try{
+            while(rs.next()){ 
+                this.evType = rs.getInt("typeValue");
+                System.out.println("evType : "+evType);
+            }
+            
+        }catch(SQLException sqe){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : SQLException",sqe);
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : Exception",e);
+        }
+        cb.logout();
+        
+    }
     @FXML
     public void closeStage() {
         getThisStage().close();
@@ -327,6 +386,7 @@ public class EditEventController {
         controller.setThisStage(stage);
         controller.setThisEvent(controller.resetEvent(event));
         controller.setValueToCombobox();
+        controller.setTypeToComboBox();
         controller.showValue();
         
         Scene scene = new Scene(root);
@@ -396,5 +456,6 @@ public class EditEventController {
         description.setText(event.getEvDescrip());
         place.setText(event.getEvPlace());
         setType(event.getEvType());
+        
     }
 }

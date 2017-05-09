@@ -3,14 +3,12 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
-<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
@@ -132,27 +130,6 @@
                               <String fx:value="formEvName" />
                            </styleClass>
                         </JFXTextField>
-                        <JFXRadioButton fx:id="camp" layoutX="440.0" layoutY="212.0" text="ค่าย">
-                           <styleClass>
-                              <String fx:value="quark" />
-                              <String fx:value="formEvName" />
-                           </styleClass>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="type" />
-                           </toggleGroup>
-                        </JFXRadioButton>
-                        <JFXRadioButton fx:id="seminar" layoutX="508.0" layoutY="212.0" text="สัมมนา" toggleGroup="$type">
-                           <styleClass>
-                              <String fx:value="quark" />
-                              <String fx:value="formEvName" />
-                           </styleClass>
-                        </JFXRadioButton>
-                        <JFXRadioButton fx:id="other" layoutX="593.0" layoutY="212.0" text="อื่นๆ" toggleGroup="$type">
-                           <styleClass>
-                              <String fx:value="quark" />
-                              <String fx:value="formEvName" />
-                           </styleClass>
-                        </JFXRadioButton>
                         <Label layoutX="40.0" layoutY="214.0" text="วันเปิดรับสมัคร :">
                            <styleClass>
                               <String fx:value="quark" />
@@ -170,6 +147,7 @@
                               <String fx:value="handCursor" />
                            </styleClass>
                         </JFXComboBox>
+                        <JFXComboBox fx:id="eventType" focusColor="#dd721a" layoutX="480.0" layoutY="210.0" prefHeight="25.0" prefWidth="122.0" styleClass="quark" />
                      </children>
                   </Pane>
                </center>

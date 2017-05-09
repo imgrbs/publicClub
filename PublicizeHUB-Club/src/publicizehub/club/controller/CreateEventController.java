@@ -4,8 +4,11 @@ package publicizehub.club.controller;
 import com.jfoenix.controls.*;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -20,6 +23,7 @@ import javafx.stage.Stage;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import publicizehub.club.model.ConnectionBuilder;
 
 
 import publicizehub.club.model.EventModel;
@@ -35,11 +39,14 @@ public class CreateEventController implements Initializable {
     EventModel e = new EventModel();
     LoginModel lm = new LoginModel();
     EventModel thisEvent = null;
+    ConnectionBuilder cb = new ConnectionBuilder();
     
     LoginController lc = new LoginController();
     
     private int evType = -1;
     private long stdId=this.lm.getStdId();
+    private ArrayList typeList = new ArrayList<>();
+    
     
     @FXML
     private Stage thisStage = null;
@@ -65,15 +72,8 @@ public class CreateEventController implements Initializable {
 
     @FXML
     private JFXTextField place;
-
     @FXML
-    private JFXRadioButton camp;
-
-    @FXML
-    private JFXRadioButton seminar;
-
-    @FXML
-    private JFXRadioButton other;
+    private JFXComboBox<String> eventType;
 
     @FXML
     private JFXButton confirmBtn;
@@ -107,8 +107,6 @@ public class CreateEventController implements Initializable {
     public void setCancelBtn(JFXButton cancelBtn) {
         this.cancelBtn = cancelBtn;
     }
-    
-    
 
     @FXML
     public void setAllValue(){
@@ -116,16 +114,7 @@ public class CreateEventController implements Initializable {
             startRegis.getValue(),startRegis.getValue().plusDays(15),place.getText(),Integer.parseInt(ticket.getValue()),
             startTime.getValue(),endTime.getValue(),evType);
     }
-    @FXML
-    public void evTypeResult(){
-        if(camp.isSelected()){
-            this.evType=0;
-        }else if(seminar.isSelected()){
-            this.evType=1;
-        }else if(other.isSelected()){
-            this.evType=2;
-        }
-    }
+    
     
     @FXML
     public void checkCustomize(){
@@ -137,16 +126,51 @@ public class CreateEventController implements Initializable {
             ticket.setEditable(false);
         }
     } 
+    @FXML
+    public void setTypeToComboBox(){
+        ResultSet rs = e.getEventType();
+        try{
+            while(rs.next()){ 
+                typeList.add(rs.getString("typeName"));
+            }
+            
+        }catch(SQLException sqe){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : SQLException",sqe);
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : Exception",e);
+        }
+        cb.logout();
+        System.out.println("Event Type : "+typeList);
+        eventType.getItems().addAll(typeList);
+    }
     
     @FXML
     public void setValueToCombobox(){
         ticket.getItems().addAll("5","10","15","20","25","30","35","40","45","50","75","100","ระบุเอง");  
     }
-    
+    @FXML
+    public void getTypeFromCombo(){
+        ResultSet rs = e.getEventType(eventType.getValue());
+        System.out.println("eventType.getValue() : "+eventType.getValue());
+        try{
+            while(rs.next()){ 
+                this.evType = rs.getInt("typeValue");
+                System.out.println("evType : "+evType);
+            }
+            
+        }catch(SQLException sqe){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : SQLException",sqe);
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : Exception",e);
+        }
+        cb.logout();
+        
+    }
     @FXML
     public void clickConfirm(){
         Alert warning = null; 
-        evTypeResult(); 
+        //evTypeResult(); 
+        getTypeFromCombo();
         if(eventName.getText().length()<5 ||
            description.getText().length()<25 || 
            place.getText().length()<5 || 
@@ -195,7 +219,6 @@ public class CreateEventController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setValueToCombobox();
     }
     
     @FXML
@@ -213,6 +236,8 @@ public class CreateEventController implements Initializable {
         controller.setLm(this.lm);
         controller.setThisStage(stage);
         controller.stdId = this.lm.getStdId();
+        controller.setValueToCombobox();
+        controller.setTypeToComboBox();
         controller.getCancelBtn().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -260,8 +285,10 @@ public class CreateEventController implements Initializable {
            startTime.getValue()==null||endTime.getValue()==null||evType==-1){
             check = true;
         }
+        System.out.println("validate evType : "+evType);
         if(ticket.getValue()!=null) {
             checkNumber(check);
+            System.out.println("validate ticket : in");
         }
         return check;
     }
@@ -283,9 +310,6 @@ public class CreateEventController implements Initializable {
             LOGGER.log(Level.WARNING, "set NULL !");
         }
         evType=-1;
-        camp.setSelected(false);
-        seminar.setSelected(false);
-        other.setSelected(false);
         ticket.setValue(cusText);
     }
     
