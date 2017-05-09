@@ -194,6 +194,7 @@ public class ManageController {
     
     @FXML
     public void callCreateEvent(){
+        ce.setLm(this.profile);
         ce.callCreateEvent();
     }
        

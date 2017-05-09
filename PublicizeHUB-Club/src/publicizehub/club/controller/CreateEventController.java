@@ -23,6 +23,7 @@ import java.util.logging.Level;
 
 
 import publicizehub.club.model.EventModel;
+import publicizehub.club.model.LoginModel;
 
 /**
  * FXML Controller class
@@ -32,12 +33,13 @@ import publicizehub.club.model.EventModel;
 public class CreateEventController implements Initializable {
     private static final Logger LOGGER = Logger.getLogger(EditEventController.class.getName());
     EventModel e = new EventModel();
+    LoginModel lm = new LoginModel();
     EventModel thisEvent = null;
     
     LoginController lc = new LoginController();
     
     private int evType = -1;
-    private long stdId=lc.getStdId();
+    private long stdId=this.lm.getStdId();
     
     @FXML
     private Stage thisStage = null;
@@ -82,7 +84,14 @@ public class CreateEventController implements Initializable {
     private Label warnNum;
     private String customText="ระบุเอง";
 
+    public LoginModel getLm() {
+        return lm;
+    }
 
+    public void setLm(LoginModel lm) {
+        this.lm = lm;
+    }
+    
     public Stage getThisStage() {
         return thisStage;
     }
@@ -201,7 +210,9 @@ public class CreateEventController implements Initializable {
             LOGGER.log(Level.WARNING, "root : Exception",e);
         }
         CreateEventController controller = fxmlLoader.<CreateEventController>getController();
+        controller.setLm(this.lm);
         controller.setThisStage(stage);
+        controller.stdId = this.lm.getStdId();
         controller.getCancelBtn().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
