@@ -119,11 +119,18 @@ public class CreateEventController implements Initializable {
     @FXML
     public void checkCustomize(){
         String customText="ระบุเอง";
-        if(ticket.getValue().equals(customText)){
-            ticket.setEditable(true);   
-            ticket.setValue(" ");
-        }else {
-            ticket.setEditable(false);
+        
+        if(ticket.getValue()!=null){
+            if(ticket.getValue().equals(customText)){
+                ticket.setEditable(true);   
+                ticket.setValue(" ");
+            }else {
+                String temp = ticket.getValue();
+                System.out.println("ticket.getValue() : "+ticket.getValue());
+                ticket.setEditable(false);
+                ticket.setValue(temp);
+                
+            }
         }
     } 
     @FXML

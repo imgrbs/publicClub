@@ -191,11 +191,17 @@ public class EditEventController {
     
     @FXML
     public void checkCustomize() {
-        if (ticket.getValue().equals("ระบุเอง")) {
-            ticket.setEditable(true);
-            ticket.setValue("");
-        } else {
-            ticket.setEditable(false);
+        System.out.println("checkCustomize() : "+ticket.getValue());
+        if(ticket.getValue()!=null){
+            if (ticket.getValue().equals("ระบุเอง")) {
+                ticket.setEditable(true);
+                ticket.setValue("");
+            } else {
+                String temp = ticket.getValue();
+                System.out.println("ticket.getValue() : "+ticket.getValue());
+                ticket.setEditable(false);
+                ticket.setValue(temp);
+            }
         }
     }
 
