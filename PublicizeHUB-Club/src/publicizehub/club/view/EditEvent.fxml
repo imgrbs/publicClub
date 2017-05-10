@@ -147,7 +147,11 @@
                               <String fx:value="handCursor" />
                            </styleClass>
                         </JFXComboBox>
-                        <JFXComboBox fx:id="eventType" focusColor="#dd721a" layoutX="480.0" layoutY="210.0" prefHeight="25.0" prefWidth="122.0" styleClass="quark" />
+                        <JFXComboBox fx:id="eventType" focusColor="#dd721a" layoutX="480.0" layoutY="210.0" prefHeight="25.0" prefWidth="122.0">
+                           <styleClass>
+                              <String fx:value="quark" />
+                              <String fx:value="handCursor" />
+                           </styleClass></JFXComboBox>
                      </children>
                   </Pane>
                </center>
