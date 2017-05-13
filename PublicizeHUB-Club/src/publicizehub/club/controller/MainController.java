@@ -171,6 +171,7 @@ public class MainController {
     @FXML
     public void getEvent() {
         int eventId1,eventId2;
+        jc.setProfile(profile);
         if (rs == null) {
             System.out.println("LOAD EVENT ONSTART");
             rs = sc.getEventToGui("IT 3K ครั้งที่ 13");
