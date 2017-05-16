@@ -24,6 +24,7 @@ public class JoinController {
     private final LoginController li = new LoginController();
     private final JoinModel jn = new JoinModel();
     private final EventModel ev = new EventModel();
+    private LoginModel profile;
     
     private Alert comfirm = new Alert(Alert.AlertType.CONFIRMATION);
     private Alert warning = new Alert(Alert.AlertType.ERROR);
@@ -46,19 +47,28 @@ public class JoinController {
     public void setStdId(long stdId) {
         this.stdId = stdId;
     }
+
+    public LoginModel getProfile() {
+        return profile;
+    }
+
+    public void setProfile(LoginModel profile) {
+        this.profile = profile;
+    }
+    
     
     
     
     public void toJoinEvent(int eventId){
-        System.out.println(getStdId());
-        ResultSet rs = jn.getGenCode(eventId,getStdId());
+        System.out.println(profile.getStdId());
+        ResultSet rs = jn.getGenCode(eventId,profile.getStdId());
         long tempStdId=0;
         String tempEvCode="";
         try {
             if(rs.next()) {
                 tempStdId = rs.getLong("stdId");
                 tempEvCode = rs.getString("evCode");
-                if(getStdId()==tempStdId){
+                if(profile.getStdId()==tempStdId){
                     callShowCode(tempEvCode,eventId);
                 }             
             }else{                    
@@ -71,7 +81,7 @@ public class JoinController {
                         ResultSet checkTicket = ev.getSelect(eventId);
                         if(checkTicket.next()){
                             if(checkTicket.getInt("currentMember")<checkTicket.getInt("evTicket")){
-                                GenerateCode gc = new GenerateCode(getStdId(),eventId);
+                                GenerateCode gc = new GenerateCode(profile.getStdId(),eventId);
                                 gc.pushCode(eventId);
                                 callShowCode(gc.getEvCode(),eventId);
                             }

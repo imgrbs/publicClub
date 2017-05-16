@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.EventModel;
 import publicizehub.club.model.FeedbackModel;
+import publicizehub.club.model.LoginModel;
 
 
 public class FormEvaluationsController implements Initializable {  // JavaFX บังคับ implement Method ของ JavaFX
@@ -35,8 +36,17 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
 
     private int evId = 10048;
     private long stdId = 59130500012L;
+    
+    private LoginModel profile;
     FeedbackModel fbm = new FeedbackModel(); // Model Class ของ FeedbackModel (ส่งค่าเข้า DB )
 
+    public LoginModel getProfile() {
+        return profile;
+    }
+
+    public void setProfile(LoginModel profile) {
+        this.profile = profile;
+    }
     
     /*สร้าง array object RadioButton  เพื่อ set ค่าเวลาคลิกที่ปุ่ม radio button*/
     RadioButton[] Q1_N1 = new RadioButton[5];

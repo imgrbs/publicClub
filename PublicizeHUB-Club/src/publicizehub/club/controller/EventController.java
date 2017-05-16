@@ -69,6 +69,7 @@ public class EventController {
     }
     public void addEventToPresentPane(LoginModel profile,EventModel event,VBox listEventBox,boolean evaluation,boolean checkTypeGui) {
         getJc().setStdId(profile.getStdId());
+        setStdId(profile.getStdId());
         String presentText = "ตรวจสอบโค้ด";
         String presentDetail = "รายละเอียด";
         String evaluaText = "ประเมิณกิจกรรม";
