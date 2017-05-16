@@ -160,7 +160,7 @@
                         <String fx:value="font-listEv" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="otherBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="549.0" mnemonicParsing="false" onAction="#callSearchOther" prefHeight="25.0" prefWidth="200.0" text="อื่นๆ">
+                  <Button fx:id="evertKmuttBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="549.0" mnemonicParsing="false" onAction="#callSearchOther" prefHeight="25.0" prefWidth="200.0" text="กิจกรรมของมหาวิทยาลัย">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
