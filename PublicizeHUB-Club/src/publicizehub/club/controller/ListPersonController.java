@@ -33,8 +33,10 @@ public class ListPersonController {
 
     PersonModel psm = new PersonModel();
     CheckInModel cim = new CheckInModel();
+    CheckInController cic = new CheckInController();
     EventModel evm = new EventModel();
     ConnectionBuilder cb = new ConnectionBuilder();
+    
     
     ObservableList<String> items =FXCollections.observableArrayList();  
     
@@ -123,7 +125,7 @@ public class ListPersonController {
                 ResultSet getName = cim.getName(std_id);
                 while(getName.next()){
                     String name = getName.getString("std_name");
-                    String data = std_id+"\t"+name;
+                    String data = std_id+"\t"+cic.formatName(name);
                     items.add(data);
                 }           
             }
@@ -132,8 +134,7 @@ public class ListPersonController {
         }catch(SQLException e){
             System.out.println("SQL Exception");
         }
-        cb.logout();
-       
+        cb.logout();  
     }
     
     public void showTicket(int evId){

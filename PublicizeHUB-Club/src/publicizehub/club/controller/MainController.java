@@ -150,23 +150,42 @@ public class MainController {
     }
     
     @FXML
-    protected void callSearchCamp() {
+    protected void callSearch0() {
         sc.callSearch(0,getProfile());
         searchfield.clear();
     }
     
     @FXML
-    protected void callSearchSeminar() {
+    protected void callSearch1() {
         sc.callSearch(1,getProfile());
         searchfield.clear();
     }
     
     @FXML
-    protected void callSearchOther() {
+    protected void callSearch2() {
         sc.callSearch(2,getProfile());
         searchfield.clear();
     }
-
+    @FXML
+    protected void callSearch3() {
+        sc.callSearch(3,getProfile());
+        searchfield.clear();
+    }
+    @FXML
+    protected void callSearch4() {
+        sc.callSearch(4,getProfile());
+        searchfield.clear();
+    }
+    @FXML
+    protected void callSearch5() {
+        sc.callSearch(5,getProfile());
+        searchfield.clear();
+    }
+    @FXML
+    protected void callSearch6() {
+        sc.callSearch(6,getProfile());
+        searchfield.clear();
+    }
 
     @FXML
     public void getEvent() {

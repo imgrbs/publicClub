@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.EventHandler;
+import publicizehub.club.model.EventModel;
 import publicizehub.club.model.LoginModel;
 
 /**
@@ -32,6 +33,7 @@ public class SearchController {
     private JoinController jc = new JoinController();
     private DetailController dc = new DetailController();
     private SearchModel s = new SearchModel();
+    private EventModel em = new EventModel();
     private Alert alert = new Alert(AlertType.WARNING);
     
     private LoginModel profile;
@@ -44,10 +46,20 @@ public class SearchController {
     private TextField search;
     @FXML
     private Label l;
+    @FXML
+    private Label typeName;
     
     private int checkEvType;
     
     private String text;
+
+    public Label getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(Label typeName) {
+        this.typeName = typeName;
+    }
 
     public SearchController() {
         checkEvType=-1;
@@ -139,7 +151,7 @@ public class SearchController {
         p.setStyle("-fx-background-color: #" + "ffffff" + ";" +
                    "-fx-background-radius: 10px;" +
                    "-fx-effect: dropshadow(three-pass-box, #4d4d4d, 5, 0, 0, 1);");
-        l.getStyleClass().add("labelNameSearch");;
+        l.getStyleClass().add("labelNameSearch");
         l.getStyleClass().add("quark");;
         p.setPrefSize(480,150);
         buttonBox.getChildren().add(p);
@@ -263,7 +275,18 @@ public class SearchController {
         }
         stage.show();
     }
-    
+    public String typeName(int evType){
+        ResultSet rs = em.getEventType(evType);
+        String name="";
+        try{
+            if(rs.next()){
+                name = rs.getString("typeName");
+            }
+        }catch(SQLException se){
+            LOGGER.log(Level.SEVERE ,"root : typeName Bug !");
+        }
+        return name;
+    }
     public void callSearch(int evType,LoginModel prof){
         System.out.println(prof.getStdId());
         Stage stage= new Stage();
@@ -279,6 +302,7 @@ public class SearchController {
         controller.setCheckEvType(evType);
         controller.setProfile(prof);
         controller.checkSearch();
+        controller.typeName.setText(typeName(evType));
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    

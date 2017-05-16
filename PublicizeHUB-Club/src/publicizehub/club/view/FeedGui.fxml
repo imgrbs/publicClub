@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane accessibleText="TEST" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f1e7e5;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.MainController">
+<AnchorPane accessibleText="TEST" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f1e7e5;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.MainController">
    <children>
       <Pane prefHeight="600.0" prefWidth="800.0" styleClass="body" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <BorderPane layoutX="-456.0" layoutY="28.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -71,7 +71,7 @@
                         <Font name="Quark-Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Button fx:id="vichakarnCampBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="346.0" mnemonicParsing="false" onAction="#callSearchSeminar" prefHeight="25.0" prefWidth="200.0" text="ค่ายวิิชาการ">
+                  <Button fx:id="vichakarnCampBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="346.0" mnemonicParsing="false" onAction="#callSearch1" prefHeight="25.0" prefWidth="200.0" text="ค่ายวิิชาการ">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -84,7 +84,7 @@
                         <String fx:value="font-listEv" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="sportBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="387.0" mnemonicParsing="false" onAction="#callSearchOther" prefHeight="25.0" prefWidth="200.0" text="กีฬา">
+                  <Button fx:id="sportBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="387.0" mnemonicParsing="false" onAction="#callSearch2" prefHeight="25.0" prefWidth="200.0" text="กีฬา">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -108,7 +108,7 @@
                         <Image url="@../css/images/school-material.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="volunteerCampBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="305.0" mnemonicParsing="false" onAction="#callSearchCamp" prefHeight="25.0" prefWidth="200.0" text="ค่ายอาสา">
+                  <Button fx:id="volunteerCampBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="305.0" mnemonicParsing="false" onAction="#callSearch0" prefHeight="25.0" prefWidth="200.0" text="ค่ายอาสา">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -121,7 +121,7 @@
                         <String fx:value="font-listEv" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="entertainrBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="468.0" mnemonicParsing="false" onAction="#callSearchSeminar" prefHeight="25.0" prefWidth="200.0" text="บันเทิง">
+                  <Button fx:id="entertainrBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="468.0" mnemonicParsing="false" onAction="#callSearch4" prefHeight="25.0" prefWidth="200.0" text="บันเทิง">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -134,7 +134,7 @@
                         <String fx:value="font-listEv" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="wattanathamBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="509.0" mnemonicParsing="false" onAction="#callSearchOther" prefHeight="25.0" prefWidth="200.0" text="ศิลปะและวัฒนธรรม">
+                  <Button fx:id="wattanathamBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="509.0" mnemonicParsing="false" onAction="#callSearch5" prefHeight="25.0" prefWidth="200.0" text="ศิลปะและวัฒนธรรม">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -147,7 +147,7 @@
                         <String fx:value="font-listEv" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="foodBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="427.0" mnemonicParsing="false" onAction="#callSearchCamp" prefHeight="25.0" prefWidth="200.0" text="อาหารและเครื่องดื่ม">
+                  <Button fx:id="foodBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="427.0" mnemonicParsing="false" onAction="#callSearch3" prefHeight="25.0" prefWidth="200.0" text="อาหารและเครื่องดื่ม">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -160,7 +160,7 @@
                         <String fx:value="font-listEv" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="evertKmuttBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="549.0" mnemonicParsing="false" onAction="#callSearchOther" prefHeight="25.0" prefWidth="200.0" text="กิจกรรมของมหาวิทยาลัย">
+                  <Button fx:id="evertKmuttBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="549.0" mnemonicParsing="false" onAction="#callSearch6" prefHeight="25.0" prefWidth="200.0" text="กิจกรรมของมหาวิทยาลัย">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
