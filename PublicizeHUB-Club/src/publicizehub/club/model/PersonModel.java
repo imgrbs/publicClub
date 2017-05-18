@@ -131,7 +131,7 @@ public class PersonModel extends RecursiveTreeObject<PersonModel> {
         PreparedStatement ps;
         cb.connecting();
         try {
-            ps = cb.getConnect().prepareStatement("SELECT * FROM tb_profile where stdId = ?");
+            ps = cb.getConnect().prepareStatement("SELECT * FROM students where std_id = ?");
             ps.setLong(1, stdId);
             rs = ps.executeQuery();
 
