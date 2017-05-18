@@ -265,8 +265,12 @@ public class EventModel {
         String command;
         PreparedStatement s;
         cb.connecting();
-        try{
+        try{   
             command ="DELETE FROM tb_event WHERE evId = ?";
+            s = cb.getConnect().prepareStatement(command);
+            s.setInt(1,deleteId);
+            s.executeUpdate();
+            command ="DELETE FROM logClick WHERE evId = ?";
             s = cb.getConnect().prepareStatement(command);
             s.setInt(1,deleteId);
             s.executeUpdate();
