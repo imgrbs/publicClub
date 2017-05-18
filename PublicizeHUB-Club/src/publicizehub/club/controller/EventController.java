@@ -3,6 +3,7 @@ package publicizehub.club.controller;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -16,7 +17,6 @@ import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.EventModel;
 import publicizehub.club.model.FeedbackModel;
 import publicizehub.club.model.LoginModel;
-import publicizehub.club.view.CheckIn;
 
 /**
  *
@@ -91,6 +91,10 @@ public class EventController {
             joinbtn.setLayoutY(100);
             detailbtn.setLayoutX(370);
             detailbtn.setLayoutY(100);
+            System.out.println(event.getEvStartRegis());
+//            if(event.getEvStartRegis().compareTo(LocalDate.now())<0){
+//                joinbtn.setDisable(true);
+//            }
             if(presentText.equals("ตรวจสอบโค้ด")){
                 joinbtn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override

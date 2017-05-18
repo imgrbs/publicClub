@@ -53,9 +53,16 @@ public class DetailController {
     
     @FXML
     private Button showName;
+    
+    @FXML
+    private Label evStartRegis;
 
     public void setEvName(String evName) {
         this.evName.setText(evName);
+    }
+    
+    public void setEvStartDate(String evStartDate) {
+        this.evStartRegis.setText(evStartDate);
     }
 
     public void setEvDate(String evDate) {
@@ -97,6 +104,7 @@ public class DetailController {
         try{
             if(rs.next()){
                 controller.setEvName(rs.getString("evName"));
+                controller.setEvStartDate(rs.getString("evStartRegis"));
                 controller.setEvDate(rs.getString("evStartDate"));
                 controller.setEvPlace(rs.getString("evPlace"));
                 controller.setEvDescrip(rs.getString("evDescrip"));

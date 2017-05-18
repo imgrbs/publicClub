@@ -119,7 +119,7 @@ public class SearchController {
     
     
     @FXML
-    public void addEventToPane(String eventName,int eventId) {
+    public void addEventToPane(String eventName,int eventId,LocalDate regisDate) {
         System.out.println(profile.getStdId());
         getJc().setProfile(profile);
         Pane p = new Pane();
@@ -135,6 +135,11 @@ public class SearchController {
         p.getChildren().add(l);
         p.getChildren().add(joinbtn);
         p.getChildren().add(detailbtn);
+        System.out.println(regisDate);
+        System.out.println(LocalDate.now().compareTo(regisDate));
+        if(LocalDate.now().compareTo(regisDate)<0){
+            joinbtn.setDisable(true);
+        }
         joinbtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent evt) {
@@ -205,15 +210,18 @@ public class SearchController {
                     alert.setContentText("ไม่มีกิจกรรมที่คุณค้นหา..");
                     alert.showAndWait();
                 } else {
-                    LocalDate tempDate = result.getDate("evEndDate").toLocalDate();
-                        System.out.println(LocalDate.now().compareTo(tempDate));
-                    if(tempDate.compareTo(LocalDate.now())>-1){
-                        addEventToPane(result.getString("evName"),result.getInt("evId"));
+                    LocalDate tempDate = result.getDate("evStartRegis").toLocalDate();
+                    LocalDate tempEndDate = result.getDate("evEndDate").toLocalDate();
+                    tempDate = tempDate.minusDays(10);
+                    if(LocalDate.now().compareTo(tempDate)>-1&&tempEndDate.compareTo(LocalDate.now())>=0){
+                        addEventToPane(result.getString("evName"),result.getInt("evId"),tempDate.plusDays(10));
                     }
                     while(result.next()){
-                        tempDate = result.getDate("evEndDate").toLocalDate();
-                        if(tempDate.compareTo(LocalDate.now())>-1){
-                            addEventToPane(result.getString("evName"),result.getInt("evId"));
+                        tempDate = result.getDate("evStartRegis").toLocalDate();
+                        tempEndDate = result.getDate("evEndDate").toLocalDate();
+                        tempDate = tempDate.minusDays(10);
+                        if(LocalDate.now().compareTo(tempDate)>-1&&tempEndDate.compareTo(LocalDate.now())>=0){
+                            addEventToPane(result.getString("evName"),result.getInt("evId"),tempDate.plusDays(10));
                         }
                     }
                 }

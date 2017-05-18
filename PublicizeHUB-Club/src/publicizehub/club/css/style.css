@@ -286,6 +286,10 @@
     -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
 }
 .detailDate{
+    -fx-font-size: 13px;
+    -fx-text-fill: #DB9B64;
+}
+.detailPlace{
     -fx-font-size: 20px;
     -fx-text-fill: #DB9B64;
 }
