@@ -313,9 +313,11 @@ public class CreateEventController implements Initializable {
             startTime.setValue(null);
             endTime.setValue(null);
         }catch(NullPointerException e){
-            LOGGER.log(Level.WARNING, "set NULL !");
+            //LOGGER.log(Level.WARNING, "set NULL !");
+        }catch(RuntimeException re){
+            
         }catch(Exception e){
-            LOGGER.log(Level.WARNING, "set NULL !");
+            //LOGGER.log(Level.WARNING, "set NULL !");
         }
         evType=-1;
         ticket.setValue(cusText);

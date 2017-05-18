@@ -32,7 +32,7 @@ public class EditEventController {
     private EventModel ev = new EventModel();
     private LoginController lc = new LoginController();
     ConnectionBuilder cb = new ConnectionBuilder();
-
+    
     private EventModel thisEvent;
 
     private int resultType;
@@ -40,9 +40,30 @@ public class EditEventController {
     private int eventId;
     private ArrayList typeList = new ArrayList<>();
     private long stdId = lc.getStdId();
-
+    @FXML
+    private Button editEvent;
+    @FXML
+    private Button detailBtn;
+    
+    
     private Stage thisStage;
 
+    public Button getDetailBtn() {
+        return detailBtn;
+    }
+
+    public void setDetailBtn(Button detailBtn) {
+        this.detailBtn = detailBtn;
+    }
+
+    public Button getEditEvent() {
+        return editEvent;
+    }
+
+    public void setEditEvent(Button editEvent) {
+        this.editEvent = editEvent;
+    }
+    
     public int getEventId() {
         return eventId;
     }
@@ -75,7 +96,7 @@ public class EditEventController {
     public void setThisEvent(EventModel thisEvent) {
         this.thisEvent = thisEvent;
     }
-
+    
     @FXML
     private JFXTextField eventName;
     @FXML
@@ -365,7 +386,7 @@ public class EditEventController {
     }
 
     @FXML
-    public void callEditEvent(EventModel event) {
+    public void callEditEvent(EventModel event,Button editBtn,Button detailBtn) {
         Stage stage = new Stage();
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/EditEvent.fxml"));
@@ -382,6 +403,8 @@ public class EditEventController {
         controller.setTypeToComboBox();
         controller.showValue();
         controller.setEventId(event.getEvId());
+        controller.setEditEvent(editBtn);
+        controller.setDetailBtn(detailBtn);
         
         Scene scene = new Scene(root);
         try {
@@ -400,6 +423,8 @@ public class EditEventController {
         warning.showAndWait(); 
         ev.deleteEvent(eventId);
         closeStage();
+        getEditEvent().setDisable(true);
+        getDetailBtn().setDisable(true);
     }
     public boolean checkEditEvent() {
         boolean checkEdit = false;
