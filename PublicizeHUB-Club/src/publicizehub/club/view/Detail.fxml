@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.DetailController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.DetailController">
    <children>
       <FlowPane alignment="CENTER" layoutX="146.0" layoutY="60.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -27,9 +27,11 @@
                               </Label>
                               <Line endX="100.0" layoutX="115.0" layoutY="57.0" startX="-100.0" />
                               <Line endX="100.0" layoutX="316.0" layoutY="57.0" startX="-100.0" />
+
                               <Label fx:id="evDate" layoutX="100.0" layoutY="78.0" prefHeight="32.0" prefWidth="79.0" styleClass="detailDate" text="2017-04-08" />
                               <Label layoutX="269.0" layoutY="67.0" prefHeight="32.0" prefWidth="57.0" styleClass="detailPlace" text="สถานที่" />
                               <Label fx:id="evPlace" layoutX="334.0" layoutY="67.0" prefHeight="32.0" prefWidth="194.0" styleClass="detailPlace" text="Classroom Building 2" />
+
                               <TextArea fx:id="evDescrip" editable="false" layoutX="15.0" layoutY="109.0" prefHeight="166.0" prefWidth="513.0" text="งานสัมมนาเล็กๆ ของเด็กไอทีบางมด&#10;ครั้งนี้เราขอเดินหน้าขึ้นอีกก้าว เชิญชวน เพื่อนๆ พี่ๆ น้องๆ ญาติสนิทมิตรสหายของเด็กๆ ไอทีบางมด ไม่ว่าคุณจะอยู่ภาคไหน ไม่ว่าคุณจะรู้จักไอทีหรือไม่ มาร่วมแบ่งขนม ผสมความรู้กันใน Brown Bag #2.0 " wrapText="true">
                                  <styleClass>
                                     <String fx:value="listDescrip" />
