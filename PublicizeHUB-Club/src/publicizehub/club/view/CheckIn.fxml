@@ -43,12 +43,12 @@
                               <!--<Cursor fx:constant="HAND" />-->
                            </cursor>
                         </Button>
-                        <Label layoutX="24.0" layoutY="20.0" prefHeight="30.0" prefWidth="129.0" style="-fx-text-fill: #CD4D28;" text="Event Name : ">
+                        <Label layoutX="-4.0" layoutY="20.0" prefHeight="30.0" prefWidth="129.0" style="-fx-text-fill: #CD4D28;" text="Event Name : ">
                            <font>
                               <Font name="Quark-Bold" size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="eventName" alignment="BOTTOM_CENTER" layoutX="143.0" prefHeight="59.0" prefWidth="199.0" style="-fx-text-fill: #CD4D28;" text="Brown Bag 2.0">
+                        <Label fx:id="eventName" alignment="BOTTOM_CENTER" layoutX="118.0" prefHeight="59.0" prefWidth="276.0" style="-fx-text-fill: #CD4D28;" text="Brown Bag 2.0">
                            <font>
                               <Font name="Quark-Bold" size="29.0" />
                            </font>

@@ -180,7 +180,7 @@ public class FormSumActivityController  implements Initializable  {
     @FXML
     public void setFeedbackChart(int averQ[]) {
         XYChart.Series setl = new XYChart.Series<>();
-        setl.getData().add(new XYChart.Data("Q1", averQ[0]));
+        setl.getData().add(new XYChart.Data("Q1", averQ[0])); 
         setl.getData().add(new XYChart.Data("Q2", averQ[1]));
         setl.getData().add(new XYChart.Data("Q3", averQ[2]));
         setl.getData().add(new XYChart.Data("Q4", averQ[3]));
@@ -190,13 +190,14 @@ public class FormSumActivityController  implements Initializable  {
         setl.getData().add(new XYChart.Data("Q8", averQ[7]));
         setl.getData().add(new XYChart.Data("Q9", averQ[8]));
         setl.getData().add(new XYChart.Data("Q10", averQ[9]));
-        feedbackChart.getData().addAll(setl);
+        feedbackChart.getData().addAll(setl); 
     }
 
     public void callFeedback(EventModel event) {
-        Stage stage = new Stage();
+        Stage stage = new Stage(); 
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ShowFeedback.fxml"));
+        stage.setTitle("PublicizeHUB");
         try {
             root = (Parent) fxmlLoader.load();
         } catch (IOException e) {
@@ -223,13 +224,14 @@ public class FormSumActivityController  implements Initializable  {
     public void initialize(URL location, ResourceBundle resources) {
         
         JFXTreeTableColumn<PersonModel, String> stdId = new JFXTreeTableColumn<>("รหัสนักศึกษา");
-        stdId.setPrefWidth(105);
+        stdId.setPrefWidth(105); 
         stdId.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PersonModel,String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<PersonModel, String> param) {
                 return param.getValue().getValue().getStdId();
             }
         });
+
         JFXTreeTableColumn<PersonModel, String> name = new JFXTreeTableColumn<>("ชื่อ");
         name.setPrefWidth(75);
         name.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PersonModel,String>, ObservableValue<String>>() {
@@ -238,6 +240,7 @@ public class FormSumActivityController  implements Initializable  {
                 return param.getValue().getValue().getStdName();
             }
         });
+
         JFXTreeTableColumn<PersonModel, String> surName = new JFXTreeTableColumn<>("นามสกุล");
         surName.setPrefWidth(110);
         surName.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PersonModel,String>, ObservableValue<String>>() {
@@ -246,14 +249,17 @@ public class FormSumActivityController  implements Initializable  {
                 return param.getValue().getValue().getStdSurname();
             }
         });
+
         JFXTreeTableColumn<PersonModel, String> department = new JFXTreeTableColumn<>("คณะ");
-        department.setPrefWidth(160);
+        department.setPrefWidth(160); 
         department.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PersonModel,String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<PersonModel, String> param) {
                 return param.getValue().getValue().getDepartment();
             }
         });
+        
+
         JFXTreeTableColumn<PersonModel, String> joinEvent = new JFXTreeTableColumn<>("วันที่จอง");
         joinEvent.setPrefWidth(90);
         joinEvent.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PersonModel,String>, ObservableValue<String>>() {

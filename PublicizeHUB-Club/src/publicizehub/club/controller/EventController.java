@@ -3,6 +3,7 @@ package publicizehub.club.controller;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -16,7 +17,6 @@ import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.EventModel;
 import publicizehub.club.model.FeedbackModel;
 import publicizehub.club.model.LoginModel;
-import publicizehub.club.view.CheckIn;
 
 /**
  *
@@ -69,6 +69,7 @@ public class EventController {
     }
     public void addEventToPresentPane(LoginModel profile,EventModel event,VBox listEventBox,boolean evaluation,boolean checkTypeGui) {
         getJc().setStdId(profile.getStdId());
+        setStdId(profile.getStdId());
         String presentText = "ตรวจสอบโค้ด";
         String presentDetail = "รายละเอียด";
         String evaluaText = "ประเมิณกิจกรรม";
@@ -107,7 +108,7 @@ public class EventController {
                 joinbtn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent evt) {
-                        ee.callEditEvent(event); 
+                        ee.callEditEvent(event,joinbtn,detailbtn); 
                     }
                 });
                 detailbtn.setOnAction(new EventHandler<ActionEvent>() {

@@ -113,6 +113,22 @@ public class ProfileController {
     public void setProfile(LoginModel profile) {
         this.profile = profile;
     }
+
+    public JoinController getJc() {
+        return jc;
+    }
+
+    public void setJc(JoinController jc) {
+        this.jc = jc;
+    }
+
+    public EventController getEc() {
+        return ec;
+    }
+
+    public void setEc(EventController ec) {
+        this.ec = ec;
+    }
     
     
     
@@ -171,6 +187,7 @@ public class ProfileController {
     @FXML
     public void callProfile(Stage mainStage,Scene mainScene,LoginModel prof){
         FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/Profile.fxml")); 
+        mainStage.setTitle("PublicizeHUB");
 
         Parent root = null;
         try{
@@ -185,8 +202,9 @@ public class ProfileController {
         controller.setMainScene(mainScene);
         controller.setTempRoot(mainScene.getRoot());
         controller.setProfile(prof);
+        controller.getJc().setProfile(prof);
         controller.setStdId(prof.getStdId());
-//        controller
+        controller.getEc().getJc().setProfile(prof);
         controller.getEventToProfile();
         controller.setLabelId(prof.getStdId()+"");
         controller.setLabelName(prof.getName());

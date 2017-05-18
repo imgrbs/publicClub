@@ -12,7 +12,12 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Optional;
+import publicizehub.club.model.ClickModel;
 import publicizehub.club.model.ConnectionBuilder;
+import publicizehub.club.model.EventModel;
 import publicizehub.club.model.LoginModel;
 
 /**
@@ -28,9 +33,12 @@ public class MainController {
     private JoinController jc = new JoinController();
     private DetailController dc = new DetailController();
     private NewsController nc = new NewsController();
+    private FirstNewsController fc = new FirstNewsController();
     private ResultSet rs = null;
     
+    private ClickModel cm = new ClickModel();
     private LoginModel profile;
+    private EventModel ev;
     
     private Stage thisStage;
     private Scene thisScene;
@@ -88,7 +96,9 @@ public class MainController {
     
     @FXML
     private ListView<String> newsList;
-
+    
+    @FXML
+    private Button logoutBtn;
         
     public LoginController getLi() {
         return li;
@@ -100,7 +110,7 @@ public class MainController {
 
     public void setThisStage(Stage thisStage) {
         this.thisStage = thisStage;
-        //thisStage.setTitle("PublicizeHUB");   
+        thisStage.setTitle("PublicizeHUB");   
     }
     
     public void setManageDisable(){
@@ -139,6 +149,24 @@ public class MainController {
          cb.logout();
      }
     }
+
+    public JoinController getJc() {
+        return jc;
+    }
+
+    public void setJc(JoinController jc) {
+        this.jc = jc;
+    }
+
+    public SearchController getSc() {
+        return sc;
+    }
+
+    public void setSc(SearchController sc) {
+        this.sc = sc;
+    }
+    
+     
     
     @FXML
     public void callProfile() {
@@ -146,71 +174,101 @@ public class MainController {
     }
     
     @FXML
-    protected void callSearchCamp() {
+    protected void callSearch0() {
         sc.callSearch(0,getProfile());
         searchfield.clear();
     }
     
     @FXML
-    protected void callSearchSeminar() {
+    protected void callSearch1() {
         sc.callSearch(1,getProfile());
         searchfield.clear();
     }
     
     @FXML
-    protected void callSearchOther() {
+    protected void callSearch2() {
         sc.callSearch(2,getProfile());
         searchfield.clear();
     }
-
+    @FXML
+    protected void callSearch3() {
+        sc.callSearch(3,getProfile());
+        searchfield.clear();
+    }
+    @FXML
+    protected void callSearch4() {
+        sc.callSearch(4,getProfile());
+        searchfield.clear();
+    }
+    @FXML
+    protected void callSearch5() {
+        sc.callSearch(5,getProfile());
+        searchfield.clear();
+    }
+    @FXML
+    protected void callSearch6() {
+        sc.callSearch(6,getProfile());
+        searchfield.clear();
+    }
 
     @FXML
     public void getEvent() {
-        int eventId1,eventId2;
-        if (rs == null) {
-            System.out.println("LOAD EVENT ONSTART");
-            rs = sc.getEventToGui("IT 3K ครั้งที่ 13");
-            try {
-                if (rs.next()) {
-                    labelEvMain1.setText(rs.getString("evName"));
-                    eventId1 = rs.getInt("evId");
+        ev = new EventModel();
+        jc.setProfile(profile);
+        ResultSet event = cm.getRankEvent();
+        try{
+            if(event.next()){
+                int eventId = event.getInt("evId");
+                ResultSet resultEvent = ev.getSelect(eventId);
+                if(resultEvent.next()){
+                    String text = resultEvent.getString("evName");
+                    LocalDate startRegis = resultEvent.getDate("evStartRegis").toLocalDate();
+                    LocalDate endDate = resultEvent.getDate("evEndDate").toLocalDate();
+                    labelEvMain1.setText(text);
                     joinEvMain1.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            jc.toJoinEvent(eventId1);
+                            jc.toJoinEvent(eventId);
                         }
                     });
                     detailEv1.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            dc.callDetail(eventId1);
+                            dc.callDetail(eventId);
+                            cm.increaseClick(eventId,startRegis,endDate);
                         }
                     });
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-            rs = sc.getEventToGui("Brown Bag #2.0");
-            try {
-                if (rs.next()) {
-                    labelEvMain2.setText(rs.getString("evName"));
-                    eventId2 = rs.getInt("evId");
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            if(event.next()){
+                int eventId = event.getInt("evId");
+                ResultSet resultEvent = ev.getSelect(eventId);
+                if(resultEvent.next()){
+                    String text = resultEvent.getString("evName");
+                    LocalDate startRegis = resultEvent.getDate("evStartRegis").toLocalDate();
+                    LocalDate endDate = resultEvent.getDate("evEndDate").toLocalDate();
+                    labelEvMain2.setText(text);
                     joinEvMain2.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            jc.toJoinEvent(eventId2);
+                            jc.toJoinEvent(eventId);
                         }
                     });
                     detailEv2.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            dc.callDetail(eventId2);
+                            dc.callDetail(eventId);
+                            cm.increaseClick(eventId,startRegis,endDate);
                         }
                     });
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        }catch(SQLException e){
+            e.printStackTrace();
         }
     }
     
@@ -224,6 +282,7 @@ public class MainController {
     public void sentToSearch(){
         String text = searchfield.getText();
         System.out.println(text);
+        sc.setProfile(profile);
         sc.callSearch(text);
         searchfield.setText("");
     }
@@ -245,12 +304,32 @@ public class MainController {
             controller.manageBtn.setVisible(false);
             controller.managePic.setVisible(false);
         }
+        sc.setProfile(prof);
+        controller.getJc().setProfile(prof);
+        controller.getSc().setProfile(prof);
         controller.setProfile(prof);
         controller.getEvent();
         controller.setUserData(controller.getProfile().getStdId(),controller.getProfile().getName());
         controller.getNc().addNewsToList(controller.getNewsList());
-        controller.setThisStage(thisStage);
+        controller.setThisStage(stage);
         controller.setThisScene(scene); 
+    }
+    
+    @FXML
+    public void logout(){
+        Alert warning = null;
+        warning = new Alert(Alert.AlertType.CONFIRMATION);
+        warning.setTitle("Information!");
+        warning.setHeaderText("ยืนยันที่จะออกจากระบบ"); 
+        warning.setContentText("คุณแน่ใจที่จะออกจากระบบ ใช่หรือไม่?");
+        Optional<ButtonType> result = warning.showAndWait();
+        if(result.isPresent()){
+            if(result.get() == ButtonType.OK){
+                this.profile = null;
+                fc.callFirstNews();
+                getThisStage().close();
+            }
+        }
     }
    
 }

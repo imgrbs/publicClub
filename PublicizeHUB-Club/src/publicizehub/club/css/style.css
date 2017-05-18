@@ -38,7 +38,10 @@
     -fx-background-repeat: no-repeat;
 }
 .font-menu{
-    -fx-font-size: 20px;
+    -fx-font-size: 19px;
+}
+.font-listEv{
+    -fx-font-size: 18px;
 }
 .rec-name{
     -fx-font-size: 25px;
@@ -68,10 +71,11 @@
     -fx-background-repeat: no-repeat;
 }
 .logoutbtn{
-    -fx-background-color: #f86d6d;
+    -fx-background-color: #d62020;
     -fx-background-size: 20%;
     -fx-background-position: left;
     -fx-background-repeat: no-repeat;
+    -fx-cursor: hand;
 }
 .menubtn:hover{
     -fx-background-color: #e4e4e4;
@@ -136,6 +140,19 @@
 .detailbtnSearch:hover{
     -fx-background-color: #ECECEC;
 }
+.deleteicon{
+    -fx-background-color: none;
+    -fx-background-image: url('images/rubbish-bin.png');
+    -fx-background-repeat: no-repeat; 
+    -fx-background-width: 20px;   
+}
+
+.deleteicon:hover{
+    -fx-background-color: none;
+    -fx-background-image: url('images/rubbish.png');
+    -fx-background-repeat: no-repeat; 
+    -fx-background-width: 20px;   
+}
 .detailbtnProfile{
     -fx-font-family:'Quark';
     -fx-background-color: #d3d3d3;
@@ -171,14 +188,20 @@
     -fx-background-size: 170%;
     -fx-background-repeat: no-repeat;
 }
-.loginBth{
+.loginBtn{
     -fx-background-color: #F10674;
     -fx-text-fill: #ffffff;
     -fx-background-radius: 7;
+    -fx-cursor: hand;
+    
 }
-.loginBth:hover{
+.loginBtn:hover{
     -fx-background-color: #FD268B;
 }
+.handCursor{
+    -fx-cursor: hand;
+}
+
 .registerBtn{
     -fx-background-color: #ffffff;
     -fx-background-radius: 7;
@@ -224,6 +247,7 @@
     -fx-background-radius: 8;
     -fx-text-fill: white;
     -fx-effect: dropshadow(three-pass-box, #B70D5D, 0, 0, 0, 4);
+    -fx-cursor: hand;
 }
 .labelNameSearch{
     -fx-padding: 30px 0px 0px 50px;
@@ -275,6 +299,12 @@
     -fx-effect: dropshadow(three-pass-box, #CDCDCD  , 15, 0, 0, 1);
 }
 .detailDate{
+    -fx-font-family: 'Quark';
+    -fx-font-size: 13px;
+    -fx-text-fill: #DB9B64;
+}
+.detailPlace{
+    -fx-font-family: 'Quark';
     -fx-font-size: 20px;
     -fx-text-fill: #DB9B64;
 }
@@ -404,6 +434,7 @@
     -fx-background-radius: 10px 10px 0 0;
     -fx-text-fill: #fff;
     -fx-font-size: 15px;
+    -fx-cursor: hand;
 }
 
 .addEventManage{
@@ -411,6 +442,7 @@
     -fx-background-radius: 10px 10px 0 0;
     -fx-text-fill: #fff;
     -fx-font-size: 15px;
+    -fx-cursor: hand;
 }
 
 .adminTag{

@@ -106,27 +106,23 @@ public class LoginController {
         this.thisStage = thisStage;
     }
 
-    public void callLogin() {
-        Stage stage = new Stage();
+    public void callLogin(Stage stage,Scene scene) {
+        
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/LoginGui.fxml"));
-        //stage.setTitle("Login");
+        stage.setTitle("PublicizeHUB");
         try {
             root = (Parent) fxmlLoader.load();
+            scene.setRoot(root);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "root : callLogin Failed");
         }
 
         LoginController controller = fxmlLoader.<LoginController>getController();
-        Scene scene = new Scene(root);
+        
         controller.setThisStage(stage);
         controller.setThisScene(scene);
-        try {
-            stage.setScene(scene);
-        } catch (Exception e) {
-            System.out.println("Exception");
-        }
-        stage.show();
+        
     }
 
     @FXML

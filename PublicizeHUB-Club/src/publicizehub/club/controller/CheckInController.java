@@ -64,7 +64,7 @@ public class CheckInController implements Initializable{
         Stage stage= new Stage();
         Parent root=null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/CheckIn.fxml")); 
-
+        stage.setTitle("PublicizeHUB");
         try{
             root = (Parent)fxmlLoader.load(); 
         }
@@ -171,7 +171,9 @@ public class CheckInController implements Initializable{
                 ResultSet getName = ci.getName(std_id);
                 while(getName.next()){
                     String name = getName.getString("std_name");
-                    String data = std_id+"\t"+name;
+                    
+                    String data = std_id+"\t"+formatName(name);
+                    
                     items.add(data);
                 }           
             }
@@ -188,6 +190,18 @@ public class CheckInController implements Initializable{
         cm = new CheckInModel(stdId, eventId, insertCode.getText(), LocalDate.now(), LocalTime.now());
     }
     
+    public String formatName(String name){
+        int space = name.indexOf(" ");
+        String prefix = name.substring(0, 3);
+        String nameCut = name.substring(3,space).substring(1).toLowerCase();
+        System.out.println("name : "+nameCut);
+        nameCut = name.substring(3,space).substring(0,1) + nameCut;
+        String fullCut = name.substring(space+1,name.length()).substring(1).toLowerCase();
+        fullCut = name.substring(space+1,name.length()).substring(0, 1) + fullCut;
+        name = prefix+nameCut+" "+fullCut;
+        System.out.println(name);
+        return name;
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         

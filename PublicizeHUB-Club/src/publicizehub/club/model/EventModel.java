@@ -261,12 +261,16 @@ public class EventModel {
         cb.logout();
     }
     
-    public void DeleteEvent(int deleteId){
+    public void deleteEvent(int deleteId){
         String command;
         PreparedStatement s;
         cb.connecting();
-        try{
+        try{   
             command ="DELETE FROM tb_event WHERE evId = ?";
+            s = cb.getConnect().prepareStatement(command);
+            s.setInt(1,deleteId);
+            s.executeUpdate();
+            command ="DELETE FROM logClick WHERE evId = ?";
             s = cb.getConnect().prepareStatement(command);
             s.setInt(1,deleteId);
             s.executeUpdate();
@@ -299,13 +303,58 @@ public class EventModel {
         }
         return rs;
     }
+    public ResultSet getEventType(){
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("SELECT * FROM eventType");
+            rs = ps.executeQuery();
+        }
+        catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"getEvent : SQLException Bug !");
+        }
+        catch(Exception e){
+            LOGGER.log(Level.SEVERE ,"getEvent : Exception Bug !");
+        }
+        return rs;
+    }
+    public ResultSet getEventType(int evType){
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("SELECT * FROM eventType where typeValue=?");
+            ps.setInt(1,evType);
+            rs = ps.executeQuery();
+        }
+        catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"getEvent : SQLException Bug !");
+        }
+        catch(Exception e){
+            LOGGER.log(Level.SEVERE ,"getEvent : Exception Bug !");
+        }
+        return rs;
+    }
+    public ResultSet getEventType(String evType){
+        cb.connecting();
+        try{
+            ps = cb.getConnect().prepareStatement("SELECT * FROM eventType where typeName=?");
+            ps.setString(1,evType);
+            rs = ps.executeQuery();
+        }
+        catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"getEvent : SQLException Bug !");
+        }
+        catch(Exception e){
+            LOGGER.log(Level.SEVERE ,"getEvent : Exception Bug !");
+        }
+        return rs;
+    }
     
     public ResultSet getSelect(int evId){
+        ResultSet result = null;
         cb.connecting();
         try{
             ps = cb.getConnect().prepareStatement("SELECT * FROM tb_event where evId = ?");
             ps.setInt(1,evId);
-            rs = ps.executeQuery();
+            result = ps.executeQuery();
         }
         catch(SQLException e){
             LOGGER.log(Level.SEVERE ,"getSelect int : SQLException Bug !");
@@ -313,7 +362,7 @@ public class EventModel {
         catch(Exception e){
             LOGGER.log(Level.SEVERE ,"getSelect int : Exception Bug !");
         }
-        return rs;
+        return result;
     }
     
     public ResultSet getSelect(long stdId){

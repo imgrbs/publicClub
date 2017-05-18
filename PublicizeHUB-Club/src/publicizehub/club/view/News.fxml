@@ -9,15 +9,15 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="bodyOnlyNews" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.FirstNewsController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.FirstNewsController">
    <children>
-      <FlowPane alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <FlowPane alignment="CENTER" prefHeight="400.0" prefWidth="600.0" styleClass="bodyOnlyColor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <BorderPane prefHeight="600.0" prefWidth="800.0">
                <center>
-                  <Pane prefHeight="200.0" prefWidth="200.0" styleClass="detailPane" BorderPane.alignment="CENTER">
+                  <Pane prefHeight="406.0" prefWidth="705.0" styleClass="detailPane" BorderPane.alignment="CENTER">
                      <children>
-                        <ListView fx:id="listNews" layoutX="30.0" layoutY="68.0" prefHeight="340.0" prefWidth="600.0" />
+                        <ListView fx:id="listNews" layoutX="30.0" layoutY="68.0" prefHeight="320.0" prefWidth="649.0" styleClass="quark" />
                         <Label layoutX="35.0" layoutY="21.0" text="ข่าวใหม่">
                            <styleClass>
                               <String fx:value="quark" />
@@ -28,16 +28,16 @@
                   </Pane>
                </center>
                <top>
-                  <Pane prefHeight="100.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                  <Pane prefHeight="90.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Pane layoutX="94.0" layoutY="11.0" prefHeight="81.0" prefWidth="70.0" styleClass="iconLogo" />
-                        <Label layoutX="184.0" layoutY="31.0" text="KMUTT" textFill="#ef4c1e">
+                        <Pane layoutX="64.0" layoutY="24.0" prefHeight="53.0" prefWidth="48.0" styleClass="iconLogo" />
+                        <Label layoutX="120.0" layoutY="28.0" text="KMUTT" textFill="#ef4c1e">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formName" />
                            </styleClass>
                         </Label>
-                        <Label layoutX="287.0" layoutY="31.0" text="PublicizeHub" textFill="#ef4c1e">
+                        <Label layoutX="217.0" layoutY="28.0" text="PublicizeHub" textFill="#ef4c1e">
                            <styleClass>
                               <String fx:value="quark" />
                               <String fx:value="formName" />
@@ -47,9 +47,9 @@
                   </Pane>
                </top>
                <bottom>
-                  <Pane prefHeight="67.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                  <Pane prefHeight="83.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                      <children>
-                        <JFXButton fx:id="loginBtn" buttonType="RAISED" layoutX="549.0" layoutY="20.0" prefHeight="36.0" prefWidth="179.0" text="Login with KMUTT Account">
+                        <JFXButton fx:id="loginBtn" buttonType="RAISED" layoutX="571.0" layoutY="14.0" onAction="#callLogin" prefHeight="36.0" prefWidth="179.0" text="Login with KMUTT Account">
                            <styleClass>
                               <String fx:value="confirmBtn" />
                               <String fx:value="dropshadow" />
@@ -59,10 +59,10 @@
                   </Pane>
                </bottom>
                <left>
-                  <Pane prefHeight="433.0" prefWidth="68.0" BorderPane.alignment="CENTER" />
+                  <Pane prefHeight="384.0" prefWidth="51.0" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Pane prefHeight="433.0" prefWidth="68.0" BorderPane.alignment="CENTER" />
+                  <Pane prefHeight="384.0" prefWidth="44.0" BorderPane.alignment="CENTER" />
                </right></BorderPane>
          </children>
       </FlowPane>

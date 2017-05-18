@@ -27,15 +27,22 @@
                               </Label>
                               <Line endX="100.0" layoutX="115.0" layoutY="57.0" startX="-100.0" />
                               <Line endX="100.0" layoutX="316.0" layoutY="57.0" startX="-100.0" />
-                              <Label fx:id="evDate" layoutX="18.0" layoutY="64.0" prefHeight="32.0" prefWidth="128.0" styleClass="detailDate" text="2017-04-08" />
-                              <Label layoutX="131.0" layoutY="62.0" prefHeight="32.0" prefWidth="12.0" styleClass="detailDate" text="|" />
-                              <Label fx:id="evPlace" layoutX="143.0" layoutY="64.0" prefHeight="32.0" prefWidth="327.0" styleClass="detailDate" text="Classroom Building 2" />
+
+                              <Label fx:id="evDate" layoutX="100.0" layoutY="78.0" prefHeight="32.0" prefWidth="79.0" styleClass="detailDate" text="2017-04-08" />
+                              <Label layoutX="179.0" layoutY="68.0" prefHeight="32.0" prefWidth="57.0" styleClass="detailPlace" text="สถานที่" />
+                              <Label fx:id="evPlace" layoutX="230.0" layoutY="68.0" prefHeight="32.0" prefWidth="182.0" styleClass="detailPlace" text="Classroom Building 2" />
+
                               <TextArea fx:id="evDescrip" editable="false" layoutX="15.0" layoutY="109.0" prefHeight="166.0" prefWidth="513.0" text="งานสัมมนาเล็กๆ ของเด็กไอทีบางมด&#10;ครั้งนี้เราขอเดินหน้าขึ้นอีกก้าว เชิญชวน เพื่อนๆ พี่ๆ น้องๆ ญาติสนิทมิตรสหายของเด็กๆ ไอทีบางมด ไม่ว่าคุณจะอยู่ภาคไหน ไม่ว่าคุณจะรู้จักไอทีหรือไม่ มาร่วมแบ่งขนม ผสมความรู้กันใน Brown Bag #2.0 " wrapText="true">
                                  <styleClass>
                                     <String fx:value="listDescrip" />
                                     <String fx:value="quark" />
                                  </styleClass>
                               </TextArea>
+                              <Label layoutX="15.0" layoutY="77.0" prefHeight="32.0" prefWidth="86.0" styleClass="detailDate" text="วันเริ่มกิจกรรม" />
+                              <Label layoutX="15.0" layoutY="57.0" prefHeight="32.0" prefWidth="86.0" styleClass="detailDate" text="วันเปิดรับสมัคร" />
+                              <Label fx:id="evStartRegis" layoutX="100.0" layoutY="58.0" prefHeight="32.0" prefWidth="79.0" styleClass="detailDate" text="2017-04-08" />
+                              <Label layoutX="92.0" layoutY="64.0" styleClass="detailDate" text="|" />
+                              <Label layoutX="92.0" layoutY="85.0" styleClass="detailDate" text="|" />
                            </children>
                         </Pane>
                      </children>

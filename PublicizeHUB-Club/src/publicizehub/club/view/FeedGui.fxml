@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXRippler?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -38,29 +37,8 @@
                         <String fx:value="stdNameFeed" />
                      </styleClass>
                   </Label>
-                  <Separator layoutY="153.0" prefHeight="44.0" prefWidth="200.0" />
-                  <JFXRippler layoutY="175.0" prefHeight="49.0" prefWidth="201.0" ripplerFill="#ff7648">
-                     <children>
-                        <Button fx:id="proileBtn" alignment="CENTER" mnemonicParsing="false" onAction="#callProfile" prefHeight="47.0" prefWidth="199.0" text="     ข้อมูลส่วนตัว">
-                           <font>
-                              <Font name="Quark-Bold" size="20.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <styleClass>
-                              <String fx:value="profilebtn" />
-                              <String fx:value="menubtn" />
-                              <String fx:value="quark" />
-                              <String fx:value="font-menu" />
-                           </styleClass>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Button>
-                     </children>
-                  </JFXRippler>
-                  <Button fx:id="manageBtn" alignment="CENTER" layoutX="1.0" layoutY="224.0" mnemonicParsing="false" onAction="#callManage" prefHeight="44.0" prefWidth="199.0" text="       จัดการกิจกรรม">
+                  <Separator layoutY="155.0" prefHeight="20.0" prefWidth="200.0" />
+                  <Button fx:id="manageBtn" alignment="CENTER" layoutX="1.0" layoutY="217.0" mnemonicParsing="false" onAction="#callManage" prefHeight="44.0" prefWidth="199.0" text="       จัดการกิจกรรม">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -74,7 +52,7 @@
                         <String fx:value="font-menu" />
                      </styleClass>
                   </Button>
-                  <Button layoutX="72.0" layoutY="287.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Log out" textFill="#f2f2f2">
+                  <Button fx:id="logoutBtn" layoutX="71.0" layoutY="268.0" mnemonicParsing="false" onAction="#logout" prefHeight="29.0" prefWidth="61.0" text="Log out" textFill="#f2f2f2">
                      <styleClass>
                         <String fx:value="managebtn" />
                         <String fx:value="logoutbtn" />
@@ -82,7 +60,7 @@
                         <String fx:value="font-logout" />
                      </styleClass>
                   </Button>
-                  <Separator layoutY="300.0" mouseTransparent="true" prefHeight="44.0" prefWidth="200.0" />
+                  <Separator layoutY="299.0" mouseTransparent="true" prefHeight="13.0" prefWidth="200.0" />
                   <Label layoutX="81.0" layoutY="4.0" prefHeight="46.0" prefWidth="119.0" text="KMUTT" textFill="#cd4d28">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
@@ -93,7 +71,7 @@
                         <Font name="Quark-Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Button fx:id="seminarBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="369.0" mnemonicParsing="false" onAction="#callSearchSeminar" prefHeight="47.0" prefWidth="200.0" text="สัมมนา">
+                  <Button fx:id="vichakarnCampBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="346.0" mnemonicParsing="false" onAction="#callSearch1" prefHeight="25.0" prefWidth="200.0" text="ค่ายวิิชาการ">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -103,10 +81,10 @@
                      <styleClass>
                         <String fx:value="menubtn" />
                         <String fx:value="quark" />
-                        <String fx:value="font-menu" />
+                        <String fx:value="font-listEv" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="otherBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="416.0" mnemonicParsing="false" onAction="#callSearchOther" prefHeight="47.0" prefWidth="200.0" text="อื่นๆ">
+                  <Button fx:id="sportBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="387.0" mnemonicParsing="false" onAction="#callSearch2" prefHeight="25.0" prefWidth="200.0" text="กีฬา">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -116,26 +94,21 @@
                      <styleClass>
                         <String fx:value="menubtn" />
                         <String fx:value="quark" />
-                        <String fx:value="font-menu" />
+                        <String fx:value="font-listEv" />
                      </styleClass>
                   </Button>
-                  <Separator layoutY="547.0" mouseTransparent="true" prefHeight="44.0" prefWidth="200.0" />
+                  <Separator layoutY="584.0" mouseTransparent="true" prefHeight="16.0" prefWidth="200.0" />
                   <ImageView fitHeight="78.0" fitWidth="62.0" layoutX="9.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../css/images/logo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="34.0" fitWidth="36.0" layoutX="23.0" layoutY="182.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../css/images/user.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="managePic" fitHeight="32.0" fitWidth="32.0" layoutX="24.0" layoutY="230.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="managePic" fitHeight="32.0" fitWidth="32.0" layoutX="24.0" layoutY="223.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../css/images/school-material.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="campBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="322.0" mnemonicParsing="false" onAction="#callSearchCamp" prefHeight="47.0" prefWidth="200.0" text="ค่าย">
+                  <Button fx:id="volunteerCampBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="305.0" mnemonicParsing="false" onAction="#callSearch0" prefHeight="25.0" prefWidth="200.0" text="ค่ายอาสา">
                      <font>
                         <Font name="Quark-Bold" size="20.0" />
                      </font>
@@ -145,9 +118,83 @@
                      <styleClass>
                         <String fx:value="menubtn" />
                         <String fx:value="quark" />
-                        <String fx:value="font-menu" />
+                        <String fx:value="font-listEv" />
                      </styleClass>
                   </Button>
+                  <Button fx:id="entertainrBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="468.0" mnemonicParsing="false" onAction="#callSearch4" prefHeight="25.0" prefWidth="200.0" text="บันเทิง">
+                     <font>
+                        <Font name="Quark-Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <styleClass>
+                        <String fx:value="menubtn" />
+                        <String fx:value="quark" />
+                        <String fx:value="font-listEv" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="wattanathamBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="509.0" mnemonicParsing="false" onAction="#callSearch5" prefHeight="25.0" prefWidth="200.0" text="ศิลปะและวัฒนธรรม">
+                     <font>
+                        <Font name="Quark-Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <styleClass>
+                        <String fx:value="menubtn" />
+                        <String fx:value="quark" />
+                        <String fx:value="font-listEv" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="foodBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="427.0" mnemonicParsing="false" onAction="#callSearch3" prefHeight="25.0" prefWidth="200.0" text="อาหารและเครื่องดื่ม">
+                     <font>
+                        <Font name="Quark-Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <styleClass>
+                        <String fx:value="menubtn" />
+                        <String fx:value="quark" />
+                        <String fx:value="font-listEv" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="evertKmuttBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="549.0" mnemonicParsing="false" onAction="#callSearch6" prefHeight="25.0" prefWidth="200.0" text="กิจกรรมของมหาวิทยาลัย">
+                     <font>
+                        <Font name="Quark-Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <styleClass>
+                        <String fx:value="menubtn" />
+                        <String fx:value="quark" />
+                        <String fx:value="font-listEv" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="proileBtn" alignment="CENTER" layoutX="1.0" layoutY="173.0" mnemonicParsing="false" onAction="#callProfile" prefHeight="19.0" prefWidth="199.0" text="     ข้อมูลส่วนตัว">
+                     <font>
+                        <Font name="Quark-Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <styleClass>
+                        <String fx:value="profilebtn" />
+                        <String fx:value="menubtn" />
+                        <String fx:value="quark" />
+                        <String fx:value="font-menu" />
+                     </styleClass>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <ImageView fitHeight="34.0" fitWidth="36.0" layoutX="23.0" layoutY="177.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../css/images/user.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </left>
@@ -275,7 +322,7 @@
                            <children>
                               <Pane prefHeight="21.0" prefWidth="600.0">
                                  <children>
-                                    <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="-2.0" prefHeight="41.0" prefWidth="147.0" styleClass="quark" text="กิจกรรมแนะนำ" textFill="#cd4d28">
+                                    <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="-2.0" prefHeight="41.0" prefWidth="147.0" styleClass="quark" text="กิจกรรมแนะนำ" textFill="#cd4d28">
                                        <font>
                                           <Font name="ThaiSans Neue Regular" size="31.0" />
                                        </font>

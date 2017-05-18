@@ -3,17 +3,22 @@ package publicizehub.club.controller;
 import com.jfoenix.controls.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import publicizehub.club.model.ConnectionBuilder;
 import publicizehub.club.model.EventModel;
 
 /**
@@ -26,14 +31,47 @@ public class EditEventController {
     private static final Logger LOGGER = Logger.getLogger(EditEventController.class.getName());
     private EventModel ev = new EventModel();
     private LoginController lc = new LoginController();
-
+    ConnectionBuilder cb = new ConnectionBuilder();
+    
     private EventModel thisEvent;
 
     private int resultType;
-
+    private int evType = -1;
+    private int eventId;
+    private ArrayList typeList = new ArrayList<>();
     private long stdId = lc.getStdId();
-
+    @FXML
+    private Button editEvent;
+    @FXML
+    private Button detailBtn;
+    
+    
     private Stage thisStage;
+
+    public Button getDetailBtn() {
+        return detailBtn;
+    }
+
+    public void setDetailBtn(Button detailBtn) {
+        this.detailBtn = detailBtn;
+    }
+
+    public Button getEditEvent() {
+        return editEvent;
+    }
+
+    public void setEditEvent(Button editEvent) {
+        this.editEvent = editEvent;
+    }
+    
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
+    
 
     public Stage getThisStage() {
         return thisStage;
@@ -58,7 +96,7 @@ public class EditEventController {
     public void setThisEvent(EventModel thisEvent) {
         this.thisEvent = thisEvent;
     }
-
+    
     @FXML
     private JFXTextField eventName;
     @FXML
@@ -72,7 +110,7 @@ public class EditEventController {
     @FXML
     private JFXDatePicker startRegis;
     @FXML
-    private ComboBox<String> ticket;
+    private JFXComboBox<String> ticket;
     @FXML
     private ToggleGroup type;
     @FXML
@@ -80,15 +118,13 @@ public class EditEventController {
     @FXML
     private JFXTextField place;
     @FXML
-    private JFXRadioButton camp;
-    @FXML
-    private JFXRadioButton seminar;
-    @FXML
-    private JFXRadioButton other;
+    private JFXComboBox<String> eventType;
     @FXML
     private JFXButton confirmBtn;
     @FXML
     private JFXButton cancelBtn;
+    @FXML
+    private Button deleteBtn;
 
     @FXML
     public void showValue() {
@@ -101,75 +137,91 @@ public class EditEventController {
         ticket.setValue("" + thisEvent.getEvTicket());
         description.setText(thisEvent.getEvDescrip());
         place.setText(thisEvent.getEvPlace());
-        setType(thisEvent.getEvType());
+        setType(thisEvent.getEvType()); 
+        //ticket.setEditable(false);
     }
-
+    @FXML
+    public void setTypeToComboBox(){
+        ResultSet rs = ev.getEventType();
+        try{
+            while(rs.next()){ 
+                typeList.add(rs.getString("typeName"));
+            }
+            
+        }catch(SQLException sqe){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : SQLException",sqe);
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : Exception",e);
+        }
+        cb.logout();
+        System.out.println("Event Type : "+typeList);
+        eventType.getItems().addAll(typeList);
+    }
+    
     @FXML
     public void setType(int evType) {
-        if (evType == 0) {
-            camp.setSelected(true);
-        } else if (evType == 1) {
-            seminar.setSelected(true);
-        } else {
-            other.setSelected(true);
+        ResultSet rs = ev.getEventType(evType);
+        try{
+            while(rs.next()){
+                String evTypeText = rs.getString("typeName");
+                System.out.println("evTypeText : "+evTypeText);
+                eventType.setValue(evTypeText);
+            }
+        }catch(SQLException sqe){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : SQLException",sqe);
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : Exception",e);
         }
-    }
-
-    @FXML
-    public void setAllValue() {
-        showValue();
-        evTypeResult();
-    }
-
-    @FXML
-    public void evTypeResult() {
-        int evType = -1;
-        if (camp.isSelected()) {
-            evType = 0;
-        } else if (seminar.isSelected()) {
-            evType = 1;
-        } else if (other.isSelected()) {
-            evType = 2;
-        }
-        thisEvent.setEvType(evType);
+        cb.logout();
     }
 
     @FXML
     public int typeResult() {
-        int result = 2;
-
-        if (camp.isSelected()) {
-
-            result = 0;
-        } else if (seminar.isSelected()) {
-
-            result = 1;
-        } else if (other.isSelected()) {
-
-            result = 2;
+        int evType=0;
+        ResultSet rs = ev.getEventType(eventType.getValue());
+        System.out.println("eventType.getValue() : "+eventType.getValue());
+        try{
+            while(rs.next()){ 
+                evType = rs.getInt("typeValue");
+                System.out.println("evType : "+evType);
+            }
+            
+        }catch(SQLException sqe){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : SQLException",sqe);
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : Exception",e);
         }
-
-        return result;
+        cb.logout();
+        
+        return evType;
     }
-
+    
     @FXML
     public void checkCustomize() {
-        if (ticket.getValue().equals("ระบุเอง")) {
-            ticket.setEditable(true);
-            ticket.setValue("");
-        } else {
-            ticket.setEditable(false);
+        System.out.println("checkCustomize() : "+ticket.getValue());
+        if(ticket.getValue()!=null){
+            if (ticket.getValue().equals("ระบุเอง")) {
+                ticket.setEditable(true);
+                ticket.setValue("");
+            } else {
+                String temp = ticket.getValue();
+                System.out.println("ticket.getValue() : "+ticket.getValue());
+                ticket.setEditable(false);
+                ticket.setValue(temp);
+            }
         }
     }
 
     @FXML
     public void setValueToCombobox() {
         ticket.getItems().addAll("5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "75", "100", "ระบุเอง");
+        ticket.setEditable(true);
     }
-
+    
     @FXML
     public void clickConfirm() {
         Alert warning = null;
+        getTypeFromCombo();
         if (checkEditEvent()) {
             warning = new Alert(Alert.AlertType.CONFIRMATION);
             warning.setTitle("ยืนยันการแก้ไข");
@@ -181,38 +233,164 @@ public class EditEventController {
                     thisStage.close();
                 }
             }
-        } else {
-            warning = new Alert(Alert.AlertType.CONFIRMATION);
-            warning.setTitle("ยืนยันการแก้ไข");
-            warning.setHeaderText("แก้ไขข้อมูลกิจกรรม");
-            warning.setContentText("ยืนยันที่จะแก้ไขข้อมูลกิจกรรม");
-            Optional<ButtonType> result = warning.showAndWait();
-            if (result.isPresent()) {
-                if (result.get() == ButtonType.OK) {
-                    setValueToObj();
-                    ev.updateEvent(thisEvent);
-                    warning = new Alert(Alert.AlertType.INFORMATION);
-                    warning.setTitle("Success!");
-                    warning.setHeaderText("แก้ไขข้อมูล");
-                    warning.setContentText("แก้ไขข้อมูลสำเร็จแล้ว !");
-                    warning.showAndWait();
-                    thisStage.close();
+        } else if(validateField()){
+            warning = new Alert(Alert.AlertType.ERROR);
+            warning.setTitle("Error!");
+            warning.setHeaderText("กรอกข้อมูลไม่ครบ");
+            warning.setContentText("กรุณากรอกข้อมูลให้ครบทุกช่อง!");
+            warning.showAndWait(); 
+        }else if(validateDate()){
+            if(validateTime()){
+                warning = new Alert(Alert.AlertType.CONFIRMATION);
+                warning.setTitle("ยืนยันการแก้ไข");
+                warning.setHeaderText("แก้ไขข้อมูลกิจกรรม");
+                warning.setContentText("ยืนยันที่จะแก้ไขข้อมูลกิจกรรม");
+                Optional<ButtonType> result = warning.showAndWait();
+                if (result.isPresent()) {
+                    if (result.get() == ButtonType.OK) {
+                        setValueToObj();
+                        ev.updateEvent(thisEvent);
+                        warning = new Alert(Alert.AlertType.INFORMATION);
+                        warning.setTitle("Success!");
+                        warning.setHeaderText("แก้ไขข้อมูล");
+                        warning.setContentText("แก้ไขข้อมูลสำเร็จแล้ว !");
+                        warning.showAndWait();
+                        thisStage.close();
+                    }
                 }
             }
         }
         resetEvent(thisEvent);
     }
 
+    public boolean validateField(){
+        boolean check = false;
+        if(ticket.getValue()==null||ticket.getValue().equals("ระบุเอง")||ticket.getValue().equals("")||
+           eventName.getText().equals("")||description.getText().equals("")||
+           place.getText().equals("")||startRegis.getValue()==null||
+           startDate.getValue()==null||endDate.getValue()==null||
+           startTime.getValue()==null||endTime.getValue()==null||evType==-1){
+            check = true;
+        }
+        System.out.println("evType : "+evType);
+        if(ticket.getValue()!=null) {
+            checkNumber(check);
+        }
+        return check;
+    }
+    
+    public boolean validateDate(){
+        boolean check = false;
+        Alert warning = new Alert(Alert.AlertType.ERROR);
+        warning.setHeaderText("Error !");
+        LocalDate dateRegis = startRegis.getValue();
+        LocalDate dateStart = startDate.getValue();
+        LocalDate dateEnd = endDate.getValue();
+        if(dateRegis!=null && dateStart != null && dateEnd !=null){
+            if(dateStart.compareTo(dateEnd)>0){
+                warning.setContentText("กรุณาใส่วันเริ่มกิจกรรม ให้น้อยกว่าหรือเท่ากับ วันจบกิจกรรม");
+                warning.showAndWait();
+            } else {
+                check = true;
+            }
+        }
+        return check;
+    }
+    
+    public boolean validateTime(){
+        boolean check = false;
+        Alert warning = new Alert(Alert.AlertType.ERROR);
+        warning.setHeaderText("Error !");
+        LocalDate dateStart = startDate.getValue();
+        LocalDate dateEnd = endDate.getValue();
+        LocalTime timeStart = startTime.getValue();
+        LocalTime timeEnd = endTime.getValue();
+        LocalTime tempTime = startTime.getValue().plusMinutes(30);
+        LocalTime time20PM = LocalTime.of(20, 0, 0);
+        LocalTime time05AM = LocalTime.of(5, 0, 0);
+        if(dateStart.compareTo(dateEnd)==0){
+            if(timeStart.compareTo(time20PM)<=0&&
+               timeStart.compareTo(time05AM)>=0&&
+               timeEnd.compareTo(time20PM)<=0&&
+               timeEnd.compareTo(time05AM)>=0){
+                if(timeStart.compareTo(timeEnd)>-1){
+                    warning.setContentText("กรุณาใส่กรุณาใส่เวลาให้ถูกต้อง");
+                    warning.showAndWait();
+                }else if(timeEnd.compareTo(tempTime)<0){
+                    warning.setContentText("กรุณาใส่กรุณาจบกิจกรรมอย่างน้อย 30 นาทีขึ้นไป");
+                    warning.showAndWait();
+                }else {
+                    check = true;
+                }
+            }else{
+                warning.setContentText("กรุณาใส่กรุณาใส่เวลาให้ถูกต้อง");
+                warning.showAndWait();
+            }
+            
+        }else {
+            if(timeStart.compareTo(time20PM)<=0&&
+               timeStart.compareTo(time05AM)>=0&&
+               timeEnd.compareTo(time20PM)<=0&&
+               timeEnd.compareTo(time05AM)>=0){
+                check = true;
+            }else{
+                warning.setContentText("กรุณาใส่กรุณาใส่เวลาให้ถูกต้อง");
+                warning.showAndWait();
+            }
+        }
+        return check;
+    }
+    
+    @FXML
+    public void checkNumber(boolean check){
+        Alert warning = null;
+        warning = new Alert(Alert.AlertType.WARNING);
+        warning.setTitle("Error!");
+        if(ticket.getValue().length()<=5){ 
+            for(int i=0;i<ticket.getValue().length();i++){
+                if (ticket.getValue().charAt(i) < '0' || ticket.getValue().charAt(i) > '9') {
+                    check=false;
+                    warning.setHeaderText("จำนวนบัตรไม่ถูกต้อง");
+                    warning.setContentText("กรุณาใส่จำนวนบัตรให้ถูกต้อง (0-9)");
+                    warning.showAndWait();
+                    break;
+                }
+            }
+        }else {
+            warning.setHeaderText("จำนวนบัตรไม่ถูกต้อง");
+            warning.setContentText("กรุณาใส่จำนวนบัตรให้ถูกต้อง");
+            warning.showAndWait();
+        }
+    }
+    @FXML
+    public void getTypeFromCombo(){
+        ResultSet rs = ev.getEventType(eventType.getValue());
+        System.out.println("eventType.getValue() : "+eventType.getValue());
+        try{
+            while(rs.next()){ 
+                this.evType = rs.getInt("typeValue");
+                System.out.println("evType : "+evType);
+            }
+            
+        }catch(SQLException sqe){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : SQLException",sqe);
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING, "setTypeToComboBox : Exception",e);
+        }
+        cb.logout();
+        
+    }
     @FXML
     public void closeStage() {
         getThisStage().close();
     }
 
     @FXML
-    public void callEditEvent(EventModel event) {
+    public void callEditEvent(EventModel event,Button editBtn,Button detailBtn) {
         Stage stage = new Stage();
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/EditEvent.fxml"));
+        stage.setTitle("PublicizeHUB");
         try {
             root = (Parent) fxmlLoader.load();
         } catch (Exception e) {
@@ -221,8 +399,13 @@ public class EditEventController {
         EditEventController controller = fxmlLoader.<EditEventController>getController();
         controller.setThisStage(stage);
         controller.setThisEvent(controller.resetEvent(event));
-        controller.showValue();
         controller.setValueToCombobox();
+        controller.setTypeToComboBox();
+        controller.showValue();
+        controller.setEventId(event.getEvId());
+        controller.setEditEvent(editBtn);
+        controller.setDetailBtn(detailBtn);
+        
         Scene scene = new Scene(root);
         try {
             stage.setScene(scene);
@@ -231,7 +414,18 @@ public class EditEventController {
         }
         stage.show();
     }
-
+    public void deleteEvent(){
+        Alert warning = null;
+        warning = new Alert(Alert.AlertType.ERROR);
+        warning.setTitle("ลบกิจกรรม?");
+        warning.setHeaderText("ยืนยันการลบกิจกรรม");
+        warning.setContentText("คุณแน่ใจที่จะลบกิจกรรมใช่หรือไม่?");
+        warning.showAndWait(); 
+        ev.deleteEvent(eventId);
+        closeStage();
+        getEditEvent().setDisable(true);
+        getDetailBtn().setDisable(true);
+    }
     public boolean checkEditEvent() {
         boolean checkEdit = false;
         if (getThisEvent().getEvName().equals(eventName.getText())
@@ -247,7 +441,6 @@ public class EditEventController {
                             checkEdit = true;
                         }
                     }
-
                 }
             }
         }
@@ -291,5 +484,6 @@ public class EditEventController {
         description.setText(event.getEvDescrip());
         place.setText(event.getEvPlace());
         setType(event.getEvType());
+        
     }
 }

@@ -44,7 +44,8 @@ public class NewsController {
     public void callAddNews(){
         Stage stage= new Stage();
         Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/AddNews.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/AddNews.fxml")); 
+        stage.setTitle("PublicizeHUB");
         try{
             root = (Parent)fxmlLoader.load(); 
         }
@@ -119,6 +120,6 @@ public class NewsController {
             LOGGER.log(Level.SEVERE ,"addNewsToList : addNewsToList Bug !");
         }
         list.setItems(items);
-
+        cb.logout();
     }
 }

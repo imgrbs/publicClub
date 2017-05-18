@@ -20,6 +20,8 @@ import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.EventHandler;
+import publicizehub.club.model.ClickModel;
+import publicizehub.club.model.EventModel;
 import publicizehub.club.model.LoginModel;
 
 /**
@@ -32,6 +34,8 @@ public class SearchController {
     private JoinController jc = new JoinController();
     private DetailController dc = new DetailController();
     private SearchModel s = new SearchModel();
+    private EventModel em = new EventModel();
+    private ClickModel cm = new ClickModel();
     private Alert alert = new Alert(AlertType.WARNING);
     
     private LoginModel profile;
@@ -44,10 +48,20 @@ public class SearchController {
     private TextField search;
     @FXML
     private Label l;
+    @FXML
+    private Label typeName;
     
     private int checkEvType;
     
     private String text;
+
+    public Label getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(Label typeName) {
+        this.typeName = typeName;
+    }
 
     public SearchController() {
         checkEvType=-1;
@@ -107,8 +121,9 @@ public class SearchController {
     
     
     @FXML
-    public void addEventToPane(String eventName,int eventId) {
+    public void addEventToPane(String eventName,int eventId,LocalDate regisDate,LocalDate endDate) {
         System.out.println(profile.getStdId());
+        getJc().setProfile(profile);
         Pane p = new Pane();
         l= new Label(eventName);
         Button joinbtn = new Button("เข้าร่วม");
@@ -122,10 +137,14 @@ public class SearchController {
         p.getChildren().add(l);
         p.getChildren().add(joinbtn);
         p.getChildren().add(detailbtn);
+        System.out.println(LocalDate.now().compareTo(regisDate));
+        if(LocalDate.now().compareTo(regisDate)<0){
+            joinbtn.setDisable(true);
+        }
         joinbtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent evt) {
-                getJc().setStdId(getProfile().getStdId());
+                getJc().setStdId(profile.getStdId());
                 getJc().toJoinEvent(eventId);
             }
         });
@@ -133,13 +152,14 @@ public class SearchController {
             @Override
             public void handle(ActionEvent evt) {
                 dc.callDetail(eventId);
+                cm.increaseClick(eventId,regisDate,endDate);
             }
         });
         buttonBox.setMargin(p,new Insets(15,25,15,30));
         p.setStyle("-fx-background-color: #" + "ffffff" + ";" +
                    "-fx-background-radius: 10px;" +
                    "-fx-effect: dropshadow(three-pass-box, #4d4d4d, 5, 0, 0, 1);");
-        l.getStyleClass().add("labelNameSearch");;
+        l.getStyleClass().add("labelNameSearch");
         l.getStyleClass().add("quark");;
         p.setPrefSize(480,150);
         buttonBox.getChildren().add(p);
@@ -151,6 +171,7 @@ public class SearchController {
         ResultSet result=null;
         buttonBox.getChildren().clear();
         String temp = search.getText();
+        typeName.setText(temp);
         if(checkEvType!=-1){
             
         }else if(temp.equals("")||search.getText()==null){
@@ -191,15 +212,18 @@ public class SearchController {
                     alert.setContentText("ไม่มีกิจกรรมที่คุณค้นหา..");
                     alert.showAndWait();
                 } else {
-                    LocalDate tempDate = result.getDate("evEndDate").toLocalDate();
-                        System.out.println(LocalDate.now().compareTo(tempDate));
-                    if(tempDate.compareTo(LocalDate.now())>-1){
-                        addEventToPane(result.getString("evName"),result.getInt("evId"));
+                    LocalDate tempDate = result.getDate("evStartRegis").toLocalDate();
+                    LocalDate tempEndDate = result.getDate("evEndDate").toLocalDate();
+                    tempDate = tempDate.minusDays(10);
+                    if(LocalDate.now().compareTo(tempDate)>-1&&tempEndDate.compareTo(LocalDate.now())>=0){
+                        addEventToPane(result.getString("evName"),result.getInt("evId"),tempDate.plusDays(10),tempEndDate);
                     }
                     while(result.next()){
-                        tempDate = result.getDate("evEndDate").toLocalDate();
-                        if(tempDate.compareTo(LocalDate.now())>-1){
-                            addEventToPane(result.getString("evName"),result.getInt("evId"));
+                        tempDate = result.getDate("evStartRegis").toLocalDate();
+                        tempEndDate = result.getDate("evEndDate").toLocalDate();
+                        tempDate = tempDate.minusDays(10);
+                        if(LocalDate.now().compareTo(tempDate)>-1&&tempEndDate.compareTo(LocalDate.now())>=0){
+                            addEventToPane(result.getString("evName"),result.getInt("evId"),tempDate.plusDays(10),tempEndDate);
                         }
                     }
                 }
@@ -215,7 +239,8 @@ public class SearchController {
     public void checkSearchEvType() throws Exception{
         Stage stage= new Stage();
         Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));   
+        stage.setTitle("PublicizeHUB");
         try{
             root = (Parent)fxmlLoader.load(); 
         }
@@ -244,7 +269,8 @@ public class SearchController {
     public void callSearch(String text){
         Stage stage= new Stage();
         Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));
+        stage.setTitle("PublicizeHUB");
         try{
             root = (Parent)fxmlLoader.load(); 
         }
@@ -252,8 +278,10 @@ public class SearchController {
             LOGGER.log(Level.SEVERE ,"root : callSearch Bug !");
         }
         SearchController controller = fxmlLoader.<SearchController>getController();
+        controller.setProfile(profile);
         controller.setText(text);
         controller.checkSearch();
+        controller.getTypeName().setText(text);
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    
@@ -263,12 +291,24 @@ public class SearchController {
         }
         stage.show();
     }
-    
+    public String typeName(int evType){
+        ResultSet rs = em.getEventType(evType);
+        String name="";
+        try{
+            if(rs.next()){
+                name = rs.getString("typeName");
+            }
+        }catch(SQLException se){
+            LOGGER.log(Level.SEVERE ,"root : typeName Bug !");
+        }
+        return name;
+    }
     public void callSearch(int evType,LoginModel prof){
         System.out.println(prof.getStdId());
         Stage stage= new Stage();
         Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));   
+        stage.setTitle("PublicizeHUB");
         try{
             root = (Parent)fxmlLoader.load(); 
         }
@@ -279,6 +319,7 @@ public class SearchController {
         controller.setCheckEvType(evType);
         controller.setProfile(prof);
         controller.checkSearch();
+        controller.typeName.setText(typeName(evType));
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    
@@ -288,4 +329,6 @@ public class SearchController {
         }
         stage.show();
     }
+    
+    
 }
