@@ -164,6 +164,7 @@ public class SearchController {
         ResultSet result=null;
         buttonBox.getChildren().clear();
         String temp = search.getText();
+        typeName.setText(temp);
         if(checkEvType!=-1){
             
         }else if(temp.equals("")||search.getText()==null){
@@ -270,6 +271,7 @@ public class SearchController {
         controller.setProfile(profile);
         controller.setText(text);
         controller.checkSearch();
+        controller.getTypeName().setText(text);
         Scene scene = new Scene(root); 
         try{
             stage.setScene(scene);    
