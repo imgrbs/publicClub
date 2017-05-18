@@ -416,15 +416,20 @@ public class EditEventController {
     }
     public void deleteEvent(){
         Alert warning = null;
-        warning = new Alert(Alert.AlertType.ERROR);
+        warning = new Alert(Alert.AlertType.CONFIRMATION);
         warning.setTitle("ลบกิจกรรม?");
         warning.setHeaderText("ยืนยันการลบกิจกรรม");
         warning.setContentText("คุณแน่ใจที่จะลบกิจกรรมใช่หรือไม่?");
-        warning.showAndWait(); 
-        ev.deleteEvent(eventId);
-        closeStage();
-        getEditEvent().setDisable(true);
-        getDetailBtn().setDisable(true);
+        Optional<ButtonType> result = warning.showAndWait();
+        if(result.isPresent()){
+            if(result.get() == ButtonType.OK){
+                ev.deleteEvent(eventId);
+                closeStage(); 
+                getEditEvent().setDisable(true);
+                getDetailBtn().setDisable(true);     
+            } 
+        }
+        
     }
     public boolean checkEditEvent() {
         boolean checkEdit = false;
