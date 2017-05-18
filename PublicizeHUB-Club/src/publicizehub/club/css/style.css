@@ -140,6 +140,19 @@
 .detailbtnSearch:hover{
     -fx-background-color: #ECECEC;
 }
+.deleteicon{
+    -fx-background-color: none;
+    -fx-background-image: url('images/rubbish-bin.png');
+    -fx-background-repeat: no-repeat; 
+    -fx-background-width: 20px;   
+}
+
+.deleteicon:hover{
+    -fx-background-color: none;
+    -fx-background-image: url('images/rubbish.png');
+    -fx-background-repeat: no-repeat; 
+    -fx-background-width: 20px;   
+}
 .detailbtnProfile{
     -fx-font-family:'Quark';
     -fx-background-color: #d3d3d3;
