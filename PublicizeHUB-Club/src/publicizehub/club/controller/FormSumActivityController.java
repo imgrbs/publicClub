@@ -208,7 +208,10 @@ public class FormSumActivityController  implements Initializable  {
         rs = controller.getFbm().selectValueFeedback(event.getEvId());
         controller.getEvName().setText(event.getEvName());
         controller.getNumberBuy().setText(""+getFbm().getStdBuy(event.getEvId()));
-        controller.getNumberJoin().setText(""+getFbm().getStdJoin(event.getEvId()));
+        System.out.println("EVENT ID " + event.getEvId());
+        int temp = getFbm().getStdJoin(event.getEvId());
+        System.out.println("NUM"+temp);
+        controller.getNumberJoin().setText(""+temp);
         controller.setPersons(event.getEvId());
         controller.checkFeedback(rs,event.getEvId());
         Scene scene = new Scene(root);
@@ -299,8 +302,12 @@ public class FormSumActivityController  implements Initializable  {
                 long stdId = rs.getLong("stdId");
                 selectName = person.getProfile(stdId);
                 if(selectName.next()){
-                    Persons.add(new PersonModel((stdId+""),selectName.getString("stdName"),selectName.getString("stdSurname")
-                            ,selectName.getString("department"),rs.getInt("status"),rs.getInt("statusCheckIn")
+                    String tempName = selectName.getString("std_name");
+                    String name = tempName.substring(0,tempName.indexOf(" "));
+                    String surname = tempName.substring(tempName.indexOf(" ")+1,tempName.length());
+                    
+                    Persons.add(new PersonModel((stdId+""),name,surname
+                            ,selectName.getString("std_major"),rs.getInt("status"),rs.getInt("statusCheckIn")
                             ,rs.getDate("dateBuyTicket"),rs.getTime("timestamp")));
                 }
             }
