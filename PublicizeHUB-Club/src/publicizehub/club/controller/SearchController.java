@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.EventHandler;
+import publicizehub.club.model.ClickModel;
 import publicizehub.club.model.EventModel;
 import publicizehub.club.model.LoginModel;
 
@@ -34,6 +35,7 @@ public class SearchController {
     private DetailController dc = new DetailController();
     private SearchModel s = new SearchModel();
     private EventModel em = new EventModel();
+    private ClickModel cm = new ClickModel();
     private Alert alert = new Alert(AlertType.WARNING);
     
     private LoginModel profile;
@@ -119,7 +121,7 @@ public class SearchController {
     
     
     @FXML
-    public void addEventToPane(String eventName,int eventId,LocalDate regisDate) {
+    public void addEventToPane(String eventName,int eventId,LocalDate regisDate,LocalDate endDate) {
         System.out.println(profile.getStdId());
         getJc().setProfile(profile);
         Pane p = new Pane();
@@ -135,7 +137,6 @@ public class SearchController {
         p.getChildren().add(l);
         p.getChildren().add(joinbtn);
         p.getChildren().add(detailbtn);
-        System.out.println(regisDate);
         System.out.println(LocalDate.now().compareTo(regisDate));
         if(LocalDate.now().compareTo(regisDate)<0){
             joinbtn.setDisable(true);
@@ -151,6 +152,7 @@ public class SearchController {
             @Override
             public void handle(ActionEvent evt) {
                 dc.callDetail(eventId);
+                cm.increaseClick(eventId,regisDate,endDate);
             }
         });
         buttonBox.setMargin(p,new Insets(15,25,15,30));
@@ -214,14 +216,14 @@ public class SearchController {
                     LocalDate tempEndDate = result.getDate("evEndDate").toLocalDate();
                     tempDate = tempDate.minusDays(10);
                     if(LocalDate.now().compareTo(tempDate)>-1&&tempEndDate.compareTo(LocalDate.now())>=0){
-                        addEventToPane(result.getString("evName"),result.getInt("evId"),tempDate.plusDays(10));
+                        addEventToPane(result.getString("evName"),result.getInt("evId"),tempDate.plusDays(10),tempEndDate);
                     }
                     while(result.next()){
                         tempDate = result.getDate("evStartRegis").toLocalDate();
                         tempEndDate = result.getDate("evEndDate").toLocalDate();
                         tempDate = tempDate.minusDays(10);
                         if(LocalDate.now().compareTo(tempDate)>-1&&tempEndDate.compareTo(LocalDate.now())>=0){
-                            addEventToPane(result.getString("evName"),result.getInt("evId"),tempDate.plusDays(10));
+                            addEventToPane(result.getString("evName"),result.getInt("evId"),tempDate.plusDays(10),tempEndDate);
                         }
                     }
                 }
@@ -327,4 +329,6 @@ public class SearchController {
         }
         stage.show();
     }
+    
+    
 }

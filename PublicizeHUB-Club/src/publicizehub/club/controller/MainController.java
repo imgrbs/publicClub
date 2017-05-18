@@ -12,8 +12,12 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Optional;
+import publicizehub.club.model.ClickModel;
 import publicizehub.club.model.ConnectionBuilder;
+import publicizehub.club.model.EventModel;
 import publicizehub.club.model.LoginModel;
 
 /**
@@ -32,7 +36,9 @@ public class MainController {
     private FirstNewsController fc = new FirstNewsController();
     private ResultSet rs = null;
     
+    private ClickModel cm = new ClickModel();
     private LoginModel profile;
+    private EventModel ev;
     
     private Stage thisStage;
     private Scene thisScene;
@@ -207,52 +213,62 @@ public class MainController {
 
     @FXML
     public void getEvent() {
-        int eventId1,eventId2;
+        ev = new EventModel();
         jc.setProfile(profile);
-        if (rs == null) {
-            System.out.println("LOAD EVENT ONSTART");
-            rs = sc.getEventToGui("IT 3K ครั้งที่ 13");
-            try {
-                if (rs.next()) {
-                    labelEvMain1.setText(rs.getString("evName"));
-                    eventId1 = rs.getInt("evId");
+        ResultSet event = cm.getRankEvent();
+        try{
+            if(event.next()){
+                int eventId = event.getInt("evId");
+                ResultSet resultEvent = ev.getSelect(eventId);
+                if(resultEvent.next()){
+                    String text = resultEvent.getString("evName");
+                    LocalDate startRegis = resultEvent.getDate("evStartRegis").toLocalDate();
+                    LocalDate endDate = resultEvent.getDate("evEndDate").toLocalDate();
+                    labelEvMain1.setText(text);
                     joinEvMain1.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            jc.toJoinEvent(eventId1);
+                            jc.toJoinEvent(eventId);
                         }
                     });
                     detailEv1.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            dc.callDetail(eventId1);
+                            dc.callDetail(eventId);
+                            cm.increaseClick(eventId,startRegis,endDate);
                         }
                     });
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-            rs = sc.getEventToGui("Brown Bag #2.0");
-            try {
-                if (rs.next()) {
-                    labelEvMain2.setText(rs.getString("evName"));
-                    eventId2 = rs.getInt("evId");
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            if(event.next()){
+                int eventId = event.getInt("evId");
+                ResultSet resultEvent = ev.getSelect(eventId);
+                if(resultEvent.next()){
+                    String text = resultEvent.getString("evName");
+                    LocalDate startRegis = resultEvent.getDate("evStartRegis").toLocalDate();
+                    LocalDate endDate = resultEvent.getDate("evEndDate").toLocalDate();
+                    labelEvMain2.setText(text);
                     joinEvMain2.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            jc.toJoinEvent(eventId2);
+                            jc.toJoinEvent(eventId);
                         }
                     });
                     detailEv2.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            dc.callDetail(eventId2);
+                            dc.callDetail(eventId);
+                            cm.increaseClick(eventId,startRegis,endDate);
                         }
                     });
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        }catch(SQLException e){
+            e.printStackTrace();
         }
     }
     

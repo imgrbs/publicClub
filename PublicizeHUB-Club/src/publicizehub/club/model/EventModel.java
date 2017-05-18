@@ -345,11 +345,12 @@ public class EventModel {
     }
     
     public ResultSet getSelect(int evId){
+        ResultSet result = null;
         cb.connecting();
         try{
             ps = cb.getConnect().prepareStatement("SELECT * FROM tb_event where evId = ?");
             ps.setInt(1,evId);
-            rs = ps.executeQuery();
+            result = ps.executeQuery();
         }
         catch(SQLException e){
             LOGGER.log(Level.SEVERE ,"getSelect int : SQLException Bug !");
@@ -357,7 +358,7 @@ public class EventModel {
         catch(Exception e){
             LOGGER.log(Level.SEVERE ,"getSelect int : Exception Bug !");
         }
-        return rs;
+        return result;
     }
     
     public ResultSet getSelect(long stdId){
