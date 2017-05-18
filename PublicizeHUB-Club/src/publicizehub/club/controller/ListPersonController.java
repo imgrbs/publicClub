@@ -91,7 +91,8 @@ public class ListPersonController {
     public void callListPerson(int evId){
         Stage stage= new Stage();
         Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ListPersonName.fxml"));  
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ListPersonName.fxml"));
+        stage.setTitle("PublicizeHUB");
         try{
             root = (Parent)fxmlLoader.load(); 
            

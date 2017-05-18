@@ -232,7 +232,8 @@ public class CreateEventController implements Initializable {
     public void callCreateEvent(){
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/CreateEvent.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/CreateEvent.fxml"));
+        stage.setTitle("PublicizeHUB");
         try{
             root = (Parent)fxmlLoader.load(); 
         }

@@ -55,6 +55,7 @@ public class FirstNewsController implements Initializable {
 
     public void setThisStage(Stage thisStage) {
         this.thisStage = thisStage;
+         thisStage.setTitle("PublicizeHUB");
     }
 
     public Scene getThisScene() {
@@ -69,7 +70,7 @@ public class FirstNewsController implements Initializable {
         Stage stage = new Stage();
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/News.fxml"));
-        //stage.setTitle("Login");
+        stage.setTitle("PublicizeHUB");
         try {
             root = (Parent) fxmlLoader.load();
         } catch (IOException e) {

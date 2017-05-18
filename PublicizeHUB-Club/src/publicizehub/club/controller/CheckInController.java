@@ -64,7 +64,7 @@ public class CheckInController implements Initializable{
         Stage stage= new Stage();
         Parent root=null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/CheckIn.fxml")); 
-
+        stage.setTitle("PublicizeHUB");
         try{
             root = (Parent)fxmlLoader.load(); 
         }
