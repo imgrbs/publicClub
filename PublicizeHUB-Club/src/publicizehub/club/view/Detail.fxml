@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.DetailController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" styleClass="bodyOnlyColor" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="publicizehub.club.controller.DetailController">
    <children>
       <FlowPane alignment="CENTER" layoutX="146.0" layoutY="60.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -27,9 +27,17 @@
                               </Label>
                               <Line endX="100.0" layoutX="115.0" layoutY="57.0" startX="-100.0" />
                               <Line endX="100.0" layoutX="316.0" layoutY="57.0" startX="-100.0" />
-                              <Label fx:id="evDate" layoutX="18.0" layoutY="64.0" prefHeight="32.0" prefWidth="128.0" styleClass="detailDate" text="2017-04-08" />
+                              <Label fx:id="evDate" layoutX="18.0" layoutY="64.0" prefHeight="32.0" prefWidth="128.0" text="2017-04-08">
+                                 <styleClass>
+                                    <String fx:value="detailDate" />
+                                    <String fx:value="quark" />
+                                 </styleClass></Label>
                               <Label layoutX="131.0" layoutY="62.0" prefHeight="32.0" prefWidth="12.0" styleClass="detailDate" text="|" />
-                              <Label fx:id="evPlace" layoutX="143.0" layoutY="64.0" prefHeight="32.0" prefWidth="327.0" styleClass="detailDate" text="Classroom Building 2" />
+                              <Label fx:id="evPlace" layoutX="143.0" layoutY="64.0" prefHeight="32.0" prefWidth="327.0" text="Classroom Building 2">
+                                 <styleClass>
+                                    <String fx:value="detailDate" />
+                                    <String fx:value="quark" />
+                                 </styleClass></Label>
                               <TextArea fx:id="evDescrip" editable="false" layoutX="15.0" layoutY="109.0" prefHeight="166.0" prefWidth="513.0" text="งานสัมมนาเล็กๆ ของเด็กไอทีบางมด&#10;ครั้งนี้เราขอเดินหน้าขึ้นอีกก้าว เชิญชวน เพื่อนๆ พี่ๆ น้องๆ ญาติสนิทมิตรสหายของเด็กๆ ไอทีบางมด ไม่ว่าคุณจะอยู่ภาคไหน ไม่ว่าคุณจะรู้จักไอทีหรือไม่ มาร่วมแบ่งขนม ผสมความรู้กันใน Brown Bag #2.0 " wrapText="true">
                                  <styleClass>
                                     <String fx:value="listDescrip" />
