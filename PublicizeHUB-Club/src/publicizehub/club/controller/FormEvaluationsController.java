@@ -409,6 +409,7 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
         Stage stage = new Stage();
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/FormEvaluations.fxml"));
+        stage.setTitle("PublicizeHUB");
         try {
             root = (Parent) fxmlLoader.load();
         /* ดัก SQLException ไว้กันพลาดจะได้รู้ว่าผิดส่วนนี้รึเปล่า */

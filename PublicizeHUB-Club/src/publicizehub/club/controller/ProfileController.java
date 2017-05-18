@@ -171,6 +171,7 @@ public class ProfileController {
     @FXML
     public void callProfile(Stage mainStage,Scene mainScene,LoginModel prof){
         FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/Profile.fxml")); 
+        mainStage.setTitle("PublicizeHUB");
 
         Parent root = null;
         try{

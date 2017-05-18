@@ -383,6 +383,7 @@ public class EditEventController {
         Stage stage = new Stage();
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/EditEvent.fxml"));
+        stage.setTitle("PublicizeHUB");
         try {
             root = (Parent) fxmlLoader.load();
         } catch (Exception e) {

@@ -110,7 +110,7 @@ public class LoginController {
         
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/LoginGui.fxml"));
-        //stage.setTitle("Login");
+        stage.setTitle("PublicizeHUB");
         try {
             root = (Parent) fxmlLoader.load();
             scene.setRoot(root);

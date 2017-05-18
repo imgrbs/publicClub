@@ -104,7 +104,7 @@ public class MainController {
 
     public void setThisStage(Stage thisStage) {
         this.thisStage = thisStage;
-        //thisStage.setTitle("PublicizeHUB");   
+        thisStage.setTitle("PublicizeHUB");   
     }
     
     public void setManageDisable(){

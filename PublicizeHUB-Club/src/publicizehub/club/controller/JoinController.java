@@ -104,7 +104,8 @@ public class JoinController {
     public void callShowCode(String evCode,int eventId){
         Stage stage= new Stage();
         Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ShowCode.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ShowCode.fxml"));   
+        stage.setTitle("PublicizeHUB");
         try{
             root = (Parent)fxmlLoader.load(); 
         }

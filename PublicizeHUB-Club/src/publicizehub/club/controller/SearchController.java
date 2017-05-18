@@ -228,7 +228,8 @@ public class SearchController {
     public void checkSearchEvType() throws Exception{
         Stage stage= new Stage();
         Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));   
+        stage.setTitle("PublicizeHUB");
         try{
             root = (Parent)fxmlLoader.load(); 
         }
@@ -257,7 +258,8 @@ public class SearchController {
     public void callSearch(String text){
         Stage stage= new Stage();
         Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));
+        stage.setTitle("PublicizeHUB");
         try{
             root = (Parent)fxmlLoader.load(); 
         }
@@ -293,7 +295,8 @@ public class SearchController {
         System.out.println(prof.getStdId());
         Stage stage= new Stage();
         Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/ViewSearch.fxml"));   
+        stage.setTitle("PublicizeHUB");
         try{
             root = (Parent)fxmlLoader.load(); 
         }

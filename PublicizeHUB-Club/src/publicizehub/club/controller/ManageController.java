@@ -128,7 +128,8 @@ public class ManageController {
     
     @FXML
     public void callManage(Stage mainStage,Scene tempScene,LoginModel prof){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Manage.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Manage.fxml"));   
+        mainStage.setTitle("PublicizeHUB");
         Parent root = null;
         try{
             root = (Parent)fxmlLoader.load(); 

@@ -84,7 +84,8 @@ public class DetailController {
         ResultSet rs = ev.getSelect(eventId);
         Stage stage= new Stage();
         Parent root=null;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Detail.fxml"));     
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Detail.fxml"));
+        stage.setTitle("PublicizeHUB");
         try{
             root = (Parent)fxmlLoader.load(); 
         }
