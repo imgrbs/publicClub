@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
@@ -31,16 +32,46 @@ public class EditEventController {
     private EventModel ev = new EventModel();
     private LoginController lc = new LoginController();
     ConnectionBuilder cb = new ConnectionBuilder();
-
+    
     private EventModel thisEvent;
 
     private int resultType;
     private int evType = -1;
+    private int eventId;
     private ArrayList typeList = new ArrayList<>();
-
     private long stdId = lc.getStdId();
-
+    @FXML
+    private Button editEvent;
+    @FXML
+    private Button detailBtn;
+    
+    
     private Stage thisStage;
+
+    public Button getDetailBtn() {
+        return detailBtn;
+    }
+
+    public void setDetailBtn(Button detailBtn) {
+        this.detailBtn = detailBtn;
+    }
+
+    public Button getEditEvent() {
+        return editEvent;
+    }
+
+    public void setEditEvent(Button editEvent) {
+        this.editEvent = editEvent;
+    }
+    
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
+    
 
     public Stage getThisStage() {
         return thisStage;
@@ -65,7 +96,7 @@ public class EditEventController {
     public void setThisEvent(EventModel thisEvent) {
         this.thisEvent = thisEvent;
     }
-
+    
     @FXML
     private JFXTextField eventName;
     @FXML
@@ -88,17 +119,12 @@ public class EditEventController {
     private JFXTextField place;
     @FXML
     private JFXComboBox<String> eventType;
-    
-    @FXML
-    private JFXRadioButton camp;
-    @FXML
-    private JFXRadioButton seminar;
-    @FXML
-    private JFXRadioButton other;
     @FXML
     private JFXButton confirmBtn;
     @FXML
     private JFXButton cancelBtn;
+    @FXML
+    private Button deleteBtn;
 
     @FXML
     public void showValue() {
@@ -149,24 +175,6 @@ public class EditEventController {
         cb.logout();
     }
 
-    /*@FXML
-    public void setAllValue() {
-        showValue();
-        evTypeResult();
-    }*/
-
-    @FXML
-    public void evTypeResult() {
-        if (camp.isSelected()) {
-            evType = 0;
-        } else if (seminar.isSelected()) {
-            evType = 1;
-        } else if (other.isSelected()) {
-            evType = 2;
-        }
-        thisEvent.setEvType(evType);
-    }
-
     @FXML
     public int typeResult() {
         int evType=0;
@@ -209,7 +217,7 @@ public class EditEventController {
         ticket.getItems().addAll("5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "75", "100", "ระบุเอง");
         ticket.setEditable(true);
     }
-
+    
     @FXML
     public void clickConfirm() {
         Alert warning = null;
@@ -378,7 +386,7 @@ public class EditEventController {
     }
 
     @FXML
-    public void callEditEvent(EventModel event) {
+    public void callEditEvent(EventModel event,Button editBtn,Button detailBtn) {
         Stage stage = new Stage();
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/EditEvent.fxml"));
@@ -394,6 +402,9 @@ public class EditEventController {
         controller.setValueToCombobox();
         controller.setTypeToComboBox();
         controller.showValue();
+        controller.setEventId(event.getEvId());
+        controller.setEditEvent(editBtn);
+        controller.setDetailBtn(detailBtn);
         
         Scene scene = new Scene(root);
         try {
@@ -403,7 +414,18 @@ public class EditEventController {
         }
         stage.show();
     }
-
+    public void deleteEvent(){
+        Alert warning = null;
+        warning = new Alert(Alert.AlertType.ERROR);
+        warning.setTitle("ลบกิจกรรม?");
+        warning.setHeaderText("ยืนยันการลบกิจกรรม");
+        warning.setContentText("คุณแน่ใจที่จะลบกิจกรรมใช่หรือไม่?");
+        warning.showAndWait(); 
+        ev.deleteEvent(eventId);
+        closeStage();
+        getEditEvent().setDisable(true);
+        getDetailBtn().setDisable(true);
+    }
     public boolean checkEditEvent() {
         boolean checkEdit = false;
         if (getThisEvent().getEvName().equals(eventName.getText())

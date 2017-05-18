@@ -261,7 +261,7 @@ public class EventModel {
         cb.logout();
     }
     
-    public void DeleteEvent(int deleteId){
+    public void deleteEvent(int deleteId){
         String command;
         PreparedStatement s;
         cb.connecting();

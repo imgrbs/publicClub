@@ -108,7 +108,7 @@ public class EventController {
                 joinbtn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent evt) {
-                        ee.callEditEvent(event); 
+                        ee.callEditEvent(event,joinbtn,detailbtn); 
                     }
                 });
                 detailbtn.setOnAction(new EventHandler<ActionEvent>() {
