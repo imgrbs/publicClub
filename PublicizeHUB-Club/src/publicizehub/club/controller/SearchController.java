@@ -121,6 +121,7 @@ public class SearchController {
     @FXML
     public void addEventToPane(String eventName,int eventId) {
         System.out.println(profile.getStdId());
+        getJc().setProfile(profile);
         Pane p = new Pane();
         l= new Label(eventName);
         Button joinbtn = new Button("เข้าร่วม");
@@ -137,7 +138,7 @@ public class SearchController {
         joinbtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent evt) {
-                getJc().setStdId(getProfile().getStdId());
+                getJc().setStdId(profile.getStdId());
                 getJc().toJoinEvent(eventId);
             }
         });
@@ -264,6 +265,7 @@ public class SearchController {
             LOGGER.log(Level.SEVERE ,"root : callSearch Bug !");
         }
         SearchController controller = fxmlLoader.<SearchController>getController();
+        controller.setProfile(profile);
         controller.setText(text);
         controller.checkSearch();
         Scene scene = new Scene(root); 

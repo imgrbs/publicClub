@@ -143,6 +143,24 @@ public class MainController {
          cb.logout();
      }
     }
+
+    public JoinController getJc() {
+        return jc;
+    }
+
+    public void setJc(JoinController jc) {
+        this.jc = jc;
+    }
+
+    public SearchController getSc() {
+        return sc;
+    }
+
+    public void setSc(SearchController sc) {
+        this.sc = sc;
+    }
+    
+     
     
     @FXML
     public void callProfile() {
@@ -248,6 +266,7 @@ public class MainController {
     public void sentToSearch(){
         String text = searchfield.getText();
         System.out.println(text);
+        sc.setProfile(profile);
         sc.callSearch(text);
         searchfield.setText("");
     }
@@ -269,6 +288,9 @@ public class MainController {
             controller.manageBtn.setVisible(false);
             controller.managePic.setVisible(false);
         }
+        sc.setProfile(prof);
+        controller.getJc().setProfile(prof);
+        controller.getSc().setProfile(prof);
         controller.setProfile(prof);
         controller.getEvent();
         controller.setUserData(controller.getProfile().getStdId(),controller.getProfile().getName());
