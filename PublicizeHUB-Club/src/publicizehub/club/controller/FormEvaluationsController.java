@@ -49,16 +49,16 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
     }
     
     /*สร้าง array object RadioButton  เพื่อ set ค่าเวลาคลิกที่ปุ่ม radio button*/
-    RadioButton[] rdiAnswerNum1= new RadioButton[5];
-    RadioButton[] rdiAnswerNum2= new RadioButton[5];
-    RadioButton[] rdiAnswerNum3 = new RadioButton[5];
-    RadioButton[] rdiAnswerNum4 = new RadioButton[5];
-    RadioButton[] rdiAnswerNum5 = new RadioButton[5];
-    RadioButton[] rdiAnswerNum6 = new RadioButton[5];
-    RadioButton[] rdiAnswerNum7 = new RadioButton[5];
-    RadioButton[] rdiAnswerNum8 = new RadioButton[5];
-    RadioButton[] rdiAnswerNum9 = new RadioButton[5];
-    RadioButton[] rdiAnswerNum10 = new RadioButton[5];
+    RadioButton[] Q1_N1 = new RadioButton[5];
+    RadioButton[] Q1_N2 = new RadioButton[5];
+    RadioButton[] Q1_N3 = new RadioButton[5];
+    RadioButton[] Q1_N4 = new RadioButton[5];
+    RadioButton[] Q1_N5 = new RadioButton[5];
+    RadioButton[] Q2_N6 = new RadioButton[5];
+    RadioButton[] Q2_N7 = new RadioButton[5];
+    RadioButton[] Q2_N8 = new RadioButton[5];
+    RadioButton[] Q2_N9 = new RadioButton[5];
+    RadioButton[] Q2_N10 = new RadioButton[5];
 
     //สร้างตัวแปร valueRadio array ที่มี type int เพื่อไว้เก็บค่าสำหรับค่าคำตอบของคำถาม 10 ข้อ
     int[] valueRadio = new int[10];
@@ -287,65 +287,65 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
     ex. Q1_N1[0] เท่ากับ ปุ่ม radio ที่ 1*/
     public void setValueToArr(){
         //num1
-        rdiAnswerNum1[0] = Q1_N1_1;
-        rdiAnswerNum1[1] = Q1_N1_2;;
-        rdiAnswerNum1[2] = Q1_N1_3;
-        rdiAnswerNum1[3] = Q1_N1_4;
-        rdiAnswerNum1[4] = Q1_N1_5;
+        Q1_N1[0] = Q1_N1_1;
+        Q1_N1[1] = Q1_N1_2;;
+        Q1_N1[2] = Q1_N1_3;
+        Q1_N1[3] = Q1_N1_4;
+        Q1_N1[4] = Q1_N1_5;
         //num2
-        rdiAnswerNum2[0] = Q1_N2_1;
-        rdiAnswerNum2[1] = Q1_N2_2;
-        rdiAnswerNum2[2] = Q1_N2_3;
-        rdiAnswerNum2[3] = Q1_N2_4;
-        rdiAnswerNum2[4] = Q1_N2_5;
+        Q1_N2[0] = Q1_N2_1;
+        Q1_N2[1] = Q1_N2_2;
+        Q1_N2[2] = Q1_N2_3;
+        Q1_N2[3] = Q1_N2_4;
+        Q1_N2[4] = Q1_N2_5;
         //num3
-        rdiAnswerNum3[0] = Q1_N3_1;
-        rdiAnswerNum3[1] = Q1_N3_2;
-        rdiAnswerNum3[2] = Q1_N3_3;
-        rdiAnswerNum3[3] = Q1_N3_4;
-        rdiAnswerNum3[4] = Q1_N3_5;
+        Q1_N3[0] = Q1_N3_1;
+        Q1_N3[1] = Q1_N3_2;
+        Q1_N3[2] = Q1_N3_3;
+        Q1_N3[3] = Q1_N3_4;
+        Q1_N3[4] = Q1_N3_5;
         //num4
-        rdiAnswerNum4[0] = Q1_N4_1;
-        rdiAnswerNum4[1] = Q1_N4_2;
-        rdiAnswerNum4[2] = Q1_N4_3;
-        rdiAnswerNum4[3] = Q1_N4_4;
-        rdiAnswerNum4[4] = Q1_N4_5;
+        Q1_N4[0] = Q1_N4_1;
+        Q1_N4[1] = Q1_N4_2;
+        Q1_N4[2] = Q1_N4_3;
+        Q1_N4[3] = Q1_N4_4;
+        Q1_N4[4] = Q1_N4_5;
         //num5
-        rdiAnswerNum5[0] = Q1_N5_1;
-        rdiAnswerNum5[1] = Q1_N5_2;
-        rdiAnswerNum5[2] = Q1_N5_3;
-        rdiAnswerNum5[3] = Q1_N5_4;
-        rdiAnswerNum5[4] = Q1_N5_5;
+        Q1_N5[0] = Q1_N5_1;
+        Q1_N5[1] = Q1_N5_2;
+        Q1_N5[2] = Q1_N5_3;
+        Q1_N5[3] = Q1_N5_4;
+        Q1_N5[4] = Q1_N5_5;
         //num6
-        rdiAnswerNum6[0] = Q2_N1_1;
-        rdiAnswerNum6[1] = Q2_N1_2;
-        rdiAnswerNum6[2] = Q2_N1_3;
-        rdiAnswerNum6[3] = Q2_N1_4;
-        rdiAnswerNum6[4] = Q2_N1_5;
+        Q2_N6[0] = Q2_N1_1;
+        Q2_N6[1] = Q2_N1_2;
+        Q2_N6[2] = Q2_N1_3;
+        Q2_N6[3] = Q2_N1_4;
+        Q2_N6[4] = Q2_N1_5;
         //num7
-        rdiAnswerNum7[0] = Q2_N2_1;
-        rdiAnswerNum7[1] = Q2_N2_2;
-        rdiAnswerNum7[2] = Q2_N2_3;
-        rdiAnswerNum7[3] = Q2_N2_4;
-        rdiAnswerNum7[4] = Q2_N2_5;
+        Q2_N7[0] = Q2_N2_1;
+        Q2_N7[1] = Q2_N2_2;
+        Q2_N7[2] = Q2_N2_3;
+        Q2_N7[3] = Q2_N2_4;
+        Q2_N7[4] = Q2_N2_5;
         //num8
-        rdiAnswerNum8[0] = Q2_N3_1;
-        rdiAnswerNum8[1] = Q2_N3_2;
-        rdiAnswerNum8[2] = Q2_N3_3;
-        rdiAnswerNum8[3] = Q2_N3_4;
-        rdiAnswerNum8[4] = Q2_N3_5;
+        Q2_N8[0] = Q2_N3_1;
+        Q2_N8[1] = Q2_N3_2;
+        Q2_N8[2] = Q2_N3_3;
+        Q2_N8[3] = Q2_N3_4;
+        Q2_N8[4] = Q2_N3_5;
         //num9
-        rdiAnswerNum9[0] = Q2_N4_1;
-        rdiAnswerNum9[1] = Q2_N4_2;
-        rdiAnswerNum9[2] = Q2_N4_3;
-        rdiAnswerNum9[3] = Q2_N4_4;
-        rdiAnswerNum9[4] = Q2_N4_5;
+        Q2_N9[0] = Q2_N4_1;
+        Q2_N9[1] = Q2_N4_2;
+        Q2_N9[2] = Q2_N4_3;
+        Q2_N9[3] = Q2_N4_4;
+        Q2_N9[4] = Q2_N4_5;
         //num10
-        rdiAnswerNum10[0] = Q2_N5_1;
-        rdiAnswerNum10[1] = Q2_N5_2;
-        rdiAnswerNum10[2] = Q2_N5_3;
-        rdiAnswerNum10[3] = Q2_N5_4;
-        rdiAnswerNum10[4] = Q2_N5_5;
+        Q2_N10[0] = Q2_N5_1;
+        Q2_N10[1] = Q2_N5_2;
+        Q2_N10[2] = Q2_N5_3;
+        Q2_N10[3] = Q2_N5_4;
+        Q2_N10[4] = Q2_N5_5;
     }
 
     public Label getEvName() {
@@ -378,16 +378,16 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
     @FXML
     public void setValueRadio() {
         setValueToArr();
-        setValueRadio(rdiAnswerNum1, 0);
-        setValueRadio(rdiAnswerNum2, 1);
-        setValueRadio(rdiAnswerNum3, 2);
-        setValueRadio(rdiAnswerNum4, 3);
-        setValueRadio(rdiAnswerNum5, 4);
-        setValueRadio(rdiAnswerNum6, 5);
-        setValueRadio(rdiAnswerNum7, 6);
-        setValueRadio(rdiAnswerNum8, 7);
-        setValueRadio(rdiAnswerNum9, 8);
-        setValueRadio(rdiAnswerNum10, 9);
+        setValueRadio(Q1_N1, 0);
+        setValueRadio(Q1_N2, 1);
+        setValueRadio(Q1_N3, 2);
+        setValueRadio(Q1_N4, 3);
+        setValueRadio(Q1_N5, 4);
+        setValueRadio(Q2_N6, 5);
+        setValueRadio(Q2_N7, 6);
+        setValueRadio(Q2_N8, 7);
+        setValueRadio(Q2_N9, 8);
+        setValueRadio(Q2_N10, 9);
     }
 
     @FXML
@@ -409,7 +409,6 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
         Stage stage = new Stage();
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/FormEvaluations.fxml"));
-        stage.setTitle("PublicizeHUB");
         try {
             root = (Parent) fxmlLoader.load();
         /* ดัก SQLException ไว้กันพลาดจะได้รู้ว่าผิดส่วนนี้รึเปล่า */
