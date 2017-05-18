@@ -188,4 +188,26 @@ public class FeedbackModel {
         return rs;
     }
     
+    public boolean checkStdEva(int eventId,long stdId){
+        boolean check = true;
+        String sql = "SELECT statusCheckIn FROM logJoining where stdId = ? and evId = ?";
+        cb.connecting();
+        try{
+            PreparedStatement ps = cb.getConnect().prepareStatement(sql);
+            ps.setLong(1, stdId);
+            ps.setInt(2, eventId);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                if(rs.getInt("statusCheckIn")==1){
+                    check = false;
+                }
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        cb.logout();
+        return check;
+    }
+    
 }

@@ -45,7 +45,7 @@ public class PersonModel extends RecursiveTreeObject<PersonModel> {
         }else{
             this.statusEvaluation = new SimpleStringProperty("ประเมิณแล้ว");
         }
-        if(statusEvaluation==0){
+        if(statusCheckIn==0){
             this.statusCheckIn = new SimpleStringProperty("ไม่เข้าร่วม");
         }else{
             this.statusCheckIn = new SimpleStringProperty("เข้าร่วม");

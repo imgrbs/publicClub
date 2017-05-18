@@ -139,9 +139,13 @@ public class ProfileController {
         setStdId(getProfile().getStdId());
         try{
             if(rs.next()){
-                setEventToGui(rs.getInt("evId"));
+                int evId = rs.getInt("evId");
+                setEventToGui(evId);
+                System.out.println(evId);
                 while(rs.next()){
-                    setEventToGui(rs.getInt("evId"));
+                    evId = rs.getInt("evId");
+                    setEventToGui(evId);
+                    System.out.println(evId);
                 }
             }
         }catch(SQLException e){
@@ -167,11 +171,13 @@ public class ProfileController {
                 ld = event.getEvEndDate();
                 
                 
-                if(ld.compareTo(LocalDate.now())>-1){
+                if(ld.compareTo(LocalDate.now())>=0){
                     ec.addEventToPresentPane(getProfile(),event,this.listEventBox1,true,true); 
+                    System.out.println(event.getEvId());
                 }
                 else {   
                     ec.addEventToPresentPane(getProfile(),event,this.listEventBox2,false,true);
+                    System.out.println(event.getEvId());
                 }
             }
         }catch(SQLException e){

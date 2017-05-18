@@ -368,7 +368,7 @@ public class EventModel {
     public ResultSet getSelect(long stdId){
         cb.connecting();
         try{
-            ps = cb.getConnect().prepareStatement("SELECT * FROM generatecode where stdId = ?");
+            ps = cb.getConnect().prepareStatement("SELECT * FROM logJoining where stdId = ?");
             ps.setLong(1,stdId);
             rs = ps.executeQuery();
         }

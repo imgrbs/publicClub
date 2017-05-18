@@ -127,6 +127,10 @@ public class EventController {
             evaluationbtn.getStyleClass().add("quark");
             evaluationbtn.setLayoutX(370);
             evaluationbtn.setLayoutY(90);
+            
+            if(fbm.checkStdEva(event.getEvId(), profile.getStdId())&&profile.getStatus()==0){
+                evaluationbtn.setDisable(true);
+            }
             if(presentText.equals("ตรวจสอบโค้ด")){
                 evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
