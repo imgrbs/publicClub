@@ -322,7 +322,7 @@
                            <children>
                               <Pane prefHeight="21.0" prefWidth="600.0">
                                  <children>
-                                    <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="-2.0" prefHeight="41.0" prefWidth="147.0" styleClass="quark" text="กิจกรรมแนะนำ" textFill="#cd4d28">
+                                    <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="-2.0" prefHeight="41.0" prefWidth="147.0" styleClass="quark" text="กิจกรรมแนะนำ" textFill="#cd4d28">
                                        <font>
                                           <Font name="ThaiSans Neue Regular" size="31.0" />
                                        </font>
