@@ -406,6 +406,7 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
  
     public void callEvaluation(EventModel event, long stdId) {
 //        ResultSet rs = ev.getSelect(eventId);
+        System.out.println(stdId);
         Stage stage = new Stage();
         Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/FormEvaluations.fxml"));
@@ -448,6 +449,7 @@ public class FormEvaluationsController implements Initializable {  // JavaFX บ
                             controller.sentValue();
                             System.out.println("SENT COMPLETE");
                             fbm.insertToLog(event.getEvId(), stdId);
+                            fbm.updateStatusEva(event.getEvId(), stdId);
                             Alert warning = new Alert(Alert.AlertType.INFORMATION);
                             warning.setTitle("Success !");
                             warning.setHeaderText("ประเมินสำเร็จ");

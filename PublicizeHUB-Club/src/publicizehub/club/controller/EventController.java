@@ -135,10 +135,10 @@ public class EventController {
                 evaluationbtn.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent evt) {
-                            ResultSet  log = fbm.getFormLog(event.getEvId(), getStdId());
+                            ResultSet  log = fbm.getFormLog(event.getEvId(), profile.getStdId());
                             try{
                                 if(log.next())blockFeedback();
-                                else fe.callEvaluation(event,getStdId());
+                                else fe.callEvaluation(event, profile.getStdId());
                             }catch(SQLException e){
                                 e.printStackTrace();
                             }

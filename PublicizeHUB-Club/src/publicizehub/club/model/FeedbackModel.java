@@ -75,22 +75,51 @@ public class FeedbackModel {
         return numPeople;
     }
 
-    public void insertAvgrValue(int evId, int numPeple, int averQ1, int averQ2, int averQ3,
-            int averQ4, int averQ5, int averQ6, int averQ7, int averQ8, int averQ9, int averQ10, int setSumQ1, int setSumQ2) {
-        Statement s;
+    public void insertAvgrValue(int evId, int numPeople, int averQ1, int averQ2, int averQ3,
+            int averQ4, int averQ5, int averQ6, int averQ7, int averQ8, int averQ9, int averQ10, int setSumQ1, int setSumQ2) throws SQLException {
+        PreparedStatement s = null;
         String sql;
         cb.connecting();
         try {
-            s = cb.getConnect().createStatement();
-            sql = "INSERT INTO tb_feedback (evId,stdEstimated,sumQ1,sumQ2,sumQ3,sumQ4,sumQ5,sumQ6,sumQ7,sumQ8,sumQ9,sumQ10,setSumQ1,setSumQ2) "
-                    + "VALUES ('" + evId + "','" + numPeple + "'," + "'" + averQ1 + "','" + averQ2 + "','" + averQ3 + "','"
-                    + averQ4 + "','" + averQ5 + "','" + averQ6 + "','" + averQ7 + "','" + averQ8 + "','" + averQ9
-                    + "','" + averQ10 + "','" + setSumQ1 + "','" + setSumQ2 + "') ";
-
-            s.executeUpdate(sql);
+            sql = "UPDATE tb_feedback set sumQ1 = ?,sumQ2 = ?,sumQ3 = ?,sumQ4 = ?"
+                    + ",sumQ5 = ?,sumQ6 = ?,sumQ7 = ?,sumQ8 = ?,sumQ9 = ?,sumQ10 = ?,"
+                    + "setSumQ1 = ?,setSumQ2= ?"
+                    + "where evId = ?";
+            s = cb.getConnect().prepareStatement(sql);
+            s.setInt(1, averQ1);
+            s.setInt(2, averQ2);
+            s.setInt(3, averQ3);
+            s.setInt(4, averQ4);
+            s.setInt(5, averQ5);
+            s.setInt(6, averQ6);
+            s.setInt(7, averQ7);
+            s.setInt(8, averQ8);
+            s.setInt(9, averQ9);
+            s.setInt(10, averQ10);
+            s.setInt(11, setSumQ1);
+            s.setInt(12, setSumQ2);
+            s.setInt(13, evId);
+            s.executeUpdate();
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE ,"insertAvgrValue : insertAvgrValue Failed");
+                sql = "INSERT INTO tb_feedback (evId,stdEstimated,sumQ1,sumQ2,sumQ3,sumQ4,sumQ5,sumQ6,sumQ7,sumQ8,sumQ9,sumQ10,setSumQ1,setSumQ2) "
+                        + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+                s = cb.getConnect().prepareStatement(sql);
+                s.setInt(1, evId);
+                s.setInt(2, numPeople);
+                s.setInt(3, averQ1);
+                s.setInt(4, averQ2);
+                s.setInt(5, averQ3);
+                s.setInt(6, averQ4);
+                s.setInt(7, averQ5);
+                s.setInt(8, averQ6);
+                s.setInt(9, averQ7);
+                s.setInt(10, averQ8);
+                s.setInt(11, averQ9);
+                s.setInt(12, averQ10);
+                s.setInt(13, setSumQ1);
+                s.setInt(14, setSumQ2);
+                s.executeUpdate();
         }
         cb.logout();
     }
@@ -210,4 +239,17 @@ public class FeedbackModel {
         return check;
     }
     
+    public void updateStatusEva(int eventId,long stdId){
+        String sql = "UPDATE logJoining set status = 1 where stdId = ? and evId = ?";
+        cb.connecting();
+        try{
+            PreparedStatement ps = cb.getConnect().prepareStatement(sql);
+            ps.setLong(1, stdId);
+            ps.setInt(2, eventId);
+            ps.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        cb.logout();
+    }
 }

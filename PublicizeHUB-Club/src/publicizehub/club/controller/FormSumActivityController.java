@@ -213,7 +213,8 @@ public class FormSumActivityController  implements Initializable  {
         System.out.println("NUM"+temp);
         controller.getNumberJoin().setText(""+temp);
         controller.setPersons(event.getEvId());
-        controller.checkFeedback(rs,event.getEvId());
+//        controller.checkFeedback(rs,event.getEvId());
+        controller.calculateFeedback(event.getEvId());
         Scene scene = new Scene(root);
         try {
             stage.setScene(scene);

@@ -141,11 +141,9 @@ public class ProfileController {
             if(rs.next()){
                 int evId = rs.getInt("evId");
                 setEventToGui(evId);
-                System.out.println(evId);
                 while(rs.next()){
                     evId = rs.getInt("evId");
                     setEventToGui(evId);
-                    System.out.println(evId);
                 }
             }
         }catch(SQLException e){
@@ -173,11 +171,9 @@ public class ProfileController {
                 
                 if(ld.compareTo(LocalDate.now())>=0){
                     ec.addEventToPresentPane(getProfile(),event,this.listEventBox1,true,true); 
-                    System.out.println(event.getEvId());
                 }
                 else {   
                     ec.addEventToPresentPane(getProfile(),event,this.listEventBox2,false,true);
-                    System.out.println(event.getEvId());
                 }
             }
         }catch(SQLException e){
