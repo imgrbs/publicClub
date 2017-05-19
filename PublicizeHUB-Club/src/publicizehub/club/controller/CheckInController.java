@@ -102,7 +102,7 @@ public class CheckInController implements Initializable{
             if (result.get() == ButtonType.OK) {
                 System.out.println("clickConfirm eventId : "+eventId);
                 checkCode(insertCode.getText());
-                
+                insertCode.setText("");
             }
         }
         

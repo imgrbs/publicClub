@@ -135,25 +135,37 @@ public class ProfileController {
     
     @FXML
     public void getEventToProfile(){
-        ResultSet rs = ev.getSelect(getProfile().getStdId());
-        cb.logout();
+        ResultSet rs1 = ev.getSelect(getProfile().getStdId(),true);
         setStdId(getProfile().getStdId());
         try{
-            if(rs.next()){
-                int evId = rs.getInt("evId");
-                setEventToGui(evId);
-                while(rs.next()){
-                    evId = rs.getInt("evId");
-                    setEventToGui(evId);
+            if(rs1.next()){
+                int evId = rs1.getInt("evId");
+                setEventToGui(evId,true);
+                while(rs1.next()){
+                    evId = rs1.getInt("evId");
+                    setEventToGui(evId,true);
                 }
             }
         }catch(SQLException e){
             LOGGER.log(Level.SEVERE ,"SQLException : getEventToProfile Bug !");
         }
-        cb.logout();
+        ResultSet rs2 = ev.getSelect(getProfile().getStdId(),false);
+        setStdId(getProfile().getStdId());
+        try{
+            if(rs2.next()){
+                int evId = rs2.getInt("evId");
+                setEventToGui(evId,false);
+                while(rs2.next()){
+                    evId = rs2.getInt("evId");
+                    setEventToGui(evId,false);
+                }
+            }
+        }catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"SQLException : getEventToProfile Bug !");
+        }
     }
 
-    public void setEventToGui(int eventId){
+    public void setEventToGui(int eventId,boolean check){
         ResultSet findStd = ev.getSelect(eventId);
         EventModel event = null;
         LocalDate ld = null;
@@ -167,10 +179,10 @@ public class ProfileController {
                 findStd.getTime("evTime"),findStd.getTime("evEndTime"),
                 findStd.getInt("evType"),findStd.getInt("evId")
                 );
-                ld = event.getEvEndDate();
+                ld = findStd.getDate("evEndDate").toLocalDate();
                 
                 
-                if(ld.compareTo(LocalDate.now())>=0){
+                if(ld.compareTo(LocalDate.now())>-1 && check){
                     ec.addEventToPresentPane(getProfile(),event,this.listEventBox1,true,true); 
                 }
                 else {   

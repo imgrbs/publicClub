@@ -368,8 +368,50 @@ public class EventModel {
     public ResultSet getSelect(long stdId){
         cb.connecting();
         try{
-            ps = cb.getConnect().prepareStatement("SELECT * FROM logJoining where stdId = ?");
+            ps = cb.getConnect().prepareStatement("SELECT * FROM generatecode where stdId = ?");
+                ps.setLong(1,stdId);
+                rs = ps.executeQuery();
+        }
+        catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"getSelect long : SQLException Bug !");
+        }
+        catch(Exception e){
+            LOGGER.log(Level.SEVERE ,"getSelect long : Exception Bug !");
+        }
+        return rs;
+    }
+    
+    public ResultSet getSelect(long stdId,boolean check){
+        cb.connecting();
+        try{
+            if(check){
+                ps = cb.getConnect().prepareStatement("SELECT * FROM generatecode where stdId = ?");
+                ps.setLong(1,stdId);
+                rs = ps.executeQuery();
+
+            }else {
+                ps = cb.getConnect().prepareStatement("SELECT * FROM logJoining where stdId = ? and statusCheckIn = ?");
+                ps.setLong(1,stdId);
+                ps.setInt(2,1);
+                rs = ps.executeQuery();
+            }
+        }
+        catch(SQLException e){
+            LOGGER.log(Level.SEVERE ,"getSelect long : SQLException Bug !");
+        }
+        catch(Exception e){
+            LOGGER.log(Level.SEVERE ,"getSelect long : Exception Bug !");
+        }
+        return rs;
+    }
+    
+    public ResultSet getSelect(long stdId,int eventId){
+        cb.connecting();
+        try{
+//            ps = cb.getConnect().prepareStatement("SELECT * FROM logJoining where stdId = ? and statusCheckIn = ? ORDER BY logId DESC  limit 1");
+            ps = cb.getConnect().prepareStatement("SELECT * FROM logJoining where stdId = ? and statusCheckIn = ?");
             ps.setLong(1,stdId);
+            ps.setInt(2,1);
             rs = ps.executeQuery();
         }
         catch(SQLException e){
