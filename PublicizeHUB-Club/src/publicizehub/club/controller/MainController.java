@@ -34,6 +34,7 @@ public class MainController {
     private DetailController dc = new DetailController();
     private NewsController nc = new NewsController();
     private FirstNewsController fc = new FirstNewsController();
+    private MainController thisCon;
     private ResultSet rs = null;
     
     private ClickModel cm = new ClickModel();
@@ -170,7 +171,7 @@ public class MainController {
     
     @FXML
     public void callProfile() {
-        pc.callProfile(thisStage,thisScene,getProfile());
+        pc.callProfile(thisStage,thisScene,getProfile(),thisCon);
     }
     
     @FXML
@@ -274,7 +275,7 @@ public class MainController {
     
     @FXML
     public void callManage(){
-        mc.callManage(thisStage,thisScene,getProfile());
+        mc.callManage(thisStage,thisScene,getProfile(),thisCon);
     }
     
     
@@ -305,6 +306,7 @@ public class MainController {
             controller.managePic.setVisible(false);
         }
         sc.setProfile(prof);
+        controller.thisCon = controller;
         controller.getJc().setProfile(prof);
         controller.getSc().setProfile(prof);
         controller.setProfile(prof);

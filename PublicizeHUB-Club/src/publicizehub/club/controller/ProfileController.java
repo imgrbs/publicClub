@@ -36,6 +36,7 @@ public class ProfileController {
     JoinController jc = new JoinController();
     DetailController dc = new DetailController();
     EventController ec = new EventController();
+    MainController mainCon;
     
     private long stdId;
     
@@ -183,11 +184,13 @@ public class ProfileController {
     }
     
     public void callMain(){
+        mainCon.getNc().addNewsToList(mainCon.getNewsList());
         mainScene.setRoot(tempRoot);
+        
     }
     
     @FXML
-    public void callProfile(Stage mainStage,Scene mainScene,LoginModel prof){
+    public void callProfile(Stage mainStage,Scene mainScene,LoginModel prof,MainController conn){
         FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/Profile.fxml")); 
         mainStage.setTitle("PublicizeHUB");
 
@@ -211,6 +214,7 @@ public class ProfileController {
         controller.setLabelId(prof.getStdId()+"");
         controller.setLabelName(prof.getName());
         controller.setLabelDepartment(prof.getDepartment());
+        controller.mainCon = conn;
         
         mainScene.setRoot(root);
     }

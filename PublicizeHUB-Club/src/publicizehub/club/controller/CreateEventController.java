@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -302,16 +303,20 @@ public class CreateEventController implements Initializable {
     }
     
     public void setEmptyField(){
+        LocalDate year = LocalDate.now();
+        LocalDate nullDate = LocalDate.of(year.getYear(),01,01);
+        LocalTime nullTime = LocalTime.of(00,00);
         String cusText="ระบุเอง";
         eventName.setText("");
         description.setText("");
         place.setText("");
         try{
-            startRegis.setValue(null);
-            startDate.setValue(null);
-            endDate.setValue(null);
-            startTime.setValue(null);
-            endTime.setValue(null);
+            startRegis.setValue(nullDate);
+            startDate.setValue(nullDate);
+            endDate.setValue(nullDate);
+            startTime.setValue(nullTime);
+            endTime.setValue(nullTime);
+            eventType.setValue("");
         }catch(NullPointerException e){
             //LOGGER.log(Level.WARNING, "set NULL !");
         }catch(RuntimeException re){

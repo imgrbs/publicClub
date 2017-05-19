@@ -27,6 +27,7 @@ public class ManageController {
     private CreateEventController ce = new CreateEventController();
     private LoginController li = new LoginController();
     private EventController ec = new EventController();
+    private MainController mainCon;
     
     private ConnectionBuilder cb = new ConnectionBuilder();
     private EventModel ev = new EventModel();
@@ -123,11 +124,12 @@ public class ManageController {
     
     @FXML
     public void callMain(){
+        mainCon.getNc().addNewsToList(mainCon.getNewsList());
         mainScene.setRoot(tempRoot);
     }
     
     @FXML
-    public void callManage(Stage mainStage,Scene tempScene,LoginModel prof){
+    public void callManage(Stage mainStage,Scene tempScene,LoginModel prof,MainController conn){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/Manage.fxml"));   
         mainStage.setTitle("PublicizeHUB");
         Parent root = null;
@@ -147,6 +149,7 @@ public class ManageController {
         controller.setMainStage(mainStage);
         controller.setMainScene(tempScene);
         controller.setTempRoot(tempScene.getRoot());
+        controller.mainCon = conn;
         tempScene.setRoot(root);
     }
     
